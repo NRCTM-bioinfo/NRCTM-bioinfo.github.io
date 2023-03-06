@@ -5,7 +5,7 @@ Applied bioinformatics in National Research Center for Translational Medicine at
 
 ### APL-stemness project
 
-See the source code and tutorial of APL-stemness project, please visit [Tutorial of APL-stemness](https://https://nrctm-bioinfo.github.io/APL_stemness/index.html).
+See the source code and tutorial of APL-stemness project, please visit [Tutorial of APL-stemness](https://nrctm-bioinfo.github.io/APL_stemness/index.html).
 
 
 
