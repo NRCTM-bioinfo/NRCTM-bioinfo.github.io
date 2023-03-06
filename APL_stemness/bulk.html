@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Bulk | APL stemness</title>
+  <meta name="description" content="This is the tutorial of APL-stemness project." />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Bulk | APL stemness" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://nrctm-bioinfo.github.io/APL_stemness/index.html/figure/cover.jpg" />
+  <meta property="og:description" content="This is the tutorial of APL-stemness project." />
+  <meta name="github-repo" content="NRCTM-bioinfo/APL-stemness" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Bulk | APL stemness" />
+  
+  <meta name="twitter:description" content="This is the tutorial of APL-stemness project." />
+  <meta name="twitter:image" content="https://nrctm-bioinfo.github.io/APL_stemness/index.html/figure/cover.jpg" />
+
+<meta name="author" content="Yu-Ting Dai, Wen Jin" />
+
+
+<meta name="date" content="2023-03-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="scrna-seq.html"/>
+<link rel="next" href="deconvolution.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://github.com/NRCTM-bioinfo/APL-stemness"><center><b>APL-stemness</b></center></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="scrna-seq.html"><a href="scrna-seq.html"><i class="fa fa-check"></i><b>2</b> scRNA-seq</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="scrna-seq.html"><a href="scrna-seq.html#load-packages"><i class="fa fa-check"></i><b>2.1</b> Load packages</a></li>
+<li class="chapter" data-level="2.2" data-path="scrna-seq.html"><a href="scrna-seq.html#pre-processing"><i class="fa fa-check"></i><b>2.2</b> Pre-processing</a></li>
+<li class="chapter" data-level="2.3" data-path="scrna-seq.html"><a href="scrna-seq.html#quaility-control"><i class="fa fa-check"></i><b>2.3</b> Quaility control</a></li>
+<li class="chapter" data-level="2.4" data-path="scrna-seq.html"><a href="scrna-seq.html#clustering"><i class="fa fa-check"></i><b>2.4</b> Clustering</a></li>
+<li class="chapter" data-level="2.5" data-path="scrna-seq.html"><a href="scrna-seq.html#cell-annotation"><i class="fa fa-check"></i><b>2.5</b> Cell annotation</a></li>
+<li class="chapter" data-level="2.6" data-path="scrna-seq.html"><a href="scrna-seq.html#cell-signature"><i class="fa fa-check"></i><b>2.6</b> Cell signature</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="bulk.html"><a href="bulk.html"><i class="fa fa-check"></i><b>3</b> Bulk</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="bulk.html"><a href="bulk.html#pre-processing-1"><i class="fa fa-check"></i><b>3.1</b> Pre-processing</a></li>
+<li class="chapter" data-level="3.2" data-path="bulk.html"><a href="bulk.html#degs"><i class="fa fa-check"></i><b>3.2</b> DEGs</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="deconvolution.html"><a href="deconvolution.html"><i class="fa fa-check"></i><b>4</b> Deconvolution</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="deconvolution.html"><a href="deconvolution.html#svr"><i class="fa fa-check"></i><b>4.1</b> SVR</a></li>
+<li class="chapter" data-level="4.2" data-path="deconvolution.html"><a href="deconvolution.html#regression"><i class="fa fa-check"></i><b>4.2</b> Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="about-this-project.html"><a href="about-this-project.html"><i class="fa fa-check"></i><b>5</b> About this project</a>
+<ul>
+<li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#current-version"><i class="fa fa-check"></i>Current version</a></li>
+<li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#acknowledgment"><i class="fa fa-check"></i>Acknowledgment</a></li>
+<li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#session-information"><i class="fa fa-check"></i>Session Information</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">APL stemness</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="bulk" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Bulk<a href="bulk.html#bulk" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="pre-processing-1" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Pre-processing<a href="bulk.html#pre-processing-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In bulk RNA-seq analysis, Salmon was used to generate the count and transcripts per kilobase of exon model per million mapped reads (TPM) matrix. For normalization of the count matrix, we used DESeq2 to transform count matrix via <code>varianceStabilizingTransformation</code>. The limma package was used to calculate differentially expressed genes (DEGs) with significance level setting as adjusted P-value &lt; 0.05 and log2FC &gt; 0.58 or &lt; -0.58 (Log2 Fold change 1.5).</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="bulk.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pre-processing of bulk RNA-seq data was performed using salmon</span></span>
+<span id="cb12-2"><a href="bulk.html#cb12-2" aria-hidden="true" tabindex="-1"></a>gtf_file<span class="ot">=</span><span class="er">$</span>{hg38}<span class="sc">/</span>gencode.v38.annotation.gtf</span>
+<span id="cb12-3"><a href="bulk.html#cb12-3" aria-hidden="true" tabindex="-1"></a>out_path<span class="ot">=</span><span class="er">$</span>{out_path}</span>
+<span id="cb12-4"><a href="bulk.html#cb12-4" aria-hidden="true" tabindex="-1"></a>salmon_index<span class="ot">=</span><span class="er">$</span>{salmon_index}</span>
+<span id="cb12-5"><a href="bulk.html#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="bulk.html#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>SALMON quant <span class="sc">-</span>p <span class="dv">8</span> <span class="sc">-</span>l IU <span class="sc">-</span>i <span class="sc">$</span>{salmon_index} <span class="sc">-</span>o <span class="sc">$</span>{out_path}<span class="sc">/</span><span class="er">$</span>{id} <span class="sc">-</span><span class="dv">1</span> <span class="sc">$</span>{fq1} <span class="sc">-</span><span class="dv">2</span> <span class="sc">$</span>{fq2} <span class="sc">-</span>g <span class="sc">$</span>{gtf_file} <span class="sc">--</span>gcBias <span class="sc">--</span>validateMappings</span></code></pre></div>
+<p>Then the TPM and count matrices were generated.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="bulk.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read count data using DESeq2</span></span>
+<span id="cb13-2"><a href="bulk.html#cb13-2" aria-hidden="true" tabindex="-1"></a>ddsHTSeq <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> exp.count, <span class="fu">DataFrame</span>(condition), <span class="sc">~</span> condition)</span>
+<span id="cb13-3"><a href="bulk.html#cb13-3" aria-hidden="true" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(ddsHTSeq)</span>
+<span id="cb13-4"><a href="bulk.html#cb13-4" aria-hidden="true" tabindex="-1"></a>dds.vsd <span class="ot">&lt;-</span> <span class="fu">varianceStabilizingTransformation</span>(dds, <span class="at">blind =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-5"><a href="bulk.html#cb13-5" aria-hidden="true" tabindex="-1"></a>exp.vst <span class="ot">&lt;-</span> <span class="fu">assay</span>(dds.vsd)</span>
+<span id="cb13-6"><a href="bulk.html#cb13-6" aria-hidden="true" tabindex="-1"></a>exp.vst <span class="ot">&lt;-</span> exp.vst <span class="sc">-</span> <span class="fu">min</span>(exp.vst)</span></code></pre></div>
+</div>
+<div id="degs" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> DEGs<a href="bulk.html#degs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="bulk.html#cb14-1" aria-hidden="true" tabindex="-1"></a>pdata <span class="ot">&lt;-</span> meta.data</span>
+<span id="cb14-2"><a href="bulk.html#cb14-2" aria-hidden="true" tabindex="-1"></a>pdata<span class="sc">$</span>con <span class="ot">&lt;-</span> meta.data<span class="sc">$</span>EarlyDeath</span>
+<span id="cb14-3"><a href="bulk.html#cb14-3" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> <span class="fu">as.factor</span>(con), <span class="at">data =</span> pdata)</span>
+<span id="cb14-4"><a href="bulk.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(design) <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(<span class="fu">colnames</span>(design), <span class="fu">fixed</span>(<span class="st">&quot;as.factor(con)&quot;</span>), <span class="st">&quot;&quot;</span>)</span>
+<span id="cb14-5"><a href="bulk.html#cb14-5" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lmFit</span>(exp.vst[, pdata<span class="sc">$</span>ID], design)</span>
+<span id="cb14-6"><a href="bulk.html#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="bulk.html#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># make contrast</span></span>
+<span id="cb14-8"><a href="bulk.html#cb14-8" aria-hidden="true" tabindex="-1"></a>contrast <span class="ot">&lt;-</span> <span class="fu">makeContrasts</span>(<span class="at">ED =</span> ED <span class="sc">-</span> Alive,</span>
+<span id="cb14-9"><a href="bulk.html#cb14-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">levels =</span> design)</span>
+<span id="cb14-10"><a href="bulk.html#cb14-10" aria-hidden="true" tabindex="-1"></a>fits <span class="ot">&lt;-</span> <span class="fu">contrasts.fit</span>(fit, contrast)</span>
+<span id="cb14-11"><a href="bulk.html#cb14-11" aria-hidden="true" tabindex="-1"></a>ebFit <span class="ot">&lt;-</span> <span class="fu">eBayes</span>(fits)</span>
+<span id="cb14-12"><a href="bulk.html#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="bulk.html#cb14-13" aria-hidden="true" tabindex="-1"></a>deg.data <span class="ot">&lt;-</span> deg_sig_list[<span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(deg_sig_list<span class="sc">$</span>adj.P.Val)), ]</span>
+<span id="cb14-14"><a href="bulk.html#cb14-14" aria-hidden="true" tabindex="-1"></a>deg.data<span class="sc">$</span>logP <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(deg.data<span class="sc">$</span>adj.P.Val)</span>
+<span id="cb14-15"><a href="bulk.html#cb14-15" aria-hidden="true" tabindex="-1"></a>deg.data<span class="sc">$</span>group <span class="ot">=</span> <span class="st">&quot;zz&quot;</span></span>
+<span id="cb14-16"><a href="bulk.html#cb14-16" aria-hidden="true" tabindex="-1"></a>deg.data<span class="sc">$</span>group[<span class="fu">which</span>( (deg.data<span class="sc">$</span>adj.P.Val <span class="sc">&lt;</span> <span class="fl">0.05</span>) <span class="sc">&amp;</span> (deg.data<span class="sc">$</span>logFC <span class="sc">&gt;</span> <span class="dv">0</span>) )] <span class="ot">=</span> <span class="st">&quot;up&quot;</span></span>
+<span id="cb14-17"><a href="bulk.html#cb14-17" aria-hidden="true" tabindex="-1"></a>deg.data<span class="sc">$</span>group[<span class="fu">which</span>( (deg.data<span class="sc">$</span>adj.P.Val <span class="sc">&lt;</span> <span class="fl">0.05</span>) <span class="sc">&amp;</span> (deg.data<span class="sc">$</span>logFC <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">0</span>) )] <span class="ot">=</span> <span class="st">&quot;down&quot;</span></span>
+<span id="cb14-18"><a href="bulk.html#cb14-18" aria-hidden="true" tabindex="-1"></a>deg.data<span class="sc">$</span>tag <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;ED - Alive&quot;</span>)</span>
+<span id="cb14-19"><a href="bulk.html#cb14-19" aria-hidden="true" tabindex="-1"></a>deg.data<span class="sc">$</span>Gene <span class="ot">&lt;-</span> <span class="fu">rownames</span>(deg.data)</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="scrna-seq.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="deconvolution.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-Bulk.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["APL-stemness.pdf", "APL-stemness.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
