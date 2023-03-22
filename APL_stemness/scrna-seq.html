@@ -23,7 +23,7 @@
 <meta name="author" content="Yu-Ting Dai, Wen Jin" />
 
 
-<meta name="date" content="2023-03-06" />
+<meta name="date" content="2023-03-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -159,7 +159,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="about-this-project.html"><a href="about-this-project.html"><i class="fa fa-check"></i><b>5</b> About this project</a>
 <ul>
 <li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#current-version"><i class="fa fa-check"></i>Current version</a></li>
-<li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#acknowledgment"><i class="fa fa-check"></i>Acknowledgment</a></li>
 <li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#session-information"><i class="fa fa-check"></i>Session Information</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -207,7 +206,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-19"><a href="scrna-seq.html#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(ggthemes)</span>
 <span id="cb1-20"><a href="scrna-seq.html#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(enrichplot)</span>
 <span id="cb1-21"><a href="scrna-seq.html#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(GSEABase)</span>
-<span id="cb1-22"><a href="scrna-seq.html#cb1-22" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<span id="cb1-22"><a href="scrna-seq.html#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(Seurat)</span>
+<span id="cb1-23"><a href="scrna-seq.html#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(monocle)</span>
+<span id="cb1-24"><a href="scrna-seq.html#cb1-24" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 </div>
 <div id="pre-processing" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Pre-processing<a href="scrna-seq.html#pre-processing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -263,34 +264,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-12"><a href="scrna-seq.html#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-13"><a href="scrna-seq.html#cb5-13" aria-hidden="true" tabindex="-1"></a>ref <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">&quot;SingleR/NovershternHematopoieticData.RDS&quot;</span>)</span>
 <span id="cb5-14"><a href="scrna-seq.html#cb5-14" aria-hidden="true" tabindex="-1"></a>pred.NovershternHematopoieticData <span class="ot">&lt;-</span> <span class="fu">SingleR</span>(<span class="at">test =</span> apl<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">@</span>data, <span class="at">ref =</span> ref, <span class="at">labels =</span> ref<span class="sc">$</span>label.main)</span></code></pre></div>
-<p>We have also generated the in-house annotation reference for APL cell population identification. This step was performed using SingleR.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="scrna-seq.html#cb6-1" aria-hidden="true" tabindex="-1"></a>ref <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">&quot;data/APL_SingleR_reference_Log.rds&quot;</span>)</span>
-<span id="cb6-2"><a href="scrna-seq.html#cb6-2" aria-hidden="true" tabindex="-1"></a>pred.APL <span class="ot">&lt;-</span> SingleR<span class="sc">::</span><span class="fu">SingleR</span>(<span class="at">test =</span> apl<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">@</span>data, <span class="at">ref =</span> ref, <span class="at">labels =</span> ref<span class="sc">$</span>label.fine)</span>
-<span id="cb6-3"><a href="scrna-seq.html#cb6-3" aria-hidden="true" tabindex="-1"></a>pred.APL <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
 </div>
 <div id="cell-signature" class="section level2 hasAnchor" number="2.6">
 <h2><span class="header-section-number">2.6</span> Cell signature<a href="scrna-seq.html#cell-signature" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The cell signature matrix for each branch in APL was generated using CIBERSORTx (<a href="https://cibersortx.stanford.edu/runcibersortx.php" class="uri">https://cibersortx.stanford.edu/runcibersortx.php</a>)</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="scrna-seq.html#cb7-1" aria-hidden="true" tabindex="-1"></a>apl.signature <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/CIBERSORTx_sig_1w_branch_mix_out.txt&quot;</span>, <span class="at">header =</span> T, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb7-2"><a href="scrna-seq.html#cb7-2" aria-hidden="true" tabindex="-1"></a>apl.signature <span class="sc">%&gt;%</span> <span class="fu">dim</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="scrna-seq.html#cb6-1" aria-hidden="true" tabindex="-1"></a>apl.signature <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/CIBERSORTx_sig_1w_branch_mix_out.txt&quot;</span>, <span class="at">header =</span> T, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb6-2"><a href="scrna-seq.html#cb6-2" aria-hidden="true" tabindex="-1"></a>apl.signature <span class="sc">%&gt;%</span> <span class="fu">dim</span>()</span></code></pre></div>
 <pre><code>## [1] 3388    9</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="scrna-seq.html#cb9-1" aria-hidden="true" tabindex="-1"></a>apl.signature <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
-<pre><code>##          Stem_like CMP_like S100_GMP_like GMP_like Cycling_GMP_like MDP_like    Bcell Tcell  Ery_HBB
-## A1BG      7.730646 7.750874      7.779596 8.062909         7.437444 7.573643 7.260941     0 0.000000
-## A4GALT    0.000000 0.000000      0.000000 0.000000         0.000000 0.000000 0.000000     0 5.027246
-## AAR2      5.403863 0.000000      0.000000 0.000000         0.000000 0.000000 0.000000     0 0.000000
-## AARSD1    5.617030 6.051531      0.000000 0.000000         5.715844 0.000000 0.000000     0 0.000000
-## AASDHPPT  6.151580 6.168110      0.000000 0.000000         6.213959 0.000000 0.000000     0 0.000000
-## ABCB10    0.000000 0.000000      0.000000 0.000000         5.672631 0.000000 0.000000     0 8.247811</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="scrna-seq.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(<span class="fu">as.matrix</span>(apl.signature), <span class="at">scale =</span> <span class="st">&quot;row&quot;</span>,</span>
-<span id="cb11-2"><a href="scrna-seq.html#cb11-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;#1B3361&quot;</span>,<span class="st">&quot;#76C7FF&quot;</span>,<span class="st">&quot;#FFFFFF&quot;</span>,<span class="st">&quot;#FF987A&quot;</span>,<span class="st">&quot;#6A0D28&quot;</span>))(<span class="dv">501</span>),</span>
-<span id="cb11-3"><a href="scrna-seq.html#cb11-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">cluster_row =</span> T, <span class="at">cluster_col =</span> T, <span class="at">border_color =</span> <span class="cn">NA</span>,</span>
-<span id="cb11-4"><a href="scrna-seq.html#cb11-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_distance_rows =</span> <span class="st">&quot;manhattan&quot;</span>,</span>
-<span id="cb11-5"><a href="scrna-seq.html#cb11-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_distance_cols =</span> <span class="st">&quot;manhattan&quot;</span>,</span>
-<span id="cb11-6"><a href="scrna-seq.html#cb11-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_method =</span> <span class="st">&quot;ward.D&quot;</span>,</span>
-<span id="cb11-7"><a href="scrna-seq.html#cb11-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">fontsize_col =</span> <span class="dv">10</span>,</span>
-<span id="cb11-8"><a href="scrna-seq.html#cb11-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">fontsize_row =</span> <span class="fl">0.1</span>)</span></code></pre></div>
-<p><img src="APL-stemness_files/figure-html/unnamed-chunk-7-1.png" width="480" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="scrna-seq.html#cb8-1" aria-hidden="true" tabindex="-1"></a>apl.signature <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span>
+<span id="cb8-2"><a href="scrna-seq.html#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="scrna-seq.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(<span class="fu">as.matrix</span>(apl.signature), <span class="at">scale =</span> <span class="st">&quot;row&quot;</span>,</span>
+<span id="cb8-4"><a href="scrna-seq.html#cb8-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;#1B3361&quot;</span>,<span class="st">&quot;#76C7FF&quot;</span>,<span class="st">&quot;#FFFFFF&quot;</span>,<span class="st">&quot;#FF987A&quot;</span>,<span class="st">&quot;#6A0D28&quot;</span>))(<span class="dv">501</span>),</span>
+<span id="cb8-5"><a href="scrna-seq.html#cb8-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">cluster_row =</span> T, <span class="at">cluster_col =</span> T, <span class="at">border_color =</span> <span class="cn">NA</span>,</span>
+<span id="cb8-6"><a href="scrna-seq.html#cb8-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_distance_rows =</span> <span class="st">&quot;manhattan&quot;</span>,</span>
+<span id="cb8-7"><a href="scrna-seq.html#cb8-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_distance_cols =</span> <span class="st">&quot;manhattan&quot;</span>,</span>
+<span id="cb8-8"><a href="scrna-seq.html#cb8-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">clustering_method =</span> <span class="st">&quot;ward.D&quot;</span>,</span>
+<span id="cb8-9"><a href="scrna-seq.html#cb8-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">fontsize_col =</span> <span class="dv">10</span>,</span>
+<span id="cb8-10"><a href="scrna-seq.html#cb8-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">fontsize_row =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<p><img src="APL-stemness_files/figure-html/unnamed-chunk-6-1.png" width="480" /></p>
 
 </div>
 </div>
