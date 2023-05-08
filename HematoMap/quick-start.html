@@ -23,7 +23,7 @@
 <meta name="author" content="Yu-Ting Dai, Wen Ou-Yang" />
 
 
-<meta name="date" content="2023-04-23" />
+<meta name="date" content="2023-05-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,7 +165,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1" data-path="bulk.html"><a href="bulk.html#load-bulk-rna-seq-data"><i class="fa fa-check"></i><b>5.1</b> Load bulk RNA-seq data</a></li>
 <li class="chapter" data-level="5.2" data-path="bulk.html"><a href="bulk.html#visualization-1"><i class="fa fa-check"></i><b>5.2</b> Visualization</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="about-hematomap.html"><a href="about-hematomap.html"><i class="fa fa-check"></i><b>6</b> About HematoMap</a>
+<li class="chapter" data-level="6" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>6</b> Run shiny app</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="shiny.html"><a href="shiny.html#open-shiny"><i class="fa fa-check"></i><b>6.1</b> Open shiny</a></li>
+<li class="chapter" data-level="6.2" data-path="shiny.html"><a href="shiny.html#scrna-seq"><i class="fa fa-check"></i><b>6.2</b> scRNA-seq</a></li>
+<li class="chapter" data-level="6.3" data-path="shiny.html"><a href="shiny.html#bulk-rna-seq"><i class="fa fa-check"></i><b>6.3</b> Bulk RNA-seq</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="about-hematomap.html"><a href="about-hematomap.html"><i class="fa fa-check"></i><b>7</b> About HematoMap</a>
 <ul>
 <li class="chapter" data-level="" data-path="about-hematomap.html"><a href="about-hematomap.html#bug-reports"><i class="fa fa-check"></i>Bug Reports</a></li>
 <li class="chapter" data-level="" data-path="about-hematomap.html"><a href="about-hematomap.html#current-version"><i class="fa fa-check"></i>Current version</a></li>
@@ -231,32 +237,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="show-normal-bmmcs" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Show normal BMMCs<a href="quick-start.html#show-normal-bmmcs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="quick-start.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show cluster-tree plot of normal BMMC</span></span>
-<span id="cb4-2"><a href="quick-start.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotClusterTree</span>(<span class="at">group.subc =</span> <span class="st">&quot;reference&quot;</span>,</span>
-<span id="cb4-3"><a href="quick-start.html#cb4-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">color.mapping =</span> <span class="st">&quot;cell.type&quot;</span>,</span>
-<span id="cb4-4"><a href="quick-start.html#cb4-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="st">&quot;Normal BMMCs&quot;</span>,</span>
-<span id="cb4-5"><a href="quick-start.html#cb4-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">point.size =</span> <span class="dv">20</span>, </span>
-<span id="cb4-6"><a href="quick-start.html#cb4-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">label.cell =</span> T)</span></code></pre></div>
-<pre><code>## Warning in do_once((if (is_R_CMD_check()) stop else warning)(&quot;The function
-## xfun::isFALSE() will be deprecated in the future. Please &quot;, : The function
-## xfun::isFALSE() will be deprecated in the future. Please consider using base::isFALSE(x)
-## or identical(x, FALSE) instead.</code></pre>
-<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="quick-start.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show circle plot of normal BMMC</span></span>
-<span id="cb6-2"><a href="quick-start.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCircleTree</span>(<span class="at">group.subc =</span> <span class="st">&quot;reference&quot;</span>, </span>
-<span id="cb6-3"><a href="quick-start.html#cb6-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">color.mapping =</span> <span class="st">&quot;cell.type&quot;</span>, </span>
-<span id="cb6-4"><a href="quick-start.html#cb6-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">title =</span> <span class="st">&quot;Normal BMMCs&quot;</span>)</span></code></pre></div>
-<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-4-2.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="quick-start.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show circle plot of normal BMMC</span></span>
+<span id="cb4-2"><a href="quick-start.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCircleTree</span>(<span class="at">group.subc =</span> <span class="st">&quot;reference&quot;</span>, </span>
+<span id="cb4-3"><a href="quick-start.html#cb4-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">color.mapping =</span> <span class="st">&quot;cell.type&quot;</span>, </span>
+<span id="cb4-4"><a href="quick-start.html#cb4-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">title =</span> <span class="st">&quot;Normal BMMCs&quot;</span>)</span></code></pre></div>
+<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="quick-start.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show cluster-tree plot of normal BMMC</span></span>
+<span id="cb5-2"><a href="quick-start.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotClusterTree</span>(<span class="at">group.subc =</span> <span class="st">&quot;reference&quot;</span>,</span>
+<span id="cb5-3"><a href="quick-start.html#cb5-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">color.mapping =</span> <span class="st">&quot;cell.type&quot;</span>,</span>
+<span id="cb5-4"><a href="quick-start.html#cb5-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="st">&quot;Normal BMMCs&quot;</span>,</span>
+<span id="cb5-5"><a href="quick-start.html#cb5-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">point.size =</span> <span class="dv">20</span>, </span>
+<span id="cb5-6"><a href="quick-start.html#cb5-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">label.cell =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-5-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 <div id="quick-start-code" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Quick-start code<a href="quick-start.html#quick-start-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="quick-start.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For scRNA-seq analysis</span></span>
-<span id="cb7-2"><a href="quick-start.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the `scrna` is a seurat object</span></span>
-<span id="cb7-3"><a href="quick-start.html#cb7-3" aria-hidden="true" tabindex="-1"></a>hmap <span class="ot">&lt;-</span> HematoMap<span class="sc">::</span><span class="fu">CreateSubclusterObject</span>(scrna)</span>
-<span id="cb7-4"><a href="quick-start.html#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="quick-start.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># For bulk RNA-seq analysis</span></span>
-<span id="cb7-6"><a href="quick-start.html#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># the `bulk` is a expression matrix of bulk RNA-seq</span></span>
-<span id="cb7-7"><a href="quick-start.html#cb7-7" aria-hidden="true" tabindex="-1"></a>hmap.bulk <span class="ot">&lt;-</span> <span class="fu">computeLassoScore</span>(bulk)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="quick-start.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For scRNA-seq analysis</span></span>
+<span id="cb6-2"><a href="quick-start.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the `scrna` is a seurat object</span></span>
+<span id="cb6-3"><a href="quick-start.html#cb6-3" aria-hidden="true" tabindex="-1"></a>hmap <span class="ot">&lt;-</span> HematoMap<span class="sc">::</span><span class="fu">CreateSubclusterObject</span>(scrna)</span>
+<span id="cb6-4"><a href="quick-start.html#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="quick-start.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># For bulk RNA-seq analysis</span></span>
+<span id="cb6-6"><a href="quick-start.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># the `bulk` is a expression matrix of bulk RNA-seq</span></span>
+<span id="cb6-7"><a href="quick-start.html#cb6-7" aria-hidden="true" tabindex="-1"></a>hmap.bulk <span class="ot">&lt;-</span> <span class="fu">computeLassoScore</span>(bulk)</span></code></pre></div>
 
 </div>
 </div>

@@ -23,7 +23,7 @@
 <meta name="author" content="Yu-Ting Dai, Wen Ou-Yang" />
 
 
-<meta name="date" content="2023-04-23" />
+<meta name="date" content="2023-05-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,7 +165,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1" data-path="bulk.html"><a href="bulk.html#load-bulk-rna-seq-data"><i class="fa fa-check"></i><b>5.1</b> Load bulk RNA-seq data</a></li>
 <li class="chapter" data-level="5.2" data-path="bulk.html"><a href="bulk.html#visualization-1"><i class="fa fa-check"></i><b>5.2</b> Visualization</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="about-hematomap.html"><a href="about-hematomap.html"><i class="fa fa-check"></i><b>6</b> About HematoMap</a>
+<li class="chapter" data-level="6" data-path="shiny.html"><a href="shiny.html"><i class="fa fa-check"></i><b>6</b> Run shiny app</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="shiny.html"><a href="shiny.html#open-shiny"><i class="fa fa-check"></i><b>6.1</b> Open shiny</a></li>
+<li class="chapter" data-level="6.2" data-path="shiny.html"><a href="shiny.html#scrna-seq"><i class="fa fa-check"></i><b>6.2</b> scRNA-seq</a></li>
+<li class="chapter" data-level="6.3" data-path="shiny.html"><a href="shiny.html#bulk-rna-seq"><i class="fa fa-check"></i><b>6.3</b> Bulk RNA-seq</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="about-hematomap.html"><a href="about-hematomap.html"><i class="fa fa-check"></i><b>7</b> About HematoMap</a>
 <ul>
 <li class="chapter" data-level="" data-path="about-hematomap.html"><a href="about-hematomap.html#bug-reports"><i class="fa fa-check"></i>Bug Reports</a></li>
 <li class="chapter" data-level="" data-path="about-hematomap.html"><a href="about-hematomap.html#current-version"><i class="fa fa-check"></i>Current version</a></li>
@@ -197,152 +203,154 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="load-scrna-seq-data" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Load scRNA-seq data<a href="scrna.html#load-scrna-seq-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the tutorial, the scRNA-seq of one APL (AML with PML::RARA fusion, also called acute promyelocytic leukemia)) patient (including 3,000 cells) was used for illustration.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="scrna.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Library packages</span></span>
-<span id="cb8-2"><a href="scrna.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
-<span id="cb8-3"><a href="scrna.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(HematoMap)</span>
-<span id="cb8-4"><a href="scrna.html#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="scrna.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Read count matrix of APL</span></span>
-<span id="cb8-6"><a href="scrna.html#cb8-6" aria-hidden="true" tabindex="-1"></a>aml.count <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/AML_scRNA_count.rds&quot;</span>)</span>
-<span id="cb8-7"><a href="scrna.html#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(aml.count)</span></code></pre></div>
+<p>The expample data of APL scRNA-seq can be downloaded <a href="https://nrctm-bioinfo.github.io/HematoMap/data/AML_scRNA_count.rds"><strong>APL scrna demo data</strong></a></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="scrna.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Library packages</span></span>
+<span id="cb7-2"><a href="scrna.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
+<span id="cb7-3"><a href="scrna.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(HematoMap)</span>
+<span id="cb7-4"><a href="scrna.html#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="scrna.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Read count matrix of APL</span></span>
+<span id="cb7-6"><a href="scrna.html#cb7-6" aria-hidden="true" tabindex="-1"></a>aml.count <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/AML_scRNA_count.rds&quot;</span>)</span>
+<span id="cb7-7"><a href="scrna.html#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(aml.count)</span></code></pre></div>
 <pre><code>## [1] 36601  3000</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="scrna.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct Seurat object</span></span>
-<span id="cb10-2"><a href="scrna.html#cb10-2" aria-hidden="true" tabindex="-1"></a>aml <span class="ot">&lt;-</span> Seurat<span class="sc">::</span><span class="fu">CreateSeuratObject</span>(<span class="at">counts =</span> aml.count, </span>
-<span id="cb10-3"><a href="scrna.html#cb10-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">project =</span> <span class="st">&quot;aml&quot;</span>, </span>
-<span id="cb10-4"><a href="scrna.html#cb10-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">min.cells =</span> <span class="dv">0</span>, </span>
-<span id="cb10-5"><a href="scrna.html#cb10-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">min.features =</span> <span class="dv">0</span>)</span>
-<span id="cb10-6"><a href="scrna.html#cb10-6" aria-hidden="true" tabindex="-1"></a>aml</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="scrna.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct Seurat object</span></span>
+<span id="cb9-2"><a href="scrna.html#cb9-2" aria-hidden="true" tabindex="-1"></a>aml <span class="ot">&lt;-</span> Seurat<span class="sc">::</span><span class="fu">CreateSeuratObject</span>(<span class="at">counts =</span> aml.count, </span>
+<span id="cb9-3"><a href="scrna.html#cb9-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">project =</span> <span class="st">&quot;aml&quot;</span>, </span>
+<span id="cb9-4"><a href="scrna.html#cb9-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">min.cells =</span> <span class="dv">0</span>, </span>
+<span id="cb9-5"><a href="scrna.html#cb9-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">min.features =</span> <span class="dv">0</span>)</span>
+<span id="cb9-6"><a href="scrna.html#cb9-6" aria-hidden="true" tabindex="-1"></a>aml</span></code></pre></div>
 <pre><code>## An object of class Seurat 
 ## 36601 features across 3000 samples within 1 assay 
 ## Active assay: RNA (36601 features, 0 variable features)</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="scrna.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the RDS file</span></span>
+<span id="cb11-2"><a href="scrna.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(aml, <span class="at">file =</span> <span class="st">&quot;data/AML_scRNA_seurat.rds&quot;</span>)</span></code></pre></div>
 </div>
 <div id="calculate-similarities" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Calculate similarities<a href="scrna.html#calculate-similarities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="scrna.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct HematoMap object</span></span>
 <span id="cb12-2"><a href="scrna.html#cb12-2" aria-hidden="true" tabindex="-1"></a>hmap <span class="ot">&lt;-</span> HematoMap<span class="sc">::</span><span class="fu">CreateSubclusterObject</span>(aml)</span></code></pre></div>
-<pre><code>## Warning: The default method for RunUMAP has changed from calling Python UMAP via reticulate to the R-native UWOT using the cosine metric
-## To use Python UMAP via reticulate, set umap.method to &#39;umap-learn&#39; and metric to &#39;correlation&#39;
-## This message will be shown once per session</code></pre>
-<pre><code>## [INFO] 2023-04-23 21:34:54: Subcluster Computing</code></pre>
+<pre><code>## [INFO] 2023-05-08 21:20:28: Subcluster Computing</code></pre>
 <pre><code>## 
-  |                                                                        |   0%, ETA NA
-  |=======                                                              |  10%, ETA 00:35
-  |==============                                                       |  20%, ETA 00:29
-  |=====================                                                |  30%, ETA 00:23
-  |============================                                         |  40%, ETA 00:19
-  |==================================                                   |  50%, ETA 00:15
-  |=========================================                            |  60%, ETA 00:11
-  |================================================                     |  70%, ETA 00:08
-  |=======================================================              |  80%, ETA 00:05</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, : There
-## are other near singularities as well. 0.031008</code></pre>
-<pre><code>## [INFO] 2023-04-23 21:35:13: Subcluster Complete!</code></pre>
+  |                                                                                |   0%, ETA NA
+  |========                                                                     |  10%, ETA 00:34
+  |===============                                                              |  20%, ETA 00:29
+  |=======================                                                      |  30%, ETA 00:24
+  |===============================                                              |  40%, ETA 00:19
+  |======================================                                       |  50%, ETA 00:16
+  |==============================================                               |  60%, ETA 00:12
+  |======================================================                       |  70%, ETA 00:08
+  |==============================================================               |  80%, ETA 00:05</code></pre>
+<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, : There are other
+## near singularities as well. 0.031008</code></pre>
+<pre><code>## [INFO] 2023-05-08 21:20:48: Subcluster Complete!</code></pre>
 <pre><code>## 
-  |                                                                        |   0%, ETA NA
-  |=                                                                    |   2%, ETA 00:03
-  |===                                                                  |   4%, ETA 00:02
-  |====                                                                 |   6%, ETA 00:01
-  |======                                                               |   8%, ETA 00:01
-  |=======                                                              |  10%, ETA 00:01
-  |========                                                             |  12%, ETA 00:01
-  |==========                                                           |  14%, ETA 00:01
-  |===========                                                          |  16%, ETA 00:01
-  |=============                                                        |  18%, ETA 00:00
-  |==============                                                       |  20%, ETA 00:00
-  |===============                                                      |  22%, ETA 00:00
-  |=================                                                    |  24%, ETA 00:00
-  |==================                                                   |  27%, ETA 00:00
-  |====================                                                 |  29%, ETA 00:00
-  |=====================                                                |  31%, ETA 00:00
-  |=======================                                              |  33%, ETA 00:00
-  |========================                                             |  35%, ETA 00:00
-  |=========================                                            |  37%, ETA 00:00
-  |===========================                                          |  39%, ETA 00:00
-  |============================                                         |  41%, ETA 00:00
-  |==============================                                       |  43%, ETA 00:00
-  |===============================                                      |  45%, ETA 00:00
-  |================================                                     |  47%, ETA 00:00
-  |==================================                                   |  49%, ETA 00:00
-  |===================================                                  |  51%, ETA 00:00
-  |=====================================                                |  53%, ETA 00:00
-  |======================================                               |  55%, ETA 00:00
-  |=======================================                              |  57%, ETA 00:00
-  |=========================================                            |  59%, ETA 00:00
-  |==========================================                           |  61%, ETA 00:00
-  |============================================                         |  63%, ETA 00:00
-  |=============================================                        |  65%, ETA 00:00
-  |==============================================                       |  67%, ETA 00:00
-  |================================================                     |  69%, ETA 00:00
-  |=================================================                    |  71%, ETA 00:00
-  |===================================================                  |  73%, ETA 00:00
-  |====================================================                 |  76%, ETA 00:00
-  |======================================================               |  78%, ETA 00:00
-  |=======================================================              |  80%, ETA 00:00
-  |========================================================             |  82%, ETA 00:00
-  |==========================================================           |  84%, ETA 00:00
-  |===========================================================          |  86%, ETA 00:00
-  |=============================================================        |  88%, ETA 00:00
-  |==============================================================       |  90%, ETA 00:00
-  |===============================================================      |  92%, ETA 00:00
-  |=================================================================    |  94%, ETA 00:00
-  |==================================================================   |  96%, ETA 00:00
-  |==================================================================== |  98%, ETA 00:00
-  |=================================================================| 100%, Elapsed 00:00</code></pre>
-<pre><code>## [INFO] 2023-04-23 21:35:15: CosineDist Running</code></pre>
-<pre><code>## [INFO] 2023-04-23 21:35:40: CosineDist Complete!</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="scrna.html#cb21-1" aria-hidden="true" tabindex="-1"></a>hmap</span></code></pre></div>
+  |                                                                                |   0%, ETA NA
+  |==                                                                           |   2%, ETA 00:03
+  |===                                                                          |   4%, ETA 00:02
+  |=====                                                                        |   6%, ETA 00:01
+  |======                                                                       |   8%, ETA 00:01
+  |========                                                                     |  10%, ETA 00:01
+  |=========                                                                    |  12%, ETA 00:01
+  |===========                                                                  |  14%, ETA 00:01
+  |=============                                                                |  16%, ETA 00:00
+  |==============                                                               |  18%, ETA 00:00
+  |================                                                             |  20%, ETA 00:00
+  |=================                                                            |  22%, ETA 00:00
+  |===================                                                          |  24%, ETA 00:00
+  |====================                                                         |  27%, ETA 00:00
+  |======================                                                       |  29%, ETA 00:00
+  |========================                                                     |  31%, ETA 00:00
+  |=========================                                                    |  33%, ETA 00:00
+  |===========================                                                  |  35%, ETA 00:00
+  |============================                                                 |  37%, ETA 00:00
+  |==============================                                               |  39%, ETA 00:00
+  |===============================                                              |  41%, ETA 00:00
+  |=================================                                            |  43%, ETA 00:00
+  |===================================                                          |  45%, ETA 00:00
+  |====================================                                         |  47%, ETA 00:00
+  |======================================                                       |  49%, ETA 00:00
+  |=======================================                                      |  51%, ETA 00:00
+  |=========================================                                    |  53%, ETA 00:00
+  |==========================================                                   |  55%, ETA 00:00
+  |============================================                                 |  57%, ETA 00:00
+  |==============================================                               |  59%, ETA 00:00
+  |===============================================                              |  61%, ETA 00:00
+  |=================================================                            |  63%, ETA 00:00
+  |==================================================                           |  65%, ETA 00:00
+  |====================================================                         |  67%, ETA 00:00
+  |=====================================================                        |  69%, ETA 00:00
+  |=======================================================                      |  71%, ETA 00:00
+  |=========================================================                    |  73%, ETA 00:00
+  |==========================================================                   |  76%, ETA 00:00
+  |============================================================                 |  78%, ETA 00:00
+  |=============================================================                |  80%, ETA 00:00
+  |===============================================================              |  82%, ETA 00:00
+  |================================================================             |  84%, ETA 00:00
+  |==================================================================           |  86%, ETA 00:00
+  |====================================================================         |  88%, ETA 00:00
+  |=====================================================================        |  90%, ETA 00:00
+  |=======================================================================      |  92%, ETA 00:00
+  |========================================================================     |  94%, ETA 00:00
+  |==========================================================================   |  96%, ETA 00:00
+  |===========================================================================  |  98%, ETA 00:00
+  |=========================================================================| 100%, Elapsed 00:00</code></pre>
+<pre><code>## [INFO] 2023-05-08 21:20:49: CosineDist Running</code></pre>
+<pre><code>## [INFO] 2023-05-08 21:21:12: CosineDist Complete!</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="scrna.html#cb20-1" aria-hidden="true" tabindex="-1"></a>hmap</span></code></pre></div>
 <pre><code>## An object of class HematoSubCluster
 ## 49 sub-clusters with cosine distance</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="scrna.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># C0:0001 was one of the sub-clusters in hmap</span></span>
-<span id="cb23-2"><a href="scrna.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This plot illustrate the &quot;Like&quot; score between sub-cluster in APL and normal BMMCs</span></span>
-<span id="cb23-3"><a href="scrna.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotThetaLike</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">plot.scell =</span> <span class="st">&quot;C0:0001&quot;</span>)</span></code></pre></div>
-<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-7-1.png" width="50%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="scrna.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCircleTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">plot.scell =</span> <span class="st">&quot;C0:0001&quot;</span>)</span></code></pre></div>
-<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-7-2.png" width="50%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="scrna.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMeanLike</span>(<span class="at">hemato.subc =</span> hmap)</span></code></pre></div>
-<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-7-3.png" width="50%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="scrna.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># C0:0001 was one of the sub-clusters in hmap</span></span>
+<span id="cb22-2"><a href="scrna.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This plot illustrate the &quot;Like&quot; score between sub-cluster in APL and normal BMMCs</span></span>
+<span id="cb22-3"><a href="scrna.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotThetaLike</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">plot.scell =</span> <span class="st">&quot;C0:0001&quot;</span>)</span></code></pre></div>
+<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-10-1.png" width="384" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="scrna.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCircleTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">plot.scell =</span> <span class="st">&quot;C0:0001&quot;</span>)</span></code></pre></div>
+<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-11-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="scrna.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMeanLike</span>(<span class="at">hemato.subc =</span> hmap)</span></code></pre></div>
+<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-12-1.png" width="384" style="display: block; margin: auto;" /></p>
 </div>
 <div id="visualization" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Visualization<a href="scrna.html#visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="scrna.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization for APL (circle tree)</span></span>
-<span id="cb26-2"><a href="scrna.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCircleTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">group.subc =</span> <span class="st">&quot;external&quot;</span>, </span>
-<span id="cb26-3"><a href="scrna.html#cb26-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">color.mapping =</span> <span class="st">&quot;cell.type&quot;</span>, <span class="at">title =</span> <span class="st">&quot;APL BMMCs&quot;</span>)</span></code></pre></div>
-<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="scrna.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization for APL (circle tree with cell type label)</span></span>
-<span id="cb27-2"><a href="scrna.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCircleTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">group.subc =</span> <span class="st">&quot;external&quot;</span>, </span>
-<span id="cb27-3"><a href="scrna.html#cb27-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">color.mapping =</span> <span class="st">&quot;cell.type&quot;</span>, <span class="at">title =</span> <span class="st">&quot;APL BMMCs&quot;</span>)</span></code></pre></div>
-<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-8-2.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="scrna.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization for the normal BMMC (the reference) (circle tree)</span></span>
-<span id="cb28-2"><a href="scrna.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCircleTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">group.subc =</span> <span class="st">&quot;reference&quot;</span>, </span>
-<span id="cb28-3"><a href="scrna.html#cb28-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">color.mapping =</span> <span class="st">&quot;cell.type&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Normal BMMCs&quot;</span>)</span></code></pre></div>
-<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-8-3.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="scrna.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization for APL (circle tree)</span></span>
-<span id="cb29-2"><a href="scrna.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCircleTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">group.subc =</span> <span class="st">&quot;external&quot;</span>, </span>
-<span id="cb29-3"><a href="scrna.html#cb29-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">color.mapping =</span> <span class="st">&quot;cell.percentage&quot;</span>, <span class="at">title =</span> <span class="st">&quot;APL BMMCs&quot;</span>)</span></code></pre></div>
-<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-8-4.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="scrna.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization for the normal BMMC (the reference) (circle tree)</span></span>
-<span id="cb30-2"><a href="scrna.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCircleTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">group.subc =</span> <span class="st">&quot;reference&quot;</span>, </span>
-<span id="cb30-3"><a href="scrna.html#cb30-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">color.mapping =</span> <span class="st">&quot;cell.percentage&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Normal BMMCs&quot;</span>)</span></code></pre></div>
-<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-8-5.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="scrna.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization for APL (hierarchy tree)</span></span>
-<span id="cb31-2"><a href="scrna.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotClusterTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">group.subc =</span> <span class="st">&quot;external&quot;</span>,</span>
-<span id="cb31-3"><a href="scrna.html#cb31-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">color.mapping =</span> <span class="st">&quot;cell.type&quot;</span>, <span class="at">title =</span> <span class="st">&quot;APL BMMCs&quot;</span>,</span>
-<span id="cb31-4"><a href="scrna.html#cb31-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">point.size =</span> <span class="dv">20</span>, <span class="at">label.cell =</span> T)</span></code></pre></div>
-<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-9-1.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="scrna.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization for the normal BMMCs (hierarchy tree)</span></span>
-<span id="cb32-2"><a href="scrna.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotClusterTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">group.subc =</span> <span class="st">&quot;reference&quot;</span>,</span>
-<span id="cb32-3"><a href="scrna.html#cb32-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">color.mapping =</span> <span class="st">&quot;cell.type&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Normal BMMCs&quot;</span>,</span>
-<span id="cb32-4"><a href="scrna.html#cb32-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">point.size =</span> <span class="dv">20</span>, <span class="at">label.cell =</span> T)</span></code></pre></div>
-<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-9-2.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="scrna.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization for APL (hierarchy tree)</span></span>
-<span id="cb33-2"><a href="scrna.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotClusterTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">group.subc =</span> <span class="st">&quot;external&quot;</span>,</span>
-<span id="cb33-3"><a href="scrna.html#cb33-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">color.mapping =</span> <span class="st">&quot;cell.percentage&quot;</span>, <span class="at">title =</span> <span class="st">&quot;APL BMMCs&quot;</span>,</span>
-<span id="cb33-4"><a href="scrna.html#cb33-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">point.size =</span> <span class="dv">20</span>, <span class="at">label.cell =</span> T)</span></code></pre></div>
-<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-9-3.png" width="60%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="scrna.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization for the normal BMMCs (hierarchy tree)</span></span>
-<span id="cb34-2"><a href="scrna.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotClusterTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">group.subc =</span> <span class="st">&quot;reference&quot;</span>,</span>
-<span id="cb34-3"><a href="scrna.html#cb34-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">color.mapping =</span> <span class="st">&quot;cell.percentage&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Normal BMMCs&quot;</span>,</span>
-<span id="cb34-4"><a href="scrna.html#cb34-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">point.size =</span> <span class="dv">20</span>, <span class="at">label.cell =</span> T)</span></code></pre></div>
-<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-9-4.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="scrna.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization for APL (circle tree)</span></span>
+<span id="cb25-2"><a href="scrna.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCircleTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">group.subc =</span> <span class="st">&quot;external&quot;</span>, </span>
+<span id="cb25-3"><a href="scrna.html#cb25-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">color.mapping =</span> <span class="st">&quot;cell.type&quot;</span>, <span class="at">title =</span> <span class="st">&quot;APL BMMCs&quot;</span>)</span></code></pre></div>
+<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-13-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="scrna.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization for APL (circle tree without population label)</span></span>
+<span id="cb26-2"><a href="scrna.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># clean version</span></span>
+<span id="cb26-3"><a href="scrna.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCircleTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">group.subc =</span> <span class="st">&quot;external&quot;</span>, </span>
+<span id="cb26-4"><a href="scrna.html#cb26-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">color.mapping =</span> <span class="st">&quot;cell.type&quot;</span>, <span class="at">title =</span> <span class="st">&quot;APL BMMCs&quot;</span>,</span>
+<span id="cb26-5"><a href="scrna.html#cb26-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">label.population =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-13-2.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="scrna.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization for the normal BMMC (the reference) (circle tree)</span></span>
+<span id="cb27-2"><a href="scrna.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCircleTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">group.subc =</span> <span class="st">&quot;reference&quot;</span>, </span>
+<span id="cb27-3"><a href="scrna.html#cb27-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">color.mapping =</span> <span class="st">&quot;cell.type&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Normal BMMCs&quot;</span>)</span></code></pre></div>
+<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-13-3.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="scrna.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization for APL (circle tree)</span></span>
+<span id="cb28-2"><a href="scrna.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCircleTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">group.subc =</span> <span class="st">&quot;external&quot;</span>, </span>
+<span id="cb28-3"><a href="scrna.html#cb28-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">color.mapping =</span> <span class="st">&quot;cell.percentage&quot;</span>, <span class="at">title =</span> <span class="st">&quot;APL BMMCs&quot;</span>)</span></code></pre></div>
+<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-13-4.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="scrna.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization for the normal BMMC (the reference) (circle tree)</span></span>
+<span id="cb29-2"><a href="scrna.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotCircleTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">group.subc =</span> <span class="st">&quot;reference&quot;</span>, </span>
+<span id="cb29-3"><a href="scrna.html#cb29-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">color.mapping =</span> <span class="st">&quot;cell.percentage&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Normal BMMCs&quot;</span>)</span></code></pre></div>
+<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-13-5.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="scrna.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization for APL (hierarchy tree)</span></span>
+<span id="cb30-2"><a href="scrna.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotClusterTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">group.subc =</span> <span class="st">&quot;external&quot;</span>,</span>
+<span id="cb30-3"><a href="scrna.html#cb30-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">color.mapping =</span> <span class="st">&quot;cell.type&quot;</span>, <span class="at">title =</span> <span class="st">&quot;APL BMMCs&quot;</span>,</span>
+<span id="cb30-4"><a href="scrna.html#cb30-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">point.size =</span> <span class="dv">20</span>, <span class="at">label.cell =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-14-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="scrna.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization for the normal BMMCs (hierarchy tree)</span></span>
+<span id="cb31-2"><a href="scrna.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotClusterTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">group.subc =</span> <span class="st">&quot;reference&quot;</span>,</span>
+<span id="cb31-3"><a href="scrna.html#cb31-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">color.mapping =</span> <span class="st">&quot;cell.type&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Normal BMMCs&quot;</span>,</span>
+<span id="cb31-4"><a href="scrna.html#cb31-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">point.size =</span> <span class="dv">20</span>, <span class="at">label.cell =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-14-2.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="scrna.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization for APL (hierarchy tree)</span></span>
+<span id="cb32-2"><a href="scrna.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotClusterTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">group.subc =</span> <span class="st">&quot;external&quot;</span>,</span>
+<span id="cb32-3"><a href="scrna.html#cb32-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">color.mapping =</span> <span class="st">&quot;cell.percentage&quot;</span>, <span class="at">title =</span> <span class="st">&quot;APL BMMCs&quot;</span>,</span>
+<span id="cb32-4"><a href="scrna.html#cb32-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">point.size =</span> <span class="dv">20</span>, <span class="at">label.cell =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-14-3.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="scrna.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization for the normal BMMCs (hierarchy tree)</span></span>
+<span id="cb33-2"><a href="scrna.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotClusterTree</span>(<span class="at">hemato.subc =</span> hmap, <span class="at">group.subc =</span> <span class="st">&quot;reference&quot;</span>,</span>
+<span id="cb33-3"><a href="scrna.html#cb33-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">color.mapping =</span> <span class="st">&quot;cell.percentage&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Normal BMMCs&quot;</span>,</span>
+<span id="cb33-4"><a href="scrna.html#cb33-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">point.size =</span> <span class="dv">20</span>, <span class="at">label.cell =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-14-4.png" width="576" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>

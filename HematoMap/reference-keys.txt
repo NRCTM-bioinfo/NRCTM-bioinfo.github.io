@@ -18,4 +18,8 @@ visualization
 bulk
 load-bulk-rna-seq-data
 visualization-1
+shiny
+open-shiny
+scrna-seq
+bulk-rna-seq
 about-hematomap
