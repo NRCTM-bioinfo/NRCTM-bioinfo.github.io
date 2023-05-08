@@ -203,7 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="load-scrna-seq-data" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Load scRNA-seq data<a href="scrna.html#load-scrna-seq-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the tutorial, the scRNA-seq of one APL (AML with PML::RARA fusion, also called acute promyelocytic leukemia)) patient (including 3,000 cells) was used for illustration.</p>
-<p>The expample data of APL scRNA-seq can be downloaded <a href="https://nrctm-bioinfo.github.io/HematoMap/data/AML_scRNA_count.rds"><strong>APL scrna demo data</strong></a></p>
+<p>The expample data of APL scRNA-seq can be downloaded via <a href="https://nrctm-bioinfo.github.io/HematoMap/data/AML_scRNA_count.rds"><strong>APL scrna demo data</strong></a></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="scrna.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Library packages</span></span>
 <span id="cb7-2"><a href="scrna.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
 <span id="cb7-3"><a href="scrna.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(HematoMap)</span>
@@ -228,20 +228,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.2</span> Calculate similarities<a href="scrna.html#calculate-similarities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="scrna.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct HematoMap object</span></span>
 <span id="cb12-2"><a href="scrna.html#cb12-2" aria-hidden="true" tabindex="-1"></a>hmap <span class="ot">&lt;-</span> HematoMap<span class="sc">::</span><span class="fu">CreateSubclusterObject</span>(aml)</span></code></pre></div>
-<pre><code>## [INFO] 2023-05-08 21:20:28: Subcluster Computing</code></pre>
+<pre><code>## [INFO] 2023-05-08 21:35:29: Subcluster Computing</code></pre>
 <pre><code>## 
   |                                                                                |   0%, ETA NA
-  |========                                                                     |  10%, ETA 00:34
-  |===============                                                              |  20%, ETA 00:29
-  |=======================                                                      |  30%, ETA 00:24
-  |===============================                                              |  40%, ETA 00:19
-  |======================================                                       |  50%, ETA 00:16
-  |==============================================                               |  60%, ETA 00:12
-  |======================================================                       |  70%, ETA 00:08
-  |==============================================================               |  80%, ETA 00:05</code></pre>
+  |========                                                                     |  10%, ETA 00:30
+  |===============                                                              |  20%, ETA 00:25
+  |=======================                                                      |  30%, ETA 00:20
+  |===============================                                              |  40%, ETA 00:16
+  |======================================                                       |  50%, ETA 00:13
+  |==============================================                               |  60%, ETA 00:10
+  |======================================================                       |  70%, ETA 00:07
+  |==============================================================               |  80%, ETA 00:04</code></pre>
 <pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric, : There are other
 ## near singularities as well. 0.031008</code></pre>
-<pre><code>## [INFO] 2023-05-08 21:20:48: Subcluster Complete!</code></pre>
+<pre><code>## [INFO] 2023-05-08 21:35:46: Subcluster Complete!</code></pre>
 <pre><code>## 
   |                                                                                |   0%, ETA NA
   |==                                                                           |   2%, ETA 00:03
@@ -251,7 +251,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   |========                                                                     |  10%, ETA 00:01
   |=========                                                                    |  12%, ETA 00:01
   |===========                                                                  |  14%, ETA 00:01
-  |=============                                                                |  16%, ETA 00:00
+  |=============                                                                |  16%, ETA 00:01
   |==============                                                               |  18%, ETA 00:00
   |================                                                             |  20%, ETA 00:00
   |=================                                                            |  22%, ETA 00:00
@@ -293,8 +293,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   |==========================================================================   |  96%, ETA 00:00
   |===========================================================================  |  98%, ETA 00:00
   |=========================================================================| 100%, Elapsed 00:00</code></pre>
-<pre><code>## [INFO] 2023-05-08 21:20:49: CosineDist Running</code></pre>
-<pre><code>## [INFO] 2023-05-08 21:21:12: CosineDist Complete!</code></pre>
+<pre><code>## [INFO] 2023-05-08 21:35:46: CosineDist Running</code></pre>
+<pre><code>## [INFO] 2023-05-08 21:36:08: CosineDist Complete!</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="scrna.html#cb20-1" aria-hidden="true" tabindex="-1"></a>hmap</span></code></pre></div>
 <pre><code>## An object of class HematoSubCluster
 ## 49 sub-clusters with cosine distance</code></pre>
