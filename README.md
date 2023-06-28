@@ -11,6 +11,12 @@ See the source code and tutorial of APL-stemness project, please visit [Tutorial
 
 See the tutorial of HematoMap project, please visit [Tutorial of HematoMap](https://nrctm-bioinfo.github.io/HematoMap/index.html).
 
+### p53 compounds project
+
+See the tutorial of p53 compounds project, please visit [Tutorial of p53-compounds](https://nrctm-bioinfo.github.io/p53_compounds/index.html).
+
+
+
 
 
 
