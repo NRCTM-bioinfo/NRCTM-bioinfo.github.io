@@ -23,7 +23,7 @@
 <meta name="author" content="Yu-Ting Dai" />
 
 
-<meta name="date" content="2023-06-28" />
+<meta name="date" content="2023-07-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -341,7 +341,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Related to Fig. 3a.</p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="tcga-pancanatlas.html#cb82-1" aria-hidden="true" tabindex="-1"></a>TCGA.ALL <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;TCGA-OV&quot;</span>,<span class="st">&quot;TCGA-UCS&quot;</span>,<span class="st">&quot;TCGA-LUSC&quot;</span>,<span class="st">&quot;TCGA-ESCA&quot;</span>,<span class="st">&quot;TCGA-READ&quot;</span>,<span class="st">&quot;TCGA-HNSC&quot;</span>,<span class="st">&quot;TCGA-PAAD&quot;</span>,<span class="st">&quot;TCGA-COAD&quot;</span>,<span class="st">&quot;TCGA-LUAD&quot;</span>,<span class="st">&quot;TCGA-BLCA&quot;</span>,<span class="st">&quot;TCGA-STAD&quot;</span>,<span class="st">&quot;TCGA-LGG&quot;</span>,<span class="st">&quot;TCGA-UCEC&quot;</span>,<span class="st">&quot;TCGA-SARC&quot;</span>,<span class="st">&quot;TCGA-BRCA&quot;</span>,<span class="st">&quot;TCGA-GBM&quot;</span>,<span class="st">&quot;TCGA-LIHC&quot;</span>,<span class="st">&quot;TCGA-KICH&quot;</span>,<span class="st">&quot;TCGA-ACC&quot;</span>,<span class="st">&quot;TCGA-MESO&quot;</span>,<span class="st">&quot;TCGA-DLBC&quot;</span>,<span class="st">&quot;TCGA-PRAD&quot;</span>,<span class="st">&quot;TCGA-CHOL&quot;</span>,<span class="st">&quot;TCGA-SKCM&quot;</span>,<span class="st">&quot;TCGA-CESC&quot;</span>,<span class="st">&quot;TCGA-LAML&quot;</span>,<span class="st">&quot;TCGA-THYM&quot;</span>,<span class="st">&quot;TCGA-KIRC&quot;</span>,<span class="st">&quot;TCGA-KIRP&quot;</span>,<span class="st">&quot;TCGA-TGCT&quot;</span>,<span class="st">&quot;TCGA-THCA&quot;</span>,<span class="st">&quot;TCGA-PCPG&quot;</span>,<span class="st">&quot;TCGA-UVM&quot;</span>)</span>
 <span id="cb82-2"><a href="tcga-pancanatlas.html#cb82-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb82-3"><a href="tcga-pancanatlas.html#cb82-3" aria-hidden="true" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;suppdata/TableS3-Related-to-Figure3A, 3B and S3G.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">4</span>, <span class="at">startRow =</span> <span class="dv">2</span>)</span>
+<span id="cb82-3"><a href="tcga-pancanatlas.html#cb82-3" aria-hidden="true" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;suppdata/Extended Data Table 3.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">4</span>, <span class="at">startRow =</span> <span class="dv">2</span>)</span>
 <span id="cb82-4"><a href="tcga-pancanatlas.html#cb82-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb82-5"><a href="tcga-pancanatlas.html#cb82-5" aria-hidden="true" tabindex="-1"></a>gene.list <span class="ot">&lt;-</span> <span class="fu">unique</span>(plot.data<span class="sc">$</span>Gene)</span>
 <span id="cb82-6"><a href="tcga-pancanatlas.html#cb82-6" aria-hidden="true" tabindex="-1"></a></span>
@@ -375,12 +375,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb82-34"><a href="tcga-pancanatlas.html#cb82-34" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontsize_col =</span> <span class="dv">10</span>,</span>
 <span id="cb82-35"><a href="tcga-pancanatlas.html#cb82-35" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontsize_row =</span> <span class="dv">1</span>)</span>
 <span id="cb82-36"><a href="tcga-pancanatlas.html#cb82-36" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="p53-compounds_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="p53-compounds_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="wt-up-genes" class="section level3 hasAnchor" number="5.3.2">
 <h3><span class="header-section-number">5.3.2</span> WT-up genes<a href="tcga-pancanatlas.html#wt-up-genes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Related to Fig. 3a.</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="tcga-pancanatlas.html#cb83-1" aria-hidden="true" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;suppdata/TableS3-Related-to-Figure3A, 3B and S3G.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">5</span>, <span class="at">startRow =</span> <span class="dv">2</span>)</span>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="tcga-pancanatlas.html#cb83-1" aria-hidden="true" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;suppdata/Extended Data Table 3.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">5</span>, <span class="at">startRow =</span> <span class="dv">2</span>)</span>
 <span id="cb83-2"><a href="tcga-pancanatlas.html#cb83-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb83-3"><a href="tcga-pancanatlas.html#cb83-3" aria-hidden="true" tabindex="-1"></a>gene.list <span class="ot">&lt;-</span> <span class="fu">unique</span>(plot.data<span class="sc">$</span>Gene)</span>
 <span id="cb83-4"><a href="tcga-pancanatlas.html#cb83-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -414,12 +414,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb83-32"><a href="tcga-pancanatlas.html#cb83-32" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontsize_col =</span> <span class="dv">10</span>,</span>
 <span id="cb83-33"><a href="tcga-pancanatlas.html#cb83-33" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontsize_row =</span> <span class="dv">1</span>)</span>
 <span id="cb83-34"><a href="tcga-pancanatlas.html#cb83-34" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="p53-compounds_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="p53-compounds_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="mut-up-genes" class="section level3 hasAnchor" number="5.3.3">
 <h3><span class="header-section-number">5.3.3</span> MUT-up genes<a href="tcga-pancanatlas.html#mut-up-genes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Related to Fig. 3a.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="tcga-pancanatlas.html#cb84-1" aria-hidden="true" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;suppdata/TableS3-Related-to-Figure3A, 3B and S3G.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">6</span>, <span class="at">startRow =</span> <span class="dv">2</span>)</span>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="tcga-pancanatlas.html#cb84-1" aria-hidden="true" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;suppdata/Extended Data Table 3.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">6</span>, <span class="at">startRow =</span> <span class="dv">2</span>)</span>
 <span id="cb84-2"><a href="tcga-pancanatlas.html#cb84-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb84-3"><a href="tcga-pancanatlas.html#cb84-3" aria-hidden="true" tabindex="-1"></a>gene.list <span class="ot">&lt;-</span> <span class="fu">unique</span>(plot.data<span class="sc">$</span>Gene)</span>
 <span id="cb84-4"><a href="tcga-pancanatlas.html#cb84-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -453,7 +453,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb84-32"><a href="tcga-pancanatlas.html#cb84-32" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontsize_col =</span> <span class="dv">10</span>,</span>
 <span id="cb84-33"><a href="tcga-pancanatlas.html#cb84-33" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontsize_row =</span> <span class="dv">1</span>)</span>
 <span id="cb84-34"><a href="tcga-pancanatlas.html#cb84-34" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="p53-compounds_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="p53-compounds_files/figure-html/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="hr-of-high-expression" class="section level2 hasAnchor" number="5.4">
@@ -462,7 +462,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="p53-targets-2" class="section level3 hasAnchor" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> 116 p53 targets<a href="tcga-pancanatlas.html#p53-targets-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Related to Fig. 3b.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="tcga-pancanatlas.html#cb85-1" aria-hidden="true" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;suppdata/TableS3-Related-to-Figure3A, 3B and S3G.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">7</span>, <span class="at">startRow =</span> <span class="dv">2</span>)</span>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="tcga-pancanatlas.html#cb85-1" aria-hidden="true" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;suppdata/Extended Data Table 3.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">7</span>, <span class="at">startRow =</span> <span class="dv">2</span>)</span>
 <span id="cb85-2"><a href="tcga-pancanatlas.html#cb85-2" aria-hidden="true" tabindex="-1"></a>gene.list <span class="ot">&lt;-</span> <span class="fu">unique</span>(plot.data<span class="sc">$</span>Gene)</span>
 <span id="cb85-3"><a href="tcga-pancanatlas.html#cb85-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb85-4"><a href="tcga-pancanatlas.html#cb85-4" aria-hidden="true" tabindex="-1"></a>plot.data<span class="sc">$</span>HR_type <span class="ot">&lt;-</span> <span class="dv">1</span></span>
@@ -514,7 +514,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb85-50"><a href="tcga-pancanatlas.html#cb85-50" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">3</span>))</span>
 <span id="cb85-51"><a href="tcga-pancanatlas.html#cb85-51" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">P &lt; 0.05, HR &gt; 1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#D01910&quot;</span>, <span class="st">`</span><span class="at">P &lt; 0.05, HR &lt; 1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#00599F&quot;</span>, <span class="st">`</span><span class="at">P ≥ 0.05</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#CCCCCC&quot;</span>))</span>
 <span id="cb85-52"><a href="tcga-pancanatlas.html#cb85-52" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="p53-compounds_files/figure-html/unnamed-chunk-20-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="p53-compounds_files/figure-html/unnamed-chunk-21-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Related to Extended Data Fig. 3g.</p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="tcga-pancanatlas.html#cb86-1" aria-hidden="true" tabindex="-1"></a>plot.mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> <span class="fu">length</span>(stat.gene<span class="sc">$</span>Gene), <span class="at">ncol =</span> <span class="fu">length</span>(stat.cohort<span class="sc">$</span>Cohort))</span>
 <span id="cb86-2"><a href="tcga-pancanatlas.html#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(plot.mat) <span class="ot">&lt;-</span> stat.gene<span class="sc">$</span>Gene</span>
@@ -529,12 +529,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb86-11"><a href="tcga-pancanatlas.html#cb86-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontsize_col =</span> <span class="dv">10</span>,</span>
 <span id="cb86-12"><a href="tcga-pancanatlas.html#cb86-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontsize_row =</span> <span class="dv">2</span>)</span>
 <span id="cb86-13"><a href="tcga-pancanatlas.html#cb86-13" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="p53-compounds_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="p53-compounds_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 </div>
 <div id="wt-up-genes-1" class="section level3 hasAnchor" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> WT-up genes<a href="tcga-pancanatlas.html#wt-up-genes-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Related to Fig. 3b.</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="tcga-pancanatlas.html#cb87-1" aria-hidden="true" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;suppdata/TableS3-Related-to-Figure3A, 3B and S3G.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">8</span>, <span class="at">startRow =</span> <span class="dv">2</span>)</span>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="tcga-pancanatlas.html#cb87-1" aria-hidden="true" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;suppdata/Extended Data Table 3.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">8</span>, <span class="at">startRow =</span> <span class="dv">2</span>)</span>
 <span id="cb87-2"><a href="tcga-pancanatlas.html#cb87-2" aria-hidden="true" tabindex="-1"></a>gene.list <span class="ot">&lt;-</span> <span class="fu">unique</span>(plot.data<span class="sc">$</span>Gene)</span>
 <span id="cb87-3"><a href="tcga-pancanatlas.html#cb87-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb87-4"><a href="tcga-pancanatlas.html#cb87-4" aria-hidden="true" tabindex="-1"></a>plot.data<span class="sc">$</span>HR_type <span class="ot">&lt;-</span> <span class="dv">1</span></span>
@@ -586,7 +586,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb87-50"><a href="tcga-pancanatlas.html#cb87-50" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">3</span>))</span>
 <span id="cb87-51"><a href="tcga-pancanatlas.html#cb87-51" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">P &lt; 0.05, HR &gt; 1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#D01910&quot;</span>, <span class="st">`</span><span class="at">P &lt; 0.05, HR &lt; 1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#00599F&quot;</span>, <span class="st">`</span><span class="at">P ≥ 0.05</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#CCCCCC&quot;</span>))</span>
 <span id="cb87-52"><a href="tcga-pancanatlas.html#cb87-52" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="p53-compounds_files/figure-html/unnamed-chunk-22-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="p53-compounds_files/figure-html/unnamed-chunk-23-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Related to Extended Data Fig. 3g.</p>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="tcga-pancanatlas.html#cb88-1" aria-hidden="true" tabindex="-1"></a>plot.mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> <span class="fu">length</span>(stat.gene<span class="sc">$</span>Gene), <span class="at">ncol =</span> <span class="fu">length</span>(stat.cohort<span class="sc">$</span>Cohort))</span>
 <span id="cb88-2"><a href="tcga-pancanatlas.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(plot.mat) <span class="ot">&lt;-</span> stat.gene<span class="sc">$</span>Gene</span>
@@ -601,12 +601,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb88-11"><a href="tcga-pancanatlas.html#cb88-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontsize_col =</span> <span class="dv">10</span>,</span>
 <span id="cb88-12"><a href="tcga-pancanatlas.html#cb88-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontsize_row =</span> <span class="dv">2</span>)</span>
 <span id="cb88-13"><a href="tcga-pancanatlas.html#cb88-13" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="p53-compounds_files/figure-html/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="p53-compounds_files/figure-html/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="mut-up-genes-1" class="section level3 hasAnchor" number="5.4.3">
 <h3><span class="header-section-number">5.4.3</span> MUT-up genes<a href="tcga-pancanatlas.html#mut-up-genes-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Related to Fig. 3b.</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="tcga-pancanatlas.html#cb89-1" aria-hidden="true" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;suppdata/TableS3-Related-to-Figure3A, 3B and S3G.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">9</span>, <span class="at">startRow =</span> <span class="dv">2</span>)</span>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="tcga-pancanatlas.html#cb89-1" aria-hidden="true" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;suppdata/Extended Data Table 3.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">9</span>, <span class="at">startRow =</span> <span class="dv">2</span>)</span>
 <span id="cb89-2"><a href="tcga-pancanatlas.html#cb89-2" aria-hidden="true" tabindex="-1"></a>gene.list <span class="ot">&lt;-</span> <span class="fu">unique</span>(plot.data<span class="sc">$</span>Gene)</span>
 <span id="cb89-3"><a href="tcga-pancanatlas.html#cb89-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb89-4"><a href="tcga-pancanatlas.html#cb89-4" aria-hidden="true" tabindex="-1"></a>plot.data<span class="sc">$</span>HR_type <span class="ot">&lt;-</span> <span class="dv">1</span></span>
@@ -657,7 +657,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb89-49"><a href="tcga-pancanatlas.html#cb89-49" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">3</span>))</span>
 <span id="cb89-50"><a href="tcga-pancanatlas.html#cb89-50" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">P &lt; 0.05, HR &gt; 1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#D01910&quot;</span>, <span class="st">`</span><span class="at">P &lt; 0.05, HR &lt; 1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#00599F&quot;</span>, <span class="st">`</span><span class="at">P ≥ 0.05</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#CCCCCC&quot;</span>))</span>
 <span id="cb89-51"><a href="tcga-pancanatlas.html#cb89-51" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="p53-compounds_files/figure-html/unnamed-chunk-24-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="p53-compounds_files/figure-html/unnamed-chunk-25-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Related to Extended Data Fig. 3g.</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="tcga-pancanatlas.html#cb90-1" aria-hidden="true" tabindex="-1"></a>plot.mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> <span class="fu">length</span>(stat.gene<span class="sc">$</span>Gene), <span class="at">ncol =</span> <span class="fu">length</span>(stat.cohort<span class="sc">$</span>Cohort))</span>
 <span id="cb90-2"><a href="tcga-pancanatlas.html#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(plot.mat) <span class="ot">&lt;-</span> stat.gene<span class="sc">$</span>Gene</span>
@@ -672,13 +672,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb90-11"><a href="tcga-pancanatlas.html#cb90-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontsize_col =</span> <span class="dv">10</span>,</span>
 <span id="cb90-12"><a href="tcga-pancanatlas.html#cb90-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">fontsize_row =</span> <span class="dv">2</span>)</span>
 <span id="cb90-13"><a href="tcga-pancanatlas.html#cb90-13" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="p53-compounds_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="p53-compounds_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 </div>
 <div id="radar-plot" class="section level3 hasAnchor" number="5.4.4">
 <h3><span class="header-section-number">5.4.4</span> Radar plot<a href="tcga-pancanatlas.html#radar-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Radar plots predicting treatment sensitivity of p53 rescue therapy in the indicated cancer types</p>
 <p>Related to Fig. 3c and 3d.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="tcga-pancanatlas.html#cb91-1" aria-hidden="true" tabindex="-1"></a>tcga.cohort.potency <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;suppdata/TableS4-Related-to-Figure3C.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">startRow =</span> <span class="dv">2</span>)</span>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="tcga-pancanatlas.html#cb91-1" aria-hidden="true" tabindex="-1"></a>tcga.cohort.potency <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;suppdata/Extended Data Table 4.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">startRow =</span> <span class="dv">2</span>)</span>
 <span id="cb91-2"><a href="tcga-pancanatlas.html#cb91-2" aria-hidden="true" tabindex="-1"></a>tcga.cohort.potency<span class="sc">$</span>CohortSim <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(tcga.cohort.potency<span class="sc">$</span>Cohort, <span class="st">&quot;TCGA-&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
 <span id="cb91-3"><a href="tcga-pancanatlas.html#cb91-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb91-4"><a href="tcga-pancanatlas.html#cb91-4" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Rank.(Powerfulness.in.regulating.p53.targets)&quot;</span>,</span>
@@ -705,7 +705,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb93-12"><a href="tcga-pancanatlas.html#cb93-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">vlcex =</span> <span class="fl">1.1</span>, <span class="at">pangle=</span><span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">45</span>, <span class="dv">120</span>) )</span>
 <span id="cb93-13"><a href="tcga-pancanatlas.html#cb93-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">title</span>(<span class="fu">paste0</span>(tcga.cohort.potency<span class="sc">$</span>CohortSim[kkk], <span class="st">&quot; (&quot;</span>, tcga.cohort.potency<span class="sc">$</span>Total.score[kkk], <span class="st">&quot;)&quot;</span>) )</span>
 <span id="cb93-14"><a href="tcga-pancanatlas.html#cb93-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p><img src="p53-compounds_files/figure-html/unnamed-chunk-26-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p><img src="p53-compounds_files/figure-html/unnamed-chunk-27-1.png" width="1152" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>
