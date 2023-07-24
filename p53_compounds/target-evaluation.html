@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Target Evaluation | p53 compounds</title>
+  <meta name="description" content="This is the tutorial of p53 compounds project." />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Target Evaluation | p53 compounds" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is the tutorial of p53 compounds project." />
+  <meta name="github-repo" content="NRCTM-bioinfo/p53-compounds" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Target Evaluation | p53 compounds" />
+  
+  <meta name="twitter:description" content="This is the tutorial of p53 compounds project." />
+  
+
+<meta name="author" content="Yu-Ting Dai" />
+
+
+<meta name="date" content="2023-07-24" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-preprocessing.html"/>
+<link rel="next" href="enrichment-analysis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="http://www.rescuep53.net/">p53 compounds</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="data-preprocessing.html"><a href="data-preprocessing.html"><i class="fa fa-check"></i><b>2</b> Data Preprocessing</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-preprocessing.html"><a href="data-preprocessing.html#rna-seq-data"><i class="fa fa-check"></i><b>2.1</b> RNA-seq data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-preprocessing.html"><a href="data-preprocessing.html#geo-data"><i class="fa fa-check"></i><b>2.2</b> GEO data</a></li>
+<li class="chapter" data-level="2.3" data-path="data-preprocessing.html"><a href="data-preprocessing.html#source-data"><i class="fa fa-check"></i><b>2.3</b> Source data</a></li>
+<li class="chapter" data-level="2.4" data-path="data-preprocessing.html"><a href="data-preprocessing.html#tcga-data"><i class="fa fa-check"></i><b>2.4</b> TCGA data</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="target-evaluation.html"><a href="target-evaluation.html"><i class="fa fa-check"></i><b>3</b> Target Evaluation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="target-evaluation.html"><a href="target-evaluation.html#load-packages"><i class="fa fa-check"></i><b>3.1</b> Load packages</a></li>
+<li class="chapter" data-level="3.2" data-path="target-evaluation.html"><a href="target-evaluation.html#merge-profiling"><i class="fa fa-check"></i><b>3.2</b> Merge profiling</a></li>
+<li class="chapter" data-level="3.3" data-path="target-evaluation.html"><a href="target-evaluation.html#normalization"><i class="fa fa-check"></i><b>3.3</b> Normalization</a></li>
+<li class="chapter" data-level="3.4" data-path="target-evaluation.html"><a href="target-evaluation.html#confident-p53-targets"><i class="fa fa-check"></i><b>3.4</b> 32 confident p53 targets</a></li>
+<li class="chapter" data-level="3.5" data-path="target-evaluation.html"><a href="target-evaluation.html#p53-targets"><i class="fa fa-check"></i><b>3.5</b> 116 p53 targets</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="target-evaluation.html"><a href="target-evaluation.html#p53-transactivation"><i class="fa fa-check"></i><b>3.5.1</b> p53 transactivation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="enrichment-analysis.html"><a href="enrichment-analysis.html"><i class="fa fa-check"></i><b>4</b> Enrichment analysis</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="enrichment-analysis.html"><a href="enrichment-analysis.html#calculated-degs"><i class="fa fa-check"></i><b>4.1</b> Calculated DEGs</a></li>
+<li class="chapter" data-level="4.2" data-path="enrichment-analysis.html"><a href="enrichment-analysis.html#enrichr-analysis"><i class="fa fa-check"></i><b>4.2</b> Enrichr analysis</a></li>
+<li class="chapter" data-level="4.3" data-path="enrichment-analysis.html"><a href="enrichment-analysis.html#msigdb-hallmark"><i class="fa fa-check"></i><b>4.3</b> MSigDB Hallmark</a></li>
+<li class="chapter" data-level="4.4" data-path="enrichment-analysis.html"><a href="enrichment-analysis.html#kegg"><i class="fa fa-check"></i><b>4.4</b> KEGG</a></li>
+<li class="chapter" data-level="4.5" data-path="enrichment-analysis.html"><a href="enrichment-analysis.html#trrust"><i class="fa fa-check"></i><b>4.5</b> TRRUST</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html"><i class="fa fa-check"></i><b>5</b> TCGA PanCanAtlas</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#wt-up-genes"><i class="fa fa-check"></i><b>5.1</b> WT-up genes</a></li>
+<li class="chapter" data-level="5.2" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#mut-up-genes"><i class="fa fa-check"></i><b>5.2</b> MUT-up genes</a></li>
+<li class="chapter" data-level="5.3" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#hr-of-high-expression"><i class="fa fa-check"></i><b>5.3</b> HR of high expression</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#p53-targets-1"><i class="fa fa-check"></i><b>5.3.1</b> 116 p53 targets</a></li>
+<li class="chapter" data-level="5.3.2" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#wt-up-genes-1"><i class="fa fa-check"></i><b>5.3.2</b> WT-up genes</a></li>
+<li class="chapter" data-level="5.3.3" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#mut-up-genes-1"><i class="fa fa-check"></i><b>5.3.3</b> MUT-up genes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#powerfulness-in-regulating"><i class="fa fa-check"></i><b>5.4</b> Powerfulness in regulating</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#p53-targets-2"><i class="fa fa-check"></i><b>5.4.1</b> 116 p53 targets</a></li>
+<li class="chapter" data-level="5.4.2" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#wt-up-genes-2"><i class="fa fa-check"></i><b>5.4.2</b> WT-up genes</a></li>
+<li class="chapter" data-level="5.4.3" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#mut-up-genes-2"><i class="fa fa-check"></i><b>5.4.3</b> MUT-up genes</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#hr-for-p53-mutations"><i class="fa fa-check"></i><b>5.5</b> HR for p53 mutations</a></li>
+<li class="chapter" data-level="5.6" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#mdm2-expression"><i class="fa fa-check"></i><b>5.6</b> MDM2 expression</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#radar-plot"><i class="fa fa-check"></i><b>5.6.1</b> Radar plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="about-this-project.html"><a href="about-this-project.html"><i class="fa fa-check"></i><b>6</b> About this project</a>
+<ul>
+<li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#current-version"><i class="fa fa-check"></i>Current version</a></li>
+<li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#session-information"><i class="fa fa-check"></i>Session Information</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">p53 compounds</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="target-evaluation" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Target Evaluation<a href="target-evaluation.html#target-evaluation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="load-packages" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Load packages<a href="target-evaluation.html#load-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="target-evaluation.html#cb5-1" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb5-2"><a href="target-evaluation.html#cb5-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb5-3"><a href="target-evaluation.html#cb5-3" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb5-4"><a href="target-evaluation.html#cb5-4" tabindex="-1"></a><span class="fu">library</span>(nlme)</span>
+<span id="cb5-5"><a href="target-evaluation.html#cb5-5" tabindex="-1"></a><span class="fu">library</span>(DESeq2)</span>
+<span id="cb5-6"><a href="target-evaluation.html#cb5-6" tabindex="-1"></a><span class="fu">library</span>(SummarizedExperiment)</span>
+<span id="cb5-7"><a href="target-evaluation.html#cb5-7" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb5-8"><a href="target-evaluation.html#cb5-8" tabindex="-1"></a><span class="fu">library</span>(dendextend)</span>
+<span id="cb5-9"><a href="target-evaluation.html#cb5-9" tabindex="-1"></a><span class="fu">library</span>(matrixStats)</span>
+<span id="cb5-10"><a href="target-evaluation.html#cb5-10" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb5-11"><a href="target-evaluation.html#cb5-11" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb5-12"><a href="target-evaluation.html#cb5-12" tabindex="-1"></a><span class="fu">library</span>(limma)</span>
+<span id="cb5-13"><a href="target-evaluation.html#cb5-13" tabindex="-1"></a><span class="fu">library</span>(DESeq2)</span>
+<span id="cb5-14"><a href="target-evaluation.html#cb5-14" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span>
+<span id="cb5-15"><a href="target-evaluation.html#cb5-15" tabindex="-1"></a><span class="fu">library</span>(gplots)</span>
+<span id="cb5-16"><a href="target-evaluation.html#cb5-16" tabindex="-1"></a><span class="fu">library</span>(survminer)</span>
+<span id="cb5-17"><a href="target-evaluation.html#cb5-17" tabindex="-1"></a><span class="fu">library</span>(survival)</span>
+<span id="cb5-18"><a href="target-evaluation.html#cb5-18" tabindex="-1"></a><span class="fu">library</span>(enrichR)</span>
+<span id="cb5-19"><a href="target-evaluation.html#cb5-19" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb5-20"><a href="target-evaluation.html#cb5-20" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb5-21"><a href="target-evaluation.html#cb5-21" tabindex="-1"></a><span class="fu">library</span>(fmsb)</span>
+<span id="cb5-22"><a href="target-evaluation.html#cb5-22" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="target-evaluation.html#cb5-23" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="target-evaluation.html#cb5-24" tabindex="-1"></a><span class="co"># color theme</span></span>
+<span id="cb5-25"><a href="target-evaluation.html#cb5-25" tabindex="-1"></a>tp53.mutant <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;WT&quot;</span>,<span class="st">&quot;L130V&quot;</span>,<span class="st">&quot;L130F&quot;</span>,<span class="st">&quot;L130R&quot;</span>,<span class="st">&quot;P142L&quot;</span>,<span class="st">&quot;V143M&quot;</span>,<span class="st">&quot;A161T&quot;</span>,<span class="st">&quot;M237V&quot;</span>,<span class="st">&quot;G245D&quot;</span>,<span class="st">&quot;F270I&quot;</span>,<span class="st">&quot;F270V&quot;</span>,<span class="st">&quot;V272A&quot;</span>,<span class="st">&quot;V272M&quot;</span>,<span class="st">&quot;R248Q&quot;</span>,<span class="st">&quot;R273H&quot;</span>,<span class="st">&quot;null&quot;</span>)</span>
+<span id="cb5-26"><a href="target-evaluation.html#cb5-26" tabindex="-1"></a>tp53.mutant.color <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>,<span class="fu">rep</span>(<span class="st">&quot;#494949&quot;</span>,<span class="st">&quot;14&quot;</span>),<span class="st">&quot;#E3E3E3&quot;</span>)</span>
+<span id="cb5-27"><a href="target-evaluation.html#cb5-27" tabindex="-1"></a><span class="fu">names</span>(tp53.mutant.color) <span class="ot">&lt;-</span> tp53.mutant</span>
+<span id="cb5-28"><a href="target-evaluation.html#cb5-28" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="target-evaluation.html#cb5-29" tabindex="-1"></a>anno.color <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb5-30"><a href="target-evaluation.html#cb5-30" tabindex="-1"></a>  <span class="at">Mutant =</span> tp53.mutant.color)</span></code></pre></div>
+</div>
+<div id="merge-profiling" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Merge profiling<a href="target-evaluation.html#merge-profiling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We provided the merged profiling, which could be downloaded via <a href="https://github.com/NRCTM-bioinfo/p53_compounds" class="uri">https://github.com/NRCTM-bioinfo/p53_compounds</a>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="target-evaluation.html#cb6-1" tabindex="-1"></a>tp53.targets <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;02.Profiling/p53_targets.xlsx&quot;</span>)</span>
+<span id="cb6-2"><a href="target-evaluation.html#cb6-2" tabindex="-1"></a><span class="fu">rownames</span>(tp53.targets) <span class="ot">&lt;-</span> tp53.targets<span class="sc">$</span>Gene</span>
+<span id="cb6-3"><a href="target-evaluation.html#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="target-evaluation.html#cb6-4" tabindex="-1"></a>tp53.target.g32 <span class="ot">&lt;-</span> tp53.targets<span class="sc">$</span>Gene[<span class="fu">which</span>(tp53.targets<span class="sc">$</span>LiteratureNum <span class="sc">&gt;=</span> <span class="dv">10</span>)]</span>
+<span id="cb6-5"><a href="target-evaluation.html#cb6-5" tabindex="-1"></a>tp53.target.g116 <span class="ot">&lt;-</span> tp53.targets<span class="sc">$</span>Gene</span>
+<span id="cb6-6"><a href="target-evaluation.html#cb6-6" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="target-evaluation.html#cb6-7" tabindex="-1"></a>merge.meta.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;02.Profiling/p53_meta.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">1</span>)</span>
+<span id="cb6-8"><a href="target-evaluation.html#cb6-8" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="target-evaluation.html#cb6-9" tabindex="-1"></a>merge.compare.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;02.Profiling/TableS1A.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">startRow =</span> <span class="dv">2</span>)</span>
+<span id="cb6-10"><a href="target-evaluation.html#cb6-10" tabindex="-1"></a>merge.compare.data<span class="sc">$</span>Sample <span class="ot">&lt;-</span> merge.compare.data<span class="sc">$</span><span class="st">`</span><span class="at">Sample.name.(after.treatment)</span><span class="st">`</span></span>
+<span id="cb6-11"><a href="target-evaluation.html#cb6-11" tabindex="-1"></a>merge.compare.data<span class="sc">$</span>Control <span class="ot">&lt;-</span> merge.compare.data<span class="sc">$</span><span class="st">`</span><span class="at">Sample.name.(untreated.samples)</span><span class="st">`</span></span>
+<span id="cb6-12"><a href="target-evaluation.html#cb6-12" tabindex="-1"></a>merge.compare.data<span class="sc">$</span>Group <span class="ot">&lt;-</span> <span class="fu">str_replace</span>(merge.compare.data<span class="sc">$</span>Sample, <span class="fu">regex</span>(<span class="st">&quot;_rep.$&quot;</span>), <span class="st">&quot;&quot;</span>)</span>
+<span id="cb6-13"><a href="target-evaluation.html#cb6-13" tabindex="-1"></a><span class="fu">rownames</span>(merge.compare.data) <span class="ot">&lt;-</span> merge.compare.data<span class="sc">$</span><span class="st">`</span><span class="at">Sample.name.(after.treatment)</span><span class="st">`</span></span>
+<span id="cb6-14"><a href="target-evaluation.html#cb6-14" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="target-evaluation.html#cb6-15" tabindex="-1"></a>merge.mat <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;02.Profiling/TableS1B.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">startRow =</span> <span class="dv">3</span>, <span class="at">rowNames =</span> T)</span></code></pre></div>
+</div>
+<div id="normalization" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Normalization<a href="target-evaluation.html#normalization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="target-evaluation.html#cb7-1" tabindex="-1"></a><span class="co"># Median normalization</span></span>
+<span id="cb7-2"><a href="target-evaluation.html#cb7-2" tabindex="-1"></a>merge.nor.mat <span class="ot">&lt;-</span> merge.mat</span>
+<span id="cb7-3"><a href="target-evaluation.html#cb7-3" tabindex="-1"></a>sub<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(<span class="fu">colMedians</span>(<span class="fu">as.matrix</span>(merge.nor.mat)), </span>
+<span id="cb7-4"><a href="target-evaluation.html#cb7-4" tabindex="-1"></a>                   <span class="fu">list</span>(<span class="at">Cell =</span> merge.meta.data<span class="sc">$</span>Dataset), min)</span>
+<span id="cb7-5"><a href="target-evaluation.html#cb7-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(merge.nor.mat)) {</span>
+<span id="cb7-6"><a href="target-evaluation.html#cb7-6" tabindex="-1"></a>  merge.nor.mat[, i] <span class="ot">&lt;-</span> merge.nor.mat[, i] <span class="sc">-</span> sub<span class="fl">.1</span><span class="sc">$</span>x[<span class="fu">which</span>(sub<span class="fl">.1</span><span class="sc">$</span>Cell <span class="sc">==</span> merge.meta.data<span class="sc">$</span>Dataset[i])]</span>
+<span id="cb7-7"><a href="target-evaluation.html#cb7-7" tabindex="-1"></a>}</span>
+<span id="cb7-8"><a href="target-evaluation.html#cb7-8" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="target-evaluation.html#cb7-9" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="target-evaluation.html#cb7-10" tabindex="-1"></a><span class="co"># Generation of fold change (Log2-transformed for FPKM) of cell line samples after treatment compared to before treatment </span></span>
+<span id="cb7-11"><a href="target-evaluation.html#cb7-11" tabindex="-1"></a>compare.mat <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb7-12"><a href="target-evaluation.html#cb7-12" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(merge.compare.data)) {</span>
+<span id="cb7-13"><a href="target-evaluation.html#cb7-13" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(<span class="fu">grep</span>(<span class="st">&quot;; &quot;</span>, merge.compare.data<span class="sc">$</span>Control[i])) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb7-14"><a href="target-evaluation.html#cb7-14" tabindex="-1"></a>    sub<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">str_split</span>(merge.compare.data<span class="sc">$</span>Control[i], <span class="st">&quot;; &quot;</span>))</span>
+<span id="cb7-15"><a href="target-evaluation.html#cb7-15" tabindex="-1"></a>    sub <span class="ot">&lt;-</span> merge.nor.mat[, merge.compare.data<span class="sc">$</span>Sample[i]] <span class="sc">-</span> <span class="fu">rowMeans</span>(merge.nor.mat[, sub<span class="fl">.1</span>])</span>
+<span id="cb7-16"><a href="target-evaluation.html#cb7-16" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb7-17"><a href="target-evaluation.html#cb7-17" tabindex="-1"></a>    sub <span class="ot">&lt;-</span> merge.nor.mat[, merge.compare.data<span class="sc">$</span>Sample[i]] <span class="sc">-</span> merge.nor.mat[, merge.compare.data<span class="sc">$</span>Control[i]]</span>
+<span id="cb7-18"><a href="target-evaluation.html#cb7-18" tabindex="-1"></a>  }</span>
+<span id="cb7-19"><a href="target-evaluation.html#cb7-19" tabindex="-1"></a>  compare.mat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(compare.mat, sub)</span>
+<span id="cb7-20"><a href="target-evaluation.html#cb7-20" tabindex="-1"></a>}</span>
+<span id="cb7-21"><a href="target-evaluation.html#cb7-21" tabindex="-1"></a><span class="fu">colnames</span>(compare.mat) <span class="ot">&lt;-</span> merge.compare.data<span class="sc">$</span>Sample</span>
+<span id="cb7-22"><a href="target-evaluation.html#cb7-22" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="target-evaluation.html#cb7-23" tabindex="-1"></a><span class="fu">head</span>(compare.mat, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##          U937_WT U937_L130V_ATO U937_L130F_ATO U937_L130R_ATO U937_P142L_ATO U937_V143M_ATO U937_M237V_ATO U937_F270I_ATO U937_F270V_ATO
+## CDKN1A 3.1916457       3.080478       1.957199      2.0917992      0.7774611      2.1667723      1.9077609       3.947027       2.909291
+## RRM2B  0.8391627       1.001993       1.187001      0.6459767      0.4785670      0.8683713      0.5825729       1.860397       1.479516
+## MDM2   2.7245150       2.028156       1.302068      1.1567997      0.8098108      1.5695778      1.3455218       2.642251       2.444877
+##        U937_V272A_ATO U937_V272M_ATO U937_V272M_PAT Kasumi-1_R248Q_Kevetrin_6h_rep1 Kasumi-1_R248Q_Kevetrin_6h_rep2
+## CDKN1A       2.035912       3.675682       3.269377                     -0.00507247                     -0.03563892
+## RRM2B        0.708025       1.567485       1.557309                      0.66265896                      0.57210179
+## MDM2         1.671464       3.256886       2.245890                      0.04900353                     -0.04690794
+##        Kasumi-1_R248Q_Kevetrin_6h_rep3 SKM1_R248Q_APR-246_rep1 SKM1_R248Q_APR-246_rep2 SKM1_R248Q_APR-246_rep3 staET7.1_R273H_APR-246_rep1
+## CDKN1A                      0.17165276             -0.07281667              0.02994333             -0.26504667                   0.4066695
+## RRM2B                       0.51180155              0.13078333              0.05577333             -0.27296667                   0.6471832
+## MDM2                       -0.01286232              0.18355667             -0.07633333             -0.09720333                   0.2011240
+##        staET7.1_R273H_APR-246_rep2 staET7.2_R273H_APR-246_rep1 staET7.3_R273H_APR-246_rep1 staET7.3_R273H_APR-246_rep2
+## CDKN1A                 -0.31610198                  -0.1298085                 -0.41130580                -0.091652792
+## RRM2B                   0.12121419                   0.3475557                  0.07482002                 0.356190359
+## MDM2                   -0.04862277                   0.1818754                  0.07292721                 0.001335775
+##        staET7.2_R273H_APR-246_rep2 Saos-2_R273H_APR-246_6h_rep1 Saos-2_R273H_APR-246_6h_rep2 Saos-2_R273H_APR-246_6h_rep3
+## CDKN1A                   1.1191052                  -0.02540054                   -0.1177016                 -0.534773959
+## RRM2B                    0.5005976                   1.05526980                    1.1814193                  0.431825568
+## MDM2                     0.2663554                  -0.08762767                    0.3947754                 -0.008325736
+##        Saos-2_R273H_APR-246_12h_rep1 Saos-2_R273H_APR-246_12h_rep2 Saos-2_R273H_APR-246_12h_rep3 Kasumi-1_R248Q_Kevetrin_48h_rep1
+## CDKN1A                   -0.62120069                   -0.10077979                    -0.3485730                        0.3656561
+## RRM2B                     1.03123586                    0.75826079                     0.6167059                        1.0807021
+## MDM2                      0.06401986                    0.02695217                     0.0326328                       -0.4937894
+##        Kasumi-1_R248Q_Kevetrin_48h_rep2 Kasumi-1_R248Q_Kevetrin_48h_rep3 PCI13_G245D_COTI-2_rep1 PCI13_G245D_COTI-2_rep2
+## CDKN1A                        0.6150592                        0.5977127               0.7164330               0.6274429
+## RRM2B                         1.0029696                        1.2170216               0.1130768              -0.0679887
+## MDM2                         -0.5052966                       -0.2238308               0.2377859               0.2552303
+##        PCI13_G245D_COTI-2_rep3 U266_A161T_PRIMA-1_rep1 U266_A161T_PRIMA-1_rep2 U937_R273H_ATO U937_R273H_PAT PCI13_G245D_CDDP_rep1
+## CDKN1A             0.647518846               0.1974164               0.4389011      0.3927590      0.1909721           -0.21575276
+## RRM2B             -0.006853216              -0.2733003              -0.3027616      0.2643679     -0.1862437           -0.28507761
+## MDM2               0.341083919              -0.2199022              -0.2003108     -0.5397466     -0.4929459            0.06734607
+##        PCI13_G245D_CDDP_rep2 PCI13_G245D_CDDP_rep3 8266R5_null_PRIMA-1_rep1 8266R5_null_PRIMA-1_rep2 Saos-2_null_APR-246_6h_rep1
+## CDKN1A           -0.29477320            -0.3104395               -0.1462286               -0.1858493                   1.0204064
+## RRM2B            -0.56260138            -0.4041368               -0.2320481                0.2372455                   0.2411493
+## MDM2              0.07106408             0.1046652                0.2465478                0.3169312                  -0.6160103
+##        Saos-2_null_APR-246_6h_rep2 Saos-2_null_APR-246_6h_rep3 Saos-2_null_APR-246_12h_rep1 Saos-2_null_APR-246_12h_rep2
+## CDKN1A                  -0.2922208                  0.16556354                 -0.252144504                   -0.2329088
+## RRM2B                    0.4065886                 -0.31879809                  0.490890719                   -0.4246623
+## MDM2                    -0.6468282                 -0.05262877                  0.001146008                   -0.1160399</code></pre>
+<p>The <code>compare.mat</code> was generated and provided as Table S1C.</p>
+</div>
+<div id="confident-p53-targets" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> 32 confident p53 targets<a href="target-evaluation.html#confident-p53-targets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The heatmap plot was used for visualization of the log2-transformed fold change of 32 confident p53 targets.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="target-evaluation.html#cb9-1" tabindex="-1"></a>my.breaks <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">by =</span> <span class="fl">0.001</span>), <span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="fl">1.5</span>, <span class="at">by =</span> <span class="fl">0.001</span>) ) </span>
+<span id="cb9-2"><a href="target-evaluation.html#cb9-2" tabindex="-1"></a>my.colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">colorRampPalette</span>(<span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;#00599F&quot;</span>,<span class="st">&quot;#00599F&quot;</span>,<span class="st">&quot;#287dba&quot;</span>,<span class="st">&quot;#62aee5&quot;</span>,<span class="st">&quot;#a8dcff&quot;</span>,<span class="st">&quot;white&quot;</span>))(<span class="fu">length</span>(my.breaks)<span class="sc">/</span><span class="dv">2</span>), </span>
+<span id="cb9-3"><a href="target-evaluation.html#cb9-3" tabindex="-1"></a>               <span class="fu">colorRampPalette</span>(<span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;#ffca79&quot;</span>,<span class="st">&quot;#ef6e51&quot;</span>,<span class="st">&quot;#db1b18&quot;</span>,<span class="st">&quot;#b50600&quot;</span>,<span class="st">&quot;#b50600&quot;</span>))(<span class="fu">length</span>(my.breaks)<span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb9-4"><a href="target-evaluation.html#cb9-4" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="target-evaluation.html#cb9-5" tabindex="-1"></a>plot.mat <span class="ot">&lt;-</span> compare.mat[tp53.target.g32, ]</span>
+<span id="cb9-6"><a href="target-evaluation.html#cb9-6" tabindex="-1"></a>anno.data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">row.names =</span> merge.compare.data<span class="sc">$</span>Sample, </span>
+<span id="cb9-7"><a href="target-evaluation.html#cb9-7" tabindex="-1"></a>                        <span class="at">Mutant =</span> merge.compare.data<span class="sc">$</span>p53.status)</span>
+<span id="cb9-8"><a href="target-evaluation.html#cb9-8" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="target-evaluation.html#cb9-9" tabindex="-1"></a><span class="co"># Visualization of the 32 confident p53 targets</span></span>
+<span id="cb9-10"><a href="target-evaluation.html#cb9-10" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">pheatmap</span>(plot.mat, <span class="at">scale =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb9-11"><a href="target-evaluation.html#cb9-11" tabindex="-1"></a>              <span class="at">color =</span> my.colors, <span class="at">breaks =</span> my.breaks,</span>
+<span id="cb9-12"><a href="target-evaluation.html#cb9-12" tabindex="-1"></a>              <span class="at">cluster_row =</span> F, <span class="at">cluster_col =</span> F, <span class="at">border_color =</span> <span class="cn">NA</span>,</span>
+<span id="cb9-13"><a href="target-evaluation.html#cb9-13" tabindex="-1"></a>              <span class="at">annotation_col =</span> anno.data, </span>
+<span id="cb9-14"><a href="target-evaluation.html#cb9-14" tabindex="-1"></a>              <span class="at">annotation_colors =</span> anno.color,</span>
+<span id="cb9-15"><a href="target-evaluation.html#cb9-15" tabindex="-1"></a>              <span class="at">clustering_method =</span> <span class="st">&quot;ward.D2&quot;</span>,</span>
+<span id="cb9-16"><a href="target-evaluation.html#cb9-16" tabindex="-1"></a>              <span class="at">clustering_distance_rows =</span> <span class="st">&quot;manhattan&quot;</span>,</span>
+<span id="cb9-17"><a href="target-evaluation.html#cb9-17" tabindex="-1"></a>              <span class="at">clustering_distance_cols =</span> <span class="st">&quot;manhattan&quot;</span>,</span>
+<span id="cb9-18"><a href="target-evaluation.html#cb9-18" tabindex="-1"></a>              <span class="at">fontsize_col =</span> <span class="dv">6</span>,</span>
+<span id="cb9-19"><a href="target-evaluation.html#cb9-19" tabindex="-1"></a>              <span class="at">fontsize_row =</span> <span class="dv">6</span>)</span>
+<span id="cb9-20"><a href="target-evaluation.html#cb9-20" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="p53-compounds_files/figure-html/unnamed-chunk-8-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="target-evaluation.html#cb10-1" tabindex="-1"></a><span class="co"># Visualization of the other 18,264 genes (exclude the 32 confident p53 targets)</span></span>
+<span id="cb10-2"><a href="target-evaluation.html#cb10-2" tabindex="-1"></a>plot.mat <span class="ot">&lt;-</span> compare.mat[<span class="sc">!</span><span class="fu">rownames</span>(compare.mat) <span class="sc">%in%</span> tp53.target.g32, ]</span>
+<span id="cb10-3"><a href="target-evaluation.html#cb10-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">pheatmap</span>(plot.mat, <span class="at">scale =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb10-4"><a href="target-evaluation.html#cb10-4" tabindex="-1"></a>              <span class="at">color =</span> my.colors, <span class="at">breaks =</span> my.breaks,</span>
+<span id="cb10-5"><a href="target-evaluation.html#cb10-5" tabindex="-1"></a>              <span class="at">cluster_row =</span> F, <span class="at">cluster_col =</span> F, <span class="at">border_color =</span> <span class="cn">NA</span>,</span>
+<span id="cb10-6"><a href="target-evaluation.html#cb10-6" tabindex="-1"></a>              <span class="at">annotation_col =</span> anno.data, </span>
+<span id="cb10-7"><a href="target-evaluation.html#cb10-7" tabindex="-1"></a>              <span class="at">annotation_colors =</span> anno.color,</span>
+<span id="cb10-8"><a href="target-evaluation.html#cb10-8" tabindex="-1"></a>              <span class="at">clustering_method =</span> <span class="st">&quot;ward.D2&quot;</span>,</span>
+<span id="cb10-9"><a href="target-evaluation.html#cb10-9" tabindex="-1"></a>              <span class="at">clustering_distance_rows =</span> <span class="st">&quot;manhattan&quot;</span>,</span>
+<span id="cb10-10"><a href="target-evaluation.html#cb10-10" tabindex="-1"></a>              <span class="at">clustering_distance_cols =</span> <span class="st">&quot;manhattan&quot;</span>,</span>
+<span id="cb10-11"><a href="target-evaluation.html#cb10-11" tabindex="-1"></a>              <span class="at">fontsize_col =</span> <span class="dv">6</span>,</span>
+<span id="cb10-12"><a href="target-evaluation.html#cb10-12" tabindex="-1"></a>              <span class="at">fontsize_row =</span> <span class="fl">0.1</span>)</span>
+<span id="cb10-13"><a href="target-evaluation.html#cb10-13" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="p53-compounds_files/figure-html/unnamed-chunk-8-2.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="p53-targets" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> 116 p53 targets<a href="target-evaluation.html#p53-targets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The heatmap plot was used for visualization of the log2-transformed fold change of the 116 p53 targets.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="target-evaluation.html#cb11-1" tabindex="-1"></a>my.breaks <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">by =</span> <span class="fl">0.001</span>), <span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="fl">1.5</span>, <span class="at">by =</span> <span class="fl">0.001</span>) ) </span>
+<span id="cb11-2"><a href="target-evaluation.html#cb11-2" tabindex="-1"></a>my.colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">colorRampPalette</span>(<span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;#00599F&quot;</span>,<span class="st">&quot;#00599F&quot;</span>,<span class="st">&quot;#287dba&quot;</span>,<span class="st">&quot;#62aee5&quot;</span>,<span class="st">&quot;#a8dcff&quot;</span>,<span class="st">&quot;white&quot;</span>))(<span class="fu">length</span>(my.breaks)<span class="sc">/</span><span class="dv">2</span>), </span>
+<span id="cb11-3"><a href="target-evaluation.html#cb11-3" tabindex="-1"></a>               <span class="fu">colorRampPalette</span>(<span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;#ffca79&quot;</span>,<span class="st">&quot;#ef6e51&quot;</span>,<span class="st">&quot;#db1b18&quot;</span>,<span class="st">&quot;#b50600&quot;</span>,<span class="st">&quot;#b50600&quot;</span>))(<span class="fu">length</span>(my.breaks)<span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb11-4"><a href="target-evaluation.html#cb11-4" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="target-evaluation.html#cb11-5" tabindex="-1"></a>plot.mat <span class="ot">&lt;-</span> compare.mat[tp53.target.g116, ]</span>
+<span id="cb11-6"><a href="target-evaluation.html#cb11-6" tabindex="-1"></a>anno.data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">row.names =</span> merge.compare.data<span class="sc">$</span>Sample, <span class="at">Mutant =</span> merge.compare.data<span class="sc">$</span>p53.status)</span>
+<span id="cb11-7"><a href="target-evaluation.html#cb11-7" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="target-evaluation.html#cb11-8" tabindex="-1"></a><span class="co"># Visualization of the 116 p53 targets</span></span>
+<span id="cb11-9"><a href="target-evaluation.html#cb11-9" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">pheatmap</span>(plot.mat, <span class="at">scale =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb11-10"><a href="target-evaluation.html#cb11-10" tabindex="-1"></a>              <span class="at">color =</span> my.colors, <span class="at">breaks =</span> my.breaks,</span>
+<span id="cb11-11"><a href="target-evaluation.html#cb11-11" tabindex="-1"></a>              <span class="at">cluster_row =</span> F, <span class="at">cluster_col =</span> F, <span class="at">border_color =</span> <span class="cn">NA</span>,</span>
+<span id="cb11-12"><a href="target-evaluation.html#cb11-12" tabindex="-1"></a>              <span class="at">annotation_col =</span> anno.data, </span>
+<span id="cb11-13"><a href="target-evaluation.html#cb11-13" tabindex="-1"></a>              <span class="at">annotation_colors =</span> anno.color,</span>
+<span id="cb11-14"><a href="target-evaluation.html#cb11-14" tabindex="-1"></a>              <span class="at">clustering_method =</span> <span class="st">&quot;ward.D2&quot;</span>,</span>
+<span id="cb11-15"><a href="target-evaluation.html#cb11-15" tabindex="-1"></a>              <span class="at">clustering_distance_rows =</span> <span class="st">&quot;manhattan&quot;</span>,</span>
+<span id="cb11-16"><a href="target-evaluation.html#cb11-16" tabindex="-1"></a>              <span class="at">clustering_distance_cols =</span> <span class="st">&quot;manhattan&quot;</span>,</span>
+<span id="cb11-17"><a href="target-evaluation.html#cb11-17" tabindex="-1"></a>              <span class="at">fontsize_col =</span> <span class="dv">6</span>,</span>
+<span id="cb11-18"><a href="target-evaluation.html#cb11-18" tabindex="-1"></a>              <span class="at">fontsize_row =</span> <span class="dv">2</span>)</span>
+<span id="cb11-19"><a href="target-evaluation.html#cb11-19" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="p53-compounds_files/figure-html/unnamed-chunk-9-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="target-evaluation.html#cb12-1" tabindex="-1"></a><span class="co"># Visualization of the other 18,180 genes (exclude the 116 p53 targets)</span></span>
+<span id="cb12-2"><a href="target-evaluation.html#cb12-2" tabindex="-1"></a>plot.mat <span class="ot">&lt;-</span> compare.mat[<span class="sc">!</span><span class="fu">rownames</span>(compare.mat) <span class="sc">%in%</span> tp53.target.g116, ]</span>
+<span id="cb12-3"><a href="target-evaluation.html#cb12-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">pheatmap</span>(plot.mat, <span class="at">scale =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb12-4"><a href="target-evaluation.html#cb12-4" tabindex="-1"></a>              <span class="at">color =</span> my.colors, <span class="at">breaks =</span> my.breaks,</span>
+<span id="cb12-5"><a href="target-evaluation.html#cb12-5" tabindex="-1"></a>              <span class="at">cluster_row =</span> F, <span class="at">cluster_col =</span> F, <span class="at">border_color =</span> <span class="cn">NA</span>,</span>
+<span id="cb12-6"><a href="target-evaluation.html#cb12-6" tabindex="-1"></a>              <span class="at">annotation_col =</span> anno.data, </span>
+<span id="cb12-7"><a href="target-evaluation.html#cb12-7" tabindex="-1"></a>              <span class="at">annotation_colors =</span> anno.color,</span>
+<span id="cb12-8"><a href="target-evaluation.html#cb12-8" tabindex="-1"></a>              <span class="at">clustering_method =</span> <span class="st">&quot;ward.D2&quot;</span>,</span>
+<span id="cb12-9"><a href="target-evaluation.html#cb12-9" tabindex="-1"></a>              <span class="at">clustering_distance_rows =</span> <span class="st">&quot;manhattan&quot;</span>,</span>
+<span id="cb12-10"><a href="target-evaluation.html#cb12-10" tabindex="-1"></a>              <span class="at">clustering_distance_cols =</span> <span class="st">&quot;manhattan&quot;</span>,</span>
+<span id="cb12-11"><a href="target-evaluation.html#cb12-11" tabindex="-1"></a>              <span class="at">fontsize_col =</span> <span class="dv">8</span>,</span>
+<span id="cb12-12"><a href="target-evaluation.html#cb12-12" tabindex="-1"></a>              <span class="at">fontsize_row =</span> <span class="fl">0.1</span>)</span>
+<span id="cb12-13"><a href="target-evaluation.html#cb12-13" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="p53-compounds_files/figure-html/unnamed-chunk-9-2.png" width="960" style="display: block; margin: auto;" /></p>
+<div id="p53-transactivation" class="section level3 hasAnchor" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> p53 transactivation<a href="target-evaluation.html#p53-transactivation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div style="text-align: center;">
+<p><img width="600" src="figures/p53-act.png"></p>
+</div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="target-evaluation.html#cb13-1" tabindex="-1"></a>plot.order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;U937_WT&quot;</span>,<span class="st">&quot;U937_L130V_ATO&quot;</span>,<span class="st">&quot;U937_L130F_ATO&quot;</span>,<span class="st">&quot;U937_L130R_ATO&quot;</span>,<span class="st">&quot;U937_P142L_ATO&quot;</span>,<span class="st">&quot;U937_V143M_ATO&quot;</span>,<span class="st">&quot;U937_M237V_ATO&quot;</span>,<span class="st">&quot;U937_F270I_ATO&quot;</span>,<span class="st">&quot;U937_F270V_ATO&quot;</span>,<span class="st">&quot;U937_V272A_ATO&quot;</span>,<span class="st">&quot;U937_V272M_ATO&quot;</span>,<span class="st">&quot;U937_V272M_PAT&quot;</span>,<span class="st">&quot;Kasumi-1_R248Q_Kevetrin_6h&quot;</span>,<span class="st">&quot;SKM1_R248Q_APR-246&quot;</span>,<span class="st">&quot;staET7.1_R273H_APR-246&quot;</span>,<span class="st">&quot;staET7.2_R273H_APR-246&quot;</span>,<span class="st">&quot;staET7.3_R273H_APR-246&quot;</span>,<span class="st">&quot;Saos-2_R273H_APR-246_6h&quot;</span>,<span class="st">&quot;Saos-2_R273H_APR-246_12h&quot;</span>,<span class="st">&quot;Kasumi-1_R248Q_Kevetrin_48h&quot;</span>,<span class="st">&quot;PCI13_G245D_COTI-2&quot;</span>,<span class="st">&quot;U266_A161T_PRIMA-1&quot;</span>,<span class="st">&quot;U937_R273H_ATO&quot;</span>,<span class="st">&quot;U937_R273H_PAT&quot;</span>,<span class="st">&quot;PCI13_G245D_CDDP&quot;</span>,<span class="st">&quot;8266R5_null_PRIMA-1&quot;</span>,<span class="st">&quot;Saos-2_null_APR-246_6h&quot;</span>,<span class="st">&quot;Saos-2_null_APR-246_12h&quot;</span>)</span>
+<span id="cb13-2"><a href="target-evaluation.html#cb13-2" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="target-evaluation.html#cb13-3" tabindex="-1"></a>total.act <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb13-4"><a href="target-evaluation.html#cb13-4" tabindex="-1"></a>total.test.cutoff <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.2</span>, <span class="fl">1.5</span>, <span class="fl">2.0</span>)</span>
+<span id="cb13-5"><a href="target-evaluation.html#cb13-5" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="target-evaluation.html#cb13-6" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(total.test.cutoff)) {</span>
+<span id="cb13-7"><a href="target-evaluation.html#cb13-7" tabindex="-1"></a>  </span>
+<span id="cb13-8"><a href="target-evaluation.html#cb13-8" tabindex="-1"></a>  cutoff_tmp <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">log2</span>(total.test.cutoff[i]), <span class="dv">2</span>)</span>
+<span id="cb13-9"><a href="target-evaluation.html#cb13-9" tabindex="-1"></a>  plot.data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Sample =</span> <span class="fu">colnames</span>(compare.mat),</span>
+<span id="cb13-10"><a href="target-evaluation.html#cb13-10" tabindex="-1"></a>                          <span class="at">UP_116 =</span> <span class="fu">colSums</span>(compare.mat[tp53.target.g116, ] <span class="sc">&gt;</span> cutoff_tmp) ,</span>
+<span id="cb13-11"><a href="target-evaluation.html#cb13-11" tabindex="-1"></a>                          <span class="at">UP_32 =</span> <span class="fu">colSums</span>(compare.mat[tp53.target.g32, ] <span class="sc">&gt;</span> cutoff_tmp),</span>
+<span id="cb13-12"><a href="target-evaluation.html#cb13-12" tabindex="-1"></a>                          <span class="at">UP_other_116 =</span> <span class="fu">colSums</span>(compare.mat[<span class="sc">!</span><span class="fu">rownames</span>(compare.mat) <span class="sc">%in%</span> tp53.target.g116, ] <span class="sc">&gt;</span> cutoff_tmp) ,</span>
+<span id="cb13-13"><a href="target-evaluation.html#cb13-13" tabindex="-1"></a>                          <span class="at">UP_other_32 =</span> <span class="fu">colSums</span>(compare.mat[<span class="sc">!</span><span class="fu">rownames</span>(compare.mat) <span class="sc">%in%</span> tp53.target.g32, ] <span class="sc">&gt;</span> cutoff_tmp) )</span>
+<span id="cb13-14"><a href="target-evaluation.html#cb13-14" tabindex="-1"></a>  plot.data<span class="sc">$</span>Mutant <span class="ot">&lt;-</span> merge.compare.data<span class="sc">$</span>p53.status[<span class="fu">match</span>(plot.data<span class="sc">$</span>Sample, merge.compare.data<span class="sc">$</span>Sample)]</span>
+<span id="cb13-15"><a href="target-evaluation.html#cb13-15" tabindex="-1"></a>  plot.data<span class="sc">$</span>MutantType <span class="ot">&lt;-</span> <span class="st">&quot;MUT&quot;</span></span>
+<span id="cb13-16"><a href="target-evaluation.html#cb13-16" tabindex="-1"></a>  plot.data<span class="sc">$</span>MutantType[<span class="fu">which</span>(plot.data<span class="sc">$</span>Mutant <span class="sc">==</span> <span class="st">&quot;WT&quot;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;WT&quot;</span></span>
+<span id="cb13-17"><a href="target-evaluation.html#cb13-17" tabindex="-1"></a>  </span>
+<span id="cb13-18"><a href="target-evaluation.html#cb13-18" tabindex="-1"></a>  plot.data<span class="sc">$</span>Act_32 <span class="ot">&lt;-</span> (plot.data<span class="sc">$</span>UP_32) <span class="sc">/</span> (plot.data<span class="sc">$</span>UP_other_32 <span class="sc">+</span> plot.data<span class="sc">$</span>UP_32) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb13-19"><a href="target-evaluation.html#cb13-19" tabindex="-1"></a>  plot.data<span class="sc">$</span>Act_116 <span class="ot">&lt;-</span> (plot.data<span class="sc">$</span>UP_116) <span class="sc">/</span> (plot.data<span class="sc">$</span>UP_other_116 <span class="sc">+</span> plot.data<span class="sc">$</span>UP_116) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb13-20"><a href="target-evaluation.html#cb13-20" tabindex="-1"></a>  plot.data<span class="sc">$</span>Group <span class="ot">&lt;-</span> merge.compare.data<span class="sc">$</span>Group[<span class="fu">match</span>(plot.data<span class="sc">$</span>Sample, merge.compare.data<span class="sc">$</span>Sample)]</span>
+<span id="cb13-21"><a href="target-evaluation.html#cb13-21" tabindex="-1"></a>  </span>
+<span id="cb13-22"><a href="target-evaluation.html#cb13-22" tabindex="-1"></a>  plot.data<span class="sc">$</span>Act_32[<span class="fu">which</span>(<span class="fu">is.na</span>(plot.data<span class="sc">$</span>Act_32))] <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb13-23"><a href="target-evaluation.html#cb13-23" tabindex="-1"></a>  plot.data<span class="sc">$</span>Act_116[<span class="fu">which</span>(<span class="fu">is.na</span>(plot.data<span class="sc">$</span>Act_116))] <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb13-24"><a href="target-evaluation.html#cb13-24" tabindex="-1"></a>  </span>
+<span id="cb13-25"><a href="target-evaluation.html#cb13-25" tabindex="-1"></a>  plot.data.group <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(plot.data[, <span class="fu">c</span>(<span class="st">&quot;Act_32&quot;</span>,<span class="st">&quot;Act_116&quot;</span>)], <span class="fu">list</span>(<span class="at">Sample =</span> plot.data<span class="sc">$</span>Group), mean)</span>
+<span id="cb13-26"><a href="target-evaluation.html#cb13-26" tabindex="-1"></a>  plot.data.group <span class="ot">&lt;-</span> plot.data.group[<span class="fu">match</span>(plot.order, plot.data.group<span class="sc">$</span>Sample), ]</span>
+<span id="cb13-27"><a href="target-evaluation.html#cb13-27" tabindex="-1"></a>  plot.data.group<span class="sc">$</span>Mutant <span class="ot">&lt;-</span> merge.compare.data<span class="sc">$</span>p53.status[<span class="fu">match</span>(plot.data.group<span class="sc">$</span>Sample, merge.compare.data<span class="sc">$</span>Group)]</span>
+<span id="cb13-28"><a href="target-evaluation.html#cb13-28" tabindex="-1"></a>  plot.data.group<span class="sc">$</span>MutantType <span class="ot">&lt;-</span> <span class="st">&quot;MUT&quot;</span></span>
+<span id="cb13-29"><a href="target-evaluation.html#cb13-29" tabindex="-1"></a>  plot.data.group<span class="sc">$</span>MutantType[<span class="fu">which</span>(plot.data.group<span class="sc">$</span>Mutant <span class="sc">==</span> <span class="st">&quot;null&quot;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;null_other&quot;</span></span>
+<span id="cb13-30"><a href="target-evaluation.html#cb13-30" tabindex="-1"></a>  plot.data.group<span class="sc">$</span>MutantType[<span class="fu">which</span>(plot.data.group<span class="sc">$</span>Sample <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;U937_R273H_ATO&quot;</span>,<span class="st">&quot;U937_R273H_PAT&quot;</span>,<span class="st">&quot;PCI13_G245D_CDDP&quot;</span>))] <span class="ot">&lt;-</span> <span class="st">&quot;null_other&quot;</span></span>
+<span id="cb13-31"><a href="target-evaluation.html#cb13-31" tabindex="-1"></a>  plot.data.group<span class="sc">$</span>MutantType[<span class="fu">which</span>(plot.data.group<span class="sc">$</span>Mutant <span class="sc">==</span> <span class="st">&quot;WT&quot;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;WT&quot;</span></span>
+<span id="cb13-32"><a href="target-evaluation.html#cb13-32" tabindex="-1"></a></span>
+<span id="cb13-33"><a href="target-evaluation.html#cb13-33" tabindex="-1"></a>  <span class="cf">if</span> (cutoff_tmp <span class="sc">!=</span> <span class="dv">1</span>) {</span>
+<span id="cb13-34"><a href="target-evaluation.html#cb13-34" tabindex="-1"></a>    group.tag <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;FC_&quot;</span>, total.test.cutoff[i] )</span>
+<span id="cb13-35"><a href="target-evaluation.html#cb13-35" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb13-36"><a href="target-evaluation.html#cb13-36" tabindex="-1"></a>    group.tag <span class="ot">&lt;-</span> <span class="st">&quot;FC_2.0&quot;</span></span>
+<span id="cb13-37"><a href="target-evaluation.html#cb13-37" tabindex="-1"></a>  }</span>
+<span id="cb13-38"><a href="target-evaluation.html#cb13-38" tabindex="-1"></a>  </span>
+<span id="cb13-39"><a href="target-evaluation.html#cb13-39" tabindex="-1"></a>  plot.data.group<span class="sc">$</span>Group <span class="ot">&lt;-</span> group.tag</span>
+<span id="cb13-40"><a href="target-evaluation.html#cb13-40" tabindex="-1"></a></span>
+<span id="cb13-41"><a href="target-evaluation.html#cb13-41" tabindex="-1"></a>  total.act <span class="ot">&lt;-</span> <span class="fu">rbind</span>(total.act, plot.data.group)</span>
+<span id="cb13-42"><a href="target-evaluation.html#cb13-42" tabindex="-1"></a>}</span>
+<span id="cb13-43"><a href="target-evaluation.html#cb13-43" tabindex="-1"></a></span>
+<span id="cb13-44"><a href="target-evaluation.html#cb13-44" tabindex="-1"></a>total.act<span class="sc">$</span>Group <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">as.character</span>(total.act<span class="sc">$</span>Group), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;FC_1.5&quot;</span>,<span class="st">&quot;FC_1.2&quot;</span>,<span class="st">&quot;FC_2.0&quot;</span>))</span>
+<span id="cb13-45"><a href="target-evaluation.html#cb13-45" tabindex="-1"></a></span>
+<span id="cb13-46"><a href="target-evaluation.html#cb13-46" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggbarplot</span>(total.act, <span class="at">x =</span> <span class="st">&quot;Sample&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Act_32&quot;</span>,</span>
+<span id="cb13-47"><a href="target-evaluation.html#cb13-47" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;MutantType&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;MutantType&quot;</span>,</span>
+<span id="cb13-48"><a href="target-evaluation.html#cb13-48" tabindex="-1"></a>               <span class="at">sorting =</span> <span class="st">&quot;none&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>,</span>
+<span id="cb13-49"><a href="target-evaluation.html#cb13-49" tabindex="-1"></a>               <span class="at">order =</span> plot.order,</span>
+<span id="cb13-50"><a href="target-evaluation.html#cb13-50" tabindex="-1"></a>               <span class="at">main =</span> <span class="fu">paste0</span>(<span class="st">&quot;32 confident p53 targets&quot;</span>), <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb13-51"><a href="target-evaluation.html#cb13-51" tabindex="-1"></a>               <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>,<span class="st">&quot;#A3A3A3&quot;</span>,<span class="st">&quot;red&quot;</span>), <span class="at">width =</span> <span class="fl">0.6</span> ) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb13-52"><a href="target-evaluation.html#cb13-52" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span>
+<span id="cb13-53"><a href="target-evaluation.html#cb13-53" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_base</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">4</span>))</span>
+<span id="cb13-54"><a href="target-evaluation.html#cb13-54" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb13-55"><a href="target-evaluation.html#cb13-55" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">11</span>) )</span>
+<span id="cb13-56"><a href="target-evaluation.html#cb13-56" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">facet_wrap</span>( <span class="sc">~</span> Group, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb13-57"><a href="target-evaluation.html#cb13-57" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="p53-compounds_files/figure-html/unnamed-chunk-10-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="target-evaluation.html#cb14-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggbarplot</span>(total.act, <span class="at">x =</span> <span class="st">&quot;Sample&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Act_116&quot;</span>,</span>
+<span id="cb14-2"><a href="target-evaluation.html#cb14-2" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;MutantType&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;MutantType&quot;</span>,</span>
+<span id="cb14-3"><a href="target-evaluation.html#cb14-3" tabindex="-1"></a>               <span class="at">sorting =</span> <span class="st">&quot;none&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>,</span>
+<span id="cb14-4"><a href="target-evaluation.html#cb14-4" tabindex="-1"></a>               <span class="at">order =</span> plot.order,</span>
+<span id="cb14-5"><a href="target-evaluation.html#cb14-5" tabindex="-1"></a>               <span class="at">main =</span> <span class="fu">paste0</span>(<span class="st">&quot;116 p53 targets&quot;</span>), <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb14-6"><a href="target-evaluation.html#cb14-6" tabindex="-1"></a>               <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>,<span class="st">&quot;#A3A3A3&quot;</span>,<span class="st">&quot;red&quot;</span>), <span class="at">width =</span> <span class="fl">0.6</span> ) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb14-7"><a href="target-evaluation.html#cb14-7" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span>
+<span id="cb14-8"><a href="target-evaluation.html#cb14-8" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_base</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">4</span>))</span>
+<span id="cb14-9"><a href="target-evaluation.html#cb14-9" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb14-10"><a href="target-evaluation.html#cb14-10" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">15</span>) )</span>
+<span id="cb14-11"><a href="target-evaluation.html#cb14-11" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">facet_wrap</span>( <span class="sc">~</span> Group, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb14-12"><a href="target-evaluation.html#cb14-12" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="p53-compounds_files/figure-html/unnamed-chunk-10-2.png" width="1152" style="display: block; margin: auto;" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-preprocessing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="enrichment-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-TargetEvaluation.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["p53-compounds.pdf", "p53-compounds.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
