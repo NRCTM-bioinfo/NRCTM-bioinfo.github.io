@@ -231,7 +231,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-27"><a href="scrna-seq.html#cb16-27" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
 <span id="cb16-28"><a href="scrna-seq.html#cb16-28" tabindex="-1"></a></span>
 <span id="cb16-29"><a href="scrna-seq.html#cb16-29" tabindex="-1"></a>cart <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(cart, <span class="at">normalization.method =</span> <span class="st">&quot;LogNormalize&quot;</span>, <span class="at">scale.factor =</span> <span class="dv">10000</span>)</span>
-<span id="cb16-30"><a href="scrna-seq.html#cb16-30" tabindex="-1"></a>cart <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(cart, <span class="at">selection.method =</span> <span class="st">&quot;vst&quot;</span>, <span class="at">nfeatures =</span> <span class="dv">2000</span>)</span>
+<span id="cb16-30"><a href="scrna-seq.html#cb16-30" tabindex="-1"></a>cart <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(cart, <span class="at">selection.method =</span> <span class="st">&quot;vst&quot;</span>, <span class="at">nfeatures =</span> <span class="dv">3000</span>)</span>
 <span id="cb16-31"><a href="scrna-seq.html#cb16-31" tabindex="-1"></a></span>
 <span id="cb16-32"><a href="scrna-seq.html#cb16-32" tabindex="-1"></a><span class="co"># Identify the 10 most highly variable genes</span></span>
 <span id="cb16-33"><a href="scrna-seq.html#cb16-33" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">VariableFeatures</span>(cart), <span class="dv">10</span>)</span>
