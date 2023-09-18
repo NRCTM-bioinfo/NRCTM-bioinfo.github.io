@@ -221,7 +221,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="bulk.html#cb10-1" tabindex="-1"></a>exp <span class="ot">&lt;-</span> filter_count51</span>
 <span id="cb10-2"><a href="bulk.html#cb10-2" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="bulk.html#cb10-3" tabindex="-1"></a><span class="co"># test</span></span>
-<span id="cb10-4"><a href="bulk.html#cb10-4" tabindex="-1"></a>compare_t <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">&#39;Day0&#39;</span> ,<span class="st">&#39;Day3~5&#39;</span>）</span>
+<span id="cb10-4"><a href="bulk.html#cb10-4" tabindex="-1"></a>comp <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Day0&quot;</span>, <span class="st">&quot;Day3~5&quot;</span>)</span>
 <span id="cb10-5"><a href="bulk.html#cb10-5" tabindex="-1"></a>pd1_com_t <span class="ot">&lt;-</span> pd1[pd1<span class="sc">$</span>group1 <span class="sc">%in%</span> compare_t,]</span>
 <span id="cb10-6"><a href="bulk.html#cb10-6" tabindex="-1"></a>exp_com_t <span class="ot">&lt;-</span> exp[,<span class="fu">match</span>(pd1_com_t<span class="sc">$</span>ID,<span class="fu">colnames</span>(exp))]</span>
 <span id="cb10-7"><a href="bulk.html#cb10-7" tabindex="-1"></a>Group_t <span class="ot">&lt;-</span> <span class="fu">factor</span>(pd1_com_t<span class="sc">$</span>group1,</span>
@@ -301,111 +301,108 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.3</span> DEGs using Limma<a href="bulk.html#degs-using-limma" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="bulk.html#cb11-1" tabindex="-1"></a>exp <span class="ot">&lt;-</span> filter_count51</span>
 <span id="cb11-2"><a href="bulk.html#cb11-2" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="bulk.html#cb11-3" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="bulk.html#cb11-4" tabindex="-1"></a><span class="co"># test</span></span>
-<span id="cb11-5"><a href="bulk.html#cb11-5" tabindex="-1"></a>comp <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">&#39;Day0&#39;</span> ,<span class="st">&#39;Day3~5&#39;</span>）</span>
-<span id="cb11-6"><a href="bulk.html#cb11-6" tabindex="-1"></a>pd1_com <span class="ot">&lt;-</span> pd1[pd1<span class="sc">$</span>group1 <span class="sc">%in%</span> comp,]</span>
-<span id="cb11-7"><a href="bulk.html#cb11-7" tabindex="-1"></a>exp_com <span class="ot">&lt;-</span> exp[,<span class="fu">match</span>(pd1_com<span class="sc">$</span>ID,<span class="fu">colnames</span>(exp))] </span>
-<span id="cb11-8"><a href="bulk.html#cb11-8" tabindex="-1"></a><span class="fu">identical</span>(pd1_com<span class="sc">$</span>ID,<span class="fu">colnames</span>(exp_com))</span>
-<span id="cb11-9"><a href="bulk.html#cb11-9" tabindex="-1"></a>Group_t <span class="ot">&lt;-</span> <span class="fu">factor</span>(pd1_com<span class="sc">$</span>group1,</span>
-<span id="cb11-10"><a href="bulk.html#cb11-10" tabindex="-1"></a>                  <span class="at">levels =</span>comp) </span>
-<span id="cb11-11"><a href="bulk.html#cb11-11" tabindex="-1"></a>Group_t </span>
-<span id="cb11-12"><a href="bulk.html#cb11-12" tabindex="-1"></a>Group_ts <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(pd1_com<span class="sc">$</span>group1<span class="sc">==</span>comp[<span class="dv">1</span>],<span class="st">&quot;control&quot;</span>,<span class="st">&quot;treat&quot;</span>)</span>
-<span id="cb11-13"><a href="bulk.html#cb11-13" tabindex="-1"></a>Group_ts <span class="ot">&lt;-</span> <span class="fu">factor</span>(Group_ts,</span>
-<span id="cb11-14"><a href="bulk.html#cb11-14" tabindex="-1"></a>                   <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;control&quot;</span>,<span class="st">&quot;treat&quot;</span>))</span>
-<span id="cb11-15"><a href="bulk.html#cb11-15" tabindex="-1"></a>Group_ts </span>
-<span id="cb11-16"><a href="bulk.html#cb11-16" tabindex="-1"></a></span>
-<span id="cb11-17"><a href="bulk.html#cb11-17" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span><span class="dv">0</span><span class="sc">+</span>Group_ts)</span>
-<span id="cb11-18"><a href="bulk.html#cb11-18" tabindex="-1"></a><span class="fu">colnames</span>(design)<span class="ot">=</span><span class="fu">levels</span>(Group_ts)</span>
-<span id="cb11-19"><a href="bulk.html#cb11-19" tabindex="-1"></a><span class="fu">rownames</span>(design)<span class="ot">=</span><span class="fu">colnames</span>(exp_com)</span>
-<span id="cb11-20"><a href="bulk.html#cb11-20" tabindex="-1"></a><span class="fu">library</span>(edgeR)</span>
-<span id="cb11-21"><a href="bulk.html#cb11-21" tabindex="-1"></a>dge <span class="ot">&lt;-</span> <span class="fu">DGEList</span>(<span class="at">counts=</span>exp_com)</span>
-<span id="cb11-22"><a href="bulk.html#cb11-22" tabindex="-1"></a>dge <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(dge)</span>
-<span id="cb11-23"><a href="bulk.html#cb11-23" tabindex="-1"></a></span>
-<span id="cb11-24"><a href="bulk.html#cb11-24" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">voom</span>(dge,design, <span class="at">normalize=</span><span class="st">&quot;quantile&quot;</span>)</span>
-<span id="cb11-25"><a href="bulk.html#cb11-25" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lmFit</span>(v, design)</span>
-<span id="cb11-26"><a href="bulk.html#cb11-26" tabindex="-1"></a></span>
-<span id="cb11-27"><a href="bulk.html#cb11-27" tabindex="-1"></a><span class="at">constrasts =</span> <span class="fu">paste</span>(<span class="fu">rev</span>(<span class="fu">levels</span>(Group_ts)),<span class="at">collapse =</span> <span class="st">&quot;-&quot;</span>)</span>
-<span id="cb11-28"><a href="bulk.html#cb11-28" tabindex="-1"></a>cont.matrix <span class="ot">&lt;-</span> <span class="fu">makeContrasts</span>(<span class="at">contrasts=</span>constrasts,<span class="at">levels =</span> design) </span>
-<span id="cb11-29"><a href="bulk.html#cb11-29" tabindex="-1"></a><span class="at">fit2=</span><span class="fu">contrasts.fit</span>(fit,cont.matrix)</span>
-<span id="cb11-30"><a href="bulk.html#cb11-30" tabindex="-1"></a><span class="at">fit2=</span><span class="fu">eBayes</span>(fit2)</span>
+<span id="cb11-3"><a href="bulk.html#cb11-3" tabindex="-1"></a><span class="co"># test</span></span>
+<span id="cb11-4"><a href="bulk.html#cb11-4" tabindex="-1"></a>comp <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Day0&quot;</span>, <span class="st">&quot;Day3~5&quot;</span>)</span>
+<span id="cb11-5"><a href="bulk.html#cb11-5" tabindex="-1"></a>pd1_com <span class="ot">&lt;-</span> pd1[pd1<span class="sc">$</span>group1 <span class="sc">%in%</span> comp,]</span>
+<span id="cb11-6"><a href="bulk.html#cb11-6" tabindex="-1"></a>exp_com <span class="ot">&lt;-</span> exp[,<span class="fu">match</span>(pd1_com<span class="sc">$</span>ID,<span class="fu">colnames</span>(exp))] </span>
+<span id="cb11-7"><a href="bulk.html#cb11-7" tabindex="-1"></a><span class="fu">identical</span>(pd1_com<span class="sc">$</span>ID,<span class="fu">colnames</span>(exp_com))</span>
+<span id="cb11-8"><a href="bulk.html#cb11-8" tabindex="-1"></a>Group_t <span class="ot">&lt;-</span> <span class="fu">factor</span>(pd1_com<span class="sc">$</span>group1,</span>
+<span id="cb11-9"><a href="bulk.html#cb11-9" tabindex="-1"></a>                  <span class="at">levels =</span>comp) </span>
+<span id="cb11-10"><a href="bulk.html#cb11-10" tabindex="-1"></a>Group_t </span>
+<span id="cb11-11"><a href="bulk.html#cb11-11" tabindex="-1"></a>Group_ts <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(pd1_com<span class="sc">$</span>group1<span class="sc">==</span>comp[<span class="dv">1</span>],<span class="st">&quot;control&quot;</span>,<span class="st">&quot;treat&quot;</span>)</span>
+<span id="cb11-12"><a href="bulk.html#cb11-12" tabindex="-1"></a>Group_ts <span class="ot">&lt;-</span> <span class="fu">factor</span>(Group_ts,</span>
+<span id="cb11-13"><a href="bulk.html#cb11-13" tabindex="-1"></a>                   <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;control&quot;</span>,<span class="st">&quot;treat&quot;</span>))</span>
+<span id="cb11-14"><a href="bulk.html#cb11-14" tabindex="-1"></a>Group_ts </span>
+<span id="cb11-15"><a href="bulk.html#cb11-15" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="bulk.html#cb11-16" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span><span class="dv">0</span><span class="sc">+</span>Group_ts)</span>
+<span id="cb11-17"><a href="bulk.html#cb11-17" tabindex="-1"></a><span class="fu">colnames</span>(design)<span class="ot">=</span><span class="fu">levels</span>(Group_ts)</span>
+<span id="cb11-18"><a href="bulk.html#cb11-18" tabindex="-1"></a><span class="fu">rownames</span>(design)<span class="ot">=</span><span class="fu">colnames</span>(exp_com)</span>
+<span id="cb11-19"><a href="bulk.html#cb11-19" tabindex="-1"></a>dge <span class="ot">&lt;-</span> <span class="fu">DGEList</span>(<span class="at">counts=</span>exp_com)</span>
+<span id="cb11-20"><a href="bulk.html#cb11-20" tabindex="-1"></a>dge <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(dge)</span>
+<span id="cb11-21"><a href="bulk.html#cb11-21" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="bulk.html#cb11-22" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">voom</span>(dge,design, <span class="at">normalize=</span><span class="st">&quot;quantile&quot;</span>)</span>
+<span id="cb11-23"><a href="bulk.html#cb11-23" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lmFit</span>(v, design)</span>
+<span id="cb11-24"><a href="bulk.html#cb11-24" tabindex="-1"></a></span>
+<span id="cb11-25"><a href="bulk.html#cb11-25" tabindex="-1"></a>constrasts <span class="ot">=</span> <span class="fu">paste</span>(<span class="fu">rev</span>(<span class="fu">levels</span>(Group_ts)),<span class="at">collapse =</span> <span class="st">&quot;-&quot;</span>)</span>
+<span id="cb11-26"><a href="bulk.html#cb11-26" tabindex="-1"></a>cont.matrix <span class="ot">&lt;-</span> <span class="fu">makeContrasts</span>(<span class="at">contrasts=</span>constrasts,<span class="at">levels =</span> design) </span>
+<span id="cb11-27"><a href="bulk.html#cb11-27" tabindex="-1"></a>fit2<span class="ot">=</span><span class="fu">contrasts.fit</span>(fit,cont.matrix)</span>
+<span id="cb11-28"><a href="bulk.html#cb11-28" tabindex="-1"></a>fit2<span class="ot">=</span><span class="fu">eBayes</span>(fit2)</span>
+<span id="cb11-29"><a href="bulk.html#cb11-29" tabindex="-1"></a></span>
+<span id="cb11-30"><a href="bulk.html#cb11-30" tabindex="-1"></a>deg_t<span class="ot">=</span> <span class="fu">topTable</span>(fit2, <span class="at">coef=</span>constrasts, <span class="at">n=</span><span class="cn">Inf</span>)</span>
 <span id="cb11-31"><a href="bulk.html#cb11-31" tabindex="-1"></a></span>
-<span id="cb11-32"><a href="bulk.html#cb11-32" tabindex="-1"></a><span class="at">deg_t=</span> <span class="fu">topTable</span>(fit2, <span class="at">coef=</span>constrasts, <span class="at">n=</span><span class="cn">Inf</span>)</span>
-<span id="cb11-33"><a href="bulk.html#cb11-33" tabindex="-1"></a></span>
-<span id="cb11-34"><a href="bulk.html#cb11-34" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(filter_fpkm51[<span class="fu">rownames</span>(filter_fpkm51)<span class="sc">==</span><span class="st">&quot;CHI3L2&quot;</span>,pd1_com<span class="sc">$</span>ID]))</span>
-<span id="cb11-35"><a href="bulk.html#cb11-35" tabindex="-1"></a>test<span class="sc">$</span>Group_t <span class="ot">&lt;-</span> Group_t</span>
-<span id="cb11-36"><a href="bulk.html#cb11-36" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb11-37"><a href="bulk.html#cb11-37" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> test,<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>Group_t,<span class="at">y=</span>CHI3L2))<span class="sc">+</span></span>
-<span id="cb11-38"><a href="bulk.html#cb11-38" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
-<span id="cb11-39"><a href="bulk.html#cb11-39" tabindex="-1"></a></span>
-<span id="cb11-40"><a href="bulk.html#cb11-40" tabindex="-1"></a></span>
-<span id="cb11-41"><a href="bulk.html#cb11-41" tabindex="-1"></a><span class="do">### calculation</span></span>
-<span id="cb11-42"><a href="bulk.html#cb11-42" tabindex="-1"></a>id <span class="ot">&lt;-</span> <span class="fu">unique</span>(pd1<span class="sc">$</span>group1)[<span class="fu">order</span>(<span class="fu">unique</span>(pd1<span class="sc">$</span>group1))]</span>
-<span id="cb11-43"><a href="bulk.html#cb11-43" tabindex="-1"></a>id</span>
-<span id="cb11-44"><a href="bulk.html#cb11-44" tabindex="-1"></a>deg <span class="ot">&lt;-</span> <span class="fu">list</span>() </span>
-<span id="cb11-45"><a href="bulk.html#cb11-45" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb11-46"><a href="bulk.html#cb11-46" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(id)<span class="sc">-</span><span class="dv">1</span>)){</span>
-<span id="cb11-47"><a href="bulk.html#cb11-47" tabindex="-1"></a>  <span class="cf">for</span>(is <span class="cf">in</span> ((i<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="fu">length</span>(id))){</span>
-<span id="cb11-48"><a href="bulk.html#cb11-48" tabindex="-1"></a>    comp <span class="ot">&lt;-</span> id[<span class="fu">c</span>(i,is)]</span>
-<span id="cb11-49"><a href="bulk.html#cb11-49" tabindex="-1"></a>    n <span class="ot">&lt;-</span> n<span class="sc">+</span><span class="dv">1</span></span>
-<span id="cb11-50"><a href="bulk.html#cb11-50" tabindex="-1"></a>    </span>
-<span id="cb11-51"><a href="bulk.html#cb11-51" tabindex="-1"></a>    pd1_com <span class="ot">&lt;-</span> pd1[pd1<span class="sc">$</span>group1 <span class="sc">%in%</span> comp,]</span>
-<span id="cb11-52"><a href="bulk.html#cb11-52" tabindex="-1"></a>    exp_com <span class="ot">&lt;-</span> exp[,<span class="fu">match</span>(pd1_com<span class="sc">$</span>ID,<span class="fu">colnames</span>(exp))] </span>
-<span id="cb11-53"><a href="bulk.html#cb11-53" tabindex="-1"></a>    <span class="fu">identical</span>(pd1_com<span class="sc">$</span>ID,<span class="fu">colnames</span>(exp_com))</span>
-<span id="cb11-54"><a href="bulk.html#cb11-54" tabindex="-1"></a>    </span>
-<span id="cb11-55"><a href="bulk.html#cb11-55" tabindex="-1"></a>    Group <span class="ot">&lt;-</span> <span class="fu">factor</span>(pd1_com<span class="sc">$</span>group1,</span>
-<span id="cb11-56"><a href="bulk.html#cb11-56" tabindex="-1"></a>                    <span class="at">levels =</span>comp)</span>
-<span id="cb11-57"><a href="bulk.html#cb11-57" tabindex="-1"></a>    Group </span>
-<span id="cb11-58"><a href="bulk.html#cb11-58" tabindex="-1"></a>    </span>
-<span id="cb11-59"><a href="bulk.html#cb11-59" tabindex="-1"></a>    Group_s <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(pd1_com<span class="sc">$</span>group1<span class="sc">==</span>comp[<span class="dv">1</span>],<span class="st">&quot;control&quot;</span>,<span class="st">&quot;treat&quot;</span>)</span>
-<span id="cb11-60"><a href="bulk.html#cb11-60" tabindex="-1"></a>    Group_s <span class="ot">&lt;-</span> <span class="fu">factor</span>(Group_s,</span>
-<span id="cb11-61"><a href="bulk.html#cb11-61" tabindex="-1"></a>                      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;control&quot;</span>,<span class="st">&quot;treat&quot;</span>))</span>
-<span id="cb11-62"><a href="bulk.html#cb11-62" tabindex="-1"></a>    Group_s </span>
-<span id="cb11-63"><a href="bulk.html#cb11-63" tabindex="-1"></a></span>
-<span id="cb11-64"><a href="bulk.html#cb11-64" tabindex="-1"></a>    design <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span><span class="dv">0</span><span class="sc">+</span>Group_s)</span>
-<span id="cb11-65"><a href="bulk.html#cb11-65" tabindex="-1"></a>    <span class="fu">colnames</span>(design)<span class="ot">=</span><span class="fu">levels</span>(Group_s)</span>
-<span id="cb11-66"><a href="bulk.html#cb11-66" tabindex="-1"></a>    <span class="fu">rownames</span>(design)<span class="ot">=</span><span class="fu">colnames</span>(exp_com)</span>
-<span id="cb11-67"><a href="bulk.html#cb11-67" tabindex="-1"></a>    <span class="fu">library</span>(edgeR)</span>
-<span id="cb11-68"><a href="bulk.html#cb11-68" tabindex="-1"></a>    dge <span class="ot">&lt;-</span> <span class="fu">DGEList</span>(<span class="at">counts=</span>exp_com)</span>
-<span id="cb11-69"><a href="bulk.html#cb11-69" tabindex="-1"></a>    dge <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(dge)</span>
+<span id="cb11-32"><a href="bulk.html#cb11-32" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(filter_fpkm51[<span class="fu">rownames</span>(filter_fpkm51)<span class="sc">==</span><span class="st">&quot;CHI3L2&quot;</span>,pd1_com<span class="sc">$</span>ID]))</span>
+<span id="cb11-33"><a href="bulk.html#cb11-33" tabindex="-1"></a>test<span class="sc">$</span>Group_t <span class="ot">&lt;-</span> Group_t</span>
+<span id="cb11-34"><a href="bulk.html#cb11-34" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> test,<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>Group_t,<span class="at">y=</span>CHI3L2))<span class="sc">+</span></span>
+<span id="cb11-35"><a href="bulk.html#cb11-35" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb11-36"><a href="bulk.html#cb11-36" tabindex="-1"></a></span>
+<span id="cb11-37"><a href="bulk.html#cb11-37" tabindex="-1"></a></span>
+<span id="cb11-38"><a href="bulk.html#cb11-38" tabindex="-1"></a><span class="do">### calculation</span></span>
+<span id="cb11-39"><a href="bulk.html#cb11-39" tabindex="-1"></a>id <span class="ot">&lt;-</span> <span class="fu">unique</span>(pd1<span class="sc">$</span>group1)[<span class="fu">order</span>(<span class="fu">unique</span>(pd1<span class="sc">$</span>group1))]</span>
+<span id="cb11-40"><a href="bulk.html#cb11-40" tabindex="-1"></a>id</span>
+<span id="cb11-41"><a href="bulk.html#cb11-41" tabindex="-1"></a>deg <span class="ot">&lt;-</span> <span class="fu">list</span>() </span>
+<span id="cb11-42"><a href="bulk.html#cb11-42" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb11-43"><a href="bulk.html#cb11-43" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(id)<span class="sc">-</span><span class="dv">1</span>)){</span>
+<span id="cb11-44"><a href="bulk.html#cb11-44" tabindex="-1"></a>  <span class="cf">for</span>(is <span class="cf">in</span> ((i<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span><span class="fu">length</span>(id))){</span>
+<span id="cb11-45"><a href="bulk.html#cb11-45" tabindex="-1"></a>    comp <span class="ot">&lt;-</span> id[<span class="fu">c</span>(i,is)]</span>
+<span id="cb11-46"><a href="bulk.html#cb11-46" tabindex="-1"></a>    n <span class="ot">&lt;-</span> n<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb11-47"><a href="bulk.html#cb11-47" tabindex="-1"></a>    </span>
+<span id="cb11-48"><a href="bulk.html#cb11-48" tabindex="-1"></a>    pd1_com <span class="ot">&lt;-</span> pd1[pd1<span class="sc">$</span>group1 <span class="sc">%in%</span> comp,]</span>
+<span id="cb11-49"><a href="bulk.html#cb11-49" tabindex="-1"></a>    exp_com <span class="ot">&lt;-</span> exp[,<span class="fu">match</span>(pd1_com<span class="sc">$</span>ID,<span class="fu">colnames</span>(exp))] </span>
+<span id="cb11-50"><a href="bulk.html#cb11-50" tabindex="-1"></a>    <span class="fu">identical</span>(pd1_com<span class="sc">$</span>ID,<span class="fu">colnames</span>(exp_com))</span>
+<span id="cb11-51"><a href="bulk.html#cb11-51" tabindex="-1"></a>    </span>
+<span id="cb11-52"><a href="bulk.html#cb11-52" tabindex="-1"></a>    Group <span class="ot">&lt;-</span> <span class="fu">factor</span>(pd1_com<span class="sc">$</span>group1,</span>
+<span id="cb11-53"><a href="bulk.html#cb11-53" tabindex="-1"></a>                    <span class="at">levels =</span>comp)</span>
+<span id="cb11-54"><a href="bulk.html#cb11-54" tabindex="-1"></a>    Group </span>
+<span id="cb11-55"><a href="bulk.html#cb11-55" tabindex="-1"></a>    </span>
+<span id="cb11-56"><a href="bulk.html#cb11-56" tabindex="-1"></a>    Group_s <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(pd1_com<span class="sc">$</span>group1<span class="sc">==</span>comp[<span class="dv">1</span>],<span class="st">&quot;control&quot;</span>,<span class="st">&quot;treat&quot;</span>)</span>
+<span id="cb11-57"><a href="bulk.html#cb11-57" tabindex="-1"></a>    Group_s <span class="ot">&lt;-</span> <span class="fu">factor</span>(Group_s,</span>
+<span id="cb11-58"><a href="bulk.html#cb11-58" tabindex="-1"></a>                      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;control&quot;</span>,<span class="st">&quot;treat&quot;</span>))</span>
+<span id="cb11-59"><a href="bulk.html#cb11-59" tabindex="-1"></a>    Group_s </span>
+<span id="cb11-60"><a href="bulk.html#cb11-60" tabindex="-1"></a></span>
+<span id="cb11-61"><a href="bulk.html#cb11-61" tabindex="-1"></a>    design <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span><span class="dv">0</span><span class="sc">+</span>Group_s)</span>
+<span id="cb11-62"><a href="bulk.html#cb11-62" tabindex="-1"></a>    <span class="fu">colnames</span>(design)<span class="ot">=</span><span class="fu">levels</span>(Group_s)</span>
+<span id="cb11-63"><a href="bulk.html#cb11-63" tabindex="-1"></a>    <span class="fu">rownames</span>(design)<span class="ot">=</span><span class="fu">colnames</span>(exp_com)</span>
+<span id="cb11-64"><a href="bulk.html#cb11-64" tabindex="-1"></a></span>
+<span id="cb11-65"><a href="bulk.html#cb11-65" tabindex="-1"></a>    dge <span class="ot">&lt;-</span> <span class="fu">DGEList</span>(<span class="at">counts=</span>exp_com)</span>
+<span id="cb11-66"><a href="bulk.html#cb11-66" tabindex="-1"></a>    dge <span class="ot">&lt;-</span> <span class="fu">calcNormFactors</span>(dge)</span>
+<span id="cb11-67"><a href="bulk.html#cb11-67" tabindex="-1"></a>    </span>
+<span id="cb11-68"><a href="bulk.html#cb11-68" tabindex="-1"></a>    v <span class="ot">&lt;-</span> <span class="fu">voom</span>(dge,design, <span class="at">normalize=</span><span class="st">&quot;quantile&quot;</span>) </span>
+<span id="cb11-69"><a href="bulk.html#cb11-69" tabindex="-1"></a>    fit <span class="ot">&lt;-</span> <span class="fu">lmFit</span>(v, design)</span>
 <span id="cb11-70"><a href="bulk.html#cb11-70" tabindex="-1"></a>    </span>
-<span id="cb11-71"><a href="bulk.html#cb11-71" tabindex="-1"></a>    v <span class="ot">&lt;-</span> <span class="fu">voom</span>(dge,design, <span class="at">normalize=</span><span class="st">&quot;quantile&quot;</span>) </span>
-<span id="cb11-72"><a href="bulk.html#cb11-72" tabindex="-1"></a>    fit <span class="ot">&lt;-</span> <span class="fu">lmFit</span>(v, design)</span>
-<span id="cb11-73"><a href="bulk.html#cb11-73" tabindex="-1"></a>    </span>
-<span id="cb11-74"><a href="bulk.html#cb11-74" tabindex="-1"></a>    constrasts <span class="ot">=</span> <span class="fu">paste</span>(<span class="fu">rev</span>(<span class="fu">levels</span>(Group_s)),<span class="at">collapse =</span> <span class="st">&quot;-&quot;</span>)</span>
-<span id="cb11-75"><a href="bulk.html#cb11-75" tabindex="-1"></a>    cont.matrix <span class="ot">&lt;-</span> <span class="fu">makeContrasts</span>(<span class="at">contrasts=</span>constrasts,<span class="at">levels =</span> design) </span>
-<span id="cb11-76"><a href="bulk.html#cb11-76" tabindex="-1"></a>    fit2<span class="ot">=</span><span class="fu">contrasts.fit</span>(fit,cont.matrix)</span>
-<span id="cb11-77"><a href="bulk.html#cb11-77" tabindex="-1"></a>    fit2<span class="ot">=</span><span class="fu">eBayes</span>(fit2)</span>
-<span id="cb11-78"><a href="bulk.html#cb11-78" tabindex="-1"></a>    </span>
-<span id="cb11-79"><a href="bulk.html#cb11-79" tabindex="-1"></a>    deg[[n]]<span class="ot">=</span> <span class="fu">topTable</span>(fit2, <span class="at">coef=</span>constrasts, <span class="at">n=</span><span class="cn">Inf</span>)</span>
-<span id="cb11-80"><a href="bulk.html#cb11-80" tabindex="-1"></a>    </span>
-<span id="cb11-81"><a href="bulk.html#cb11-81" tabindex="-1"></a>    <span class="fu">names</span>(deg)[[n]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(comp[<span class="dv">1</span>],<span class="st">&quot;Vs&quot;</span>,comp[<span class="dv">2</span>])</span>
-<span id="cb11-82"><a href="bulk.html#cb11-82" tabindex="-1"></a>  }</span>
-<span id="cb11-83"><a href="bulk.html#cb11-83" tabindex="-1"></a>}</span>
-<span id="cb11-84"><a href="bulk.html#cb11-84" tabindex="-1"></a></span>
-<span id="cb11-85"><a href="bulk.html#cb11-85" tabindex="-1"></a><span class="fu">rownames</span>(exp)</span>
-<span id="cb11-86"><a href="bulk.html#cb11-86" tabindex="-1"></a>tr <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb11-87"><a href="bulk.html#cb11-87" tabindex="-1"></a>clus <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb11-88"><a href="bulk.html#cb11-88" tabindex="-1"></a>gene_id <span class="ot">&lt;-</span> <span class="fu">rownames</span>(exp)</span>
-<span id="cb11-89"><a href="bulk.html#cb11-89" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(deg)){</span>
-<span id="cb11-90"><a href="bulk.html#cb11-90" tabindex="-1"></a>  te <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Symbol=</span><span class="fu">rownames</span>(deg[[i]]),<span class="at">adj.P.Val=</span>deg[[i]]<span class="sc">$</span>adj.P.Val)<span class="co">#te作为中介</span></span>
-<span id="cb11-91"><a href="bulk.html#cb11-91" tabindex="-1"></a>  <span class="fu">colnames</span>(te)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">names</span>(deg)[[i]]</span>
-<span id="cb11-92"><a href="bulk.html#cb11-92" tabindex="-1"></a>  clus[[i]] <span class="ot">&lt;-</span> te[<span class="fu">match</span>(gene_id,te[,<span class="dv">1</span>]),]</span>
-<span id="cb11-93"><a href="bulk.html#cb11-93" tabindex="-1"></a>  <span class="fu">names</span>(clus)[[i]] <span class="ot">&lt;-</span> <span class="fu">names</span>(deg)[[i]]</span>
-<span id="cb11-94"><a href="bulk.html#cb11-94" tabindex="-1"></a>  tr[i] <span class="ot">&lt;-</span> <span class="fu">identical</span>(gene_id,clus[[i]][,<span class="dv">1</span>])</span>
-<span id="cb11-95"><a href="bulk.html#cb11-95" tabindex="-1"></a>}</span>
-<span id="cb11-96"><a href="bulk.html#cb11-96" tabindex="-1"></a><span class="fu">table</span>(tr)</span>
-<span id="cb11-97"><a href="bulk.html#cb11-97" tabindex="-1"></a>deg_all <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(clus) </span>
-<span id="cb11-98"><a href="bulk.html#cb11-98" tabindex="-1"></a><span class="fu">rownames</span>(deg_all) <span class="ot">&lt;-</span> gene_id</span>
-<span id="cb11-99"><a href="bulk.html#cb11-99" tabindex="-1"></a>deg_all <span class="ot">&lt;-</span> deg_all[,<span class="sc">!</span><span class="fu">str_detect</span>(<span class="fu">colnames</span>(deg_all),<span class="st">&quot;Symbol&quot;</span>)]</span>
-<span id="cb11-100"><a href="bulk.html#cb11-100" tabindex="-1"></a></span>
-<span id="cb11-101"><a href="bulk.html#cb11-101" tabindex="-1"></a></span>
-<span id="cb11-102"><a href="bulk.html#cb11-102" tabindex="-1"></a>pan <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb11-103"><a href="bulk.html#cb11-103" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(<span class="fu">rownames</span>(deg_all))){</span>
-<span id="cb11-104"><a href="bulk.html#cb11-104" tabindex="-1"></a>  pan[i] <span class="ot">&lt;-</span> <span class="fu">sum</span>(deg_all[i,]<span class="sc">&lt;</span><span class="fl">0.05</span>)<span class="sc">&gt;</span><span class="dv">0</span></span>
-<span id="cb11-105"><a href="bulk.html#cb11-105" tabindex="-1"></a>}</span>
-<span id="cb11-106"><a href="bulk.html#cb11-106" tabindex="-1"></a><span class="fu">table</span>(pan)</span>
-<span id="cb11-107"><a href="bulk.html#cb11-107" tabindex="-1"></a>deg_limma_ch <span class="ot">&lt;-</span> deg_all[pan,]</span></code></pre></div>
+<span id="cb11-71"><a href="bulk.html#cb11-71" tabindex="-1"></a>    constrasts <span class="ot">=</span> <span class="fu">paste</span>(<span class="fu">rev</span>(<span class="fu">levels</span>(Group_s)),<span class="at">collapse =</span> <span class="st">&quot;-&quot;</span>)</span>
+<span id="cb11-72"><a href="bulk.html#cb11-72" tabindex="-1"></a>    cont.matrix <span class="ot">&lt;-</span> <span class="fu">makeContrasts</span>(<span class="at">contrasts=</span>constrasts,<span class="at">levels =</span> design) </span>
+<span id="cb11-73"><a href="bulk.html#cb11-73" tabindex="-1"></a>    fit2<span class="ot">=</span><span class="fu">contrasts.fit</span>(fit,cont.matrix)</span>
+<span id="cb11-74"><a href="bulk.html#cb11-74" tabindex="-1"></a>    fit2<span class="ot">=</span><span class="fu">eBayes</span>(fit2)</span>
+<span id="cb11-75"><a href="bulk.html#cb11-75" tabindex="-1"></a>    </span>
+<span id="cb11-76"><a href="bulk.html#cb11-76" tabindex="-1"></a>    deg[[n]]<span class="ot">=</span> <span class="fu">topTable</span>(fit2, <span class="at">coef=</span>constrasts, <span class="at">n=</span><span class="cn">Inf</span>)</span>
+<span id="cb11-77"><a href="bulk.html#cb11-77" tabindex="-1"></a>    </span>
+<span id="cb11-78"><a href="bulk.html#cb11-78" tabindex="-1"></a>    <span class="fu">names</span>(deg)[[n]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(comp[<span class="dv">1</span>],<span class="st">&quot;Vs&quot;</span>,comp[<span class="dv">2</span>])</span>
+<span id="cb11-79"><a href="bulk.html#cb11-79" tabindex="-1"></a>  }</span>
+<span id="cb11-80"><a href="bulk.html#cb11-80" tabindex="-1"></a>}</span>
+<span id="cb11-81"><a href="bulk.html#cb11-81" tabindex="-1"></a></span>
+<span id="cb11-82"><a href="bulk.html#cb11-82" tabindex="-1"></a><span class="fu">rownames</span>(exp)</span>
+<span id="cb11-83"><a href="bulk.html#cb11-83" tabindex="-1"></a>tr <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb11-84"><a href="bulk.html#cb11-84" tabindex="-1"></a>clus <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb11-85"><a href="bulk.html#cb11-85" tabindex="-1"></a>gene_id <span class="ot">&lt;-</span> <span class="fu">rownames</span>(exp)</span>
+<span id="cb11-86"><a href="bulk.html#cb11-86" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(deg)){</span>
+<span id="cb11-87"><a href="bulk.html#cb11-87" tabindex="-1"></a>  te <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Symbol=</span><span class="fu">rownames</span>(deg[[i]]),<span class="at">adj.P.Val=</span>deg[[i]]<span class="sc">$</span>adj.P.Val)<span class="co">#te作为中介</span></span>
+<span id="cb11-88"><a href="bulk.html#cb11-88" tabindex="-1"></a>  <span class="fu">colnames</span>(te)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">names</span>(deg)[[i]]</span>
+<span id="cb11-89"><a href="bulk.html#cb11-89" tabindex="-1"></a>  clus[[i]] <span class="ot">&lt;-</span> te[<span class="fu">match</span>(gene_id,te[,<span class="dv">1</span>]),]</span>
+<span id="cb11-90"><a href="bulk.html#cb11-90" tabindex="-1"></a>  <span class="fu">names</span>(clus)[[i]] <span class="ot">&lt;-</span> <span class="fu">names</span>(deg)[[i]]</span>
+<span id="cb11-91"><a href="bulk.html#cb11-91" tabindex="-1"></a>  tr[i] <span class="ot">&lt;-</span> <span class="fu">identical</span>(gene_id,clus[[i]][,<span class="dv">1</span>])</span>
+<span id="cb11-92"><a href="bulk.html#cb11-92" tabindex="-1"></a>}</span>
+<span id="cb11-93"><a href="bulk.html#cb11-93" tabindex="-1"></a><span class="fu">table</span>(tr)</span>
+<span id="cb11-94"><a href="bulk.html#cb11-94" tabindex="-1"></a>deg_all <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(clus) </span>
+<span id="cb11-95"><a href="bulk.html#cb11-95" tabindex="-1"></a><span class="fu">rownames</span>(deg_all) <span class="ot">&lt;-</span> gene_id</span>
+<span id="cb11-96"><a href="bulk.html#cb11-96" tabindex="-1"></a>deg_all <span class="ot">&lt;-</span> deg_all[,<span class="sc">!</span><span class="fu">str_detect</span>(<span class="fu">colnames</span>(deg_all),<span class="st">&quot;Symbol&quot;</span>)]</span>
+<span id="cb11-97"><a href="bulk.html#cb11-97" tabindex="-1"></a></span>
+<span id="cb11-98"><a href="bulk.html#cb11-98" tabindex="-1"></a></span>
+<span id="cb11-99"><a href="bulk.html#cb11-99" tabindex="-1"></a>pan <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb11-100"><a href="bulk.html#cb11-100" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(<span class="fu">rownames</span>(deg_all))){</span>
+<span id="cb11-101"><a href="bulk.html#cb11-101" tabindex="-1"></a>  pan[i] <span class="ot">&lt;-</span> <span class="fu">sum</span>(deg_all[i,]<span class="sc">&lt;</span><span class="fl">0.05</span>)<span class="sc">&gt;</span><span class="dv">0</span></span>
+<span id="cb11-102"><a href="bulk.html#cb11-102" tabindex="-1"></a>}</span>
+<span id="cb11-103"><a href="bulk.html#cb11-103" tabindex="-1"></a><span class="fu">table</span>(pan)</span>
+<span id="cb11-104"><a href="bulk.html#cb11-104" tabindex="-1"></a>deg_limma_ch <span class="ot">&lt;-</span> deg_all[pan,]</span></code></pre></div>
 </div>
 <div id="degs-using-edger" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> DEGs using edgeR<a href="bulk.html#degs-using-edger" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -413,7 +410,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb12-2"><a href="bulk.html#cb12-2" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="bulk.html#cb12-3" tabindex="-1"></a></span>
 <span id="cb12-4"><a href="bulk.html#cb12-4" tabindex="-1"></a><span class="co"># test</span></span>
-<span id="cb12-5"><a href="bulk.html#cb12-5" tabindex="-1"></a>comp <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">&#39;Day0&#39;</span> ,<span class="st">&#39;Day3~5&#39;</span>）</span>
+<span id="cb12-5"><a href="bulk.html#cb12-5" tabindex="-1"></a>comp <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Day0&quot;</span>, <span class="st">&quot;Day3~5&quot;</span>)</span>
 <span id="cb12-6"><a href="bulk.html#cb12-6" tabindex="-1"></a>pd1_com <span class="ot">&lt;-</span> pd1[pd1<span class="sc">$</span>group1 <span class="sc">%in%</span> comp,]<span class="co">#得到分组pd</span></span>
 <span id="cb12-7"><a href="bulk.html#cb12-7" tabindex="-1"></a>exp_com <span class="ot">&lt;-</span> exp[,<span class="fu">match</span>(pd1_com<span class="sc">$</span>ID,<span class="fu">colnames</span>(exp))] </span>
 <span id="cb12-8"><a href="bulk.html#cb12-8" tabindex="-1"></a>Group_t <span class="ot">&lt;-</span> <span class="fu">factor</span>(pd1_com<span class="sc">$</span>group1,</span>
@@ -434,8 +431,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb12-23"><a href="bulk.html#cb12-23" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">glmFit</span>(dge, design)</span>
 <span id="cb12-24"><a href="bulk.html#cb12-24" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">glmLRT</span>(fit, <span class="at">contrast=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)) </span>
 <span id="cb12-25"><a href="bulk.html#cb12-25" tabindex="-1"></a></span>
-<span id="cb12-26"><a href="bulk.html#cb12-26" tabindex="-1"></a><span class="at">DEG=</span><span class="fu">topTags</span>(fit2, <span class="at">n=</span><span class="fu">nrow</span>(exp))</span>
-<span id="cb12-27"><a href="bulk.html#cb12-27" tabindex="-1"></a><span class="at">deg_t=</span><span class="fu">as.data.frame</span>(DEG) </span>
+<span id="cb12-26"><a href="bulk.html#cb12-26" tabindex="-1"></a>DEG<span class="ot">=</span><span class="fu">topTags</span>(fit2, <span class="at">n=</span><span class="fu">nrow</span>(exp))</span>
+<span id="cb12-27"><a href="bulk.html#cb12-27" tabindex="-1"></a>deg_t<span class="ot">=</span><span class="fu">as.data.frame</span>(DEG) </span>
 <span id="cb12-28"><a href="bulk.html#cb12-28" tabindex="-1"></a></span>
 <span id="cb12-29"><a href="bulk.html#cb12-29" tabindex="-1"></a></span>
 <span id="cb12-30"><a href="bulk.html#cb12-30" tabindex="-1"></a></span>
