@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Cytokine profiles | CAR-T therapy for multiple myeloma</title>
+  <meta name="description" content="This is the tutorial of MM CAR-T project." />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Cytokine profiles | CAR-T therapy for multiple myeloma" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://nrctm-bioinfo.github.io/MM_CART_project/index.html/figure/cover.jpg" />
+  <meta property="og:description" content="This is the tutorial of MM CAR-T project." />
+  <meta name="github-repo" content="NRCTM-bioinfo/MM-CAR-T-project" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Cytokine profiles | CAR-T therapy for multiple myeloma" />
+  
+  <meta name="twitter:description" content="This is the tutorial of MM CAR-T project." />
+  <meta name="twitter:image" content="https://nrctm-bioinfo.github.io/MM_CART_project/index.html/figure/cover.jpg" />
+
+<meta name="author" content="Yu-Ting Dai, Shuangshuang Yang" />
+
+
+<meta name="date" content="2023-09-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="bulk.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://github.com/NRCTM-bioinfo/MM-CAR-T"><center><b>MM-CAR-T</b></center></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="cytokine-profiles.html"><a href="cytokine-profiles.html"><i class="fa fa-check"></i><b>2</b> Cytokine profiles</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="cytokine-profiles.html"><a href="cytokine-profiles.html#load-packages"><i class="fa fa-check"></i><b>2.1</b> Load packages</a></li>
+<li class="chapter" data-level="2.2" data-path="cytokine-profiles.html"><a href="cytokine-profiles.html#data-preprocessing"><i class="fa fa-check"></i><b>2.2</b> Data preprocessing</a></li>
+<li class="chapter" data-level="2.3" data-path="cytokine-profiles.html"><a href="cytokine-profiles.html#visualization"><i class="fa fa-check"></i><b>2.3</b> Visualization</a></li>
+<li class="chapter" data-level="2.4" data-path="cytokine-profiles.html"><a href="cytokine-profiles.html#correlation"><i class="fa fa-check"></i><b>2.4</b> Correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="bulk.html"><a href="bulk.html"><i class="fa fa-check"></i><b>3</b> Bulk</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="bulk.html"><a href="bulk.html#pre-processing"><i class="fa fa-check"></i><b>3.1</b> Pre-processing</a></li>
+<li class="chapter" data-level="3.2" data-path="bulk.html"><a href="bulk.html#degs-using-deseq2"><i class="fa fa-check"></i><b>3.2</b> DEGs using DESeq2</a></li>
+<li class="chapter" data-level="3.3" data-path="bulk.html"><a href="bulk.html#degs-using-limma"><i class="fa fa-check"></i><b>3.3</b> DEGs using Limma</a></li>
+<li class="chapter" data-level="3.4" data-path="bulk.html"><a href="bulk.html#degs-using-edger"><i class="fa fa-check"></i><b>3.4</b> DEGs using edgeR</a></li>
+<li class="chapter" data-level="3.5" data-path="bulk.html"><a href="bulk.html#mfuzz"><i class="fa fa-check"></i><b>3.5</b> Mfuzz</a></li>
+<li class="chapter" data-level="3.6" data-path="bulk.html"><a href="bulk.html#gsea"><i class="fa fa-check"></i><b>3.6</b> GSEA</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="scrna-seq.html"><a href="scrna-seq.html"><i class="fa fa-check"></i><b>4</b> scRNA-seq</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="scrna-seq.html"><a href="scrna-seq.html#pre-processing-1"><i class="fa fa-check"></i><b>4.1</b> Pre-processing</a></li>
+<li class="chapter" data-level="4.2" data-path="scrna-seq.html"><a href="scrna-seq.html#quaility-control"><i class="fa fa-check"></i><b>4.2</b> Quaility control</a></li>
+<li class="chapter" data-level="4.3" data-path="scrna-seq.html"><a href="scrna-seq.html#annotation"><i class="fa fa-check"></i><b>4.3</b> Annotation</a></li>
+<li class="chapter" data-level="4.4" data-path="scrna-seq.html"><a href="scrna-seq.html#markers"><i class="fa fa-check"></i><b>4.4</b> Markers</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="about-this-project.html"><a href="about-this-project.html"><i class="fa fa-check"></i><b>5</b> About this project</a>
+<ul>
+<li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#current-version"><i class="fa fa-check"></i>Current version</a></li>
+<li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#session-information"><i class="fa fa-check"></i>Session Information</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">CAR-T therapy for multiple myeloma</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="cytokine-profiles" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Cytokine profiles<a href="cytokine-profiles.html#cytokine-profiles" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="load-packages" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Load packages<a href="cytokine-profiles.html#load-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="cytokine-profiles.html#cb1-1" tabindex="-1"></a><span class="fu">suppressMessages</span>({</span>
+<span id="cb1-2"><a href="cytokine-profiles.html#cb1-2" tabindex="-1"></a>  <span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="cytokine-profiles.html#cb1-3" tabindex="-1"></a>  <span class="fu">library</span>(pheatmap)</span>
+<span id="cb1-4"><a href="cytokine-profiles.html#cb1-4" tabindex="-1"></a>  <span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="cytokine-profiles.html#cb1-5" tabindex="-1"></a>  <span class="fu">library</span>(DESeq2)</span>
+<span id="cb1-6"><a href="cytokine-profiles.html#cb1-6" tabindex="-1"></a>  <span class="fu">library</span>(openxlsx)</span>
+<span id="cb1-7"><a href="cytokine-profiles.html#cb1-7" tabindex="-1"></a>  <span class="fu">library</span>(dendextend)</span>
+<span id="cb1-8"><a href="cytokine-profiles.html#cb1-8" tabindex="-1"></a>  <span class="fu">library</span>(matrixStats)</span>
+<span id="cb1-9"><a href="cytokine-profiles.html#cb1-9" tabindex="-1"></a>  <span class="fu">library</span>(ggpubr)</span>
+<span id="cb1-10"><a href="cytokine-profiles.html#cb1-10" tabindex="-1"></a>  <span class="fu">library</span>(limma)</span>
+<span id="cb1-11"><a href="cytokine-profiles.html#cb1-11" tabindex="-1"></a>  <span class="fu">library</span>(randomForest)</span>
+<span id="cb1-12"><a href="cytokine-profiles.html#cb1-12" tabindex="-1"></a>  <span class="fu">library</span>(clusterProfiler)</span>
+<span id="cb1-13"><a href="cytokine-profiles.html#cb1-13" tabindex="-1"></a>  <span class="fu">library</span>(genefilter)</span>
+<span id="cb1-14"><a href="cytokine-profiles.html#cb1-14" tabindex="-1"></a>  <span class="fu">library</span>(GSVA)</span>
+<span id="cb1-15"><a href="cytokine-profiles.html#cb1-15" tabindex="-1"></a>  <span class="fu">library</span>(Biobase)</span>
+<span id="cb1-16"><a href="cytokine-profiles.html#cb1-16" tabindex="-1"></a>  <span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-17"><a href="cytokine-profiles.html#cb1-17" tabindex="-1"></a>  <span class="fu">library</span>(ggthemes)</span>
+<span id="cb1-18"><a href="cytokine-profiles.html#cb1-18" tabindex="-1"></a>  <span class="fu">library</span>(enrichplot)</span>
+<span id="cb1-19"><a href="cytokine-profiles.html#cb1-19" tabindex="-1"></a>  <span class="fu">library</span>(GSEABase)</span>
+<span id="cb1-20"><a href="cytokine-profiles.html#cb1-20" tabindex="-1"></a>  <span class="fu">library</span>(Seurat)</span>
+<span id="cb1-21"><a href="cytokine-profiles.html#cb1-21" tabindex="-1"></a>  <span class="fu">library</span>(monocle)</span>
+<span id="cb1-22"><a href="cytokine-profiles.html#cb1-22" tabindex="-1"></a>})</span></code></pre></div>
+</div>
+<div id="data-preprocessing" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Data preprocessing<a href="cytokine-profiles.html#data-preprocessing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="cytokine-profiles.html#cb2-1" tabindex="-1"></a>cytokine.raw <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;data/Fig1-luminex-rawdata.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">2</span>, <span class="at">rowNames =</span> T)</span>
+<span id="cb2-2"><a href="cytokine-profiles.html#cb2-2" tabindex="-1"></a>cytokine.meta <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;data/protein.meta.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">rowNames =</span> F)</span>
+<span id="cb2-3"><a href="cytokine-profiles.html#cb2-3" tabindex="-1"></a>cytokine.anno <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;data/protein.meta.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">2</span>, <span class="at">rowNames =</span> F)</span>
+<span id="cb2-4"><a href="cytokine-profiles.html#cb2-4" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="cytokine-profiles.html#cb2-5" tabindex="-1"></a><span class="fu">rownames</span>(cytokine.meta) <span class="ot">&lt;-</span> cytokine.meta<span class="sc">$</span>lum_num</span>
+<span id="cb2-6"><a href="cytokine-profiles.html#cb2-6" tabindex="-1"></a>cytokine.meta<span class="sc">$</span>lum_num[<span class="sc">!</span>cytokine.meta<span class="sc">$</span>lum_num <span class="sc">%in%</span> <span class="fu">colnames</span>(cytokine.raw)]</span></code></pre></div>
+<pre><code>## character(0)</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="cytokine-profiles.html#cb4-1" tabindex="-1"></a>cytokine.meta<span class="sc">$</span>IDgroup <span class="ot">&lt;-</span> <span class="fu">paste0</span>(cytokine.meta<span class="sc">$</span>id, <span class="st">&quot;_&quot;</span>, cytokine.meta<span class="sc">$</span>group)</span>
+<span id="cb4-2"><a href="cytokine-profiles.html#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="cytokine-profiles.html#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="cytokine-profiles.html#cb4-4" tabindex="-1"></a>cytokine.meta<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">as.character</span>(cytokine.meta<span class="sc">$</span>group), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;day0&quot;</span>,<span class="st">&quot;day3~5&quot;</span>,<span class="st">&quot;day6~9&quot;</span>,<span class="st">&quot;day10~12&quot;</span>,<span class="st">&quot;day13~15&quot;</span>,<span class="st">&quot;day20~21&quot;</span>))</span>
+<span id="cb4-5"><a href="cytokine-profiles.html#cb4-5" tabindex="-1"></a>cytokine.mat <span class="ot">&lt;-</span> cytokine.raw[cytokine.anno<span class="sc">$</span>Protein, <span class="fu">rownames</span>(cytokine.meta)]</span></code></pre></div>
+</div>
+<div id="visualization" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Visualization<a href="cytokine-profiles.html#visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="cytokine-profiles.html#cb5-1" tabindex="-1"></a>color.sample <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#A6761D&quot;</span>, <span class="st">&quot;#A6CEE3&quot;</span>, <span class="st">&quot;#1F78B4&quot;</span>, <span class="st">&quot;#B2DF8A&quot;</span>, <span class="st">&quot;#33A02C&quot;</span>, <span class="st">&quot;#FB9A99&quot;</span>, </span>
+<span id="cb5-2"><a href="cytokine-profiles.html#cb5-2" tabindex="-1"></a>                  <span class="st">&quot;#634795&quot;</span>, <span class="st">&quot;#FDBF6F&quot;</span>, <span class="st">&quot;#FF7F00&quot;</span>, <span class="st">&quot;#CAB2D6&quot;</span>, <span class="st">&quot;#6A3D9A&quot;</span>, <span class="st">&quot;#F4B3BE&quot;</span>,</span>
+<span id="cb5-3"><a href="cytokine-profiles.html#cb5-3" tabindex="-1"></a>                  <span class="st">&quot;#1B9E77&quot;</span>, <span class="st">&quot;#D95F02&quot;</span>, <span class="st">&quot;#7570B3&quot;</span>, <span class="st">&quot;#E7298A&quot;</span>, <span class="st">&quot;#66A61E&quot;</span>, <span class="st">&quot;#E6AB02&quot;</span>, </span>
+<span id="cb5-4"><a href="cytokine-profiles.html#cb5-4" tabindex="-1"></a>                  <span class="st">&quot;#F4A11D&quot;</span>, <span class="st">&quot;#8DC8ED&quot;</span>, <span class="st">&quot;#4C6CB0&quot;</span>, <span class="st">&quot;#8A1C1B&quot;</span>, <span class="st">&quot;#CBCC2B&quot;</span>, <span class="st">&quot;#EA644C&quot;</span>,</span>
+<span id="cb5-5"><a href="cytokine-profiles.html#cb5-5" tabindex="-1"></a>                  <span class="st">&quot;#E31A1C&quot;</span>, <span class="st">&quot;#005B1D&quot;</span>)</span>
+<span id="cb5-6"><a href="cytokine-profiles.html#cb5-6" tabindex="-1"></a><span class="fu">names</span>(color.sample) <span class="ot">&lt;-</span> <span class="fu">unique</span>(cytokine.meta<span class="sc">$</span>id)</span>
+<span id="cb5-7"><a href="cytokine-profiles.html#cb5-7" tabindex="-1"></a>color.day <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">day0</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#abc4d1&quot;</span>, <span class="st">`</span><span class="at">day3~5</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#7278A9&quot;</span>, <span class="st">`</span><span class="at">day6~9</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#BC3D9B&quot;</span>,</span>
+<span id="cb5-8"><a href="cytokine-profiles.html#cb5-8" tabindex="-1"></a>               <span class="st">`</span><span class="at">day10~12</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#78CEB3&quot;</span>, <span class="st">`</span><span class="at">day13~15</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#B9F1D9&quot;</span>, <span class="st">`</span><span class="at">day20~21</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#AAE689&quot;</span>)</span>
+<span id="cb5-9"><a href="cytokine-profiles.html#cb5-9" tabindex="-1"></a>color.crs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">0</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#BFBFBF&quot;</span>, <span class="st">`</span><span class="at">1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#FFFF00&quot;</span>, <span class="st">`</span><span class="at">2</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#FFC000&quot;</span>, <span class="st">`</span><span class="at">3</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#FF6600&quot;</span>, <span class="st">`</span><span class="at">4</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#C00000&quot;</span>, <span class="st">`</span><span class="at">5</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;#000000&quot;</span>)</span>
+<span id="cb5-10"><a href="cytokine-profiles.html#cb5-10" tabindex="-1"></a>color.cluster <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">C1 =</span> <span class="st">&quot;#8DC8ED&quot;</span>, <span class="at">C2 =</span> <span class="st">&quot;#4C6CB0&quot;</span>, <span class="at">C3 =</span> <span class="st">&quot;#82C800&quot;</span>, <span class="at">C4 =</span> <span class="st">&quot;#CB50B2&quot;</span>, <span class="at">C5 =</span> <span class="st">&quot;#E22826&quot;</span>)</span>
+<span id="cb5-11"><a href="cytokine-profiles.html#cb5-11" tabindex="-1"></a>anno.color <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">id =</span> color.sample,<span class="at">crs_grade =</span> color.crs[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">group =</span> color.day, <span class="at">Cluster =</span> color.cluster )</span>
+<span id="cb5-12"><a href="cytokine-profiles.html#cb5-12" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="cytokine-profiles.html#cb5-13" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="cytokine-profiles.html#cb5-14" tabindex="-1"></a>my.breaks <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="sc">-</span><span class="fl">0.01</span>, <span class="at">by =</span> <span class="fl">0.001</span>), <span class="fu">seq</span>(<span class="fl">0.01</span>, <span class="dv">4</span>, <span class="at">by =</span> <span class="fl">0.001</span>) ) </span>
+<span id="cb5-15"><a href="cytokine-profiles.html#cb5-15" tabindex="-1"></a>my.colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">colorRampPalette</span>(<span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;white&quot;</span>))(<span class="fu">length</span>(my.breaks)<span class="sc">/</span><span class="dv">2</span>), </span>
+<span id="cb5-16"><a href="cytokine-profiles.html#cb5-16" tabindex="-1"></a>               <span class="fu">colorRampPalette</span>(<span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;red&quot;</span>))(<span class="fu">length</span>(my.breaks)<span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb5-17"><a href="cytokine-profiles.html#cb5-17" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="cytokine-profiles.html#cb5-18" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="cytokine-profiles.html#cb5-19" tabindex="-1"></a>plot.mat <span class="ot">&lt;-</span> <span class="fu">log2</span>(cytokine.mat[, cytokine.meta<span class="sc">$</span>lum_num]) <span class="sc">-</span> <span class="fu">log2</span>(cytokine.mat[, cytokine.meta<span class="sc">$</span>Diff])</span>
+<span id="cb5-20"><a href="cytokine-profiles.html#cb5-20" tabindex="-1"></a>plot.mat <span class="ot">&lt;-</span> plot.mat[, <span class="dv">27</span><span class="sc">:</span><span class="dv">142</span>]</span>
+<span id="cb5-21"><a href="cytokine-profiles.html#cb5-21" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="cytokine-profiles.html#cb5-22" tabindex="-1"></a>anno.data.col <span class="ot">&lt;-</span> cytokine.meta[, <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>,<span class="st">&quot;crs_grade&quot;</span>,<span class="st">&quot;group&quot;</span>)]</span>
+<span id="cb5-23"><a href="cytokine-profiles.html#cb5-23" tabindex="-1"></a>anno.data.row <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">row.names =</span> cytokine.anno<span class="sc">$</span>Protein, <span class="at">Cluster =</span> cytokine.anno<span class="sc">$</span>Cluster)</span>
+<span id="cb5-24"><a href="cytokine-profiles.html#cb5-24" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="cytokine-profiles.html#cb5-25" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">pheatmap</span>(plot.mat, <span class="at">scale =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb5-26"><a href="cytokine-profiles.html#cb5-26" tabindex="-1"></a>              <span class="at">color =</span> my.colors, <span class="at">breaks =</span> my.breaks,</span>
+<span id="cb5-27"><a href="cytokine-profiles.html#cb5-27" tabindex="-1"></a>              <span class="at">cluster_row =</span> T, <span class="at">cluster_col =</span> F, <span class="at">border_color =</span> <span class="cn">NA</span>,</span>
+<span id="cb5-28"><a href="cytokine-profiles.html#cb5-28" tabindex="-1"></a>              <span class="at">annotation_col =</span> anno.data.col, </span>
+<span id="cb5-29"><a href="cytokine-profiles.html#cb5-29" tabindex="-1"></a>              <span class="at">annotation_row =</span> anno.data.row, </span>
+<span id="cb5-30"><a href="cytokine-profiles.html#cb5-30" tabindex="-1"></a>              <span class="at">annotation_colors =</span> anno.color,</span>
+<span id="cb5-31"><a href="cytokine-profiles.html#cb5-31" tabindex="-1"></a>              <span class="at">fontsize_col =</span> <span class="fl">0.1</span>,</span>
+<span id="cb5-32"><a href="cytokine-profiles.html#cb5-32" tabindex="-1"></a>              <span class="at">fontsize_row =</span> <span class="dv">6</span>)</span>
+<span id="cb5-33"><a href="cytokine-profiles.html#cb5-33" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="MM-CAR-T_files/figure-html/unnamed-chunk-3-1.png" width="768" /></p>
+</div>
+<div id="correlation" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Correlation<a href="cytokine-profiles.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="cytokine-profiles.html#cb6-1" tabindex="-1"></a>plot.mat <span class="ot">&lt;-</span> <span class="fu">log2</span>(cytokine.mat[, cytokine.meta<span class="sc">$</span>lum_num]) <span class="sc">-</span> <span class="fu">log2</span>(cytokine.mat[, cytokine.meta<span class="sc">$</span>Diff])</span>
+<span id="cb6-2"><a href="cytokine-profiles.html#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="cytokine-profiles.html#cb6-3" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> cytokine.meta</span>
+<span id="cb6-4"><a href="cytokine-profiles.html#cb6-4" tabindex="-1"></a>plot.data<span class="sc">$</span>Cytokine_C0 <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(plot.mat[, plot.data<span class="sc">$</span>lum_num])</span>
+<span id="cb6-5"><a href="cytokine-profiles.html#cb6-5" tabindex="-1"></a>plot.data<span class="sc">$</span>Cytokine_C1 <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(plot.mat[cytokine.anno<span class="sc">$</span>Protein[<span class="fu">which</span>(cytokine.anno<span class="sc">$</span>Cluster <span class="sc">==</span> <span class="st">&quot;C1&quot;</span>)], plot.data<span class="sc">$</span>lum_num])</span>
+<span id="cb6-6"><a href="cytokine-profiles.html#cb6-6" tabindex="-1"></a>plot.data<span class="sc">$</span>Cytokine_C2 <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(plot.mat[cytokine.anno<span class="sc">$</span>Protein[<span class="fu">which</span>(cytokine.anno<span class="sc">$</span>Cluster <span class="sc">==</span> <span class="st">&quot;C2&quot;</span>)], plot.data<span class="sc">$</span>lum_num])</span>
+<span id="cb6-7"><a href="cytokine-profiles.html#cb6-7" tabindex="-1"></a>plot.data<span class="sc">$</span>Cytokine_C3 <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(plot.mat[cytokine.anno<span class="sc">$</span>Protein[<span class="fu">which</span>(cytokine.anno<span class="sc">$</span>Cluster <span class="sc">==</span> <span class="st">&quot;C3&quot;</span>)], plot.data<span class="sc">$</span>lum_num])</span>
+<span id="cb6-8"><a href="cytokine-profiles.html#cb6-8" tabindex="-1"></a>plot.data<span class="sc">$</span>Cytokine_C4 <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(plot.mat[cytokine.anno<span class="sc">$</span>Protein[<span class="fu">which</span>(cytokine.anno<span class="sc">$</span>Cluster <span class="sc">==</span> <span class="st">&quot;C4&quot;</span>)], plot.data<span class="sc">$</span>lum_num])</span>
+<span id="cb6-9"><a href="cytokine-profiles.html#cb6-9" tabindex="-1"></a>plot.data<span class="sc">$</span>Cytokine_C5 <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(plot.mat[cytokine.anno<span class="sc">$</span>Protein[<span class="fu">which</span>(cytokine.anno<span class="sc">$</span>Cluster <span class="sc">==</span> <span class="st">&quot;C5&quot;</span>)], plot.data<span class="sc">$</span>lum_num])</span>
+<span id="cb6-10"><a href="cytokine-profiles.html#cb6-10" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="cytokine-profiles.html#cb6-11" tabindex="-1"></a>plot.list <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb6-12"><a href="cytokine-profiles.html#cb6-12" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb6-13"><a href="cytokine-profiles.html#cb6-13" tabindex="-1"></a>  plot.data.sub <span class="ot">&lt;-</span> plot.data[<span class="fu">which</span>(plot.data<span class="sc">$</span>group <span class="sc">!=</span> <span class="st">&quot;day0&quot;</span>), ]</span>
+<span id="cb6-14"><a href="cytokine-profiles.html#cb6-14" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">ggscatter</span>(plot.data.sub, <span class="at">x =</span> <span class="st">&quot;mean_crs_grade&quot;</span>, <span class="at">y =</span> <span class="fu">paste0</span>(<span class="st">&quot;Cytokine_C&quot;</span>, i),</span>
+<span id="cb6-15"><a href="cytokine-profiles.html#cb6-15" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;gray&quot;</span>, <span class="co">#palette = color.group,</span></span>
+<span id="cb6-16"><a href="cytokine-profiles.html#cb6-16" tabindex="-1"></a>                 <span class="at">main =</span> <span class="fu">paste0</span>(<span class="st">&quot;Cytokine cluster CC&quot;</span>, i),</span>
+<span id="cb6-17"><a href="cytokine-profiles.html#cb6-17" tabindex="-1"></a>                 <span class="at">xlab =</span> <span class="st">&quot;CRS level&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Mean log2FC&quot;</span>,</span>
+<span id="cb6-18"><a href="cytokine-profiles.html#cb6-18" tabindex="-1"></a>                 <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;lightgray&quot;</span>),</span>
+<span id="cb6-19"><a href="cytokine-profiles.html#cb6-19" tabindex="-1"></a>                 <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">add =</span> <span class="st">&quot;reg.line&quot;</span>) <span class="sc">+</span> <span class="fu">theme_base</span>() <span class="sc">+</span> </span>
+<span id="cb6-20"><a href="cytokine-profiles.html#cb6-20" tabindex="-1"></a>    <span class="fu">stat_cor</span>(<span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>) </span>
+<span id="cb6-21"><a href="cytokine-profiles.html#cb6-21" tabindex="-1"></a>  p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_base</span>()</span>
+<span id="cb6-22"><a href="cytokine-profiles.html#cb6-22" tabindex="-1"></a>  p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb6-23"><a href="cytokine-profiles.html#cb6-23" tabindex="-1"></a>  plot.list <span class="ot">&lt;-</span> <span class="fu">c</span>(plot.list, <span class="fu">list</span>(<span class="at">p =</span> p) )</span>
+<span id="cb6-24"><a href="cytokine-profiles.html#cb6-24" tabindex="-1"></a>}</span>
+<span id="cb6-25"><a href="cytokine-profiles.html#cb6-25" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggarrange</span>(plot.list[[<span class="dv">1</span>]], plot.list[[<span class="dv">2</span>]], plot.list[[<span class="dv">3</span>]], plot.list[[<span class="dv">4</span>]], plot.list[[<span class="dv">5</span>]], <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">nrow =</span> <span class="dv">1</span> )</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;
+## `geom_smooth()` using formula = &#39;y ~ x&#39;
+## `geom_smooth()` using formula = &#39;y ~ x&#39;
+## `geom_smooth()` using formula = &#39;y ~ x&#39;
+## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="cytokine-profiles.html#cb8-1" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="MM-CAR-T_files/figure-html/unnamed-chunk-4-1.png" width="1728" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bulk.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-Cytokine.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MM-CAR-T.pdf", "MM-CAR-T.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

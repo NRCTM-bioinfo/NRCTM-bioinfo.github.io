@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 scRNA-seq | CAR-T therapy for multiple myeloma</title>
+  <meta name="description" content="This is the tutorial of MM CAR-T project." />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 scRNA-seq | CAR-T therapy for multiple myeloma" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://nrctm-bioinfo.github.io/MM_CART_project/index.html/figure/cover.jpg" />
+  <meta property="og:description" content="This is the tutorial of MM CAR-T project." />
+  <meta name="github-repo" content="NRCTM-bioinfo/MM-CAR-T-project" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 scRNA-seq | CAR-T therapy for multiple myeloma" />
+  
+  <meta name="twitter:description" content="This is the tutorial of MM CAR-T project." />
+  <meta name="twitter:image" content="https://nrctm-bioinfo.github.io/MM_CART_project/index.html/figure/cover.jpg" />
+
+<meta name="author" content="Yu-Ting Dai, Shuangshuang Yang" />
+
+
+<meta name="date" content="2023-09-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="bulk.html"/>
+<link rel="next" href="about-this-project.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://github.com/NRCTM-bioinfo/MM-CAR-T"><center><b>MM-CAR-T</b></center></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="cytokine-profiles.html"><a href="cytokine-profiles.html"><i class="fa fa-check"></i><b>2</b> Cytokine profiles</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="cytokine-profiles.html"><a href="cytokine-profiles.html#load-packages"><i class="fa fa-check"></i><b>2.1</b> Load packages</a></li>
+<li class="chapter" data-level="2.2" data-path="cytokine-profiles.html"><a href="cytokine-profiles.html#data-preprocessing"><i class="fa fa-check"></i><b>2.2</b> Data preprocessing</a></li>
+<li class="chapter" data-level="2.3" data-path="cytokine-profiles.html"><a href="cytokine-profiles.html#visualization"><i class="fa fa-check"></i><b>2.3</b> Visualization</a></li>
+<li class="chapter" data-level="2.4" data-path="cytokine-profiles.html"><a href="cytokine-profiles.html#correlation"><i class="fa fa-check"></i><b>2.4</b> Correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="bulk.html"><a href="bulk.html"><i class="fa fa-check"></i><b>3</b> Bulk</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="bulk.html"><a href="bulk.html#pre-processing"><i class="fa fa-check"></i><b>3.1</b> Pre-processing</a></li>
+<li class="chapter" data-level="3.2" data-path="bulk.html"><a href="bulk.html#degs-using-deseq2"><i class="fa fa-check"></i><b>3.2</b> DEGs using DESeq2</a></li>
+<li class="chapter" data-level="3.3" data-path="bulk.html"><a href="bulk.html#degs-using-limma"><i class="fa fa-check"></i><b>3.3</b> DEGs using Limma</a></li>
+<li class="chapter" data-level="3.4" data-path="bulk.html"><a href="bulk.html#degs-using-edger"><i class="fa fa-check"></i><b>3.4</b> DEGs using edgeR</a></li>
+<li class="chapter" data-level="3.5" data-path="bulk.html"><a href="bulk.html#mfuzz"><i class="fa fa-check"></i><b>3.5</b> Mfuzz</a></li>
+<li class="chapter" data-level="3.6" data-path="bulk.html"><a href="bulk.html#gsea"><i class="fa fa-check"></i><b>3.6</b> GSEA</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="scrna-seq.html"><a href="scrna-seq.html"><i class="fa fa-check"></i><b>4</b> scRNA-seq</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="scrna-seq.html"><a href="scrna-seq.html#pre-processing-1"><i class="fa fa-check"></i><b>4.1</b> Pre-processing</a></li>
+<li class="chapter" data-level="4.2" data-path="scrna-seq.html"><a href="scrna-seq.html#quaility-control"><i class="fa fa-check"></i><b>4.2</b> Quaility control</a></li>
+<li class="chapter" data-level="4.3" data-path="scrna-seq.html"><a href="scrna-seq.html#annotation"><i class="fa fa-check"></i><b>4.3</b> Annotation</a></li>
+<li class="chapter" data-level="4.4" data-path="scrna-seq.html"><a href="scrna-seq.html#markers"><i class="fa fa-check"></i><b>4.4</b> Markers</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="about-this-project.html"><a href="about-this-project.html"><i class="fa fa-check"></i><b>5</b> About this project</a>
+<ul>
+<li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#current-version"><i class="fa fa-check"></i>Current version</a></li>
+<li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#session-information"><i class="fa fa-check"></i>Session Information</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">CAR-T therapy for multiple myeloma</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="scrna-seq" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> scRNA-seq<a href="scrna-seq.html#scrna-seq" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="pre-processing-1" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Pre-processing<a href="scrna-seq.html#pre-processing-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="scrna-seq.html#cb15-1" tabindex="-1"></a><span class="co"># Pre-processing data was performed using cellranger</span></span>
+<span id="cb15-2"><a href="scrna-seq.html#cb15-2" tabindex="-1"></a>cellranger count <span class="sc">--</span>id<span class="ot">=</span><span class="er">$</span>{Sample_ID} \</span>
+<span id="cb15-3"><a href="scrna-seq.html#cb15-3" tabindex="-1"></a>  <span class="sc">--</span>fastqs<span class="ot">=</span><span class="er">$</span>{FASTQ} \</span>
+<span id="cb15-4"><a href="scrna-seq.html#cb15-4" tabindex="-1"></a>  <span class="sc">--</span>sample<span class="ot">=</span><span class="er">$</span>{Sample_ID} \</span>
+<span id="cb15-5"><a href="scrna-seq.html#cb15-5" tabindex="-1"></a>  <span class="sc">--</span>transcriptome<span class="ot">=</span><span class="er">$</span>{index_path}</span>
+<span id="cb15-6"><a href="scrna-seq.html#cb15-6" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="scrna-seq.html#cb15-7" tabindex="-1"></a>cellranger vdj <span class="sc">--</span>id<span class="ot">=</span>{Sample_ID} \</span>
+<span id="cb15-8"><a href="scrna-seq.html#cb15-8" tabindex="-1"></a>  <span class="sc">--</span>reference<span class="ot">=</span><span class="er">$</span>{index_path} \</span>
+<span id="cb15-9"><a href="scrna-seq.html#cb15-9" tabindex="-1"></a>  <span class="sc">--</span>fastqs<span class="ot">=</span><span class="er">$</span>{FASTQ} \</span>
+<span id="cb15-10"><a href="scrna-seq.html#cb15-10" tabindex="-1"></a>  <span class="sc">--</span>sample<span class="ot">=</span><span class="er">$</span>{Sample_ID}</span></code></pre></div>
+</div>
+<div id="quaility-control" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Quaility control<a href="scrna-seq.html#quaility-control" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="scrna-seq.html#cb16-1" tabindex="-1"></a>cart <span class="ot">&lt;-</span> <span class="fu">CreateSeuratObject</span>(<span class="at">counts =</span> cart.data, <span class="at">project =</span> <span class="st">&quot;cart&quot;</span>, <span class="at">min.cells =</span> <span class="dv">0</span>, <span class="at">min.features =</span> <span class="dv">0</span>)</span>
+<span id="cb16-2"><a href="scrna-seq.html#cb16-2" tabindex="-1"></a>cart[[<span class="st">&quot;percent.mt&quot;</span>]] <span class="ot">&lt;-</span> <span class="fu">PercentageFeatureSet</span>(cart, <span class="at">pattern =</span> <span class="st">&quot;^MT-&quot;</span>)</span>
+<span id="cb16-3"><a href="scrna-seq.html#cb16-3" tabindex="-1"></a>cart</span>
+<span id="cb16-4"><a href="scrna-seq.html#cb16-4" tabindex="-1"></a><span class="fu">summary</span>(cart<span class="sc">@</span>meta.data<span class="sc">$</span>percent.mt)</span>
+<span id="cb16-5"><a href="scrna-seq.html#cb16-5" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="scrna-seq.html#cb16-6" tabindex="-1"></a><span class="co"># Visualize QC metrics as a violin plot</span></span>
+<span id="cb16-7"><a href="scrna-seq.html#cb16-7" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/1.vlnplot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb16-8"><a href="scrna-seq.html#cb16-8" tabindex="-1"></a><span class="fu">VlnPlot</span>(cart, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">&quot;nFeature_RNA&quot;</span>, <span class="st">&quot;nCount_RNA&quot;</span>, <span class="st">&quot;percent.mt&quot;</span>), <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb16-9"><a href="scrna-seq.html#cb16-9" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb16-10"><a href="scrna-seq.html#cb16-10" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="scrna-seq.html#cb16-11" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/1.geneplot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb16-12"><a href="scrna-seq.html#cb16-12" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(cart, <span class="at">feature1 =</span> <span class="st">&quot;nCount_RNA&quot;</span>, <span class="at">feature2 =</span> <span class="st">&quot;percent.mt&quot;</span>)</span>
+<span id="cb16-13"><a href="scrna-seq.html#cb16-13" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(cart, <span class="at">feature1 =</span> <span class="st">&quot;nCount_RNA&quot;</span>, <span class="at">feature2 =</span> <span class="st">&quot;nFeature_RNA&quot;</span>)</span>
+<span id="cb16-14"><a href="scrna-seq.html#cb16-14" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2</span>
+<span id="cb16-15"><a href="scrna-seq.html#cb16-15" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb16-16"><a href="scrna-seq.html#cb16-16" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="scrna-seq.html#cb16-17" tabindex="-1"></a>cart <span class="ot">&lt;-</span> <span class="fu">subset</span>(cart, <span class="at">subset =</span> nFeature_RNA <span class="sc">&gt;</span> <span class="dv">800</span> <span class="sc">&amp;</span> percent.mt <span class="sc">&lt;</span> <span class="dv">10</span>)</span>
+<span id="cb16-18"><a href="scrna-seq.html#cb16-18" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="scrna-seq.html#cb16-19" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/2.filter.vlnplot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb16-20"><a href="scrna-seq.html#cb16-20" tabindex="-1"></a><span class="fu">VlnPlot</span>(cart, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">&quot;nFeature_RNA&quot;</span>, <span class="st">&quot;nCount_RNA&quot;</span>, <span class="st">&quot;percent.mt&quot;</span>), <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb16-21"><a href="scrna-seq.html#cb16-21" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb16-22"><a href="scrna-seq.html#cb16-22" tabindex="-1"></a></span>
+<span id="cb16-23"><a href="scrna-seq.html#cb16-23" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/2.filter.geneplot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb16-24"><a href="scrna-seq.html#cb16-24" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(cart, <span class="at">feature1 =</span> <span class="st">&quot;nCount_RNA&quot;</span>, <span class="at">feature2 =</span> <span class="st">&quot;percent.mt&quot;</span>)</span>
+<span id="cb16-25"><a href="scrna-seq.html#cb16-25" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(cart, <span class="at">feature1 =</span> <span class="st">&quot;nCount_RNA&quot;</span>, <span class="at">feature2 =</span> <span class="st">&quot;nFeature_RNA&quot;</span>)</span>
+<span id="cb16-26"><a href="scrna-seq.html#cb16-26" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2</span>
+<span id="cb16-27"><a href="scrna-seq.html#cb16-27" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb16-28"><a href="scrna-seq.html#cb16-28" tabindex="-1"></a></span>
+<span id="cb16-29"><a href="scrna-seq.html#cb16-29" tabindex="-1"></a>cart <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(cart, <span class="at">normalization.method =</span> <span class="st">&quot;LogNormalize&quot;</span>, <span class="at">scale.factor =</span> <span class="dv">10000</span>)</span>
+<span id="cb16-30"><a href="scrna-seq.html#cb16-30" tabindex="-1"></a>cart <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(cart, <span class="at">selection.method =</span> <span class="st">&quot;vst&quot;</span>, <span class="at">nfeatures =</span> <span class="dv">2000</span>)</span>
+<span id="cb16-31"><a href="scrna-seq.html#cb16-31" tabindex="-1"></a></span>
+<span id="cb16-32"><a href="scrna-seq.html#cb16-32" tabindex="-1"></a><span class="co"># Identify the 10 most highly variable genes</span></span>
+<span id="cb16-33"><a href="scrna-seq.html#cb16-33" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">VariableFeatures</span>(cart), <span class="dv">10</span>)</span>
+<span id="cb16-34"><a href="scrna-seq.html#cb16-34" tabindex="-1"></a></span>
+<span id="cb16-35"><a href="scrna-seq.html#cb16-35" tabindex="-1"></a><span class="co"># plot variable features with and without labels</span></span>
+<span id="cb16-36"><a href="scrna-seq.html#cb16-36" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/3.VariableFeaturePlot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb16-37"><a href="scrna-seq.html#cb16-37" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">VariableFeaturePlot</span>(cart)</span>
+<span id="cb16-38"><a href="scrna-seq.html#cb16-38" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">LabelPoints</span>(<span class="at">plot =</span> plot1, <span class="at">points =</span> top10, <span class="at">repel =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-39"><a href="scrna-seq.html#cb16-39" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2</span>
+<span id="cb16-40"><a href="scrna-seq.html#cb16-40" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb16-41"><a href="scrna-seq.html#cb16-41" tabindex="-1"></a></span>
+<span id="cb16-42"><a href="scrna-seq.html#cb16-42" tabindex="-1"></a>all.genes <span class="ot">&lt;-</span> <span class="fu">rownames</span>(cart)</span>
+<span id="cb16-43"><a href="scrna-seq.html#cb16-43" tabindex="-1"></a>cart <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(cart, <span class="at">features =</span> all.genes)</span>
+<span id="cb16-44"><a href="scrna-seq.html#cb16-44" tabindex="-1"></a>cart <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(cart, <span class="at">features =</span> <span class="fu">VariableFeatures</span>(<span class="at">object =</span> cart))</span>
+<span id="cb16-45"><a href="scrna-seq.html#cb16-45" tabindex="-1"></a></span>
+<span id="cb16-46"><a href="scrna-seq.html#cb16-46" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(cart, <span class="at">reduction =</span> <span class="st">&quot;pca&quot;</span>) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb16-47"><a href="scrna-seq.html#cb16-47" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/4.PCA.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb16-48"><a href="scrna-seq.html#cb16-48" tabindex="-1"></a></span>
+<span id="cb16-49"><a href="scrna-seq.html#cb16-49" tabindex="-1"></a></span>
+<span id="cb16-50"><a href="scrna-seq.html#cb16-50" tabindex="-1"></a><span class="do">################ Combat</span></span>
+<span id="cb16-51"><a href="scrna-seq.html#cb16-51" tabindex="-1"></a><span class="fu">library</span>(gmodels)</span>
+<span id="cb16-52"><a href="scrna-seq.html#cb16-52" tabindex="-1"></a></span>
+<span id="cb16-53"><a href="scrna-seq.html#cb16-53" tabindex="-1"></a><span class="fu">typeof</span>(cart<span class="sc">@</span>reductions<span class="sc">$</span>pca)</span>
+<span id="cb16-54"><a href="scrna-seq.html#cb16-54" tabindex="-1"></a></span>
+<span id="cb16-55"><a href="scrna-seq.html#cb16-55" tabindex="-1"></a>cart <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(cart, <span class="at">selection.method =</span> <span class="st">&quot;vst&quot;</span>, <span class="at">nfeatures =</span> <span class="dv">2000</span>)</span>
+<span id="cb16-56"><a href="scrna-seq.html#cb16-56" tabindex="-1"></a>cart <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(cart)</span>
+<span id="cb16-57"><a href="scrna-seq.html#cb16-57" tabindex="-1"></a></span>
+<span id="cb16-58"><a href="scrna-seq.html#cb16-58" tabindex="-1"></a><span class="fu">dim</span>(cart<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">@</span>scale.data)</span>
+<span id="cb16-59"><a href="scrna-seq.html#cb16-59" tabindex="-1"></a></span>
+<span id="cb16-60"><a href="scrna-seq.html#cb16-60" tabindex="-1"></a>exp.mat <span class="ot">&lt;-</span> cart<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">@</span>scale.data</span>
+<span id="cb16-61"><a href="scrna-seq.html#cb16-61" tabindex="-1"></a>batch <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">as.factor</span>(cart<span class="sc">@</span>meta.data<span class="sc">$</span>Sample))</span>
+<span id="cb16-62"><a href="scrna-seq.html#cb16-62" tabindex="-1"></a><span class="fu">dim</span>(exp.mat)</span>
+<span id="cb16-63"><a href="scrna-seq.html#cb16-63" tabindex="-1"></a></span>
+<span id="cb16-64"><a href="scrna-seq.html#cb16-64" tabindex="-1"></a>exp.sva <span class="ot">&lt;-</span> <span class="fu">ComBat</span>(<span class="at">dat=</span>exp.mat, <span class="at">batch=</span>batch, <span class="at">mod=</span><span class="cn">NULL</span>, <span class="at">par.prior=</span><span class="cn">TRUE</span>, <span class="at">prior.plots=</span><span class="cn">FALSE</span>)</span>
+<span id="cb16-65"><a href="scrna-seq.html#cb16-65" tabindex="-1"></a></span>
+<span id="cb16-66"><a href="scrna-seq.html#cb16-66" tabindex="-1"></a>sva.pca <span class="ot">&lt;-</span> <span class="fu">fast.prcomp</span>( exp.sva, <span class="at">retx =</span> <span class="cn">TRUE</span>, <span class="at">scale. =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-67"><a href="scrna-seq.html#cb16-67" tabindex="-1"></a>sva.pca <span class="ot">&lt;-</span> sva.pca<span class="sc">$</span>rotation[, <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>]</span>
+<span id="cb16-68"><a href="scrna-seq.html#cb16-68" tabindex="-1"></a><span class="fu">colnames</span>(sva.pca) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;PC_&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>)</span>
+<span id="cb16-69"><a href="scrna-seq.html#cb16-69" tabindex="-1"></a></span>
+<span id="cb16-70"><a href="scrna-seq.html#cb16-70" tabindex="-1"></a>cart<span class="sc">@</span>reductions<span class="sc">$</span>svapca <span class="ot">&lt;-</span> cart<span class="sc">@</span>reductions<span class="sc">$</span>pca</span>
+<span id="cb16-71"><a href="scrna-seq.html#cb16-71" tabindex="-1"></a>cart<span class="sc">@</span>reductions<span class="sc">$</span>svapca<span class="sc">@</span>cell.embeddings <span class="ot">&lt;-</span> sva.pca</span>
+<span id="cb16-72"><a href="scrna-seq.html#cb16-72" tabindex="-1"></a></span>
+<span id="cb16-73"><a href="scrna-seq.html#cb16-73" tabindex="-1"></a>cart <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(cart, <span class="at">reduction =</span> <span class="st">&quot;svapca&quot;</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb16-74"><a href="scrna-seq.html#cb16-74" tabindex="-1"></a>cart <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(cart, <span class="at">resolution =</span> <span class="dv">1</span>)</span>
+<span id="cb16-75"><a href="scrna-seq.html#cb16-75" tabindex="-1"></a>cart <span class="ot">&lt;-</span> <span class="fu">RunTSNE</span>(cart, <span class="at">reduction =</span> <span class="st">&quot;svapca&quot;</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">perplexity =</span> <span class="dv">50</span>)</span>
+<span id="cb16-76"><a href="scrna-seq.html#cb16-76" tabindex="-1"></a>cart <span class="ot">&lt;-</span> <span class="fu">RunUMAP</span>(cart, <span class="at">reduction =</span> <span class="st">&quot;svapca&quot;</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb16-77"><a href="scrna-seq.html#cb16-77" tabindex="-1"></a></span>
+<span id="cb16-78"><a href="scrna-seq.html#cb16-78" tabindex="-1"></a></span>
+<span id="cb16-79"><a href="scrna-seq.html#cb16-79" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(cart, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="fl">0.5</span>, </span>
+<span id="cb16-80"><a href="scrna-seq.html#cb16-80" tabindex="-1"></a>             <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb16-81"><a href="scrna-seq.html#cb16-81" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/5.UMAP.cluster.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb16-82"><a href="scrna-seq.html#cb16-82" tabindex="-1"></a></span>
+<span id="cb16-83"><a href="scrna-seq.html#cb16-83" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(cart, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="fl">0.5</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">10</span>,</span>
+<span id="cb16-84"><a href="scrna-seq.html#cb16-84" tabindex="-1"></a>             <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb16-85"><a href="scrna-seq.html#cb16-85" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/5.UMAP.cluster.label.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb16-86"><a href="scrna-seq.html#cb16-86" tabindex="-1"></a></span>
+<span id="cb16-87"><a href="scrna-seq.html#cb16-87" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(cart, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="fl">0.5</span>,</span>
+<span id="cb16-88"><a href="scrna-seq.html#cb16-88" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;Sample&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb16-89"><a href="scrna-seq.html#cb16-89" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/5.UMAP.sample.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb16-90"><a href="scrna-seq.html#cb16-90" tabindex="-1"></a></span>
+<span id="cb16-91"><a href="scrna-seq.html#cb16-91" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(cart, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="fl">0.5</span>,</span>
+<span id="cb16-92"><a href="scrna-seq.html#cb16-92" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;Sample&quot;</span>, <span class="at">split.by =</span> <span class="st">&quot;Sample&quot;</span>, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb16-93"><a href="scrna-seq.html#cb16-93" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/5.UMAP.sample.split.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">14</span>, <span class="at">height =</span> <span class="dv">12</span>)</span>
+<span id="cb16-94"><a href="scrna-seq.html#cb16-94" tabindex="-1"></a></span>
+<span id="cb16-95"><a href="scrna-seq.html#cb16-95" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(cart, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="fl">0.5</span>,</span>
+<span id="cb16-96"><a href="scrna-seq.html#cb16-96" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;Day&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb16-97"><a href="scrna-seq.html#cb16-97" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/5.UMAP.Day.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb16-98"><a href="scrna-seq.html#cb16-98" tabindex="-1"></a></span>
+<span id="cb16-99"><a href="scrna-seq.html#cb16-99" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(cart, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="fl">0.5</span>,</span>
+<span id="cb16-100"><a href="scrna-seq.html#cb16-100" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;Day&quot;</span>, <span class="at">split.by =</span> <span class="st">&quot;Day&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb16-101"><a href="scrna-seq.html#cb16-101" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/5.UMAP.Day.split.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span></code></pre></div>
+</div>
+<div id="annotation" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Annotation<a href="scrna-seq.html#annotation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="scrna-seq.html#cb17-1" tabindex="-1"></a><span class="do">####################### SingleR annotation</span></span>
+<span id="cb17-2"><a href="scrna-seq.html#cb17-2" tabindex="-1"></a>ref <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">&quot;hs.BlueprintEncodeData.RDS&quot;</span>)</span>
+<span id="cb17-3"><a href="scrna-seq.html#cb17-3" tabindex="-1"></a>pred.BlueprintEncodeData <span class="ot">&lt;-</span> <span class="fu">SingleR</span>(<span class="at">test =</span> cart<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">@</span>data, <span class="at">ref =</span> ref, <span class="at">labels =</span> ref<span class="sc">$</span>label.main)</span>
+<span id="cb17-4"><a href="scrna-seq.html#cb17-4" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="scrna-seq.html#cb17-5" tabindex="-1"></a>ref <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">&quot;hs.HumanPrimaryCellAtlasData.RDS&quot;</span>)</span>
+<span id="cb17-6"><a href="scrna-seq.html#cb17-6" tabindex="-1"></a>pred.HumanPrimaryCellAtlasData <span class="ot">&lt;-</span> <span class="fu">SingleR</span>(<span class="at">test =</span> cart<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">@</span>data, <span class="at">ref =</span> ref, <span class="at">labels =</span> ref<span class="sc">$</span>label.main)</span>
+<span id="cb17-7"><a href="scrna-seq.html#cb17-7" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="scrna-seq.html#cb17-8" tabindex="-1"></a>ref <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">&quot;ImmGenData.RDS&quot;</span>)</span>
+<span id="cb17-9"><a href="scrna-seq.html#cb17-9" tabindex="-1"></a>pred.ImmGenData <span class="ot">&lt;-</span> <span class="fu">SingleR</span>(<span class="at">test =</span> cart<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">@</span>data, <span class="at">ref =</span> ref, <span class="at">labels =</span> ref<span class="sc">$</span>label.main)</span>
+<span id="cb17-10"><a href="scrna-seq.html#cb17-10" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="scrna-seq.html#cb17-11" tabindex="-1"></a>ref <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">&quot;MonacoImmuneData.RDS&quot;</span>)</span>
+<span id="cb17-12"><a href="scrna-seq.html#cb17-12" tabindex="-1"></a>pred.MonacoImmuneData <span class="ot">&lt;-</span> <span class="fu">SingleR</span>(<span class="at">test =</span> cart<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">@</span>data, <span class="at">ref =</span> ref, <span class="at">labels =</span> ref<span class="sc">$</span>label.main)</span>
+<span id="cb17-13"><a href="scrna-seq.html#cb17-13" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="scrna-seq.html#cb17-14" tabindex="-1"></a>ref <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">&quot;NovershternHematopoieticData.RDS&quot;</span>)</span>
+<span id="cb17-15"><a href="scrna-seq.html#cb17-15" tabindex="-1"></a>pred.NovershternHematopoieticData <span class="ot">&lt;-</span> <span class="fu">SingleR</span>(<span class="at">test =</span> cart<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">@</span>data, <span class="at">ref =</span> ref, <span class="at">labels =</span> ref<span class="sc">$</span>label.main)</span></code></pre></div>
+</div>
+<div id="markers" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Markers<a href="scrna-seq.html#markers" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="scrna-seq.html#cb18-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb18-2"><a href="scrna-seq.html#cb18-2" tabindex="-1"></a>markers <span class="ot">&lt;-</span> Seurat<span class="sc">::</span><span class="fu">FindMarkers</span>(cart, <span class="at">ident.1 =</span> x)</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="bulk.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="about-this-project.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-scRNAseq.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MM-CAR-T.pdf", "MM-CAR-T.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
