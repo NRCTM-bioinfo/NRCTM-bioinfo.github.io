@@ -221,7 +221,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="bulk.html#cb10-1" tabindex="-1"></a>exp <span class="ot">&lt;-</span> filter_count51</span>
 <span id="cb10-2"><a href="bulk.html#cb10-2" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="bulk.html#cb10-3" tabindex="-1"></a><span class="co"># test</span></span>
-<span id="cb10-4"><a href="bulk.html#cb10-4" tabindex="-1"></a>compare_t <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">10</span>)</span>
+<span id="cb10-4"><a href="bulk.html#cb10-4" tabindex="-1"></a>compare_t <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">&#39;Day0&#39;</span> ,<span class="st">&#39;Day3~5&#39;</span>）</span>
 <span id="cb10-5"><a href="bulk.html#cb10-5" tabindex="-1"></a>pd1_com_t <span class="ot">&lt;-</span> pd1[pd1<span class="sc">$</span>group1 <span class="sc">%in%</span> compare_t,]</span>
 <span id="cb10-6"><a href="bulk.html#cb10-6" tabindex="-1"></a>exp_com_t <span class="ot">&lt;-</span> exp[,<span class="fu">match</span>(pd1_com_t<span class="sc">$</span>ID,<span class="fu">colnames</span>(exp))]</span>
 <span id="cb10-7"><a href="bulk.html#cb10-7" tabindex="-1"></a>Group_t <span class="ot">&lt;-</span> <span class="fu">factor</span>(pd1_com_t<span class="sc">$</span>group1,</span>
@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-2"><a href="bulk.html#cb11-2" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="bulk.html#cb11-3" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="bulk.html#cb11-4" tabindex="-1"></a><span class="co"># test</span></span>
-<span id="cb11-5"><a href="bulk.html#cb11-5" tabindex="-1"></a>comp <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">10</span>)</span>
+<span id="cb11-5"><a href="bulk.html#cb11-5" tabindex="-1"></a>comp <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">&#39;Day0&#39;</span> ,<span class="st">&#39;Day3~5&#39;</span>）</span>
 <span id="cb11-6"><a href="bulk.html#cb11-6" tabindex="-1"></a>pd1_com <span class="ot">&lt;-</span> pd1[pd1<span class="sc">$</span>group1 <span class="sc">%in%</span> comp,]</span>
 <span id="cb11-7"><a href="bulk.html#cb11-7" tabindex="-1"></a>exp_com <span class="ot">&lt;-</span> exp[,<span class="fu">match</span>(pd1_com<span class="sc">$</span>ID,<span class="fu">colnames</span>(exp))] </span>
 <span id="cb11-8"><a href="bulk.html#cb11-8" tabindex="-1"></a><span class="fu">identical</span>(pd1_com<span class="sc">$</span>ID,<span class="fu">colnames</span>(exp_com))</span>
@@ -325,12 +325,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-24"><a href="bulk.html#cb11-24" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">voom</span>(dge,design, <span class="at">normalize=</span><span class="st">&quot;quantile&quot;</span>)</span>
 <span id="cb11-25"><a href="bulk.html#cb11-25" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lmFit</span>(v, design)</span>
 <span id="cb11-26"><a href="bulk.html#cb11-26" tabindex="-1"></a></span>
-<span id="cb11-27"><a href="bulk.html#cb11-27" tabindex="-1"></a>constrasts <span class="ot">=</span> <span class="fu">paste</span>(<span class="fu">rev</span>(<span class="fu">levels</span>(Group_ts)),<span class="at">collapse =</span> <span class="st">&quot;-&quot;</span>)</span>
+<span id="cb11-27"><a href="bulk.html#cb11-27" tabindex="-1"></a><span class="at">constrasts =</span> <span class="fu">paste</span>(<span class="fu">rev</span>(<span class="fu">levels</span>(Group_ts)),<span class="at">collapse =</span> <span class="st">&quot;-&quot;</span>)</span>
 <span id="cb11-28"><a href="bulk.html#cb11-28" tabindex="-1"></a>cont.matrix <span class="ot">&lt;-</span> <span class="fu">makeContrasts</span>(<span class="at">contrasts=</span>constrasts,<span class="at">levels =</span> design) </span>
-<span id="cb11-29"><a href="bulk.html#cb11-29" tabindex="-1"></a>fit2<span class="ot">=</span><span class="fu">contrasts.fit</span>(fit,cont.matrix)</span>
-<span id="cb11-30"><a href="bulk.html#cb11-30" tabindex="-1"></a>fit2<span class="ot">=</span><span class="fu">eBayes</span>(fit2)</span>
+<span id="cb11-29"><a href="bulk.html#cb11-29" tabindex="-1"></a><span class="at">fit2=</span><span class="fu">contrasts.fit</span>(fit,cont.matrix)</span>
+<span id="cb11-30"><a href="bulk.html#cb11-30" tabindex="-1"></a><span class="at">fit2=</span><span class="fu">eBayes</span>(fit2)</span>
 <span id="cb11-31"><a href="bulk.html#cb11-31" tabindex="-1"></a></span>
-<span id="cb11-32"><a href="bulk.html#cb11-32" tabindex="-1"></a>deg_t<span class="ot">=</span> <span class="fu">topTable</span>(fit2, <span class="at">coef=</span>constrasts, <span class="at">n=</span><span class="cn">Inf</span>)</span>
+<span id="cb11-32"><a href="bulk.html#cb11-32" tabindex="-1"></a><span class="at">deg_t=</span> <span class="fu">topTable</span>(fit2, <span class="at">coef=</span>constrasts, <span class="at">n=</span><span class="cn">Inf</span>)</span>
 <span id="cb11-33"><a href="bulk.html#cb11-33" tabindex="-1"></a></span>
 <span id="cb11-34"><a href="bulk.html#cb11-34" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(filter_fpkm51[<span class="fu">rownames</span>(filter_fpkm51)<span class="sc">==</span><span class="st">&quot;CHI3L2&quot;</span>,pd1_com<span class="sc">$</span>ID]))</span>
 <span id="cb11-35"><a href="bulk.html#cb11-35" tabindex="-1"></a>test<span class="sc">$</span>Group_t <span class="ot">&lt;-</span> Group_t</span>
@@ -413,7 +413,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb12-2"><a href="bulk.html#cb12-2" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="bulk.html#cb12-3" tabindex="-1"></a></span>
 <span id="cb12-4"><a href="bulk.html#cb12-4" tabindex="-1"></a><span class="co"># test</span></span>
-<span id="cb12-5"><a href="bulk.html#cb12-5" tabindex="-1"></a>comp <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">10</span>) </span>
+<span id="cb12-5"><a href="bulk.html#cb12-5" tabindex="-1"></a>comp <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">&#39;Day0&#39;</span> ,<span class="st">&#39;Day3~5&#39;</span>）</span>
 <span id="cb12-6"><a href="bulk.html#cb12-6" tabindex="-1"></a>pd1_com <span class="ot">&lt;-</span> pd1[pd1<span class="sc">$</span>group1 <span class="sc">%in%</span> comp,]<span class="co">#得到分组pd</span></span>
 <span id="cb12-7"><a href="bulk.html#cb12-7" tabindex="-1"></a>exp_com <span class="ot">&lt;-</span> exp[,<span class="fu">match</span>(pd1_com<span class="sc">$</span>ID,<span class="fu">colnames</span>(exp))] </span>
 <span id="cb12-8"><a href="bulk.html#cb12-8" tabindex="-1"></a>Group_t <span class="ot">&lt;-</span> <span class="fu">factor</span>(pd1_com<span class="sc">$</span>group1,</span>
@@ -434,8 +434,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb12-23"><a href="bulk.html#cb12-23" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">glmFit</span>(dge, design)</span>
 <span id="cb12-24"><a href="bulk.html#cb12-24" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">glmLRT</span>(fit, <span class="at">contrast=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)) </span>
 <span id="cb12-25"><a href="bulk.html#cb12-25" tabindex="-1"></a></span>
-<span id="cb12-26"><a href="bulk.html#cb12-26" tabindex="-1"></a>DEG<span class="ot">=</span><span class="fu">topTags</span>(fit2, <span class="at">n=</span><span class="fu">nrow</span>(exp))</span>
-<span id="cb12-27"><a href="bulk.html#cb12-27" tabindex="-1"></a>deg_t<span class="ot">=</span><span class="fu">as.data.frame</span>(DEG) </span>
+<span id="cb12-26"><a href="bulk.html#cb12-26" tabindex="-1"></a><span class="at">DEG=</span><span class="fu">topTags</span>(fit2, <span class="at">n=</span><span class="fu">nrow</span>(exp))</span>
+<span id="cb12-27"><a href="bulk.html#cb12-27" tabindex="-1"></a><span class="at">deg_t=</span><span class="fu">as.data.frame</span>(DEG) </span>
 <span id="cb12-28"><a href="bulk.html#cb12-28" tabindex="-1"></a></span>
 <span id="cb12-29"><a href="bulk.html#cb12-29" tabindex="-1"></a></span>
 <span id="cb12-30"><a href="bulk.html#cb12-30" tabindex="-1"></a></span>

@@ -256,7 +256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-52"><a href="scrna-seq.html#cb16-52" tabindex="-1"></a></span>
 <span id="cb16-53"><a href="scrna-seq.html#cb16-53" tabindex="-1"></a><span class="fu">typeof</span>(cart<span class="sc">@</span>reductions<span class="sc">$</span>pca)</span>
 <span id="cb16-54"><a href="scrna-seq.html#cb16-54" tabindex="-1"></a></span>
-<span id="cb16-55"><a href="scrna-seq.html#cb16-55" tabindex="-1"></a>cart <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(cart, <span class="at">selection.method =</span> <span class="st">&quot;vst&quot;</span>, <span class="at">nfeatures =</span> <span class="dv">2000</span>)</span>
+<span id="cb16-55"><a href="scrna-seq.html#cb16-55" tabindex="-1"></a>cart <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(cart, <span class="at">selection.method =</span> <span class="st">&quot;vst&quot;</span>, <span class="at">nfeatures =</span> <span class="dv">3000</span>)</span>
 <span id="cb16-56"><a href="scrna-seq.html#cb16-56" tabindex="-1"></a>cart <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(cart)</span>
 <span id="cb16-57"><a href="scrna-seq.html#cb16-57" tabindex="-1"></a></span>
 <span id="cb16-58"><a href="scrna-seq.html#cb16-58" tabindex="-1"></a><span class="fu">dim</span>(cart<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">@</span>scale.data)</span>
