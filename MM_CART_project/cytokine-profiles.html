@@ -23,7 +23,7 @@
 <meta name="author" content="Yu-Ting Dai, Shuangshuang Yang" />
 
 
-<meta name="date" content="2023-09-18" />
+<meta name="date" content="2023-09-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -143,6 +143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="cytokine-profiles.html"><a href="cytokine-profiles.html#data-preprocessing"><i class="fa fa-check"></i><b>2.2</b> Data preprocessing</a></li>
 <li class="chapter" data-level="2.3" data-path="cytokine-profiles.html"><a href="cytokine-profiles.html#visualization"><i class="fa fa-check"></i><b>2.3</b> Visualization</a></li>
 <li class="chapter" data-level="2.4" data-path="cytokine-profiles.html"><a href="cytokine-profiles.html#correlation"><i class="fa fa-check"></i><b>2.4</b> Correlation</a></li>
+<li class="chapter" data-level="2.5" data-path="cytokine-profiles.html"><a href="cytokine-profiles.html#connector"><i class="fa fa-check"></i><b>2.5</b> CONNECTOR</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="bulk.html"><a href="bulk.html"><i class="fa fa-check"></i><b>3</b> Bulk</a>
 <ul>
@@ -262,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-31"><a href="cytokine-profiles.html#cb5-31" tabindex="-1"></a>              <span class="at">fontsize_col =</span> <span class="fl">0.1</span>,</span>
 <span id="cb5-32"><a href="cytokine-profiles.html#cb5-32" tabindex="-1"></a>              <span class="at">fontsize_row =</span> <span class="dv">6</span>)</span>
 <span id="cb5-33"><a href="cytokine-profiles.html#cb5-33" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="MM-CAR-T_files/figure-html/unnamed-chunk-3-1.png" width="768" /></p>
+<p><img src="MM-CAR-T_files/figure-html/unnamed-chunk-28-1.png" width="768" /></p>
 </div>
 <div id="correlation" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> Correlation<a href="cytokine-profiles.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -297,7 +298,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## `geom_smooth()` using formula = &#39;y ~ x&#39;
 ## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="cytokine-profiles.html#cb8-1" tabindex="-1"></a>p</span></code></pre></div>
-<p><img src="MM-CAR-T_files/figure-html/unnamed-chunk-4-1.png" width="1728" /></p>
+<p><img src="MM-CAR-T_files/figure-html/unnamed-chunk-29-1.png" width="1728" /></p>
+</div>
+<div id="connector" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> CONNECTOR<a href="cytokine-profiles.html#connector" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="cytokine-profiles.html#cb9-1" tabindex="-1"></a><span class="fu">library</span>(connector)</span>
+<span id="cb9-2"><a href="cytokine-profiles.html#cb9-2" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb9-3"><a href="cytokine-profiles.html#cb9-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb9-4"><a href="cytokine-profiles.html#cb9-4" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="cytokine-profiles.html#cb9-5" tabindex="-1"></a>CONNECTORList <span class="ot">&lt;-</span> <span class="fu">DataImport</span>(<span class="at">TimeSeriesFile =</span> <span class="st">&quot;data/TimeSeriesFile.xlsx&quot;</span>,</span>
+<span id="cb9-6"><a href="cytokine-profiles.html#cb9-6" tabindex="-1"></a>                            <span class="at">AnnotationFile =</span> <span class="st">&quot;data/AnnotationFile.txt&quot;</span>)</span>
+<span id="cb9-7"><a href="cytokine-profiles.html#cb9-7" tabindex="-1"></a>CurvesPlot <span class="ot">&lt;-</span> <span class="fu">PlotTimeSeries</span>(<span class="at">data =</span> CONNECTORList,</span>
+<span id="cb9-8"><a href="cytokine-profiles.html#cb9-8" tabindex="-1"></a>                             <span class="at">feature =</span> <span class="st">&quot;Progeny_1&quot;</span>) <span class="sc">+</span> <span class="fu">theme_base</span>()</span>
+<span id="cb9-9"><a href="cytokine-profiles.html#cb9-9" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="cytokine-profiles.html#cb9-10" tabindex="-1"></a>Datavisual <span class="ot">&lt;-</span> <span class="fu">DataVisualization</span>(<span class="at">data =</span> CONNECTORList,</span>
+<span id="cb9-11"><a href="cytokine-profiles.html#cb9-11" tabindex="-1"></a>                                <span class="at">feature =</span> <span class="st">&quot;Progeny_1&quot;</span>, </span>
+<span id="cb9-12"><a href="cytokine-profiles.html#cb9-12" tabindex="-1"></a>                                <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Time&quot;</span>,<span class="st">&quot;CRS&quot;</span>,<span class="st">&quot;CRS grade&quot;</span>))</span>
+<span id="cb9-13"><a href="cytokine-profiles.html#cb9-13" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="cytokine-profiles.html#cb9-14" tabindex="-1"></a>trCONNECTORList <span class="ot">&lt;-</span> <span class="fu">DataTruncation</span>(<span class="at">data =</span> CONNECTORList,</span>
+<span id="cb9-15"><a href="cytokine-profiles.html#cb9-15" tabindex="-1"></a>                                  <span class="at">feature=</span><span class="st">&quot;Progeny_1&quot;</span>,</span>
+<span id="cb9-16"><a href="cytokine-profiles.html#cb9-16" tabindex="-1"></a>                                  <span class="at">truncTime =</span> <span class="dv">15</span>,</span>
+<span id="cb9-17"><a href="cytokine-profiles.html#cb9-17" tabindex="-1"></a>                                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Time&quot;</span>,<span class="st">&quot;CRS&quot;</span>,<span class="st">&quot;CRS grade&quot;</span>) )</span>
+<span id="cb9-18"><a href="cytokine-profiles.html#cb9-18" tabindex="-1"></a>trCONNECTORList<span class="sc">$</span>PlotTimeSeries_plot</span>
+<span id="cb9-19"><a href="cytokine-profiles.html#cb9-19" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="cytokine-profiles.html#cb9-20" tabindex="-1"></a>CrossLogLike <span class="ot">&lt;-</span> <span class="fu">BasisDimension.Choice</span>(<span class="at">data =</span> trCONNECTORList,</span>
+<span id="cb9-21"><a href="cytokine-profiles.html#cb9-21" tabindex="-1"></a>                                      <span class="at">p =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span> )</span>
+<span id="cb9-22"><a href="cytokine-profiles.html#cb9-22" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="cytokine-profiles.html#cb9-23" tabindex="-1"></a>ClusteringList <span class="ot">&lt;-</span> <span class="fu">ClusterAnalysis</span>(<span class="at">data =</span> trCONNECTORList,</span>
+<span id="cb9-24"><a href="cytokine-profiles.html#cb9-24" tabindex="-1"></a>                                  <span class="at">G =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,</span>
+<span id="cb9-25"><a href="cytokine-profiles.html#cb9-25" tabindex="-1"></a>                                  <span class="at">p =</span> <span class="dv">2</span>,</span>
+<span id="cb9-26"><a href="cytokine-profiles.html#cb9-26" tabindex="-1"></a>                                  <span class="at">runs =</span> <span class="dv">1000</span>)</span>
+<span id="cb9-27"><a href="cytokine-profiles.html#cb9-27" tabindex="-1"></a><span class="fu">str</span>(ClusteringList, <span class="at">max.level =</span> <span class="dv">2</span>, <span class="at">vec.len =</span> <span class="dv">1</span>)</span>
+<span id="cb9-28"><a href="cytokine-profiles.html#cb9-28" tabindex="-1"></a><span class="fu">IndexesPlot.Extrapolation</span>(ClusteringList) <span class="ot">-&gt;</span> indexes</span>
+<span id="cb9-29"><a href="cytokine-profiles.html#cb9-29" tabindex="-1"></a>indexes<span class="sc">$</span>Plot</span>
+<span id="cb9-30"><a href="cytokine-profiles.html#cb9-30" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="cytokine-profiles.html#cb9-31" tabindex="-1"></a></span>
+<span id="cb9-32"><a href="cytokine-profiles.html#cb9-32" tabindex="-1"></a><span class="co">#ClusteringList$Clusters.List$G2$ClusterAll[[1]]$FCM$cluster$ClustCurve</span></span>
+<span id="cb9-33"><a href="cytokine-profiles.html#cb9-33" tabindex="-1"></a>a <span class="ot">&lt;-</span> ClusteringList<span class="sc">$</span>Clusters.List<span class="sc">$</span>G2<span class="sc">$</span>ClusterAll[[<span class="dv">1</span>]]<span class="sc">$</span>FCM<span class="sc">$</span>cluster<span class="sc">$</span>ClustCurve</span>
+<span id="cb9-34"><a href="cytokine-profiles.html#cb9-34" tabindex="-1"></a><span class="fu">table</span>(a<span class="sc">$</span>Cluster[<span class="fu">which</span>(a<span class="sc">$</span>Time <span class="sc">==</span> <span class="dv">0</span>)])</span>
+<span id="cb9-35"><a href="cytokine-profiles.html#cb9-35" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="cytokine-profiles.html#cb9-36" tabindex="-1"></a><span class="co">#ClusteringList$Clusters.List$G3$ClusterAll[[1]]$FCM$cluster$ClustCurve</span></span>
+<span id="cb9-37"><a href="cytokine-profiles.html#cb9-37" tabindex="-1"></a>a <span class="ot">&lt;-</span> ClusteringList<span class="sc">$</span>Clusters.List<span class="sc">$</span>G3<span class="sc">$</span>ClusterAll[[<span class="dv">1</span>]]<span class="sc">$</span>FCM<span class="sc">$</span>cluster<span class="sc">$</span>ClustCurve</span>
+<span id="cb9-38"><a href="cytokine-profiles.html#cb9-38" tabindex="-1"></a><span class="fu">table</span>(a<span class="sc">$</span>Cluster[<span class="fu">which</span>(a<span class="sc">$</span>Time <span class="sc">==</span> <span class="dv">0</span>)])</span>
+<span id="cb9-39"><a href="cytokine-profiles.html#cb9-39" tabindex="-1"></a></span>
+<span id="cb9-40"><a href="cytokine-profiles.html#cb9-40" tabindex="-1"></a>a <span class="ot">&lt;-</span> ClusteringList<span class="sc">$</span>Clusters.List<span class="sc">$</span>G4<span class="sc">$</span>ClusterAll[[<span class="dv">1</span>]]<span class="sc">$</span>FCM<span class="sc">$</span>cluster<span class="sc">$</span>ClustCurve</span>
+<span id="cb9-41"><a href="cytokine-profiles.html#cb9-41" tabindex="-1"></a><span class="fu">table</span>(a<span class="sc">$</span>Cluster[<span class="fu">which</span>(a<span class="sc">$</span>Time <span class="sc">==</span> <span class="dv">0</span>)])</span>
+<span id="cb9-42"><a href="cytokine-profiles.html#cb9-42" tabindex="-1"></a></span>
+<span id="cb9-43"><a href="cytokine-profiles.html#cb9-43" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="cytokine-profiles.html#cb9-44" tabindex="-1"></a>ConsMatrix <span class="ot">&lt;-</span> <span class="fu">ConsMatrix.Extrapolation</span>(<span class="at">stability.list =</span> ClusteringList)</span>
+<span id="cb9-45"><a href="cytokine-profiles.html#cb9-45" tabindex="-1"></a>ConsMatrix<span class="sc">$</span>G2<span class="sc">$</span>ConsensusPlot <span class="sc">+</span> <span class="fu">scale_fill_gradientn</span>(<span class="at">colours =</span> <span class="fu">c</span>(<span class="st">&quot;#00599F&quot;</span>,<span class="st">&quot;#62aee5&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;#db1b18&quot;</span>, <span class="st">&quot;#b50600&quot;</span>, <span class="st">&quot;#b50600&quot;</span>), <span class="at">na.value =</span> <span class="cn">NA</span>)</span>
+<span id="cb9-46"><a href="cytokine-profiles.html#cb9-46" tabindex="-1"></a></span>
+<span id="cb9-47"><a href="cytokine-profiles.html#cb9-47" tabindex="-1"></a>ConsMatrix<span class="sc">$</span>G3<span class="sc">$</span>ConsensusPlot <span class="sc">+</span> <span class="fu">scale_fill_gradientn</span>(<span class="at">colours =</span> <span class="fu">c</span>(<span class="st">&quot;#00599F&quot;</span>,<span class="st">&quot;#62aee5&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;#db1b18&quot;</span>, <span class="st">&quot;#b50600&quot;</span>, <span class="st">&quot;#b50600&quot;</span>), <span class="at">na.value =</span> <span class="cn">NA</span>)</span>
+<span id="cb9-48"><a href="cytokine-profiles.html#cb9-48" tabindex="-1"></a></span>
+<span id="cb9-49"><a href="cytokine-profiles.html#cb9-49" tabindex="-1"></a>ConsMatrix<span class="sc">$</span>G4<span class="sc">$</span>ConsensusPlot <span class="sc">+</span> <span class="fu">scale_fill_gradientn</span>(<span class="at">colours =</span> <span class="fu">c</span>(<span class="st">&quot;#00599F&quot;</span>,<span class="st">&quot;#62aee5&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;#db1b18&quot;</span>, <span class="st">&quot;#b50600&quot;</span>, <span class="st">&quot;#b50600&quot;</span>), <span class="at">na.value =</span> <span class="cn">NA</span>)</span>
+<span id="cb9-50"><a href="cytokine-profiles.html#cb9-50" tabindex="-1"></a></span>
+<span id="cb9-51"><a href="cytokine-profiles.html#cb9-51" tabindex="-1"></a>CONNECTORList.FCM.opt <span class="ot">&lt;-</span> <span class="fu">MostProbableClustering.Extrapolation</span>(</span>
+<span id="cb9-52"><a href="cytokine-profiles.html#cb9-52" tabindex="-1"></a>  <span class="at">stability.list =</span> ClusteringList,</span>
+<span id="cb9-53"><a href="cytokine-profiles.html#cb9-53" tabindex="-1"></a>  <span class="at">G =</span> <span class="dv">2</span> )</span>
+<span id="cb9-54"><a href="cytokine-profiles.html#cb9-54" tabindex="-1"></a>FCMplots <span class="ot">&lt;-</span> <span class="fu">ClusterWithMeanCurve</span>(<span class="at">clusterdata =</span> CONNECTORList.FCM.opt,</span>
+<span id="cb9-55"><a href="cytokine-profiles.html#cb9-55" tabindex="-1"></a>                                <span class="at">feature =</span> <span class="st">&quot;Progeny_1&quot;</span>,</span>
+<span id="cb9-56"><a href="cytokine-profiles.html#cb9-56" tabindex="-1"></a>                                <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Time&quot;</span>,<span class="st">&quot;Volume&quot;</span>),</span>
+<span id="cb9-57"><a href="cytokine-profiles.html#cb9-57" tabindex="-1"></a>                                <span class="at">title =</span> <span class="st">&quot;FCM model&quot;</span>)</span>
+<span id="cb9-58"><a href="cytokine-profiles.html#cb9-58" tabindex="-1"></a></span>
+<span id="cb9-59"><a href="cytokine-profiles.html#cb9-59" tabindex="-1"></a>NumberSamples <span class="ot">&lt;-</span> <span class="fu">CountingSamples</span>(<span class="at">clusterdata =</span> CONNECTORList.FCM.opt,</span>
+<span id="cb9-60"><a href="cytokine-profiles.html#cb9-60" tabindex="-1"></a>                               <span class="at">feature =</span> <span class="st">&quot;Progeny_1&quot;</span>)</span>
+<span id="cb9-61"><a href="cytokine-profiles.html#cb9-61" tabindex="-1"></a></span>
+<span id="cb9-62"><a href="cytokine-profiles.html#cb9-62" tabindex="-1"></a>DiscrPlt <span class="ot">&lt;-</span> <span class="fu">DiscriminantPlot</span>(<span class="at">clusterdata =</span> CONNECTORList.FCM.opt,</span>
+<span id="cb9-63"><a href="cytokine-profiles.html#cb9-63" tabindex="-1"></a>                           <span class="at">feature =</span> <span class="st">&quot;Progeny_1&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>
