@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Analysis | 生信分析系列培训课程（第1期）</title>
+  <meta name="description" content="Chapter 3 Analysis | 生信分析系列培训课程（第1期）" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Analysis | 生信分析系列培训课程（第1期）" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Analysis | 生信分析系列培训课程（第1期）" />
+  
+  
+  
+
+<meta name="author" content="Yuting Dai / Chenxu Gao" />
+
+
+<meta name="date" content="2023-11-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data.html"/>
+<link rel="next" href="others.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">scRNAseq</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#cell-ranger"><i class="fa fa-check"></i><b>2.1</b> Cell Ranger</a></li>
+<li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#sample"><i class="fa fa-check"></i><b>2.2</b> Sample</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>3</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="analysis.html"><a href="analysis.html#ctrl_bm"><i class="fa fa-check"></i><b>3.1</b> CTRL_BM</a></li>
+<li class="chapter" data-level="3.2" data-path="analysis.html"><a href="analysis.html#ball_bm"><i class="fa fa-check"></i><b>3.2</b> BALL_BM</a></li>
+<li class="chapter" data-level="3.3" data-path="analysis.html"><a href="analysis.html#integration"><i class="fa fa-check"></i><b>3.3</b> Integration</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="others.html"><a href="others.html"><i class="fa fa-check"></i><b>4</b> Others</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="others.html"><a href="others.html#r-session-info"><i class="fa fa-check"></i><b>4.1</b> R Session info</a></li>
+<li class="chapter" data-level="4.2" data-path="others.html"><a href="others.html#reference"><i class="fa fa-check"></i><b>4.2</b> Reference</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">生信分析系列培训课程（第1期）</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="analysis" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Analysis<a href="analysis.html#analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<ul>
+<li>Step1: 分别独立分析2个单细胞文库 (详见章节3.1, 3.2)</li>
+<li>Step2: 将Step1的2个独立分析结果整合到一起分析 (详见章节3.3)</li>
+</ul>
+<div id="ctrl_bm" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> CTRL_BM<a href="analysis.html#ctrl_bm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="analysis.html#cb4-1" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
+<span id="cb4-2"><a href="analysis.html#cb4-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb4-3"><a href="analysis.html#cb4-3" tabindex="-1"></a><span class="fu">library</span>(Matrix)</span>
+<span id="cb4-4"><a href="analysis.html#cb4-4" tabindex="-1"></a><span class="fu">library</span>(gplots)</span>
+<span id="cb4-5"><a href="analysis.html#cb4-5" tabindex="-1"></a><span class="fu">library</span>(matrixStats)</span>
+<span id="cb4-6"><a href="analysis.html#cb4-6" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb4-7"><a href="analysis.html#cb4-7" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb4-8"><a href="analysis.html#cb4-8" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb4-9"><a href="analysis.html#cb4-9" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb4-10"><a href="analysis.html#cb4-10" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span>
+<span id="cb4-11"><a href="analysis.html#cb4-11" tabindex="-1"></a><span class="fu">library</span>(SingleR)</span>
+<span id="cb4-12"><a href="analysis.html#cb4-12" tabindex="-1"></a><span class="fu">library</span>(monocle3) <span class="co"># devtools::install_github(&#39;cole-trapnell-lab/monocle3&#39;)</span></span>
+<span id="cb4-13"><a href="analysis.html#cb4-13" tabindex="-1"></a><span class="fu">library</span>(harmony)  <span class="co"># install.packages(&quot;harmony&quot;) </span></span>
+<span id="cb4-14"><a href="analysis.html#cb4-14" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb4-15"><a href="analysis.html#cb4-15" tabindex="-1"></a><span class="co">#  Step 1: setting</span></span>
+<span id="cb4-16"><a href="analysis.html#cb4-16" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb4-17"><a href="analysis.html#cb4-17" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb4-18"><a href="analysis.html#cb4-18" tabindex="-1"></a>color.lib <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#E31A1C&quot;</span>, <span class="st">&quot;#55c2fc&quot;</span>, <span class="st">&quot;#A6761D&quot;</span>, <span class="st">&quot;#F1E404&quot;</span>, <span class="st">&quot;#33A02C&quot;</span>, <span class="st">&quot;#1F78B4&quot;</span>, </span>
+<span id="cb4-19"><a href="analysis.html#cb4-19" tabindex="-1"></a>               <span class="st">&quot;#FB9A99&quot;</span>, <span class="st">&quot;#FDBF6F&quot;</span>, <span class="st">&quot;#FF7F00&quot;</span>, <span class="st">&quot;#CAB2D6&quot;</span>, <span class="st">&quot;#6A3D9A&quot;</span>, <span class="st">&quot;#F4B3BE&quot;</span>,</span>
+<span id="cb4-20"><a href="analysis.html#cb4-20" tabindex="-1"></a>               <span class="st">&quot;#1B9E77&quot;</span>, <span class="st">&quot;#D95F02&quot;</span>, <span class="st">&quot;#7570B3&quot;</span>, <span class="st">&quot;#E7298A&quot;</span>, <span class="st">&quot;#66A61E&quot;</span>, <span class="st">&quot;#E6AB02&quot;</span>, </span>
+<span id="cb4-21"><a href="analysis.html#cb4-21" tabindex="-1"></a>               <span class="st">&quot;#F4A11D&quot;</span>, <span class="st">&quot;#8DC8ED&quot;</span>, <span class="st">&quot;#4C6CB0&quot;</span>, <span class="st">&quot;#8A1C1B&quot;</span>, <span class="st">&quot;#CBCC2B&quot;</span>, <span class="st">&quot;#EA644C&quot;</span>,</span>
+<span id="cb4-22"><a href="analysis.html#cb4-22" tabindex="-1"></a>               <span class="st">&quot;#634795&quot;</span>, <span class="st">&quot;#005B1D&quot;</span>, <span class="st">&quot;#26418A&quot;</span>, <span class="st">&quot;#CB8A93&quot;</span>, <span class="st">&quot;#B2DF8A&quot;</span>, <span class="st">&quot;#E22826&quot;</span>,</span>
+<span id="cb4-23"><a href="analysis.html#cb4-23" tabindex="-1"></a>               <span class="st">&quot;#A6CEE3&quot;</span>, <span class="st">&quot;#F4D31D&quot;</span>, <span class="st">&quot;#F4A11D&quot;</span>, <span class="st">&quot;#82C800&quot;</span>, <span class="st">&quot;#8B5900&quot;</span>, <span class="st">&quot;#858ED1&quot;</span>,</span>
+<span id="cb4-24"><a href="analysis.html#cb4-24" tabindex="-1"></a>               <span class="st">&quot;#FF72E1&quot;</span>, <span class="st">&quot;#CB50B2&quot;</span>, <span class="st">&quot;#007D9B&quot;</span>, <span class="st">&quot;#26418A&quot;</span>, <span class="st">&quot;#8B495F&quot;</span>, <span class="st">&quot;#FF394B&quot;</span>)</span>
+<span id="cb4-25"><a href="analysis.html#cb4-25" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="analysis.html#cb4-26" tabindex="-1"></a>sample.name <span class="ot">=</span> <span class="st">&quot;CTRL_BM&quot;</span></span>
+<span id="cb4-27"><a href="analysis.html#cb4-27" tabindex="-1"></a><span class="fu">message</span>(sample.name)</span>
+<span id="cb4-28"><a href="analysis.html#cb4-28" tabindex="-1"></a><span class="co"># Set output path</span></span>
+<span id="cb4-29"><a href="analysis.html#cb4-29" tabindex="-1"></a>out.path <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;output/&quot;</span>, sample.name) <span class="co">#system(sprintf(&quot;mkdir %s&quot;, out.path))</span></span>
+<span id="cb4-30"><a href="analysis.html#cb4-30" tabindex="-1"></a><span class="fu">dir.create</span>(out.path,<span class="at">recursive =</span> T)</span>
+<span id="cb4-31"><a href="analysis.html#cb4-31" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb4-32"><a href="analysis.html#cb4-32" tabindex="-1"></a><span class="co">#  Step 2: Setup the Seurat Object</span></span>
+<span id="cb4-33"><a href="analysis.html#cb4-33" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb4-34"><a href="analysis.html#cb4-34" tabindex="-1"></a><span class="co"># load data from data folder</span></span>
+<span id="cb4-35"><a href="analysis.html#cb4-35" tabindex="-1"></a>scell.data <span class="ot">&lt;-</span> <span class="fu">Read10X</span>(<span class="at">data.dir =</span> <span class="fu">paste0</span>(<span class="st">&quot;data/&quot;</span>, sample.name) )</span>
+<span id="cb4-36"><a href="analysis.html#cb4-36" tabindex="-1"></a><span class="fu">colnames</span>(scell.data) <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(<span class="fu">colnames</span>(scell.data), <span class="st">&quot;1&quot;</span>, sample.name)</span>
+<span id="cb4-37"><a href="analysis.html#cb4-37" tabindex="-1"></a><span class="co"># Initialize the Seurat object with the raw (non-normalized data)</span></span>
+<span id="cb4-38"><a href="analysis.html#cb4-38" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">CreateSeuratObject</span>(<span class="at">counts =</span> scell.data, <span class="at">project =</span> <span class="st">&quot;sce&quot;</span>, <span class="at">min.cells =</span> <span class="dv">0</span>, <span class="at">min.features =</span> <span class="dv">0</span>)</span>
+<span id="cb4-39"><a href="analysis.html#cb4-39" tabindex="-1"></a><span class="co"># Add sample information</span></span>
+<span id="cb4-40"><a href="analysis.html#cb4-40" tabindex="-1"></a>sce<span class="sc">@</span>meta.data<span class="sc">$</span>Sample <span class="ot">=</span> sample.name</span>
+<span id="cb4-41"><a href="analysis.html#cb4-41" tabindex="-1"></a>sce</span>
+<span id="cb4-42"><a href="analysis.html#cb4-42" tabindex="-1"></a><span class="fu">head</span>(sce<span class="sc">@</span>meta.data)</span>
+<span id="cb4-43"><a href="analysis.html#cb4-43" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb4-44"><a href="analysis.html#cb4-44" tabindex="-1"></a><span class="co">#  Step 3: QC and selecting cells</span></span>
+<span id="cb4-45"><a href="analysis.html#cb4-45" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb4-46"><a href="analysis.html#cb4-46" tabindex="-1"></a><span class="co"># key challenges: ensure that only single, live cells are included in downstream analysis</span></span>
+<span id="cb4-47"><a href="analysis.html#cb4-47" tabindex="-1"></a><span class="do">## mitochondrial gene</span></span>
+<span id="cb4-48"><a href="analysis.html#cb4-48" tabindex="-1"></a>sce[[<span class="st">&quot;percent.mt&quot;</span>]] <span class="ot">&lt;-</span> <span class="fu">PercentageFeatureSet</span>(sce, <span class="at">pattern =</span> <span class="st">&quot;^MT-&quot;</span>)</span>
+<span id="cb4-49"><a href="analysis.html#cb4-49" tabindex="-1"></a>sce</span>
+<span id="cb4-50"><a href="analysis.html#cb4-50" tabindex="-1"></a><span class="fu">summary</span>(sce<span class="sc">@</span>meta.data<span class="sc">$</span>percent.mt)</span>
+<span id="cb4-51"><a href="analysis.html#cb4-51" tabindex="-1"></a><span class="co"># Visualize QC metrics as a violin plot</span></span>
+<span id="cb4-52"><a href="analysis.html#cb4-52" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/1.vlnplot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb4-53"><a href="analysis.html#cb4-53" tabindex="-1"></a><span class="fu">VlnPlot</span>(sce, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">&quot;nFeature_RNA&quot;</span>, <span class="st">&quot;nCount_RNA&quot;</span>, <span class="st">&quot;percent.mt&quot;</span>), <span class="at">group.by =</span> <span class="st">&quot;orig.ident&quot;</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb4-54"><a href="analysis.html#cb4-54" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p><img src="output/CTRL_BM/1.vlnplot.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="analysis.html#cb5-1" tabindex="-1"></a><span class="co"># visualize feature-feature relationships</span></span>
+<span id="cb5-2"><a href="analysis.html#cb5-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/1.geneplot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb5-3"><a href="analysis.html#cb5-3" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(sce, <span class="at">feature1 =</span> <span class="st">&quot;nCount_RNA&quot;</span>, <span class="at">feature2 =</span> <span class="st">&quot;percent.mt&quot;</span>)</span>
+<span id="cb5-4"><a href="analysis.html#cb5-4" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(sce, <span class="at">feature1 =</span> <span class="st">&quot;nCount_RNA&quot;</span>, <span class="at">feature2 =</span> <span class="st">&quot;nFeature_RNA&quot;</span>)</span>
+<span id="cb5-5"><a href="analysis.html#cb5-5" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2</span>
+<span id="cb5-6"><a href="analysis.html#cb5-6" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p><img src="output/CTRL_BM/1.geneplot.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="analysis.html#cb6-1" tabindex="-1"></a><span class="do">## QC : selecting cells</span></span>
+<span id="cb6-2"><a href="analysis.html#cb6-2" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">subset</span>(sce, <span class="at">subset =</span> nFeature_RNA <span class="sc">&gt;</span> <span class="dv">200</span> <span class="sc">&amp;</span> percent.mt <span class="sc">&lt;</span> <span class="dv">20</span>)</span>
+<span id="cb6-3"><a href="analysis.html#cb6-3" tabindex="-1"></a>sce</span>
+<span id="cb6-4"><a href="analysis.html#cb6-4" tabindex="-1"></a><span class="co"># plot after QC</span></span>
+<span id="cb6-5"><a href="analysis.html#cb6-5" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/2.filter.vlnplot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb6-6"><a href="analysis.html#cb6-6" tabindex="-1"></a><span class="fu">VlnPlot</span>(sce, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">&quot;nFeature_RNA&quot;</span>, <span class="st">&quot;nCount_RNA&quot;</span>, <span class="st">&quot;percent.mt&quot;</span>),  <span class="at">group.by =</span> <span class="st">&quot;orig.ident&quot;</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb6-7"><a href="analysis.html#cb6-7" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p><img src="output/CTRL_BM/2.filter.vlnplot.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="analysis.html#cb7-1" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/2.filter.geneplot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb7-2"><a href="analysis.html#cb7-2" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(sce, <span class="at">feature1 =</span> <span class="st">&quot;nCount_RNA&quot;</span>, <span class="at">feature2 =</span> <span class="st">&quot;percent.mt&quot;</span>)</span>
+<span id="cb7-3"><a href="analysis.html#cb7-3" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(sce, <span class="at">feature1 =</span> <span class="st">&quot;nCount_RNA&quot;</span>, <span class="at">feature2 =</span> <span class="st">&quot;nFeature_RNA&quot;</span>)</span>
+<span id="cb7-4"><a href="analysis.html#cb7-4" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2</span>
+<span id="cb7-5"><a href="analysis.html#cb7-5" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p><img src="output/CTRL_BM/2.filter.geneplot.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="analysis.html#cb8-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb8-2"><a href="analysis.html#cb8-2" tabindex="-1"></a><span class="co">#  Step 4: Normalizing the data</span></span>
+<span id="cb8-3"><a href="analysis.html#cb8-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb8-4"><a href="analysis.html#cb8-4" tabindex="-1"></a><span class="co"># After removing unwanted cells from the dataset, the next step is to normalize the data.</span></span>
+<span id="cb8-5"><a href="analysis.html#cb8-5" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(sce, <span class="at">normalization.method =</span> <span class="st">&quot;LogNormalize&quot;</span>, <span class="at">scale.factor =</span> <span class="fu">ncol</span>(sce))</span>
+<span id="cb8-6"><a href="analysis.html#cb8-6" tabindex="-1"></a><span class="co"># By default, we employ a global-scaling normalization method “LogNormalize” that normalizes the feature expression measurements for each cell by the total expression, multiplies this by a scale factor (10,000 by default), and log-transforms the result. Normalized values are stored in pbmc[[&quot;RNA&quot;]]@data</span></span>
+<span id="cb8-7"><a href="analysis.html#cb8-7" tabindex="-1"></a>sce[[<span class="st">&quot;RNA&quot;</span>]]<span class="sc">@</span>data[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb8-8"><a href="analysis.html#cb8-8" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb8-9"><a href="analysis.html#cb8-9" tabindex="-1"></a><span class="co">#  Step 5: Identification of highly variable features (feature selection)</span></span>
+<span id="cb8-10"><a href="analysis.html#cb8-10" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb8-11"><a href="analysis.html#cb8-11" tabindex="-1"></a><span class="co"># We next calculate a subset of features that exhibit high cell-to-cell variation in the dataset</span></span>
+<span id="cb8-12"><a href="analysis.html#cb8-12" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(sce, <span class="at">selection.method =</span> <span class="st">&quot;vst&quot;</span>, <span class="at">nfeatures =</span> <span class="dv">2000</span>)</span>
+<span id="cb8-13"><a href="analysis.html#cb8-13" tabindex="-1"></a><span class="co"># Identify the 10 most highly variable genes</span></span>
+<span id="cb8-14"><a href="analysis.html#cb8-14" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">VariableFeatures</span>(sce), <span class="dv">10</span>)</span>
+<span id="cb8-15"><a href="analysis.html#cb8-15" tabindex="-1"></a><span class="co"># plot variable features with and without labels</span></span>
+<span id="cb8-16"><a href="analysis.html#cb8-16" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/3.VariableFeaturePlot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb8-17"><a href="analysis.html#cb8-17" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">VariableFeaturePlot</span>(sce)</span>
+<span id="cb8-18"><a href="analysis.html#cb8-18" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">LabelPoints</span>(<span class="at">plot =</span> plot1, <span class="at">points =</span> top10, <span class="at">repel =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-19"><a href="analysis.html#cb8-19" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2</span>
+<span id="cb8-20"><a href="analysis.html#cb8-20" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p><img src="output/CTRL_BM/3.VariableFeaturePlot.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="analysis.html#cb9-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb9-2"><a href="analysis.html#cb9-2" tabindex="-1"></a><span class="co">#  Step 6: Scaling the data</span></span>
+<span id="cb9-3"><a href="analysis.html#cb9-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb9-4"><a href="analysis.html#cb9-4" tabindex="-1"></a><span class="co"># linear transformation: pre-processing step prior to dimensional reduction techniques like PCA</span></span>
+<span id="cb9-5"><a href="analysis.html#cb9-5" tabindex="-1"></a>all.genes <span class="ot">&lt;-</span> <span class="fu">rownames</span>(sce)</span>
+<span id="cb9-6"><a href="analysis.html#cb9-6" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(sce, <span class="at">features =</span> <span class="fu">VariableFeatures</span>(sce))</span>
+<span id="cb9-7"><a href="analysis.html#cb9-7" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(sce, <span class="at">features =</span> <span class="fu">VariableFeatures</span>(<span class="at">object =</span> sce))</span>
+<span id="cb9-8"><a href="analysis.html#cb9-8" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;pca&quot;</span>) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb9-9"><a href="analysis.html#cb9-9" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/4.PCA.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="output/CTRL_BM/4.PCA.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="analysis.html#cb10-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb10-2"><a href="analysis.html#cb10-2" tabindex="-1"></a><span class="co">#  Step 7: Cluster the cells</span></span>
+<span id="cb10-3"><a href="analysis.html#cb10-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb10-4"><a href="analysis.html#cb10-4" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;pca&quot;</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb10-5"><a href="analysis.html#cb10-5" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(sce, <span class="at">resolution =</span> <span class="fl">0.8</span>)</span>
+<span id="cb10-6"><a href="analysis.html#cb10-6" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb10-7"><a href="analysis.html#cb10-7" tabindex="-1"></a><span class="co">#  Step 8: Run non-linear dimensional reduction (UMAP/tSNE)</span></span>
+<span id="cb10-8"><a href="analysis.html#cb10-8" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb10-9"><a href="analysis.html#cb10-9" tabindex="-1"></a><span class="co"># to learn the underlying manifold of the data in order to place similar cells together in low-dimensional space</span></span>
+<span id="cb10-10"><a href="analysis.html#cb10-10" tabindex="-1"></a><span class="co"># If you haven&#39;t installed UMAP, you can do so via reticulate::py_install(packages =</span></span>
+<span id="cb10-11"><a href="analysis.html#cb10-11" tabindex="-1"></a><span class="co"># &#39;umap-learn&#39;)</span></span>
+<span id="cb10-12"><a href="analysis.html#cb10-12" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">RunTSNE</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;pca&quot;</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">perplexity =</span> <span class="dv">30</span>)</span>
+<span id="cb10-13"><a href="analysis.html#cb10-13" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">RunUMAP</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;pca&quot;</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb10-14"><a href="analysis.html#cb10-14" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb10-15"><a href="analysis.html#cb10-15" tabindex="-1"></a><span class="co"># umap</span></span>
+<span id="cb10-16"><a href="analysis.html#cb10-16" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, </span>
+<span id="cb10-17"><a href="analysis.html#cb10-17" tabindex="-1"></a>             <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb10-18"><a href="analysis.html#cb10-18" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/5.UMAP.cluster.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb10-19"><a href="analysis.html#cb10-19" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="analysis.html#cb10-20" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">10</span>,</span>
+<span id="cb10-21"><a href="analysis.html#cb10-21" tabindex="-1"></a>             <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb10-22"><a href="analysis.html#cb10-22" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/5.UMAP.cluster.label.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="output/CTRL_BM/5.UMAP.cluster.label.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="analysis.html#cb11-1" tabindex="-1"></a><span class="co"># tsne</span></span>
+<span id="cb11-2"><a href="analysis.html#cb11-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, </span>
+<span id="cb11-3"><a href="analysis.html#cb11-3" tabindex="-1"></a>             <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb11-4"><a href="analysis.html#cb11-4" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/6.tSNE.cluster.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb11-5"><a href="analysis.html#cb11-5" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="analysis.html#cb11-6" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">10</span>,</span>
+<span id="cb11-7"><a href="analysis.html#cb11-7" tabindex="-1"></a>             <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb11-8"><a href="analysis.html#cb11-8" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/6.tSNE.cluster.label.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="output/CTRL_BM/6.tSNE.cluster.label.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="analysis.html#cb12-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb12-2"><a href="analysis.html#cb12-2" tabindex="-1"></a><span class="co">#  Step 9: Cell cycle</span></span>
+<span id="cb12-3"><a href="analysis.html#cb12-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb12-4"><a href="analysis.html#cb12-4" tabindex="-1"></a><span class="co"># build-in cell cycle genes</span></span>
+<span id="cb12-5"><a href="analysis.html#cb12-5" tabindex="-1"></a>cc.genes</span>
+<span id="cb12-6"><a href="analysis.html#cb12-6" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">CellCycleScoring</span>(sce, <span class="at">s.features =</span> cc.genes<span class="sc">$</span>s.genes, <span class="at">g2m.features =</span> cc.genes<span class="sc">$</span>g2m.genes)</span>
+<span id="cb12-7"><a href="analysis.html#cb12-7" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="analysis.html#cb12-8" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb12-9"><a href="analysis.html#cb12-9" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;Phase&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb12-10"><a href="analysis.html#cb12-10" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/7.CC.phase.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb12-11"><a href="analysis.html#cb12-11" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="analysis.html#cb12-12" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">VlnPlot</span>(sce, <span class="at">features =</span> <span class="st">&quot;S.Score&quot;</span>, <span class="at">pt.size =</span> <span class="dv">0</span>, </span>
+<span id="cb12-13"><a href="analysis.html#cb12-13" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;seurat_clusters&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb12-14"><a href="analysis.html#cb12-14" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/7.CC.score.S.Score.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>)</span>
+<span id="cb12-15"><a href="analysis.html#cb12-15" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="analysis.html#cb12-16" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">VlnPlot</span>(sce, <span class="at">features =</span> <span class="st">&quot;G2M.Score&quot;</span>, <span class="at">pt.size =</span> <span class="dv">0</span>, </span>
+<span id="cb12-17"><a href="analysis.html#cb12-17" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;seurat_clusters&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb12-18"><a href="analysis.html#cb12-18" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/7.CC.score.G2M.Score.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="output/CTRL_BM/7.CC.score.G2M.Score.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="analysis.html#cb13-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb13-2"><a href="analysis.html#cb13-2" tabindex="-1"></a><span class="co">#  Step 10: SingleR annotation</span></span>
+<span id="cb13-3"><a href="analysis.html#cb13-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb13-4"><a href="analysis.html#cb13-4" tabindex="-1"></a><span class="co"># first, load reference datasets. Then, annotate your query data based on reference datasets.</span></span>
+<span id="cb13-5"><a href="analysis.html#cb13-5" tabindex="-1"></a>ref <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">&quot;./data/SingleR/hs.BlueprintEncodeData.RDS&quot;</span>)</span>
+<span id="cb13-6"><a href="analysis.html#cb13-6" tabindex="-1"></a>pred.BlueprintEncodeData <span class="ot">&lt;-</span> <span class="fu">SingleR</span>(<span class="at">test =</span> sce<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">@</span>data, <span class="at">ref =</span> ref, <span class="at">labels =</span> ref<span class="sc">$</span>label.main)</span>
+<span id="cb13-7"><a href="analysis.html#cb13-7" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="analysis.html#cb13-8" tabindex="-1"></a>ref <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">&quot;./data/SingleR/hs.HumanPrimaryCellAtlasData.RDS&quot;</span>)</span>
+<span id="cb13-9"><a href="analysis.html#cb13-9" tabindex="-1"></a>pred.HumanPrimaryCellAtlasData <span class="ot">&lt;-</span> <span class="fu">SingleR</span>(<span class="at">test =</span> sce<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">@</span>data, <span class="at">ref =</span> ref, <span class="at">labels =</span> ref<span class="sc">$</span>label.main)</span>
+<span id="cb13-10"><a href="analysis.html#cb13-10" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="analysis.html#cb13-11" tabindex="-1"></a>ref <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">&quot;./data/SingleR/NovershternHematopoieticData.RDS&quot;</span>)</span>
+<span id="cb13-12"><a href="analysis.html#cb13-12" tabindex="-1"></a>pred.NovershternHematopoieticData <span class="ot">&lt;-</span> <span class="fu">SingleR</span>(<span class="at">test =</span> sce<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">@</span>data, <span class="at">ref =</span> ref, <span class="at">labels =</span> ref<span class="sc">$</span>label.main)</span>
+<span id="cb13-13"><a href="analysis.html#cb13-13" tabindex="-1"></a><span class="co"># add annotations to meta data</span></span>
+<span id="cb13-14"><a href="analysis.html#cb13-14" tabindex="-1"></a>sce<span class="sc">@</span>meta.data<span class="sc">$</span>CellType.BlueprintEncodeData <span class="ot">&lt;-</span> pred.BlueprintEncodeData<span class="sc">$</span>labels</span>
+<span id="cb13-15"><a href="analysis.html#cb13-15" tabindex="-1"></a>sce<span class="sc">@</span>meta.data<span class="sc">$</span>CellType.HumanPrimaryCellAtlasData <span class="ot">&lt;-</span> pred.HumanPrimaryCellAtlasData<span class="sc">$</span>labels</span>
+<span id="cb13-16"><a href="analysis.html#cb13-16" tabindex="-1"></a>sce<span class="sc">@</span>meta.data<span class="sc">$</span>CellType.NovershternHematopoieticData <span class="ot">&lt;-</span> pred.NovershternHematopoieticData<span class="sc">$</span>labels</span>
+<span id="cb13-17"><a href="analysis.html#cb13-17" tabindex="-1"></a><span class="co"># plot with annotations</span></span>
+<span id="cb13-18"><a href="analysis.html#cb13-18" tabindex="-1"></a><span class="co"># umap</span></span>
+<span id="cb13-19"><a href="analysis.html#cb13-19" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">4</span>,</span>
+<span id="cb13-20"><a href="analysis.html#cb13-20" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType.BlueprintEncodeData&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb13-21"><a href="analysis.html#cb13-21" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/8.SingleR.umap.BlueprintEncodeData.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb13-22"><a href="analysis.html#cb13-22" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="analysis.html#cb13-23" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">4</span>,</span>
+<span id="cb13-24"><a href="analysis.html#cb13-24" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType.HumanPrimaryCellAtlasData&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb13-25"><a href="analysis.html#cb13-25" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/8.SingleR.umap.HumanPrimaryCellAtlasData.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb13-26"><a href="analysis.html#cb13-26" tabindex="-1"></a></span>
+<span id="cb13-27"><a href="analysis.html#cb13-27" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">4</span>,</span>
+<span id="cb13-28"><a href="analysis.html#cb13-28" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType.NovershternHematopoieticData&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb13-29"><a href="analysis.html#cb13-29" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/8.SingleR.umap.NovershternHematopoieticData.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb13-30"><a href="analysis.html#cb13-30" tabindex="-1"></a><span class="co"># tsne</span></span>
+<span id="cb13-31"><a href="analysis.html#cb13-31" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">4</span>,</span>
+<span id="cb13-32"><a href="analysis.html#cb13-32" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType.BlueprintEncodeData&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb13-33"><a href="analysis.html#cb13-33" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/8.SingleR.tsne.BlueprintEncodeData.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb13-34"><a href="analysis.html#cb13-34" tabindex="-1"></a></span>
+<span id="cb13-35"><a href="analysis.html#cb13-35" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">4</span>,</span>
+<span id="cb13-36"><a href="analysis.html#cb13-36" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType.HumanPrimaryCellAtlasData&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb13-37"><a href="analysis.html#cb13-37" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/8.SingleR.tsne.HumanPrimaryCellAtlasData.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb13-38"><a href="analysis.html#cb13-38" tabindex="-1"></a></span>
+<span id="cb13-39"><a href="analysis.html#cb13-39" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">4</span>,</span>
+<span id="cb13-40"><a href="analysis.html#cb13-40" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType.NovershternHematopoieticData&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb13-41"><a href="analysis.html#cb13-41" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/8.SingleR.tsne.NovershternHematopoieticData.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="output/CTRL_BM/8.SingleR.tsne.NovershternHematopoieticData.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="analysis.html#cb14-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb14-2"><a href="analysis.html#cb14-2" tabindex="-1"></a><span class="co">#  Step 11: Finding differentially expressed features (find marker)</span></span>
+<span id="cb14-3"><a href="analysis.html#cb14-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb14-4"><a href="analysis.html#cb14-4" tabindex="-1"></a>ident.meta <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">table</span>(sce<span class="sc">@</span>meta.data<span class="sc">$</span>seurat_clusters))</span>
+<span id="cb14-5"><a href="analysis.html#cb14-5" tabindex="-1"></a><span class="fu">colnames</span>(ident.meta) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Cluster&quot;</span>,<span class="st">&quot;CellCount&quot;</span>)</span>
+<span id="cb14-6"><a href="analysis.html#cb14-6" tabindex="-1"></a><span class="fu">write.xlsx</span>(ident.meta, <span class="fu">paste0</span>(out.path, <span class="st">&quot;/9.CellCount.xlsx&quot;</span>), <span class="at">overwrite =</span> T)</span>
+<span id="cb14-7"><a href="analysis.html#cb14-7" tabindex="-1"></a><span class="co"># Cluster   CellCount</span></span>
+<span id="cb14-8"><a href="analysis.html#cb14-8" tabindex="-1"></a><span class="co"># 0 941</span></span>
+<span id="cb14-9"><a href="analysis.html#cb14-9" tabindex="-1"></a><span class="co"># 1 604</span></span>
+<span id="cb14-10"><a href="analysis.html#cb14-10" tabindex="-1"></a><span class="co"># 2 562</span></span>
+<span id="cb14-11"><a href="analysis.html#cb14-11" tabindex="-1"></a><span class="co"># 3 539</span></span>
+<span id="cb14-12"><a href="analysis.html#cb14-12" tabindex="-1"></a><span class="co"># 4 280</span></span>
+<span id="cb14-13"><a href="analysis.html#cb14-13" tabindex="-1"></a><span class="co"># 5 208</span></span>
+<span id="cb14-14"><a href="analysis.html#cb14-14" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="analysis.html#cb14-15" tabindex="-1"></a><span class="co"># find marker</span></span>
+<span id="cb14-16"><a href="analysis.html#cb14-16" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">BuildClusterTree</span>(<span class="at">object =</span> sce)</span>
+<span id="cb14-17"><a href="analysis.html#cb14-17" tabindex="-1"></a>all.markers <span class="ot">&lt;-</span> <span class="fu">FindAllMarkers</span>(<span class="at">object =</span> sce, <span class="at">only.pos =</span> <span class="cn">TRUE</span>, <span class="at">logfc.threshold =</span> <span class="fl">0.1</span>, <span class="at">min.pct =</span> <span class="fl">0.1</span>)</span>
+<span id="cb14-18"><a href="analysis.html#cb14-18" tabindex="-1"></a>all.markers <span class="ot">&lt;-</span> all.markers[<span class="fu">which</span>(all.markers<span class="sc">$</span>p_val_adj <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> all.markers<span class="sc">$</span>avg_log2FC <span class="sc">&gt;</span> <span class="dv">0</span>), ]</span>
+<span id="cb14-19"><a href="analysis.html#cb14-19" tabindex="-1"></a><span class="fu">write.xlsx</span>(all.markers, <span class="fu">paste0</span>(out.path, <span class="st">&quot;/10.top.markers.xlsx&quot;</span>), <span class="at">overwrite =</span> T)</span>
+<span id="cb14-20"><a href="analysis.html#cb14-20" tabindex="-1"></a><span class="co"># plot top 10 markers</span></span>
+<span id="cb14-21"><a href="analysis.html#cb14-21" tabindex="-1"></a>all.markers <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/10.top.markers.xlsx&quot;</span>))</span>
+<span id="cb14-22"><a href="analysis.html#cb14-22" tabindex="-1"></a>all.markers <span class="ot">&lt;-</span> all.markers[<span class="fu">which</span>(all.markers<span class="sc">$</span>pct<span class="fl">.1</span> <span class="sc">&gt;</span> <span class="fl">0.25</span>), ]</span>
+<span id="cb14-23"><a href="analysis.html#cb14-23" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> all.markers <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span> <span class="fu">top_n</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">wt =</span> avg_log2FC)</span>
+<span id="cb14-24"><a href="analysis.html#cb14-24" tabindex="-1"></a>gene.list <span class="ot">&lt;-</span> <span class="fu">unique</span>(top10<span class="sc">$</span>gene)</span>
+<span id="cb14-25"><a href="analysis.html#cb14-25" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DotPlot</span>(sce, <span class="at">features =</span> gene.list, <span class="at">dot.scale =</span> <span class="dv">8</span>, <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&quot;#DDDDDD&quot;</span>, <span class="st">&quot;#003366&quot;</span> ), <span class="at">col.min =</span> <span class="sc">-</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">RotatedAxis</span>()</span>
+<span id="cb14-26"><a href="analysis.html#cb14-26" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_few</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">14</span>))</span>
+<span id="cb14-27"><a href="analysis.html#cb14-27" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>))</span>
+<span id="cb14-28"><a href="analysis.html#cb14-28" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>))</span>
+<span id="cb14-29"><a href="analysis.html#cb14-29" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">gradient_color</span>(<span class="fu">c</span>(<span class="st">&quot;#EEEEEE&quot;</span>,<span class="st">&quot;#ffb459&quot;</span>,<span class="st">&quot;#e8613c&quot;</span>,<span class="st">&quot;#b70909&quot;</span>))</span>
+<span id="cb14-30"><a href="analysis.html#cb14-30" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/10.top.markers.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">20</span>, <span class="at">height =</span> <span class="dv">7</span>) <span class="do">## marker genes dot plot</span></span></code></pre></div>
+<p><img src="output/CTRL_BM/10.top.markers.png" width="800px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="analysis.html#cb15-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb15-2"><a href="analysis.html#cb15-2" tabindex="-1"></a><span class="co">#  Step 12: check wellknown markers</span></span>
+<span id="cb15-3"><a href="analysis.html#cb15-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb15-4"><a href="analysis.html#cb15-4" tabindex="-1"></a><span class="co"># Expression for each cluster</span></span>
+<span id="cb15-5"><a href="analysis.html#cb15-5" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">FeaturePlot</span>(<span class="at">object =</span> sce, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">&quot;CD34&quot;</span>,<span class="st">&quot;AVP&quot;</span>,<span class="st">&quot;CD14&quot;</span>,<span class="st">&quot;HBB&quot;</span>,<span class="st">&quot;CD19&quot;</span>,<span class="st">&quot;CD79A&quot;</span>,<span class="st">&quot;CD3E&quot;</span>,<span class="st">&quot;CD8A&quot;</span>,<span class="st">&quot;CD4&quot;</span>), </span>
+<span id="cb15-6"><a href="analysis.html#cb15-6" tabindex="-1"></a>                 <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&quot;#CCCCCC&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="at">pt.size =</span> <span class="fl">0.3</span>, <span class="at">ncol =</span> <span class="dv">3</span>,</span>
+<span id="cb15-7"><a href="analysis.html#cb15-7" tabindex="-1"></a>                 <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>)</span>
+<span id="cb15-8"><a href="analysis.html#cb15-8" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/11.featurePlot.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">14</span>, <span class="at">height =</span> <span class="dv">12</span>)</span></code></pre></div>
+<p><img src="output/CTRL_BM/11.featurePlot.png" width="800px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="analysis.html#cb16-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">VlnPlot</span>(<span class="at">object =</span> sce, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">&quot;CD34&quot;</span>,<span class="st">&quot;AVP&quot;</span>,<span class="st">&quot;CD14&quot;</span>,<span class="st">&quot;HBB&quot;</span>,<span class="st">&quot;CD19&quot;</span>,<span class="st">&quot;CD79A&quot;</span>,<span class="st">&quot;CD3E&quot;</span>,<span class="st">&quot;CD8A&quot;</span>,<span class="st">&quot;CD4&quot;</span>), </span>
+<span id="cb16-2"><a href="analysis.html#cb16-2" tabindex="-1"></a>             <span class="at">pt.size =</span> <span class="dv">0</span>, <span class="at">cols =</span> color.lib, <span class="at">slot =</span> <span class="st">&quot;data&quot;</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb16-3"><a href="analysis.html#cb16-3" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/11.VlnPlot.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">16</span>, <span class="at">height =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="output/CTRL_BM/11.VlnPlot.png" width="800px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="analysis.html#cb17-1" tabindex="-1"></a><span class="do">## save object</span></span>
+<span id="cb17-2"><a href="analysis.html#cb17-2" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;./output/obj&quot;</span>,<span class="at">recursive =</span> T)</span>
+<span id="cb17-3"><a href="analysis.html#cb17-3" tabindex="-1"></a><span class="fu">saveRDS</span>(sce, <span class="fu">paste0</span>(<span class="st">&quot;./output/obj/20231011.&quot;</span>, sample.name, <span class="st">&quot;.rds&quot;</span>))</span></code></pre></div>
+</div>
+<div id="ball_bm" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> BALL_BM<a href="analysis.html#ball_bm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>分析思路同上</li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="analysis.html#cb18-1" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
+<span id="cb18-2"><a href="analysis.html#cb18-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb18-3"><a href="analysis.html#cb18-3" tabindex="-1"></a><span class="fu">library</span>(Matrix)</span>
+<span id="cb18-4"><a href="analysis.html#cb18-4" tabindex="-1"></a><span class="fu">library</span>(gplots)</span>
+<span id="cb18-5"><a href="analysis.html#cb18-5" tabindex="-1"></a><span class="fu">library</span>(matrixStats)</span>
+<span id="cb18-6"><a href="analysis.html#cb18-6" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb18-7"><a href="analysis.html#cb18-7" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb18-8"><a href="analysis.html#cb18-8" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb18-9"><a href="analysis.html#cb18-9" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb18-10"><a href="analysis.html#cb18-10" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span>
+<span id="cb18-11"><a href="analysis.html#cb18-11" tabindex="-1"></a><span class="fu">library</span>(SingleR)</span>
+<span id="cb18-12"><a href="analysis.html#cb18-12" tabindex="-1"></a><span class="fu">library</span>(monocle3) <span class="co"># devtools::install_github(&#39;cole-trapnell-lab/monocle3&#39;)</span></span>
+<span id="cb18-13"><a href="analysis.html#cb18-13" tabindex="-1"></a><span class="fu">library</span>(harmony)  <span class="co"># install.packages(&quot;harmony&quot;) </span></span>
+<span id="cb18-14"><a href="analysis.html#cb18-14" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb18-15"><a href="analysis.html#cb18-15" tabindex="-1"></a><span class="co">#  Step 1: setting</span></span>
+<span id="cb18-16"><a href="analysis.html#cb18-16" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb18-17"><a href="analysis.html#cb18-17" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb18-18"><a href="analysis.html#cb18-18" tabindex="-1"></a>color.lib <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#E31A1C&quot;</span>, <span class="st">&quot;#55c2fc&quot;</span>, <span class="st">&quot;#A6761D&quot;</span>, <span class="st">&quot;#F1E404&quot;</span>, <span class="st">&quot;#33A02C&quot;</span>, <span class="st">&quot;#1F78B4&quot;</span>, </span>
+<span id="cb18-19"><a href="analysis.html#cb18-19" tabindex="-1"></a>               <span class="st">&quot;#FB9A99&quot;</span>, <span class="st">&quot;#FDBF6F&quot;</span>, <span class="st">&quot;#FF7F00&quot;</span>, <span class="st">&quot;#CAB2D6&quot;</span>, <span class="st">&quot;#6A3D9A&quot;</span>, <span class="st">&quot;#F4B3BE&quot;</span>,</span>
+<span id="cb18-20"><a href="analysis.html#cb18-20" tabindex="-1"></a>               <span class="st">&quot;#1B9E77&quot;</span>, <span class="st">&quot;#D95F02&quot;</span>, <span class="st">&quot;#7570B3&quot;</span>, <span class="st">&quot;#E7298A&quot;</span>, <span class="st">&quot;#66A61E&quot;</span>, <span class="st">&quot;#E6AB02&quot;</span>, </span>
+<span id="cb18-21"><a href="analysis.html#cb18-21" tabindex="-1"></a>               <span class="st">&quot;#F4A11D&quot;</span>, <span class="st">&quot;#8DC8ED&quot;</span>, <span class="st">&quot;#4C6CB0&quot;</span>, <span class="st">&quot;#8A1C1B&quot;</span>, <span class="st">&quot;#CBCC2B&quot;</span>, <span class="st">&quot;#EA644C&quot;</span>,</span>
+<span id="cb18-22"><a href="analysis.html#cb18-22" tabindex="-1"></a>               <span class="st">&quot;#634795&quot;</span>, <span class="st">&quot;#005B1D&quot;</span>, <span class="st">&quot;#26418A&quot;</span>, <span class="st">&quot;#CB8A93&quot;</span>, <span class="st">&quot;#B2DF8A&quot;</span>, <span class="st">&quot;#E22826&quot;</span>,</span>
+<span id="cb18-23"><a href="analysis.html#cb18-23" tabindex="-1"></a>               <span class="st">&quot;#A6CEE3&quot;</span>, <span class="st">&quot;#F4D31D&quot;</span>, <span class="st">&quot;#F4A11D&quot;</span>, <span class="st">&quot;#82C800&quot;</span>, <span class="st">&quot;#8B5900&quot;</span>, <span class="st">&quot;#858ED1&quot;</span>,</span>
+<span id="cb18-24"><a href="analysis.html#cb18-24" tabindex="-1"></a>               <span class="st">&quot;#FF72E1&quot;</span>, <span class="st">&quot;#CB50B2&quot;</span>, <span class="st">&quot;#007D9B&quot;</span>, <span class="st">&quot;#26418A&quot;</span>, <span class="st">&quot;#8B495F&quot;</span>, <span class="st">&quot;#FF394B&quot;</span>)</span>
+<span id="cb18-25"><a href="analysis.html#cb18-25" tabindex="-1"></a></span>
+<span id="cb18-26"><a href="analysis.html#cb18-26" tabindex="-1"></a>sample.name <span class="ot">=</span> <span class="st">&quot;BALL_BM&quot;</span></span>
+<span id="cb18-27"><a href="analysis.html#cb18-27" tabindex="-1"></a><span class="fu">message</span>(sample.name)</span>
+<span id="cb18-28"><a href="analysis.html#cb18-28" tabindex="-1"></a><span class="co"># Set output path</span></span>
+<span id="cb18-29"><a href="analysis.html#cb18-29" tabindex="-1"></a>out.path <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;output/&quot;</span>, sample.name) <span class="co">#system(sprintf(&quot;mkdir %s&quot;, out.path))</span></span>
+<span id="cb18-30"><a href="analysis.html#cb18-30" tabindex="-1"></a><span class="fu">dir.create</span>(out.path,<span class="at">recursive =</span> T)</span>
+<span id="cb18-31"><a href="analysis.html#cb18-31" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb18-32"><a href="analysis.html#cb18-32" tabindex="-1"></a><span class="co">#  Step 2: Setup the Seurat Object</span></span>
+<span id="cb18-33"><a href="analysis.html#cb18-33" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb18-34"><a href="analysis.html#cb18-34" tabindex="-1"></a><span class="co"># load data from data folder</span></span>
+<span id="cb18-35"><a href="analysis.html#cb18-35" tabindex="-1"></a>scell.data <span class="ot">&lt;-</span> <span class="fu">Read10X</span>(<span class="at">data.dir =</span> <span class="fu">paste0</span>(<span class="st">&quot;data/&quot;</span>, sample.name) )</span>
+<span id="cb18-36"><a href="analysis.html#cb18-36" tabindex="-1"></a><span class="fu">colnames</span>(scell.data) <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(<span class="fu">colnames</span>(scell.data), <span class="st">&quot;1&quot;</span>, sample.name)</span>
+<span id="cb18-37"><a href="analysis.html#cb18-37" tabindex="-1"></a><span class="co"># Initialize the Seurat object with the raw (non-normalized data)</span></span>
+<span id="cb18-38"><a href="analysis.html#cb18-38" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">CreateSeuratObject</span>(<span class="at">counts =</span> scell.data, <span class="at">project =</span> <span class="st">&quot;sce&quot;</span>, <span class="at">min.cells =</span> <span class="dv">0</span>, <span class="at">min.features =</span> <span class="dv">0</span>)</span>
+<span id="cb18-39"><a href="analysis.html#cb18-39" tabindex="-1"></a><span class="co"># Add sample information</span></span>
+<span id="cb18-40"><a href="analysis.html#cb18-40" tabindex="-1"></a>sce<span class="sc">@</span>meta.data<span class="sc">$</span>Sample <span class="ot">=</span> sample.name</span>
+<span id="cb18-41"><a href="analysis.html#cb18-41" tabindex="-1"></a>sce</span>
+<span id="cb18-42"><a href="analysis.html#cb18-42" tabindex="-1"></a><span class="fu">head</span>(sce<span class="sc">@</span>meta.data)</span>
+<span id="cb18-43"><a href="analysis.html#cb18-43" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb18-44"><a href="analysis.html#cb18-44" tabindex="-1"></a><span class="co">#  Step 3: QC and selecting cells</span></span>
+<span id="cb18-45"><a href="analysis.html#cb18-45" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb18-46"><a href="analysis.html#cb18-46" tabindex="-1"></a><span class="co"># key challenges: ensure that only single, live cells are included in downstream analysis</span></span>
+<span id="cb18-47"><a href="analysis.html#cb18-47" tabindex="-1"></a><span class="do">## mitochondrial gene</span></span>
+<span id="cb18-48"><a href="analysis.html#cb18-48" tabindex="-1"></a>sce[[<span class="st">&quot;percent.mt&quot;</span>]] <span class="ot">&lt;-</span> <span class="fu">PercentageFeatureSet</span>(sce, <span class="at">pattern =</span> <span class="st">&quot;^MT-&quot;</span>)</span>
+<span id="cb18-49"><a href="analysis.html#cb18-49" tabindex="-1"></a>sce</span>
+<span id="cb18-50"><a href="analysis.html#cb18-50" tabindex="-1"></a><span class="fu">summary</span>(sce<span class="sc">@</span>meta.data<span class="sc">$</span>percent.mt)</span>
+<span id="cb18-51"><a href="analysis.html#cb18-51" tabindex="-1"></a><span class="co"># Visualize QC metrics as a violin plot</span></span>
+<span id="cb18-52"><a href="analysis.html#cb18-52" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/1.vlnplot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb18-53"><a href="analysis.html#cb18-53" tabindex="-1"></a><span class="fu">VlnPlot</span>(sce, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">&quot;nFeature_RNA&quot;</span>, <span class="st">&quot;nCount_RNA&quot;</span>, <span class="st">&quot;percent.mt&quot;</span>), <span class="at">group.by =</span> <span class="st">&quot;orig.ident&quot;</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb18-54"><a href="analysis.html#cb18-54" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p><img src="output/BALL_BM/1.vlnplot.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="analysis.html#cb19-1" tabindex="-1"></a><span class="co"># visualize feature-feature relationships</span></span>
+<span id="cb19-2"><a href="analysis.html#cb19-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/1.geneplot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb19-3"><a href="analysis.html#cb19-3" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(sce, <span class="at">feature1 =</span> <span class="st">&quot;nCount_RNA&quot;</span>, <span class="at">feature2 =</span> <span class="st">&quot;percent.mt&quot;</span>)</span>
+<span id="cb19-4"><a href="analysis.html#cb19-4" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(sce, <span class="at">feature1 =</span> <span class="st">&quot;nCount_RNA&quot;</span>, <span class="at">feature2 =</span> <span class="st">&quot;nFeature_RNA&quot;</span>)</span>
+<span id="cb19-5"><a href="analysis.html#cb19-5" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2</span>
+<span id="cb19-6"><a href="analysis.html#cb19-6" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p><img src="output/BALL_BM/1.geneplot.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="analysis.html#cb20-1" tabindex="-1"></a><span class="do">## QC : selecting cells</span></span>
+<span id="cb20-2"><a href="analysis.html#cb20-2" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">subset</span>(sce, <span class="at">subset =</span> nFeature_RNA <span class="sc">&gt;</span> <span class="dv">200</span> <span class="sc">&amp;</span> percent.mt <span class="sc">&lt;</span> <span class="dv">20</span>)</span>
+<span id="cb20-3"><a href="analysis.html#cb20-3" tabindex="-1"></a>sce</span>
+<span id="cb20-4"><a href="analysis.html#cb20-4" tabindex="-1"></a><span class="co"># plot after QC</span></span>
+<span id="cb20-5"><a href="analysis.html#cb20-5" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/2.filter.vlnplot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb20-6"><a href="analysis.html#cb20-6" tabindex="-1"></a><span class="fu">VlnPlot</span>(sce, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">&quot;nFeature_RNA&quot;</span>, <span class="st">&quot;nCount_RNA&quot;</span>, <span class="st">&quot;percent.mt&quot;</span>),  <span class="at">group.by =</span> <span class="st">&quot;orig.ident&quot;</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb20-7"><a href="analysis.html#cb20-7" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p><img src="output/BALL_BM/2.filter.vlnplot.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="analysis.html#cb21-1" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/2.filter.geneplot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb21-2"><a href="analysis.html#cb21-2" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(sce, <span class="at">feature1 =</span> <span class="st">&quot;nCount_RNA&quot;</span>, <span class="at">feature2 =</span> <span class="st">&quot;percent.mt&quot;</span>)</span>
+<span id="cb21-3"><a href="analysis.html#cb21-3" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(sce, <span class="at">feature1 =</span> <span class="st">&quot;nCount_RNA&quot;</span>, <span class="at">feature2 =</span> <span class="st">&quot;nFeature_RNA&quot;</span>)</span>
+<span id="cb21-4"><a href="analysis.html#cb21-4" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2</span>
+<span id="cb21-5"><a href="analysis.html#cb21-5" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p><img src="output/BALL_BM/2.filter.geneplot.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="analysis.html#cb22-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb22-2"><a href="analysis.html#cb22-2" tabindex="-1"></a><span class="co">#  Step 4: Normalizing the data</span></span>
+<span id="cb22-3"><a href="analysis.html#cb22-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb22-4"><a href="analysis.html#cb22-4" tabindex="-1"></a><span class="co"># After removing unwanted cells from the dataset, the next step is to normalize the data.</span></span>
+<span id="cb22-5"><a href="analysis.html#cb22-5" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(sce, <span class="at">normalization.method =</span> <span class="st">&quot;LogNormalize&quot;</span>, <span class="at">scale.factor =</span> <span class="fu">ncol</span>(sce))</span>
+<span id="cb22-6"><a href="analysis.html#cb22-6" tabindex="-1"></a><span class="co"># By default, we employ a global-scaling normalization method “LogNormalize” that normalizes the feature expression measurements for each cell by the total expression, multiplies this by a scale factor (10,000 by default), and log-transforms the result. Normalized values are stored in pbmc[[&quot;RNA&quot;]]@data</span></span>
+<span id="cb22-7"><a href="analysis.html#cb22-7" tabindex="-1"></a>sce[[<span class="st">&quot;RNA&quot;</span>]]<span class="sc">@</span>data[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb22-8"><a href="analysis.html#cb22-8" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb22-9"><a href="analysis.html#cb22-9" tabindex="-1"></a><span class="co">#  Step 5: Identification of highly variable features (feature selection)</span></span>
+<span id="cb22-10"><a href="analysis.html#cb22-10" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb22-11"><a href="analysis.html#cb22-11" tabindex="-1"></a><span class="co"># We next calculate a subset of features that exhibit high cell-to-cell variation in the dataset</span></span>
+<span id="cb22-12"><a href="analysis.html#cb22-12" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(sce, <span class="at">selection.method =</span> <span class="st">&quot;vst&quot;</span>, <span class="at">nfeatures =</span> <span class="dv">2000</span>)</span>
+<span id="cb22-13"><a href="analysis.html#cb22-13" tabindex="-1"></a><span class="co"># Identify the 10 most highly variable genes</span></span>
+<span id="cb22-14"><a href="analysis.html#cb22-14" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">VariableFeatures</span>(sce), <span class="dv">10</span>)</span>
+<span id="cb22-15"><a href="analysis.html#cb22-15" tabindex="-1"></a><span class="co"># plot variable features with and without labels</span></span>
+<span id="cb22-16"><a href="analysis.html#cb22-16" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/3.VariableFeaturePlot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb22-17"><a href="analysis.html#cb22-17" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">VariableFeaturePlot</span>(sce)</span>
+<span id="cb22-18"><a href="analysis.html#cb22-18" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">LabelPoints</span>(<span class="at">plot =</span> plot1, <span class="at">points =</span> top10, <span class="at">repel =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-19"><a href="analysis.html#cb22-19" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2</span>
+<span id="cb22-20"><a href="analysis.html#cb22-20" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p><img src="output/BALL_BM/3.VariableFeaturePlot.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="analysis.html#cb23-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb23-2"><a href="analysis.html#cb23-2" tabindex="-1"></a><span class="co">#  Step 6: Scaling the data</span></span>
+<span id="cb23-3"><a href="analysis.html#cb23-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb23-4"><a href="analysis.html#cb23-4" tabindex="-1"></a><span class="co"># linear transformation: pre-processing step prior to dimensional reduction techniques like PCA</span></span>
+<span id="cb23-5"><a href="analysis.html#cb23-5" tabindex="-1"></a>all.genes <span class="ot">&lt;-</span> <span class="fu">rownames</span>(sce)</span>
+<span id="cb23-6"><a href="analysis.html#cb23-6" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(sce, <span class="at">features =</span> <span class="fu">VariableFeatures</span>(sce))</span>
+<span id="cb23-7"><a href="analysis.html#cb23-7" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(sce, <span class="at">features =</span> <span class="fu">VariableFeatures</span>(<span class="at">object =</span> sce))</span>
+<span id="cb23-8"><a href="analysis.html#cb23-8" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;pca&quot;</span>) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb23-9"><a href="analysis.html#cb23-9" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/4.PCA.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="output/BALL_BM/4.PCA.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="analysis.html#cb24-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb24-2"><a href="analysis.html#cb24-2" tabindex="-1"></a><span class="co">#  Step 7: Cluster the cells</span></span>
+<span id="cb24-3"><a href="analysis.html#cb24-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb24-4"><a href="analysis.html#cb24-4" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;pca&quot;</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb24-5"><a href="analysis.html#cb24-5" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(sce, <span class="at">resolution =</span> <span class="fl">0.8</span>)</span>
+<span id="cb24-6"><a href="analysis.html#cb24-6" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb24-7"><a href="analysis.html#cb24-7" tabindex="-1"></a><span class="co">#  Step 8: Run non-linear dimensional reduction (UMAP/tSNE)</span></span>
+<span id="cb24-8"><a href="analysis.html#cb24-8" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb24-9"><a href="analysis.html#cb24-9" tabindex="-1"></a><span class="co"># to learn the underlying manifold of the data in order to place similar cells together in low-dimensional space</span></span>
+<span id="cb24-10"><a href="analysis.html#cb24-10" tabindex="-1"></a><span class="co"># If you haven&#39;t installed UMAP, you can do so via reticulate::py_install(packages =</span></span>
+<span id="cb24-11"><a href="analysis.html#cb24-11" tabindex="-1"></a><span class="co"># &#39;umap-learn&#39;)</span></span>
+<span id="cb24-12"><a href="analysis.html#cb24-12" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">RunTSNE</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;pca&quot;</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">perplexity =</span> <span class="dv">30</span>)</span>
+<span id="cb24-13"><a href="analysis.html#cb24-13" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">RunUMAP</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;pca&quot;</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb24-14"><a href="analysis.html#cb24-14" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb24-15"><a href="analysis.html#cb24-15" tabindex="-1"></a><span class="co"># umap</span></span>
+<span id="cb24-16"><a href="analysis.html#cb24-16" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, </span>
+<span id="cb24-17"><a href="analysis.html#cb24-17" tabindex="-1"></a>             <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb24-18"><a href="analysis.html#cb24-18" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/5.UMAP.cluster.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb24-19"><a href="analysis.html#cb24-19" tabindex="-1"></a></span>
+<span id="cb24-20"><a href="analysis.html#cb24-20" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">10</span>,</span>
+<span id="cb24-21"><a href="analysis.html#cb24-21" tabindex="-1"></a>             <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb24-22"><a href="analysis.html#cb24-22" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/5.UMAP.cluster.label.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="output/BALL_BM/5.UMAP.cluster.label.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="analysis.html#cb25-1" tabindex="-1"></a><span class="co"># tsne</span></span>
+<span id="cb25-2"><a href="analysis.html#cb25-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, </span>
+<span id="cb25-3"><a href="analysis.html#cb25-3" tabindex="-1"></a>             <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb25-4"><a href="analysis.html#cb25-4" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/6.tSNE.cluster.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb25-5"><a href="analysis.html#cb25-5" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="analysis.html#cb25-6" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">10</span>,</span>
+<span id="cb25-7"><a href="analysis.html#cb25-7" tabindex="-1"></a>             <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb25-8"><a href="analysis.html#cb25-8" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/6.tSNE.cluster.label.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="output/BALL_BM/6.tSNE.cluster.label.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="analysis.html#cb26-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb26-2"><a href="analysis.html#cb26-2" tabindex="-1"></a><span class="co">#  Step 9: Cell cycle</span></span>
+<span id="cb26-3"><a href="analysis.html#cb26-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb26-4"><a href="analysis.html#cb26-4" tabindex="-1"></a><span class="co"># build-in cell cycle genes</span></span>
+<span id="cb26-5"><a href="analysis.html#cb26-5" tabindex="-1"></a>cc.genes</span>
+<span id="cb26-6"><a href="analysis.html#cb26-6" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">CellCycleScoring</span>(sce, <span class="at">s.features =</span> cc.genes<span class="sc">$</span>s.genes, <span class="at">g2m.features =</span> cc.genes<span class="sc">$</span>g2m.genes)</span>
+<span id="cb26-7"><a href="analysis.html#cb26-7" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="analysis.html#cb26-8" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb26-9"><a href="analysis.html#cb26-9" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;Phase&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb26-10"><a href="analysis.html#cb26-10" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/7.CC.phase.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb26-11"><a href="analysis.html#cb26-11" tabindex="-1"></a></span>
+<span id="cb26-12"><a href="analysis.html#cb26-12" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">VlnPlot</span>(sce, <span class="at">features =</span> <span class="st">&quot;S.Score&quot;</span>, <span class="at">pt.size =</span> <span class="dv">0</span>, </span>
+<span id="cb26-13"><a href="analysis.html#cb26-13" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;seurat_clusters&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb26-14"><a href="analysis.html#cb26-14" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/7.CC.score.S.Score.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>)</span>
+<span id="cb26-15"><a href="analysis.html#cb26-15" tabindex="-1"></a></span>
+<span id="cb26-16"><a href="analysis.html#cb26-16" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">VlnPlot</span>(sce, <span class="at">features =</span> <span class="st">&quot;G2M.Score&quot;</span>, <span class="at">pt.size =</span> <span class="dv">0</span>, </span>
+<span id="cb26-17"><a href="analysis.html#cb26-17" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;seurat_clusters&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb26-18"><a href="analysis.html#cb26-18" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/7.CC.score.G2M.Score.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="output/BALL_BM/7.CC.score.G2M.Score.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="analysis.html#cb27-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb27-2"><a href="analysis.html#cb27-2" tabindex="-1"></a><span class="co">#  Step 10: SingleR annotation</span></span>
+<span id="cb27-3"><a href="analysis.html#cb27-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb27-4"><a href="analysis.html#cb27-4" tabindex="-1"></a><span class="co"># first, load reference datasets. Then, annotate your query data based on reference datasets.</span></span>
+<span id="cb27-5"><a href="analysis.html#cb27-5" tabindex="-1"></a>ref <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">&quot;./data/SingleR/hs.BlueprintEncodeData.RDS&quot;</span>)</span>
+<span id="cb27-6"><a href="analysis.html#cb27-6" tabindex="-1"></a>pred.BlueprintEncodeData <span class="ot">&lt;-</span> <span class="fu">SingleR</span>(<span class="at">test =</span> sce<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">@</span>data, <span class="at">ref =</span> ref, <span class="at">labels =</span> ref<span class="sc">$</span>label.main)</span>
+<span id="cb27-7"><a href="analysis.html#cb27-7" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="analysis.html#cb27-8" tabindex="-1"></a>ref <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">&quot;./data/SingleR/hs.HumanPrimaryCellAtlasData.RDS&quot;</span>)</span>
+<span id="cb27-9"><a href="analysis.html#cb27-9" tabindex="-1"></a>pred.HumanPrimaryCellAtlasData <span class="ot">&lt;-</span> <span class="fu">SingleR</span>(<span class="at">test =</span> sce<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">@</span>data, <span class="at">ref =</span> ref, <span class="at">labels =</span> ref<span class="sc">$</span>label.main)</span>
+<span id="cb27-10"><a href="analysis.html#cb27-10" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="analysis.html#cb27-11" tabindex="-1"></a>ref <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">&quot;./data/SingleR/NovershternHematopoieticData.RDS&quot;</span>)</span>
+<span id="cb27-12"><a href="analysis.html#cb27-12" tabindex="-1"></a>pred.NovershternHematopoieticData <span class="ot">&lt;-</span> <span class="fu">SingleR</span>(<span class="at">test =</span> sce<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">@</span>data, <span class="at">ref =</span> ref, <span class="at">labels =</span> ref<span class="sc">$</span>label.main)</span>
+<span id="cb27-13"><a href="analysis.html#cb27-13" tabindex="-1"></a><span class="co"># add annotations to meta data</span></span>
+<span id="cb27-14"><a href="analysis.html#cb27-14" tabindex="-1"></a>sce<span class="sc">@</span>meta.data<span class="sc">$</span>CellType.BlueprintEncodeData <span class="ot">&lt;-</span> pred.BlueprintEncodeData<span class="sc">$</span>labels</span>
+<span id="cb27-15"><a href="analysis.html#cb27-15" tabindex="-1"></a>sce<span class="sc">@</span>meta.data<span class="sc">$</span>CellType.HumanPrimaryCellAtlasData <span class="ot">&lt;-</span> pred.HumanPrimaryCellAtlasData<span class="sc">$</span>labels</span>
+<span id="cb27-16"><a href="analysis.html#cb27-16" tabindex="-1"></a>sce<span class="sc">@</span>meta.data<span class="sc">$</span>CellType.NovershternHematopoieticData <span class="ot">&lt;-</span> pred.NovershternHematopoieticData<span class="sc">$</span>labels</span>
+<span id="cb27-17"><a href="analysis.html#cb27-17" tabindex="-1"></a><span class="co"># plot with annotations</span></span>
+<span id="cb27-18"><a href="analysis.html#cb27-18" tabindex="-1"></a><span class="co"># umap</span></span>
+<span id="cb27-19"><a href="analysis.html#cb27-19" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">4</span>,</span>
+<span id="cb27-20"><a href="analysis.html#cb27-20" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType.BlueprintEncodeData&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb27-21"><a href="analysis.html#cb27-21" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/8.SingleR.umap.BlueprintEncodeData.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb27-22"><a href="analysis.html#cb27-22" tabindex="-1"></a></span>
+<span id="cb27-23"><a href="analysis.html#cb27-23" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">4</span>,</span>
+<span id="cb27-24"><a href="analysis.html#cb27-24" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType.HumanPrimaryCellAtlasData&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb27-25"><a href="analysis.html#cb27-25" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/8.SingleR.umap.HumanPrimaryCellAtlasData.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb27-26"><a href="analysis.html#cb27-26" tabindex="-1"></a></span>
+<span id="cb27-27"><a href="analysis.html#cb27-27" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">4</span>,</span>
+<span id="cb27-28"><a href="analysis.html#cb27-28" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType.NovershternHematopoieticData&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb27-29"><a href="analysis.html#cb27-29" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/8.SingleR.umap.NovershternHematopoieticData.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb27-30"><a href="analysis.html#cb27-30" tabindex="-1"></a><span class="co"># tsne</span></span>
+<span id="cb27-31"><a href="analysis.html#cb27-31" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">4</span>,</span>
+<span id="cb27-32"><a href="analysis.html#cb27-32" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType.BlueprintEncodeData&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb27-33"><a href="analysis.html#cb27-33" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/8.SingleR.tsne.BlueprintEncodeData.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb27-34"><a href="analysis.html#cb27-34" tabindex="-1"></a></span>
+<span id="cb27-35"><a href="analysis.html#cb27-35" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">4</span>,</span>
+<span id="cb27-36"><a href="analysis.html#cb27-36" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType.HumanPrimaryCellAtlasData&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb27-37"><a href="analysis.html#cb27-37" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/8.SingleR.tsne.HumanPrimaryCellAtlasData.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb27-38"><a href="analysis.html#cb27-38" tabindex="-1"></a></span>
+<span id="cb27-39"><a href="analysis.html#cb27-39" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">4</span>,</span>
+<span id="cb27-40"><a href="analysis.html#cb27-40" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType.NovershternHematopoieticData&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb27-41"><a href="analysis.html#cb27-41" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/8.SingleR.tsne.NovershternHematopoieticData.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="output/BALL_BM/8.SingleR.tsne.NovershternHematopoieticData.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="analysis.html#cb28-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb28-2"><a href="analysis.html#cb28-2" tabindex="-1"></a><span class="co">#  Step 11: Finding differentially expressed features (find marker)</span></span>
+<span id="cb28-3"><a href="analysis.html#cb28-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb28-4"><a href="analysis.html#cb28-4" tabindex="-1"></a>ident.meta <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">table</span>(sce<span class="sc">@</span>meta.data<span class="sc">$</span>seurat_clusters))</span>
+<span id="cb28-5"><a href="analysis.html#cb28-5" tabindex="-1"></a><span class="fu">colnames</span>(ident.meta) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Cluster&quot;</span>,<span class="st">&quot;CellCount&quot;</span>)</span>
+<span id="cb28-6"><a href="analysis.html#cb28-6" tabindex="-1"></a><span class="fu">write.xlsx</span>(ident.meta, <span class="fu">paste0</span>(out.path, <span class="st">&quot;/9.CellCount.xlsx&quot;</span>), <span class="at">overwrite =</span> T)</span>
+<span id="cb28-7"><a href="analysis.html#cb28-7" tabindex="-1"></a><span class="co">#   Cluster CellCount</span></span>
+<span id="cb28-8"><a href="analysis.html#cb28-8" tabindex="-1"></a><span class="co"># 1       0       920</span></span>
+<span id="cb28-9"><a href="analysis.html#cb28-9" tabindex="-1"></a><span class="co"># 2       1       875</span></span>
+<span id="cb28-10"><a href="analysis.html#cb28-10" tabindex="-1"></a><span class="co"># 3       2       526</span></span>
+<span id="cb28-11"><a href="analysis.html#cb28-11" tabindex="-1"></a><span class="co"># 4       3       481</span></span>
+<span id="cb28-12"><a href="analysis.html#cb28-12" tabindex="-1"></a><span class="co"># 5       4       472</span></span>
+<span id="cb28-13"><a href="analysis.html#cb28-13" tabindex="-1"></a><span class="co"># 6       5       417</span></span>
+<span id="cb28-14"><a href="analysis.html#cb28-14" tabindex="-1"></a></span>
+<span id="cb28-15"><a href="analysis.html#cb28-15" tabindex="-1"></a><span class="co"># find marker</span></span>
+<span id="cb28-16"><a href="analysis.html#cb28-16" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">BuildClusterTree</span>(<span class="at">object =</span> sce)</span>
+<span id="cb28-17"><a href="analysis.html#cb28-17" tabindex="-1"></a>all.markers <span class="ot">&lt;-</span> <span class="fu">FindAllMarkers</span>(<span class="at">object =</span> sce, <span class="at">only.pos =</span> <span class="cn">TRUE</span>, <span class="at">logfc.threshold =</span> <span class="fl">0.1</span>, <span class="at">min.pct =</span> <span class="fl">0.1</span>)</span>
+<span id="cb28-18"><a href="analysis.html#cb28-18" tabindex="-1"></a>all.markers <span class="ot">&lt;-</span> all.markers[<span class="fu">which</span>(all.markers<span class="sc">$</span>p_val_adj <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> all.markers<span class="sc">$</span>avg_log2FC <span class="sc">&gt;</span> <span class="dv">0</span>), ]</span>
+<span id="cb28-19"><a href="analysis.html#cb28-19" tabindex="-1"></a><span class="fu">write.xlsx</span>(all.markers, <span class="fu">paste0</span>(out.path, <span class="st">&quot;/10.top.markers.xlsx&quot;</span>), <span class="at">overwrite =</span> T)</span>
+<span id="cb28-20"><a href="analysis.html#cb28-20" tabindex="-1"></a><span class="co"># plot top 10 markers</span></span>
+<span id="cb28-21"><a href="analysis.html#cb28-21" tabindex="-1"></a>all.markers <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/10.top.markers.xlsx&quot;</span>))</span>
+<span id="cb28-22"><a href="analysis.html#cb28-22" tabindex="-1"></a>all.markers <span class="ot">&lt;-</span> all.markers[<span class="fu">which</span>(all.markers<span class="sc">$</span>pct<span class="fl">.1</span> <span class="sc">&gt;</span> <span class="fl">0.25</span>), ]</span>
+<span id="cb28-23"><a href="analysis.html#cb28-23" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> all.markers <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span> <span class="fu">top_n</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">wt =</span> avg_log2FC)</span>
+<span id="cb28-24"><a href="analysis.html#cb28-24" tabindex="-1"></a>gene.list <span class="ot">&lt;-</span> <span class="fu">unique</span>(top10<span class="sc">$</span>gene)</span>
+<span id="cb28-25"><a href="analysis.html#cb28-25" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DotPlot</span>(sce, <span class="at">features =</span> gene.list, <span class="at">dot.scale =</span> <span class="dv">8</span>, <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&quot;#DDDDDD&quot;</span>, <span class="st">&quot;#003366&quot;</span> ), <span class="at">col.min =</span> <span class="sc">-</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">RotatedAxis</span>()</span>
+<span id="cb28-26"><a href="analysis.html#cb28-26" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_few</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">14</span>))</span>
+<span id="cb28-27"><a href="analysis.html#cb28-27" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>))</span>
+<span id="cb28-28"><a href="analysis.html#cb28-28" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>))</span>
+<span id="cb28-29"><a href="analysis.html#cb28-29" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">gradient_color</span>(<span class="fu">c</span>(<span class="st">&quot;#EEEEEE&quot;</span>,<span class="st">&quot;#ffb459&quot;</span>,<span class="st">&quot;#e8613c&quot;</span>,<span class="st">&quot;#b70909&quot;</span>))</span>
+<span id="cb28-30"><a href="analysis.html#cb28-30" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/10.top.markers.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">20</span>, <span class="at">height =</span> <span class="dv">7</span>) <span class="do">## marker genes dot plot</span></span></code></pre></div>
+<p><img src="output/BALL_BM/10.top.markers.png" width="800px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="analysis.html#cb29-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb29-2"><a href="analysis.html#cb29-2" tabindex="-1"></a><span class="co">#  Step 12: check wellknown markers</span></span>
+<span id="cb29-3"><a href="analysis.html#cb29-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb29-4"><a href="analysis.html#cb29-4" tabindex="-1"></a><span class="co"># Expression for each cluster</span></span>
+<span id="cb29-5"><a href="analysis.html#cb29-5" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">FeaturePlot</span>(<span class="at">object =</span> sce, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">&quot;CD34&quot;</span>,<span class="st">&quot;AVP&quot;</span>,<span class="st">&quot;CD14&quot;</span>,<span class="st">&quot;HBB&quot;</span>,<span class="st">&quot;CD19&quot;</span>,<span class="st">&quot;CD79A&quot;</span>,<span class="st">&quot;CD3E&quot;</span>,<span class="st">&quot;CD8A&quot;</span>,<span class="st">&quot;CD4&quot;</span>), </span>
+<span id="cb29-6"><a href="analysis.html#cb29-6" tabindex="-1"></a>                 <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&quot;#CCCCCC&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="at">pt.size =</span> <span class="fl">0.3</span>, <span class="at">ncol =</span> <span class="dv">3</span>,</span>
+<span id="cb29-7"><a href="analysis.html#cb29-7" tabindex="-1"></a>                 <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>)</span>
+<span id="cb29-8"><a href="analysis.html#cb29-8" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/11.featurePlot.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">14</span>, <span class="at">height =</span> <span class="dv">12</span>)</span></code></pre></div>
+<p><img src="output/BALL_BM/11.featurePlot.png" width="800px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="analysis.html#cb30-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">VlnPlot</span>(<span class="at">object =</span> sce, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">&quot;CD34&quot;</span>,<span class="st">&quot;AVP&quot;</span>,<span class="st">&quot;CD14&quot;</span>,<span class="st">&quot;HBB&quot;</span>,<span class="st">&quot;CD19&quot;</span>,<span class="st">&quot;CD79A&quot;</span>,<span class="st">&quot;CD3E&quot;</span>,<span class="st">&quot;CD8A&quot;</span>,<span class="st">&quot;CD4&quot;</span>), </span>
+<span id="cb30-2"><a href="analysis.html#cb30-2" tabindex="-1"></a>             <span class="at">pt.size =</span> <span class="dv">0</span>, <span class="at">cols =</span> color.lib, <span class="at">slot =</span> <span class="st">&quot;data&quot;</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb30-3"><a href="analysis.html#cb30-3" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/11.VlnPlot.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">16</span>, <span class="at">height =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="output/BALL_BM/11.VlnPlot.png" width="800px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="analysis.html#cb31-1" tabindex="-1"></a><span class="do">## save object</span></span>
+<span id="cb31-2"><a href="analysis.html#cb31-2" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;./output/obj&quot;</span>,<span class="at">recursive =</span> T)</span>
+<span id="cb31-3"><a href="analysis.html#cb31-3" tabindex="-1"></a><span class="fu">saveRDS</span>(sce, <span class="fu">paste0</span>(<span class="st">&quot;./output/obj/20231011.&quot;</span>, sample.name, <span class="st">&quot;.rds&quot;</span>))</span></code></pre></div>
+</div>
+<div id="integration" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Integration<a href="analysis.html#integration" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="analysis.html#cb32-1" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
+<span id="cb32-2"><a href="analysis.html#cb32-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb32-3"><a href="analysis.html#cb32-3" tabindex="-1"></a><span class="fu">library</span>(Matrix)</span>
+<span id="cb32-4"><a href="analysis.html#cb32-4" tabindex="-1"></a><span class="fu">library</span>(gplots)</span>
+<span id="cb32-5"><a href="analysis.html#cb32-5" tabindex="-1"></a><span class="fu">library</span>(matrixStats)</span>
+<span id="cb32-6"><a href="analysis.html#cb32-6" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb32-7"><a href="analysis.html#cb32-7" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb32-8"><a href="analysis.html#cb32-8" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb32-9"><a href="analysis.html#cb32-9" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb32-10"><a href="analysis.html#cb32-10" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span>
+<span id="cb32-11"><a href="analysis.html#cb32-11" tabindex="-1"></a><span class="fu">library</span>(harmony)</span>
+<span id="cb32-12"><a href="analysis.html#cb32-12" tabindex="-1"></a><span class="fu">library</span>(SingleR)</span>
+<span id="cb32-13"><a href="analysis.html#cb32-13" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb32-14"><a href="analysis.html#cb32-14" tabindex="-1"></a><span class="co">#  Step 1: setting</span></span>
+<span id="cb32-15"><a href="analysis.html#cb32-15" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb32-16"><a href="analysis.html#cb32-16" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb32-17"><a href="analysis.html#cb32-17" tabindex="-1"></a>color.lib <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#E31A1C&quot;</span>, <span class="st">&quot;#55c2fc&quot;</span>, <span class="st">&quot;#A6761D&quot;</span>, <span class="st">&quot;#F1E404&quot;</span>, <span class="st">&quot;#33A02C&quot;</span>, <span class="st">&quot;#1F78B4&quot;</span>, </span>
+<span id="cb32-18"><a href="analysis.html#cb32-18" tabindex="-1"></a>               <span class="st">&quot;#FB9A99&quot;</span>, <span class="st">&quot;#FDBF6F&quot;</span>, <span class="st">&quot;#FF7F00&quot;</span>, <span class="st">&quot;#CAB2D6&quot;</span>, <span class="st">&quot;#6A3D9A&quot;</span>, <span class="st">&quot;#F4B3BE&quot;</span>,</span>
+<span id="cb32-19"><a href="analysis.html#cb32-19" tabindex="-1"></a>               <span class="st">&quot;#1B9E77&quot;</span>, <span class="st">&quot;#D95F02&quot;</span>, <span class="st">&quot;#7570B3&quot;</span>, <span class="st">&quot;#E7298A&quot;</span>, <span class="st">&quot;#66A61E&quot;</span>, <span class="st">&quot;#E6AB02&quot;</span>, </span>
+<span id="cb32-20"><a href="analysis.html#cb32-20" tabindex="-1"></a>               <span class="st">&quot;#F4A11D&quot;</span>, <span class="st">&quot;#8DC8ED&quot;</span>, <span class="st">&quot;#4C6CB0&quot;</span>, <span class="st">&quot;#8A1C1B&quot;</span>, <span class="st">&quot;#CBCC2B&quot;</span>, <span class="st">&quot;#EA644C&quot;</span>,</span>
+<span id="cb32-21"><a href="analysis.html#cb32-21" tabindex="-1"></a>               <span class="st">&quot;#634795&quot;</span>, <span class="st">&quot;#005B1D&quot;</span>, <span class="st">&quot;#26418A&quot;</span>, <span class="st">&quot;#CB8A93&quot;</span>, <span class="st">&quot;#B2DF8A&quot;</span>, <span class="st">&quot;#E22826&quot;</span>,</span>
+<span id="cb32-22"><a href="analysis.html#cb32-22" tabindex="-1"></a>               <span class="st">&quot;#A6CEE3&quot;</span>, <span class="st">&quot;#F4D31D&quot;</span>, <span class="st">&quot;#F4A11D&quot;</span>, <span class="st">&quot;#82C800&quot;</span>, <span class="st">&quot;#8B5900&quot;</span>, <span class="st">&quot;#858ED1&quot;</span>,</span>
+<span id="cb32-23"><a href="analysis.html#cb32-23" tabindex="-1"></a>               <span class="st">&quot;#FF72E1&quot;</span>, <span class="st">&quot;#CB50B2&quot;</span>, <span class="st">&quot;#007D9B&quot;</span>, <span class="st">&quot;#26418A&quot;</span>, <span class="st">&quot;#8B495F&quot;</span>, <span class="st">&quot;#FF394B&quot;</span>)</span>
+<span id="cb32-24"><a href="analysis.html#cb32-24" tabindex="-1"></a>sample.list <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;BALL_BM&quot;</span>,<span class="st">&quot;CTRL_BM&quot;</span>)</span>
+<span id="cb32-25"><a href="analysis.html#cb32-25" tabindex="-1"></a>out.path <span class="ot">&lt;-</span> <span class="st">&quot;output/merge_BALL_CTRL&quot;</span> </span>
+<span id="cb32-26"><a href="analysis.html#cb32-26" tabindex="-1"></a><span class="fu">dir.create</span>(out.path) <span class="co"># system(sprintf(&quot;mkdir %s&quot;, out.path))</span></span>
+<span id="cb32-27"><a href="analysis.html#cb32-27" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb32-28"><a href="analysis.html#cb32-28" tabindex="-1"></a><span class="co">#  Step 2: merge expression profile</span></span>
+<span id="cb32-29"><a href="analysis.html#cb32-29" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb32-30"><a href="analysis.html#cb32-30" tabindex="-1"></a>exp.data <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb32-31"><a href="analysis.html#cb32-31" tabindex="-1"></a>meta.data <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb32-32"><a href="analysis.html#cb32-32" tabindex="-1"></a><span class="cf">for</span> (kkk <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(sample.list)) {</span>
+<span id="cb32-33"><a href="analysis.html#cb32-33" tabindex="-1"></a><span class="fu">message</span>(kkk, <span class="st">&quot;   &quot;</span>, sample.list[kkk])</span>
+<span id="cb32-34"><a href="analysis.html#cb32-34" tabindex="-1"></a>obj.raw <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">paste0</span>(<span class="st">&quot;./output/obj/20231011.&quot;</span>, sample.list[kkk], <span class="st">&quot;.rds&quot;</span>))</span>
+<span id="cb32-35"><a href="analysis.html#cb32-35" tabindex="-1"></a>exp.data <span class="ot">&lt;-</span> <span class="fu">cbind</span>(exp.data, obj.raw<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">@</span>counts )</span>
+<span id="cb32-36"><a href="analysis.html#cb32-36" tabindex="-1"></a>meta.data <span class="ot">&lt;-</span> <span class="fu">rbind</span>(meta.data, obj.raw<span class="sc">@</span>meta.data[, <span class="fu">c</span>(<span class="st">&quot;Sample&quot;</span>,<span class="st">&quot;CellType.BlueprintEncodeData&quot;</span>,<span class="st">&quot;CellType.HumanPrimaryCellAtlasData&quot;</span>,<span class="st">&quot;CellType.NovershternHematopoieticData&quot;</span>)] )</span>
+<span id="cb32-37"><a href="analysis.html#cb32-37" tabindex="-1"></a>}</span>
+<span id="cb32-38"><a href="analysis.html#cb32-38" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb32-39"><a href="analysis.html#cb32-39" tabindex="-1"></a><span class="co">#  Step 3: Setup the Seurat Object</span></span>
+<span id="cb32-40"><a href="analysis.html#cb32-40" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb32-41"><a href="analysis.html#cb32-41" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">CreateSeuratObject</span>(<span class="at">counts =</span> exp.data, <span class="at">project =</span> <span class="st">&quot;sce&quot;</span>, <span class="at">min.cells =</span> <span class="dv">0</span>, <span class="at">min.features =</span> <span class="dv">0</span>)</span>
+<span id="cb32-42"><a href="analysis.html#cb32-42" tabindex="-1"></a>sce[[<span class="st">&quot;percent.mt&quot;</span>]] <span class="ot">&lt;-</span> <span class="fu">PercentageFeatureSet</span>(sce, <span class="at">pattern =</span> <span class="st">&quot;^MT-&quot;</span>)</span>
+<span id="cb32-43"><a href="analysis.html#cb32-43" tabindex="-1"></a>sce</span>
+<span id="cb32-44"><a href="analysis.html#cb32-44" tabindex="-1"></a><span class="fu">summary</span>(sce<span class="sc">@</span>meta.data<span class="sc">$</span>percent.mt)</span>
+<span id="cb32-45"><a href="analysis.html#cb32-45" tabindex="-1"></a>sce<span class="sc">@</span>meta.data <span class="ot">&lt;-</span> <span class="fu">cbind</span>(sce<span class="sc">@</span>meta.data, meta.data)</span>
+<span id="cb32-46"><a href="analysis.html#cb32-46" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb32-47"><a href="analysis.html#cb32-47" tabindex="-1"></a><span class="co">#  Step 4: QC</span></span>
+<span id="cb32-48"><a href="analysis.html#cb32-48" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb32-49"><a href="analysis.html#cb32-49" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/1.raw.vlnplot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb32-50"><a href="analysis.html#cb32-50" tabindex="-1"></a><span class="fu">VlnPlot</span>(sce, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">&quot;nFeature_RNA&quot;</span>, <span class="st">&quot;nCount_RNA&quot;</span>, <span class="st">&quot;percent.mt&quot;</span>), <span class="at">pt.size =</span> <span class="dv">0</span>, <span class="at">group.by =</span> <span class="st">&quot;Sample&quot;</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb32-51"><a href="analysis.html#cb32-51" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p><img src="output/merge_BALL_CTRL/1.raw.vlnplot.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="analysis.html#cb33-1" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/1.raw.geneplot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb33-2"><a href="analysis.html#cb33-2" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(sce, <span class="at">feature1 =</span> <span class="st">&quot;nCount_RNA&quot;</span>, <span class="at">feature2 =</span> <span class="st">&quot;percent.mt&quot;</span>)</span>
+<span id="cb33-3"><a href="analysis.html#cb33-3" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(sce, <span class="at">feature1 =</span> <span class="st">&quot;nCount_RNA&quot;</span>, <span class="at">feature2 =</span> <span class="st">&quot;nFeature_RNA&quot;</span>)</span>
+<span id="cb33-4"><a href="analysis.html#cb33-4" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2</span>
+<span id="cb33-5"><a href="analysis.html#cb33-5" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p><img src="output/merge_BALL_CTRL/1.raw.geneplot.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="analysis.html#cb34-1" tabindex="-1"></a><span class="do">## QC : selecting cells</span></span>
+<span id="cb34-2"><a href="analysis.html#cb34-2" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">subset</span>(sce, <span class="at">subset =</span> nFeature_RNA <span class="sc">&gt;</span> <span class="dv">500</span> <span class="sc">&amp;</span> percent.mt <span class="sc">&lt;</span> <span class="dv">10</span> <span class="sc">&amp;</span> nCount_RNA <span class="sc">&lt;</span> <span class="dv">50000</span>)</span>
+<span id="cb34-3"><a href="analysis.html#cb34-3" tabindex="-1"></a><span class="co"># plot after QC</span></span>
+<span id="cb34-4"><a href="analysis.html#cb34-4" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/2.filter.vlnplot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb34-5"><a href="analysis.html#cb34-5" tabindex="-1"></a><span class="fu">VlnPlot</span>(sce, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">&quot;nFeature_RNA&quot;</span>, <span class="st">&quot;nCount_RNA&quot;</span>, <span class="st">&quot;percent.mt&quot;</span>), <span class="at">pt.size =</span> <span class="dv">0</span>, <span class="at">group.by =</span> <span class="st">&quot;Sample&quot;</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb34-6"><a href="analysis.html#cb34-6" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p><img src="output/merge_BALL_CTRL/2.filter.vlnplot.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="analysis.html#cb35-1" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/2.filter.geneplot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb35-2"><a href="analysis.html#cb35-2" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(sce, <span class="at">feature1 =</span> <span class="st">&quot;nCount_RNA&quot;</span>, <span class="at">feature2 =</span> <span class="st">&quot;percent.mt&quot;</span>)</span>
+<span id="cb35-3"><a href="analysis.html#cb35-3" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(sce, <span class="at">feature1 =</span> <span class="st">&quot;nCount_RNA&quot;</span>, <span class="at">feature2 =</span> <span class="st">&quot;nFeature_RNA&quot;</span>)</span>
+<span id="cb35-4"><a href="analysis.html#cb35-4" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2</span>
+<span id="cb35-5"><a href="analysis.html#cb35-5" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p><img src="output/merge_BALL_CTRL/2.filter.geneplot.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="analysis.html#cb36-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb36-2"><a href="analysis.html#cb36-2" tabindex="-1"></a><span class="co">#  Step 5: Normalizing the data</span></span>
+<span id="cb36-3"><a href="analysis.html#cb36-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb36-4"><a href="analysis.html#cb36-4" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(sce, <span class="at">normalization.method =</span> <span class="st">&quot;LogNormalize&quot;</span>, <span class="at">scale.factor =</span> <span class="fu">ncol</span>(sce) )</span>
+<span id="cb36-5"><a href="analysis.html#cb36-5" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(sce, <span class="at">selection.method =</span> <span class="st">&quot;vst&quot;</span>, <span class="at">nfeatures =</span> <span class="dv">2000</span>)</span>
+<span id="cb36-6"><a href="analysis.html#cb36-6" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb36-7"><a href="analysis.html#cb36-7" tabindex="-1"></a><span class="co">#  Step 6: Identification of highly variable features (feature selection)</span></span>
+<span id="cb36-8"><a href="analysis.html#cb36-8" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb36-9"><a href="analysis.html#cb36-9" tabindex="-1"></a><span class="co"># Identify the 10 most highly variable genes</span></span>
+<span id="cb36-10"><a href="analysis.html#cb36-10" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">VariableFeatures</span>(sce), <span class="dv">10</span>)</span>
+<span id="cb36-11"><a href="analysis.html#cb36-11" tabindex="-1"></a><span class="co"># plot variable features with and without labels</span></span>
+<span id="cb36-12"><a href="analysis.html#cb36-12" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/3.VariableFeaturePlot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb36-13"><a href="analysis.html#cb36-13" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">VariableFeaturePlot</span>(sce)</span>
+<span id="cb36-14"><a href="analysis.html#cb36-14" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">LabelPoints</span>(<span class="at">plot =</span> plot1, <span class="at">points =</span> top10, <span class="at">repel =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-15"><a href="analysis.html#cb36-15" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2</span>
+<span id="cb36-16"><a href="analysis.html#cb36-16" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p><img src="output/merge_BALL_CTRL/3.VariableFeaturePlot.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="analysis.html#cb37-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb37-2"><a href="analysis.html#cb37-2" tabindex="-1"></a><span class="co">#  Step 7: Scaling the data</span></span>
+<span id="cb37-3"><a href="analysis.html#cb37-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb37-4"><a href="analysis.html#cb37-4" tabindex="-1"></a>all.genes <span class="ot">&lt;-</span> <span class="fu">rownames</span>(sce)</span>
+<span id="cb37-5"><a href="analysis.html#cb37-5" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(sce, <span class="at">features =</span> <span class="fu">VariableFeatures</span>(sce))</span>
+<span id="cb37-6"><a href="analysis.html#cb37-6" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(sce, <span class="at">features =</span> <span class="fu">VariableFeatures</span>(<span class="at">object =</span> sce))</span>
+<span id="cb37-7"><a href="analysis.html#cb37-7" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;pca&quot;</span>, <span class="at">group.by =</span> <span class="st">&quot;Sample&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb37-8"><a href="analysis.html#cb37-8" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/4.PCA.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="output/merge_BALL_CTRL/4.PCA.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="analysis.html#cb38-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb38-2"><a href="analysis.html#cb38-2" tabindex="-1"></a><span class="co">#  Step 8: Harmony 批次矫正</span></span>
+<span id="cb38-3"><a href="analysis.html#cb38-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb38-4"><a href="analysis.html#cb38-4" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">VariableFeatures</span>(sce))</span>
+<span id="cb38-5"><a href="analysis.html#cb38-5" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">RunHarmony</span>(sce, <span class="st">&quot;Sample&quot;</span>) </span>
+<span id="cb38-6"><a href="analysis.html#cb38-6" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb38-7"><a href="analysis.html#cb38-7" tabindex="-1"></a><span class="co">#  Step 9: Cluster the cells</span></span>
+<span id="cb38-8"><a href="analysis.html#cb38-8" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb38-9"><a href="analysis.html#cb38-9" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;harmony&quot;</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb38-10"><a href="analysis.html#cb38-10" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(sce, <span class="at">resolution =</span> <span class="fl">0.8</span>)</span>
+<span id="cb38-11"><a href="analysis.html#cb38-11" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb38-12"><a href="analysis.html#cb38-12" tabindex="-1"></a><span class="co">#  Step 10: Run non-linear dimensional reduction (UMAP/tSNE)</span></span>
+<span id="cb38-13"><a href="analysis.html#cb38-13" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb38-14"><a href="analysis.html#cb38-14" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">RunTSNE</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;harmony&quot;</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">perplexity =</span> <span class="dv">30</span>)</span>
+<span id="cb38-15"><a href="analysis.html#cb38-15" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">RunUMAP</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;harmony&quot;</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb38-16"><a href="analysis.html#cb38-16" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb38-17"><a href="analysis.html#cb38-17" tabindex="-1"></a><span class="co"># umap</span></span>
+<span id="cb38-18"><a href="analysis.html#cb38-18" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, </span>
+<span id="cb38-19"><a href="analysis.html#cb38-19" tabindex="-1"></a>             <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb38-20"><a href="analysis.html#cb38-20" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/5.UMAP.cluster.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb38-21"><a href="analysis.html#cb38-21" tabindex="-1"></a></span>
+<span id="cb38-22"><a href="analysis.html#cb38-22" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">10</span>,</span>
+<span id="cb38-23"><a href="analysis.html#cb38-23" tabindex="-1"></a>             <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb38-24"><a href="analysis.html#cb38-24" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/5.UMAP.cluster.label.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb38-25"><a href="analysis.html#cb38-25" tabindex="-1"></a></span>
+<span id="cb38-26"><a href="analysis.html#cb38-26" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">group.by =</span> <span class="st">&quot;Sample&quot;</span>,</span>
+<span id="cb38-27"><a href="analysis.html#cb38-27" tabindex="-1"></a>             <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb38-28"><a href="analysis.html#cb38-28" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/5.UMAP.sample.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="output/merge_BALL_CTRL/5.UMAP.sample.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="analysis.html#cb39-1" tabindex="-1"></a><span class="co"># tsne</span></span>
+<span id="cb39-2"><a href="analysis.html#cb39-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, </span>
+<span id="cb39-3"><a href="analysis.html#cb39-3" tabindex="-1"></a>             <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb39-4"><a href="analysis.html#cb39-4" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/6.tSNE.cluster.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb39-5"><a href="analysis.html#cb39-5" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="analysis.html#cb39-6" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">10</span>,</span>
+<span id="cb39-7"><a href="analysis.html#cb39-7" tabindex="-1"></a>             <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb39-8"><a href="analysis.html#cb39-8" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/6.tSNE.cluster.label.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb39-9"><a href="analysis.html#cb39-9" tabindex="-1"></a></span>
+<span id="cb39-10"><a href="analysis.html#cb39-10" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">group.by =</span> <span class="st">&quot;Sample&quot;</span>,</span>
+<span id="cb39-11"><a href="analysis.html#cb39-11" tabindex="-1"></a>             <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb39-12"><a href="analysis.html#cb39-12" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/6.tSNE.sample.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="output/merge_BALL_CTRL/6.tSNE.sample.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="analysis.html#cb40-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb40-2"><a href="analysis.html#cb40-2" tabindex="-1"></a><span class="co">#  Step11: Cell cycle</span></span>
+<span id="cb40-3"><a href="analysis.html#cb40-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb40-4"><a href="analysis.html#cb40-4" tabindex="-1"></a>cc.genes</span>
+<span id="cb40-5"><a href="analysis.html#cb40-5" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">CellCycleScoring</span>(sce, <span class="at">s.features =</span> cc.genes<span class="sc">$</span>s.genes, <span class="at">g2m.features =</span> cc.genes<span class="sc">$</span>g2m.genes)</span>
+<span id="cb40-6"><a href="analysis.html#cb40-6" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb40-7"><a href="analysis.html#cb40-7" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;Phase&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb40-8"><a href="analysis.html#cb40-8" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/7.CC.phase.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb40-9"><a href="analysis.html#cb40-9" tabindex="-1"></a></span>
+<span id="cb40-10"><a href="analysis.html#cb40-10" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">VlnPlot</span>(sce, <span class="at">features =</span> <span class="st">&quot;S.Score&quot;</span>, <span class="at">pt.size =</span> <span class="dv">0</span>, </span>
+<span id="cb40-11"><a href="analysis.html#cb40-11" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;seurat_clusters&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb40-12"><a href="analysis.html#cb40-12" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/7.CC.score.S.Score.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>)</span>
+<span id="cb40-13"><a href="analysis.html#cb40-13" tabindex="-1"></a></span>
+<span id="cb40-14"><a href="analysis.html#cb40-14" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">VlnPlot</span>(sce, <span class="at">features =</span> <span class="st">&quot;G2M.Score&quot;</span>, <span class="at">pt.size =</span> <span class="dv">0</span>, </span>
+<span id="cb40-15"><a href="analysis.html#cb40-15" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;seurat_clusters&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb40-16"><a href="analysis.html#cb40-16" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/7.CC.score.G2M.Score.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="output/merge_BALL_CTRL/7.CC.score.G2M.Score.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="analysis.html#cb41-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb41-2"><a href="analysis.html#cb41-2" tabindex="-1"></a><span class="co">#  Step 12: Visualization previous SingleR annotation</span></span>
+<span id="cb41-3"><a href="analysis.html#cb41-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb41-4"><a href="analysis.html#cb41-4" tabindex="-1"></a><span class="co"># umap</span></span>
+<span id="cb41-5"><a href="analysis.html#cb41-5" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">4</span>,</span>
+<span id="cb41-6"><a href="analysis.html#cb41-6" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType.BlueprintEncodeData&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb41-7"><a href="analysis.html#cb41-7" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/8.SingleR.umap.BlueprintEncodeData.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb41-8"><a href="analysis.html#cb41-8" tabindex="-1"></a></span>
+<span id="cb41-9"><a href="analysis.html#cb41-9" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">4</span>,</span>
+<span id="cb41-10"><a href="analysis.html#cb41-10" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType.HumanPrimaryCellAtlasData&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb41-11"><a href="analysis.html#cb41-11" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/8.SingleR.umap.HumanPrimaryCellAtlasData.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb41-12"><a href="analysis.html#cb41-12" tabindex="-1"></a></span>
+<span id="cb41-13"><a href="analysis.html#cb41-13" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">4</span>,</span>
+<span id="cb41-14"><a href="analysis.html#cb41-14" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType.NovershternHematopoieticData&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb41-15"><a href="analysis.html#cb41-15" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/8.SingleR.umap.NovershternHematopoieticData.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="output/merge_BALL_CTRL/8.SingleR.umap.NovershternHematopoieticData.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="analysis.html#cb42-1" tabindex="-1"></a><span class="co"># tsne</span></span>
+<span id="cb42-2"><a href="analysis.html#cb42-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">4</span>,</span>
+<span id="cb42-3"><a href="analysis.html#cb42-3" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType.BlueprintEncodeData&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb42-4"><a href="analysis.html#cb42-4" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/8.SingleR.tsne.BlueprintEncodeData.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb42-5"><a href="analysis.html#cb42-5" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="analysis.html#cb42-6" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">4</span>,</span>
+<span id="cb42-7"><a href="analysis.html#cb42-7" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType.HumanPrimaryCellAtlasData&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb42-8"><a href="analysis.html#cb42-8" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/8.SingleR.tsne.HumanPrimaryCellAtlasData.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb42-9"><a href="analysis.html#cb42-9" tabindex="-1"></a></span>
+<span id="cb42-10"><a href="analysis.html#cb42-10" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="dv">1</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">4</span>,</span>
+<span id="cb42-11"><a href="analysis.html#cb42-11" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType.NovershternHematopoieticData&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb42-12"><a href="analysis.html#cb42-12" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/8.SingleR.tsne.NovershternHematopoieticData.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="output/merge_BALL_CTRL/8.SingleR.tsne.NovershternHematopoieticData.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="analysis.html#cb43-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb43-2"><a href="analysis.html#cb43-2" tabindex="-1"></a><span class="co">#  Step 13: Finding differentially expressed features (find marker)</span></span>
+<span id="cb43-3"><a href="analysis.html#cb43-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb43-4"><a href="analysis.html#cb43-4" tabindex="-1"></a>ident.meta <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">table</span>(sce<span class="sc">@</span>meta.data<span class="sc">$</span>seurat_clusters))</span>
+<span id="cb43-5"><a href="analysis.html#cb43-5" tabindex="-1"></a><span class="fu">colnames</span>(ident.meta) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Cluster&quot;</span>,<span class="st">&quot;CellCount&quot;</span>)</span>
+<span id="cb43-6"><a href="analysis.html#cb43-6" tabindex="-1"></a><span class="fu">write.xlsx</span>(ident.meta, <span class="fu">paste0</span>(out.path, <span class="st">&quot;/9.CellCount.xlsx&quot;</span>), <span class="at">overwrite =</span> T)</span>
+<span id="cb43-7"><a href="analysis.html#cb43-7" tabindex="-1"></a><span class="co">#   Cluster CellCount</span></span>
+<span id="cb43-8"><a href="analysis.html#cb43-8" tabindex="-1"></a><span class="co"># 1       0      2201</span></span>
+<span id="cb43-9"><a href="analysis.html#cb43-9" tabindex="-1"></a><span class="co"># 2       1      1385</span></span>
+<span id="cb43-10"><a href="analysis.html#cb43-10" tabindex="-1"></a><span class="co"># 3       2      1096</span></span>
+<span id="cb43-11"><a href="analysis.html#cb43-11" tabindex="-1"></a><span class="co"># 4       3       648</span></span>
+<span id="cb43-12"><a href="analysis.html#cb43-12" tabindex="-1"></a><span class="co"># 5       4       547</span></span>
+<span id="cb43-13"><a href="analysis.html#cb43-13" tabindex="-1"></a><span class="co"># 6       5       545</span></span>
+<span id="cb43-14"><a href="analysis.html#cb43-14" tabindex="-1"></a></span>
+<span id="cb43-15"><a href="analysis.html#cb43-15" tabindex="-1"></a><span class="co"># find marker</span></span>
+<span id="cb43-16"><a href="analysis.html#cb43-16" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">BuildClusterTree</span>(<span class="at">object =</span> sce)</span>
+<span id="cb43-17"><a href="analysis.html#cb43-17" tabindex="-1"></a><span class="co"># PlotClusterTree(sce)</span></span>
+<span id="cb43-18"><a href="analysis.html#cb43-18" tabindex="-1"></a>all.markers <span class="ot">&lt;-</span> <span class="fu">FindAllMarkers</span>(<span class="at">object =</span> sce, <span class="at">only.pos =</span> <span class="cn">TRUE</span>, <span class="at">logfc.threshold =</span> <span class="fl">0.1</span>, <span class="at">min.pct =</span> <span class="fl">0.1</span>)</span>
+<span id="cb43-19"><a href="analysis.html#cb43-19" tabindex="-1"></a>all.markers <span class="ot">&lt;-</span> all.markers[<span class="fu">which</span>(all.markers<span class="sc">$</span>p_val_adj <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> all.markers<span class="sc">$</span>avg_log2FC <span class="sc">&gt;</span> <span class="dv">0</span>), ]</span>
+<span id="cb43-20"><a href="analysis.html#cb43-20" tabindex="-1"></a><span class="fu">write.xlsx</span>(all.markers, <span class="fu">paste0</span>(out.path, <span class="st">&quot;/10.top.markers.xlsx&quot;</span>), <span class="at">overwrite =</span> T)</span>
+<span id="cb43-21"><a href="analysis.html#cb43-21" tabindex="-1"></a><span class="co"># plot top 10 markers</span></span>
+<span id="cb43-22"><a href="analysis.html#cb43-22" tabindex="-1"></a>all.markers <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/10.top.markers.xlsx&quot;</span>))</span>
+<span id="cb43-23"><a href="analysis.html#cb43-23" tabindex="-1"></a>all.markers <span class="ot">&lt;-</span> all.markers[<span class="fu">which</span>(all.markers<span class="sc">$</span>pct<span class="fl">.1</span> <span class="sc">&gt;</span> <span class="fl">0.25</span>), ]</span>
+<span id="cb43-24"><a href="analysis.html#cb43-24" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> all.markers <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span> <span class="fu">top_n</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">wt =</span> avg_log2FC)</span>
+<span id="cb43-25"><a href="analysis.html#cb43-25" tabindex="-1"></a>gene.list <span class="ot">&lt;-</span> <span class="fu">unique</span>(top10<span class="sc">$</span>gene)</span>
+<span id="cb43-26"><a href="analysis.html#cb43-26" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DotPlot</span>(sce, <span class="at">features =</span> gene.list, <span class="at">dot.scale =</span> <span class="dv">8</span>, <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&quot;#DDDDDD&quot;</span>, <span class="st">&quot;#003366&quot;</span> ), <span class="at">col.min =</span> <span class="sc">-</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">RotatedAxis</span>()</span>
+<span id="cb43-27"><a href="analysis.html#cb43-27" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_few</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">14</span>))</span>
+<span id="cb43-28"><a href="analysis.html#cb43-28" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>))</span>
+<span id="cb43-29"><a href="analysis.html#cb43-29" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>))</span>
+<span id="cb43-30"><a href="analysis.html#cb43-30" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">gradient_color</span>(<span class="fu">c</span>(<span class="st">&quot;#EEEEEE&quot;</span>,<span class="st">&quot;#ffb459&quot;</span>,<span class="st">&quot;#e8613c&quot;</span>,<span class="st">&quot;#b70909&quot;</span>))</span>
+<span id="cb43-31"><a href="analysis.html#cb43-31" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/10.top.markers.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">20</span>, <span class="at">height =</span> <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="output/merge_BALL_CTRL/10.top.markers.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="analysis.html#cb44-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb44-2"><a href="analysis.html#cb44-2" tabindex="-1"></a><span class="co">#  Step 14: check wellknown markers</span></span>
+<span id="cb44-3"><a href="analysis.html#cb44-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb44-4"><a href="analysis.html#cb44-4" tabindex="-1"></a><span class="co"># Expression for each cluster</span></span>
+<span id="cb44-5"><a href="analysis.html#cb44-5" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">FeaturePlot</span>(<span class="at">object =</span> sce, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">&quot;CD34&quot;</span>,<span class="st">&quot;CD19&quot;</span>,<span class="st">&quot;CD3E&quot;</span>), </span>
+<span id="cb44-6"><a href="analysis.html#cb44-6" tabindex="-1"></a>                 <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&quot;#CCCCCC&quot;</span>, <span class="st">&quot;red&quot;</span>), <span class="at">pt.size =</span> <span class="fl">0.5</span>, <span class="at">ncol =</span> <span class="dv">3</span>,</span>
+<span id="cb44-7"><a href="analysis.html#cb44-7" tabindex="-1"></a>                 <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>)</span>
+<span id="cb44-8"><a href="analysis.html#cb44-8" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/11.featurePlot.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">14</span>, <span class="at">height =</span> <span class="dv">4</span>)</span></code></pre></div>
+<p><img src="output/merge_BALL_CTRL/11.featurePlot.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="analysis.html#cb45-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">VlnPlot</span>(<span class="at">object =</span> sce, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">&quot;CD34&quot;</span>,<span class="st">&quot;CD19&quot;</span>,<span class="st">&quot;CD3E&quot;</span>), <span class="at">pt.size =</span> <span class="dv">0</span>, </span>
+<span id="cb45-2"><a href="analysis.html#cb45-2" tabindex="-1"></a>             <span class="at">cols =</span> color.lib, <span class="at">slot =</span> <span class="st">&quot;data&quot;</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb45-3"><a href="analysis.html#cb45-3" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/11.VlnPlot.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">16</span>, <span class="at">height =</span> <span class="dv">4</span>)</span></code></pre></div>
+<p><img src="output/merge_BALL_CTRL/11.VlnPlot.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="analysis.html#cb46-1" tabindex="-1"></a><span class="do">##  Percentage summary</span></span>
+<span id="cb46-2"><a href="analysis.html#cb46-2" tabindex="-1"></a>ident.meta <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(sce<span class="sc">@</span>meta.data)</span>
+<span id="cb46-3"><a href="analysis.html#cb46-3" tabindex="-1"></a>ident.info.meta <span class="ot">&lt;-</span> <span class="fu">table</span>(ident.meta[, <span class="fu">c</span>(<span class="st">&quot;seurat_clusters&quot;</span>, <span class="st">&quot;Sample&quot;</span>)])</span>
+<span id="cb46-4"><a href="analysis.html#cb46-4" tabindex="-1"></a>ident.info.per <span class="ot">&lt;-</span> ident.info.meta</span>
+<span id="cb46-5"><a href="analysis.html#cb46-5" tabindex="-1"></a><span class="co"># seurat_clusters BALL_BM CTRL_BM</span></span>
+<span id="cb46-6"><a href="analysis.html#cb46-6" tabindex="-1"></a><span class="co">#              0     1327     874</span></span>
+<span id="cb46-7"><a href="analysis.html#cb46-7" tabindex="-1"></a><span class="co">#              1     1381       4</span></span>
+<span id="cb46-8"><a href="analysis.html#cb46-8" tabindex="-1"></a><span class="co">#              2      466     630</span></span>
+<span id="cb46-9"><a href="analysis.html#cb46-9" tabindex="-1"></a><span class="co">#              3      350     298</span></span>
+<span id="cb46-10"><a href="analysis.html#cb46-10" tabindex="-1"></a><span class="co">#              4       13     534</span></span>
+<span id="cb46-11"><a href="analysis.html#cb46-11" tabindex="-1"></a></span>
+<span id="cb46-12"><a href="analysis.html#cb46-12" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb46-13"><a href="analysis.html#cb46-13" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(ident.info.meta)) {</span>
+<span id="cb46-14"><a href="analysis.html#cb46-14" tabindex="-1"></a>  plot.data.sub <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(ident.info.meta[, i])</span>
+<span id="cb46-15"><a href="analysis.html#cb46-15" tabindex="-1"></a>  <span class="fu">colnames</span>(plot.data.sub)[<span class="dv">1</span>] <span class="ot">=</span> <span class="st">&quot;CellCount&quot;</span></span>
+<span id="cb46-16"><a href="analysis.html#cb46-16" tabindex="-1"></a>  plot.data.sub<span class="sc">$</span>Percentage <span class="ot">&lt;-</span> plot.data.sub<span class="sc">$</span>CellCount <span class="sc">/</span> <span class="fu">sum</span>(plot.data.sub<span class="sc">$</span>CellCount) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb46-17"><a href="analysis.html#cb46-17" tabindex="-1"></a>  plot.data.sub<span class="sc">$</span>CellType <span class="ot">&lt;-</span> <span class="fu">rownames</span>(plot.data.sub)</span>
+<span id="cb46-18"><a href="analysis.html#cb46-18" tabindex="-1"></a>  plot.data.sub<span class="sc">$</span>Sample <span class="ot">&lt;-</span> <span class="fu">colnames</span>(ident.info.meta)[i]</span>
+<span id="cb46-19"><a href="analysis.html#cb46-19" tabindex="-1"></a>  plot.data <span class="ot">&lt;-</span> <span class="fu">rbind</span>(plot.data, plot.data.sub)</span>
+<span id="cb46-20"><a href="analysis.html#cb46-20" tabindex="-1"></a>  ident.info.per[, i] <span class="ot">&lt;-</span>  ident.info.per[, i]<span class="sc">/</span><span class="fu">sum</span>(ident.info.per[, i])<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb46-21"><a href="analysis.html#cb46-21" tabindex="-1"></a>}</span>
+<span id="cb46-22"><a href="analysis.html#cb46-22" tabindex="-1"></a><span class="co"># seurat_clusters     BALL_BM     CTRL_BM</span></span>
+<span id="cb46-23"><a href="analysis.html#cb46-23" tabindex="-1"></a><span class="co">#              0  27.47412008 20.85918854</span></span>
+<span id="cb46-24"><a href="analysis.html#cb46-24" tabindex="-1"></a><span class="co">#              1  28.59213251  0.09546539</span></span>
+<span id="cb46-25"><a href="analysis.html#cb46-25" tabindex="-1"></a><span class="co">#              2   9.64803313 15.03579952</span></span>
+<span id="cb46-26"><a href="analysis.html#cb46-26" tabindex="-1"></a><span class="co">#              3   7.24637681  7.11217184</span></span>
+<span id="cb46-27"><a href="analysis.html#cb46-27" tabindex="-1"></a><span class="co">#              4   0.26915114 12.74463007</span></span>
+<span id="cb46-28"><a href="analysis.html#cb46-28" tabindex="-1"></a><span class="co">#              5   7.39130435  4.48687351</span></span>
+<span id="cb46-29"><a href="analysis.html#cb46-29" tabindex="-1"></a><span class="fu">write.xlsx</span>(<span class="fu">list</span>(<span class="at">Count =</span> ident.info.meta, <span class="at">Percent =</span> ident.info.per), <span class="fu">paste0</span>(out.path, <span class="st">&quot;/12.cluster.percentage.xlsx&quot;</span>), <span class="at">rowNames =</span> T, <span class="at">overwrite =</span> T)</span>
+<span id="cb46-30"><a href="analysis.html#cb46-30" tabindex="-1"></a><span class="do">## plot</span></span>
+<span id="cb46-31"><a href="analysis.html#cb46-31" tabindex="-1"></a>order <span class="ot">=</span> <span class="fu">colnames</span>(ident.info.meta)</span>
+<span id="cb46-32"><a href="analysis.html#cb46-32" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggbarplot</span>(plot.data, <span class="at">x =</span> <span class="st">&quot;Sample&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Percentage&quot;</span>, </span>
+<span id="cb46-33"><a href="analysis.html#cb46-33" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">&quot;CellType&quot;</span>, <span class="at">color =</span> <span class="st">&quot;CellType&quot;</span>, <span class="at">width =</span> <span class="fl">0.7</span>,</span>
+<span id="cb46-34"><a href="analysis.html#cb46-34" tabindex="-1"></a>          <span class="at">palette =</span> color.lib, <span class="at">size =</span> <span class="dv">0</span>, </span>
+<span id="cb46-35"><a href="analysis.html#cb46-35" tabindex="-1"></a>          <span class="at">legend =</span> <span class="st">&quot;right&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Cell Percentage (%)&quot;</span>,</span>
+<span id="cb46-36"><a href="analysis.html#cb46-36" tabindex="-1"></a>          <span class="at">order =</span> order )</span>
+<span id="cb46-37"><a href="analysis.html#cb46-37" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb46-38"><a href="analysis.html#cb46-38" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">14</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>))</span>
+<span id="cb46-39"><a href="analysis.html#cb46-39" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/12.cluster.Percentage.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">4</span>, <span class="at">height =</span> <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="output/merge_BALL_CTRL/12.cluster.Percentage.png" width="300px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="analysis.html#cb47-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggbarplot</span>(plot.data, <span class="at">x =</span> <span class="st">&quot;Sample&quot;</span>, <span class="at">y =</span> <span class="st">&quot;CellCount&quot;</span>, </span>
+<span id="cb47-2"><a href="analysis.html#cb47-2" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">&quot;CellType&quot;</span>, <span class="at">color =</span> <span class="st">&quot;CellType&quot;</span>, <span class="at">width =</span> <span class="fl">0.7</span>,</span>
+<span id="cb47-3"><a href="analysis.html#cb47-3" tabindex="-1"></a>          <span class="at">palette =</span> color.lib, <span class="at">size =</span> <span class="dv">0</span>, </span>
+<span id="cb47-4"><a href="analysis.html#cb47-4" tabindex="-1"></a>          <span class="at">legend =</span> <span class="st">&quot;right&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Cell Count&quot;</span>,</span>
+<span id="cb47-5"><a href="analysis.html#cb47-5" tabindex="-1"></a>          <span class="at">order =</span> order )</span>
+<span id="cb47-6"><a href="analysis.html#cb47-6" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb47-7"><a href="analysis.html#cb47-7" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">14</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>))</span>
+<span id="cb47-8"><a href="analysis.html#cb47-8" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/12.cluster.Count.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">4</span>, <span class="at">height =</span> <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="output/merge_BALL_CTRL/12.cluster.Count.png" width="300px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="analysis.html#cb48-1" tabindex="-1"></a><span class="do">## save object</span></span>
+<span id="cb48-2"><a href="analysis.html#cb48-2" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;./output/obj&quot;</span>,<span class="at">recursive =</span> T)</span>
+<span id="cb48-3"><a href="analysis.html#cb48-3" tabindex="-1"></a><span class="fu">saveRDS</span>(sce, <span class="fu">paste0</span>(<span class="st">&quot;./output/obj/20231011.&quot;</span>, <span class="st">&quot;merge_BALL_CTRL&quot;</span>, <span class="st">&quot;.rds&quot;</span>))</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="others.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02.analysis.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

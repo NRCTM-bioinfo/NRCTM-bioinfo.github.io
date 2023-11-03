@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Session Information and Reference | 生信分析系列培训课程（第1期）</title>
+  <meta name="description" content="Chapter 4 Session Information and Reference | 生信分析系列培训课程（第1期）" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Session Information and Reference | 生信分析系列培训课程（第1期）" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Session Information and Reference | 生信分析系列培训课程（第1期）" />
+  
+  
+  
+
+<meta name="author" content="Yuting Dai / Chenxu Gao" />
+
+
+<meta name="date" content="2023-11-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="analysis.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">scRNAseq</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#cell-ranger"><i class="fa fa-check"></i><b>2.1</b> Cell Ranger</a></li>
+<li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#sample"><i class="fa fa-check"></i><b>2.2</b> Sample</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>3</b> Analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="analysis.html"><a href="analysis.html#ctrl_bm"><i class="fa fa-check"></i><b>3.1</b> CTRL_BM</a></li>
+<li class="chapter" data-level="3.2" data-path="analysis.html"><a href="analysis.html#ball_bm"><i class="fa fa-check"></i><b>3.2</b> BALL_BM</a></li>
+<li class="chapter" data-level="3.3" data-path="analysis.html"><a href="analysis.html#integration"><i class="fa fa-check"></i><b>3.3</b> Integration</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="session-information-and-reference.html"><a href="session-information-and-reference.html"><i class="fa fa-check"></i><b>4</b> Session Information and Reference</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="session-information-and-reference.html"><a href="session-information-and-reference.html#r-session-info"><i class="fa fa-check"></i><b>4.1</b> R Session info</a></li>
+<li class="chapter" data-level="4.2" data-path="session-information-and-reference.html"><a href="session-information-and-reference.html#reference"><i class="fa fa-check"></i><b>4.2</b> Reference</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">生信分析系列培训课程（第1期）</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="session-information-and-reference" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Session Information and Reference<a href="session-information-and-reference.html#session-information-and-reference" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="r-session-info" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> R Session info<a href="session-information-and-reference.html#r-session-info" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="session-information-and-reference.html#cb49-1" tabindex="-1"></a><span class="co"># Show session information</span></span>
+<span id="cb49-2"><a href="session-information-and-reference.html#cb49-2" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.2.3 (2023-03-15)
+## Platform: x86_64-apple-darwin17.0 (64-bit)
+## Running under: macOS Monterey 12.6.8
+## 
+## Matrix products: default
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] stats4    stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] harmony_1.1.0               Rcpp_1.0.11                 monocle3_1.3.4             
+##  [4] SingleCellExperiment_1.20.1 SingleR_2.0.0               SummarizedExperiment_1.28.0
+##  [7] Biobase_2.58.0              GenomicRanges_1.50.2        GenomeInfoDb_1.34.9        
+## [10] IRanges_2.32.0              S4Vectors_0.36.2            BiocGenerics_0.44.0        
+## [13] MatrixGenerics_1.10.0       pheatmap_1.0.12             ggthemes_4.2.4             
+## [16] stringr_1.5.0               openxlsx_4.2.5.2            ggpubr_0.6.0               
+## [19] ggplot2_3.4.4               matrixStats_1.0.0           gplots_3.1.3               
+## [22] Matrix_1.6-1                dplyr_1.1.3                 SeuratObject_4.1.4         
+## [25] Seurat_4.4.0                knitr_1.44                 
+## 
+## loaded via a namespace (and not attached):
+##   [1] utf8_1.2.4                spatstat.explore_3.2-5    reticulate_1.34.0        
+##   [4] tidyselect_1.2.0          lme4_1.1-34               htmlwidgets_1.6.2        
+##   [7] grid_4.2.3                BiocParallel_1.32.6       Rtsne_0.16               
+##  [10] munsell_0.5.0             ScaledMatrix_1.6.0        ragg_1.2.6               
+##  [13] codetools_0.2-19          ica_1.0-3                 future_1.33.0            
+##  [16] miniUI_0.1.1.1            withr_2.5.1               spatstat.random_3.2-1    
+##  [19] colorspace_2.1-0          progressr_0.14.0          rstudioapi_0.15.0        
+##  [22] ROCR_1.0-11               ggsignif_0.6.4            tensor_1.5               
+##  [25] listenv_0.9.0             labeling_0.4.3            GenomeInfoDbData_1.2.9   
+##  [28] polyclip_1.10-6           farver_2.1.1              parallelly_1.36.0        
+##  [31] vctrs_0.6.4               generics_0.1.3            xfun_0.40                
+##  [34] R6_2.5.1                  ggbeeswarm_0.7.2          rsvd_1.0.5               
+##  [37] bitops_1.0-7              spatstat.utils_3.0-3      cachem_1.0.8             
+##  [40] DelayedArray_0.24.0       promises_1.2.1            scales_1.2.1             
+##  [43] beeswarm_0.4.0            gtable_0.3.4              beachmat_2.14.2          
+##  [46] globals_0.16.2            goftest_1.2-3             rlang_1.1.1              
+##  [49] systemfonts_1.0.5         splines_4.2.3             rstatix_0.7.2            
+##  [52] lazyeval_0.2.2            spatstat.geom_3.2-7       broom_1.0.5              
+##  [55] yaml_2.3.7                reshape2_1.4.4            abind_1.4-5              
+##  [58] backports_1.4.1           httpuv_1.6.12             tools_4.2.3              
+##  [61] bookdown_0.36             ellipsis_0.3.2            jquerylib_0.1.4          
+##  [64] RColorBrewer_1.1-3        ggridges_0.5.4            plyr_1.8.9               
+##  [67] sparseMatrixStats_1.10.0  zlibbioc_1.44.0           purrr_1.0.2              
+##  [70] RCurl_1.98-1.12           deldir_1.0-9              pbapply_1.7-2            
+##  [73] cowplot_1.1.1             zoo_1.8-12                ggrepel_0.9.4            
+##  [76] cluster_2.1.4             magrittr_2.0.3            data.table_1.14.8        
+##  [79] scattermore_1.2           lmtest_0.9-40             RANN_2.6.1               
+##  [82] fitdistrplus_1.1-11       patchwork_1.1.3           mime_0.12                
+##  [85] evaluate_0.22             xtable_1.8-4              RhpcBLASctl_0.23-42      
+##  [88] gridExtra_2.3             compiler_4.2.3            tibble_3.2.1             
+##  [91] KernSmooth_2.23-22        minqa_1.2.6               htmltools_0.5.6.1        
+##  [94] later_1.3.1               tidyr_1.3.0               MASS_7.3-60              
+##  [97] boot_1.3-28.1             car_3.1-2                 cli_3.6.1                
+## [100] parallel_4.2.3            igraph_1.5.1              pkgconfig_2.0.3          
+## [103] sp_2.1-1                  terra_1.7-55              plotly_4.10.3            
+## [106] spatstat.sparse_3.0-2     vipor_0.4.5               bslib_0.5.1              
+## [109] XVector_0.38.0            digest_0.6.33             sctransform_0.4.1        
+## [112] RcppAnnoy_0.0.21          spatstat.data_3.0-1       rmarkdown_2.25           
+## [115] leiden_0.4.3              uwot_0.1.16               DelayedMatrixStats_1.20.0
+## [118] shiny_1.7.5.1             gtools_3.9.4              nloptr_2.0.3             
+## [121] lifecycle_1.0.3           nlme_3.1-163              jsonlite_1.8.7           
+## [124] carData_3.0-5             limma_3.54.2              viridisLite_0.4.2        
+## [127] fansi_1.0.5               pillar_1.9.0              lattice_0.22-4           
+## [130] ggrastr_1.0.2             fastmap_1.1.1             httr_1.4.7               
+## [133] survival_3.5-7            glue_1.6.2                zip_2.3.0                
+## [136] png_0.1-8                 stringi_1.7.12            sass_0.4.7               
+## [139] textshaping_0.3.7         BiocSingular_1.14.0       caTools_1.18.2           
+## [142] ape_5.7-1                 irlba_2.3.5.1             future.apply_1.11.0</code></pre>
+</div>
+<div id="reference" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Reference<a href="session-information-and-reference.html#reference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><a href="https://satijalab.org/seurat/">Seurat</a></li>
+<li><a href="https://bioconductor.org/packages/release/bioc/html/SingleR.html">SingleR</a></li>
+<li><a href="https://portals.broadinstitute.org/harmony/articles/quickstart.html">harmony</a></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="analysis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03.sessionInfo.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
