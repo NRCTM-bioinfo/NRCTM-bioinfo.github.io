@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Page not found | APL stemness</title>
   <meta name="description" content="This is the tutorial of APL-stemness project." />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Page not found | APL stemness" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Yu-Ting Dai, Wen Jin" />
 
 
-<meta name="date" content="2023-03-22" />
+<meta name="date" content="2023-11-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -140,15 +144,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="scrna-seq.html"><a href="scrna-seq.html"><i class="fa fa-check"></i><b>2</b> scRNA-seq</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="scrna-seq.html"><a href="scrna-seq.html#load-packages"><i class="fa fa-check"></i><b>2.1</b> Load packages</a></li>
-<li class="chapter" data-level="2.2" data-path="scrna-seq.html"><a href="scrna-seq.html#pre-processing"><i class="fa fa-check"></i><b>2.2</b> Pre-processing</a></li>
-<li class="chapter" data-level="2.3" data-path="scrna-seq.html"><a href="scrna-seq.html#quaility-control"><i class="fa fa-check"></i><b>2.3</b> Quaility control</a></li>
-<li class="chapter" data-level="2.4" data-path="scrna-seq.html"><a href="scrna-seq.html#clustering"><i class="fa fa-check"></i><b>2.4</b> Clustering</a></li>
-<li class="chapter" data-level="2.5" data-path="scrna-seq.html"><a href="scrna-seq.html#cell-annotation"><i class="fa fa-check"></i><b>2.5</b> Cell annotation</a></li>
-<li class="chapter" data-level="2.6" data-path="scrna-seq.html"><a href="scrna-seq.html#cell-signature"><i class="fa fa-check"></i><b>2.6</b> Cell signature</a></li>
+<li class="chapter" data-level="2.2" data-path="scrna-seq.html"><a href="scrna-seq.html#alignment-using-raw-data"><i class="fa fa-check"></i><b>2.2</b> Alignment using raw data</a></li>
+<li class="chapter" data-level="2.3" data-path="scrna-seq.html"><a href="scrna-seq.html#pre-processing-of-bmmcs"><i class="fa fa-check"></i><b>2.3</b> Pre-processing of BMMCs</a></li>
+<li class="chapter" data-level="2.4" data-path="scrna-seq.html"><a href="scrna-seq.html#annotation-of-normal-bmmcs"><i class="fa fa-check"></i><b>2.4</b> Annotation of normal BMMCs</a></li>
+<li class="chapter" data-level="2.5" data-path="scrna-seq.html"><a href="scrna-seq.html#pre-processing-of-apls"><i class="fa fa-check"></i><b>2.5</b> Pre-processing of APLs</a></li>
+<li class="chapter" data-level="2.6" data-path="scrna-seq.html"><a href="scrna-seq.html#integration-of-apls-and-normal-bmmcs"><i class="fa fa-check"></i><b>2.6</b> Integration of APLs and normal BMMCs</a></li>
+<li class="chapter" data-level="2.7" data-path="scrna-seq.html"><a href="scrna-seq.html#normalization"><i class="fa fa-check"></i><b>2.7</b> Normalization</a></li>
+<li class="chapter" data-level="2.8" data-path="scrna-seq.html"><a href="scrna-seq.html#batch-effect-adjustment"><i class="fa fa-check"></i><b>2.8</b> Batch effect adjustment</a></li>
+<li class="chapter" data-level="2.9" data-path="scrna-seq.html"><a href="scrna-seq.html#cell-annotation"><i class="fa fa-check"></i><b>2.9</b> Cell annotation</a></li>
+<li class="chapter" data-level="2.10" data-path="scrna-seq.html"><a href="scrna-seq.html#subset-apl-blasts"><i class="fa fa-check"></i><b>2.10</b> Subset APL blasts</a></li>
+<li class="chapter" data-level="2.11" data-path="scrna-seq.html"><a href="scrna-seq.html#normalization-1"><i class="fa fa-check"></i><b>2.11</b> Normalization</a></li>
+<li class="chapter" data-level="2.12" data-path="scrna-seq.html"><a href="scrna-seq.html#batch-effect-adjustment-of-apl-blasts"><i class="fa fa-check"></i><b>2.12</b> Batch effect adjustment of APL blasts</a></li>
+<li class="chapter" data-level="2.13" data-path="scrna-seq.html"><a href="scrna-seq.html#viper"><i class="fa fa-check"></i><b>2.13</b> VIPER</a></li>
+<li class="chapter" data-level="2.14" data-path="scrna-seq.html"><a href="scrna-seq.html#dorothea"><i class="fa fa-check"></i><b>2.14</b> dorothea</a></li>
+<li class="chapter" data-level="2.15" data-path="scrna-seq.html"><a href="scrna-seq.html#cell-signature"><i class="fa fa-check"></i><b>2.15</b> Cell signature</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="bulk.html"><a href="bulk.html"><i class="fa fa-check"></i><b>3</b> Bulk</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="bulk.html"><a href="bulk.html#pre-processing-1"><i class="fa fa-check"></i><b>3.1</b> Pre-processing</a></li>
+<li class="chapter" data-level="3.1" data-path="bulk.html"><a href="bulk.html#pre-processing"><i class="fa fa-check"></i><b>3.1</b> Pre-processing</a></li>
 <li class="chapter" data-level="3.2" data-path="bulk.html"><a href="bulk.html#degs"><i class="fa fa-check"></i><b>3.2</b> DEGs</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="deconvolution.html"><a href="deconvolution.html"><i class="fa fa-check"></i><b>4</b> Deconvolution</a>
