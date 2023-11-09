@@ -23,7 +23,7 @@
 <meta name="author" content="Yu-Ting Dai, Wen Jin" />
 
 
-<meta name="date" content="2023-11-08" />
+<meta name="date" content="2023-11-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,8 +158,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.5.1" data-path="scrna-seq.html"><a href="scrna-seq.html#integration-of-apls-and-normal-bmmcs"><i class="fa fa-check"></i><b>2.5.1</b> Integration of APLs and normal BMMCs</a></li>
 <li class="chapter" data-level="2.5.2" data-path="scrna-seq.html"><a href="scrna-seq.html#normalization"><i class="fa fa-check"></i><b>2.5.2</b> Normalization</a></li>
-<li class="chapter" data-level="2.5.3" data-path="scrna-seq.html"><a href="scrna-seq.html#batch-effect-adjustment"><i class="fa fa-check"></i><b>2.5.3</b> Batch effect adjustment</a></li>
-<li class="chapter" data-level="2.5.4" data-path="scrna-seq.html"><a href="scrna-seq.html#cell-annotation"><i class="fa fa-check"></i><b>2.5.4</b> Cell annotation</a></li>
+<li class="chapter" data-level="2.5.3" data-path="scrna-seq.html"><a href="scrna-seq.html#before-batch-effect-adjustment"><i class="fa fa-check"></i><b>2.5.3</b> Before batch effect adjustment</a></li>
+<li class="chapter" data-level="2.5.4" data-path="scrna-seq.html"><a href="scrna-seq.html#batch-effect-adjustment"><i class="fa fa-check"></i><b>2.5.4</b> Batch effect adjustment</a></li>
+<li class="chapter" data-level="2.5.5" data-path="scrna-seq.html"><a href="scrna-seq.html#cell-annotation"><i class="fa fa-check"></i><b>2.5.5</b> Cell annotation</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="scrna-seq.html"><a href="scrna-seq.html#apl-blasts"><i class="fa fa-check"></i><b>2.6</b> APL blasts</a>
 <ul>
@@ -210,95 +211,95 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 4</span> Deconvolution<a href="deconvolution.html#deconvolution" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="svr" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> SVR<a href="deconvolution.html#svr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="deconvolution.html#cb21-1" tabindex="-1"></a>deconvolution <span class="ot">&lt;-</span> <span class="cf">function</span>(exp.mat, sig.mat, ncores) {</span>
-<span id="cb21-2"><a href="deconvolution.html#cb21-2" tabindex="-1"></a>  </span>
-<span id="cb21-3"><a href="deconvolution.html#cb21-3" tabindex="-1"></a>  merge.mat <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">y =</span> <span class="fu">as.matrix</span>(exp.mat[<span class="fu">rownames</span>(sig.mat), ]), <span class="at">x =</span> <span class="fu">as.matrix</span>(sig.mat) )</span>
-<span id="cb21-4"><a href="deconvolution.html#cb21-4" tabindex="-1"></a>  nu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="dv">1</span>)</span>
-<span id="cb21-5"><a href="deconvolution.html#cb21-5" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="deconvolution.html#cb21-6" tabindex="-1"></a>  res <span class="ot">&lt;-</span> parallel<span class="sc">::</span><span class="fu">mclapply</span>(<span class="fu">seq_len</span>(<span class="fu">ncol</span>(merge.mat<span class="sc">$</span>y)), <span class="cf">function</span>(z) {</span>
-<span id="cb21-7"><a href="deconvolution.html#cb21-7" tabindex="-1"></a>    <span class="fu">lapply</span>(nu, <span class="cf">function</span>(i) {</span>
-<span id="cb21-8"><a href="deconvolution.html#cb21-8" tabindex="-1"></a>      <span class="fu">suppressMessages</span>(</span>
-<span id="cb21-9"><a href="deconvolution.html#cb21-9" tabindex="-1"></a>        <span class="fu">suppressWarnings</span>(</span>
-<span id="cb21-10"><a href="deconvolution.html#cb21-10" tabindex="-1"></a>          <span class="fu">svm</span>(<span class="at">x =</span> merge.mat<span class="sc">$</span>x,</span>
-<span id="cb21-11"><a href="deconvolution.html#cb21-11" tabindex="-1"></a>              <span class="at">y =</span> <span class="fu">as.vector</span>(merge.mat<span class="sc">$</span>y[,z]), </span>
-<span id="cb21-12"><a href="deconvolution.html#cb21-12" tabindex="-1"></a>              <span class="at">nu =</span> i, </span>
-<span id="cb21-13"><a href="deconvolution.html#cb21-13" tabindex="-1"></a>              <span class="at">type =</span> <span class="st">&#39;nu-regression&#39;</span>,</span>
-<span id="cb21-14"><a href="deconvolution.html#cb21-14" tabindex="-1"></a>              <span class="at">scale =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb21-15"><a href="deconvolution.html#cb21-15" tabindex="-1"></a>              <span class="at">kernel =</span> <span class="st">&#39;linear&#39;</span>)</span>
-<span id="cb21-16"><a href="deconvolution.html#cb21-16" tabindex="-1"></a>        ))</span>
-<span id="cb21-17"><a href="deconvolution.html#cb21-17" tabindex="-1"></a>    })</span>
-<span id="cb21-18"><a href="deconvolution.html#cb21-18" tabindex="-1"></a>  }, <span class="at">mc.cores =</span> ncores)</span>
-<span id="cb21-19"><a href="deconvolution.html#cb21-19" tabindex="-1"></a>  </span>
-<span id="cb21-20"><a href="deconvolution.html#cb21-20" tabindex="-1"></a>  rmse <span class="ot">&lt;-</span>  <span class="fu">lapply</span>(res, <span class="cf">function</span>(z) { </span>
-<span id="cb21-21"><a href="deconvolution.html#cb21-21" tabindex="-1"></a>    <span class="fu">lapply</span>(z, <span class="cf">function</span>(i){</span>
-<span id="cb21-22"><a href="deconvolution.html#cb21-22" tabindex="-1"></a>      <span class="fu">sqrt</span>(<span class="fu">sum</span>(i<span class="sc">$</span>residuals <span class="sc">^</span> <span class="dv">2</span>)<span class="sc">/</span><span class="fu">length</span>(i<span class="sc">$</span>residuals))</span>
-<span id="cb21-23"><a href="deconvolution.html#cb21-23" tabindex="-1"></a>    })</span>
-<span id="cb21-24"><a href="deconvolution.html#cb21-24" tabindex="-1"></a>  })</span>
-<span id="cb21-25"><a href="deconvolution.html#cb21-25" tabindex="-1"></a>  rmse <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(rmse, <span class="cf">function</span>(z) <span class="fu">which.min</span>(<span class="fu">unlist</span>(z))))</span>
-<span id="cb21-26"><a href="deconvolution.html#cb21-26" tabindex="-1"></a>  <span class="co"># extract models with min rmse</span></span>
-<span id="cb21-27"><a href="deconvolution.html#cb21-27" tabindex="-1"></a>  mod <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">seq_along</span>(res), <span class="cf">function</span>(z) {res[[z]][[rmse[z]]] })</span>
-<span id="cb21-28"><a href="deconvolution.html#cb21-28" tabindex="-1"></a>  </span>
-<span id="cb21-29"><a href="deconvolution.html#cb21-29" tabindex="-1"></a>  <span class="co"># return coefficients</span></span>
-<span id="cb21-30"><a href="deconvolution.html#cb21-30" tabindex="-1"></a>  coefs <span class="ot">&lt;-</span> <span class="fu">lapply</span>(mod, <span class="cf">function</span>(z) {<span class="fu">as.numeric</span>(<span class="fu">t</span>(z<span class="sc">$</span>coefs) <span class="sc">%*%</span> z<span class="sc">$</span>SV)})</span>
-<span id="cb21-31"><a href="deconvolution.html#cb21-31" tabindex="-1"></a>  coefs <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(<span class="fu">data.frame</span>(coefs)))</span>
-<span id="cb21-32"><a href="deconvolution.html#cb21-32" tabindex="-1"></a>  <span class="fu">rownames</span>(coefs) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(merge.mat<span class="sc">$</span>y)</span>
-<span id="cb21-33"><a href="deconvolution.html#cb21-33" tabindex="-1"></a>  <span class="fu">colnames</span>(coefs) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(merge.mat<span class="sc">$</span>x)</span>
-<span id="cb21-34"><a href="deconvolution.html#cb21-34" tabindex="-1"></a>  </span>
-<span id="cb21-35"><a href="deconvolution.html#cb21-35" tabindex="-1"></a>  <span class="fu">return</span>(coefs)</span>
-<span id="cb21-36"><a href="deconvolution.html#cb21-36" tabindex="-1"></a>}</span>
-<span id="cb21-37"><a href="deconvolution.html#cb21-37" tabindex="-1"></a></span>
-<span id="cb21-38"><a href="deconvolution.html#cb21-38" tabindex="-1"></a></span>
-<span id="cb21-39"><a href="deconvolution.html#cb21-39" tabindex="-1"></a><span class="do">## Read expression data</span></span>
-<span id="cb21-40"><a href="deconvolution.html#cb21-40" tabindex="-1"></a>exp.tpm <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/test_sample.deconvolution.TPM.rds&quot;</span>)</span>
-<span id="cb21-41"><a href="deconvolution.html#cb21-41" tabindex="-1"></a></span>
-<span id="cb21-42"><a href="deconvolution.html#cb21-42" tabindex="-1"></a><span class="do">## Read APL cell signature </span></span>
-<span id="cb21-43"><a href="deconvolution.html#cb21-43" tabindex="-1"></a>apl.signature <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/CIBERSORTx_sig_1w_branch_mix_out.txt&quot;</span>, <span class="at">header =</span> T, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb21-44"><a href="deconvolution.html#cb21-44" tabindex="-1"></a></span>
-<span id="cb21-45"><a href="deconvolution.html#cb21-45" tabindex="-1"></a>exp.tpm <span class="sc">%&gt;%</span> <span class="fu">dim</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="deconvolution.html#cb22-1" tabindex="-1"></a>deconvolution <span class="ot">&lt;-</span> <span class="cf">function</span>(exp.mat, sig.mat, ncores) {</span>
+<span id="cb22-2"><a href="deconvolution.html#cb22-2" tabindex="-1"></a>  </span>
+<span id="cb22-3"><a href="deconvolution.html#cb22-3" tabindex="-1"></a>  merge.mat <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">y =</span> <span class="fu">as.matrix</span>(exp.mat[<span class="fu">rownames</span>(sig.mat), ]), <span class="at">x =</span> <span class="fu">as.matrix</span>(sig.mat) )</span>
+<span id="cb22-4"><a href="deconvolution.html#cb22-4" tabindex="-1"></a>  nu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="dv">1</span>)</span>
+<span id="cb22-5"><a href="deconvolution.html#cb22-5" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="deconvolution.html#cb22-6" tabindex="-1"></a>  res <span class="ot">&lt;-</span> parallel<span class="sc">::</span><span class="fu">mclapply</span>(<span class="fu">seq_len</span>(<span class="fu">ncol</span>(merge.mat<span class="sc">$</span>y)), <span class="cf">function</span>(z) {</span>
+<span id="cb22-7"><a href="deconvolution.html#cb22-7" tabindex="-1"></a>    <span class="fu">lapply</span>(nu, <span class="cf">function</span>(i) {</span>
+<span id="cb22-8"><a href="deconvolution.html#cb22-8" tabindex="-1"></a>      <span class="fu">suppressMessages</span>(</span>
+<span id="cb22-9"><a href="deconvolution.html#cb22-9" tabindex="-1"></a>        <span class="fu">suppressWarnings</span>(</span>
+<span id="cb22-10"><a href="deconvolution.html#cb22-10" tabindex="-1"></a>          <span class="fu">svm</span>(<span class="at">x =</span> merge.mat<span class="sc">$</span>x,</span>
+<span id="cb22-11"><a href="deconvolution.html#cb22-11" tabindex="-1"></a>              <span class="at">y =</span> <span class="fu">as.vector</span>(merge.mat<span class="sc">$</span>y[,z]), </span>
+<span id="cb22-12"><a href="deconvolution.html#cb22-12" tabindex="-1"></a>              <span class="at">nu =</span> i, </span>
+<span id="cb22-13"><a href="deconvolution.html#cb22-13" tabindex="-1"></a>              <span class="at">type =</span> <span class="st">&#39;nu-regression&#39;</span>,</span>
+<span id="cb22-14"><a href="deconvolution.html#cb22-14" tabindex="-1"></a>              <span class="at">scale =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb22-15"><a href="deconvolution.html#cb22-15" tabindex="-1"></a>              <span class="at">kernel =</span> <span class="st">&#39;linear&#39;</span>)</span>
+<span id="cb22-16"><a href="deconvolution.html#cb22-16" tabindex="-1"></a>        ))</span>
+<span id="cb22-17"><a href="deconvolution.html#cb22-17" tabindex="-1"></a>    })</span>
+<span id="cb22-18"><a href="deconvolution.html#cb22-18" tabindex="-1"></a>  }, <span class="at">mc.cores =</span> ncores)</span>
+<span id="cb22-19"><a href="deconvolution.html#cb22-19" tabindex="-1"></a>  </span>
+<span id="cb22-20"><a href="deconvolution.html#cb22-20" tabindex="-1"></a>  rmse <span class="ot">&lt;-</span>  <span class="fu">lapply</span>(res, <span class="cf">function</span>(z) { </span>
+<span id="cb22-21"><a href="deconvolution.html#cb22-21" tabindex="-1"></a>    <span class="fu">lapply</span>(z, <span class="cf">function</span>(i){</span>
+<span id="cb22-22"><a href="deconvolution.html#cb22-22" tabindex="-1"></a>      <span class="fu">sqrt</span>(<span class="fu">sum</span>(i<span class="sc">$</span>residuals <span class="sc">^</span> <span class="dv">2</span>)<span class="sc">/</span><span class="fu">length</span>(i<span class="sc">$</span>residuals))</span>
+<span id="cb22-23"><a href="deconvolution.html#cb22-23" tabindex="-1"></a>    })</span>
+<span id="cb22-24"><a href="deconvolution.html#cb22-24" tabindex="-1"></a>  })</span>
+<span id="cb22-25"><a href="deconvolution.html#cb22-25" tabindex="-1"></a>  rmse <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(rmse, <span class="cf">function</span>(z) <span class="fu">which.min</span>(<span class="fu">unlist</span>(z))))</span>
+<span id="cb22-26"><a href="deconvolution.html#cb22-26" tabindex="-1"></a>  <span class="co"># extract models with min rmse</span></span>
+<span id="cb22-27"><a href="deconvolution.html#cb22-27" tabindex="-1"></a>  mod <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">seq_along</span>(res), <span class="cf">function</span>(z) {res[[z]][[rmse[z]]] })</span>
+<span id="cb22-28"><a href="deconvolution.html#cb22-28" tabindex="-1"></a>  </span>
+<span id="cb22-29"><a href="deconvolution.html#cb22-29" tabindex="-1"></a>  <span class="co"># return coefficients</span></span>
+<span id="cb22-30"><a href="deconvolution.html#cb22-30" tabindex="-1"></a>  coefs <span class="ot">&lt;-</span> <span class="fu">lapply</span>(mod, <span class="cf">function</span>(z) {<span class="fu">as.numeric</span>(<span class="fu">t</span>(z<span class="sc">$</span>coefs) <span class="sc">%*%</span> z<span class="sc">$</span>SV)})</span>
+<span id="cb22-31"><a href="deconvolution.html#cb22-31" tabindex="-1"></a>  coefs <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(<span class="fu">data.frame</span>(coefs)))</span>
+<span id="cb22-32"><a href="deconvolution.html#cb22-32" tabindex="-1"></a>  <span class="fu">rownames</span>(coefs) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(merge.mat<span class="sc">$</span>y)</span>
+<span id="cb22-33"><a href="deconvolution.html#cb22-33" tabindex="-1"></a>  <span class="fu">colnames</span>(coefs) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(merge.mat<span class="sc">$</span>x)</span>
+<span id="cb22-34"><a href="deconvolution.html#cb22-34" tabindex="-1"></a>  </span>
+<span id="cb22-35"><a href="deconvolution.html#cb22-35" tabindex="-1"></a>  <span class="fu">return</span>(coefs)</span>
+<span id="cb22-36"><a href="deconvolution.html#cb22-36" tabindex="-1"></a>}</span>
+<span id="cb22-37"><a href="deconvolution.html#cb22-37" tabindex="-1"></a></span>
+<span id="cb22-38"><a href="deconvolution.html#cb22-38" tabindex="-1"></a></span>
+<span id="cb22-39"><a href="deconvolution.html#cb22-39" tabindex="-1"></a><span class="do">## Read expression data</span></span>
+<span id="cb22-40"><a href="deconvolution.html#cb22-40" tabindex="-1"></a>exp.tpm <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/test_sample.deconvolution.TPM.rds&quot;</span>)</span>
+<span id="cb22-41"><a href="deconvolution.html#cb22-41" tabindex="-1"></a></span>
+<span id="cb22-42"><a href="deconvolution.html#cb22-42" tabindex="-1"></a><span class="do">## Read APL cell signature </span></span>
+<span id="cb22-43"><a href="deconvolution.html#cb22-43" tabindex="-1"></a>apl.signature <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/CIBERSORTx_sig_1w_branch_mix_out.txt&quot;</span>, <span class="at">header =</span> T, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb22-44"><a href="deconvolution.html#cb22-44" tabindex="-1"></a></span>
+<span id="cb22-45"><a href="deconvolution.html#cb22-45" tabindex="-1"></a>exp.tpm <span class="sc">%&gt;%</span> <span class="fu">dim</span>()</span></code></pre></div>
 <pre><code>## [1] 59059     4</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="deconvolution.html#cb23-1" tabindex="-1"></a>exp.tpm <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span>
-<span id="cb23-2"><a href="deconvolution.html#cb23-2" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="deconvolution.html#cb23-3" tabindex="-1"></a>decon.bulk <span class="ot">&lt;-</span> <span class="fu">deconvolution</span>(exp.tpm, apl.signature, <span class="dv">2</span>)</span>
-<span id="cb23-4"><a href="deconvolution.html#cb23-4" tabindex="-1"></a></span>
-<span id="cb23-5"><a href="deconvolution.html#cb23-5" tabindex="-1"></a>decon.bulk</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="deconvolution.html#cb24-1" tabindex="-1"></a>exp.tpm <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span>
+<span id="cb24-2"><a href="deconvolution.html#cb24-2" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="deconvolution.html#cb24-3" tabindex="-1"></a>decon.bulk <span class="ot">&lt;-</span> <span class="fu">deconvolution</span>(exp.tpm, apl.signature, <span class="dv">2</span>)</span>
+<span id="cb24-4"><a href="deconvolution.html#cb24-4" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="deconvolution.html#cb24-5" tabindex="-1"></a>decon.bulk</span></code></pre></div>
 </div>
 <div id="regression" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Regression<a href="deconvolution.html#regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="deconvolution.html#cb24-1" tabindex="-1"></a><span class="co"># Read model</span></span>
-<span id="cb24-2"><a href="deconvolution.html#cb24-2" tabindex="-1"></a>linear.model <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/PredModel.rds&quot;</span>)</span>
-<span id="cb24-3"><a href="deconvolution.html#cb24-3" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="deconvolution.html#cb24-4" tabindex="-1"></a>branch.name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Stem_like&quot;</span>,<span class="st">&quot;CMP_like&quot;</span>,<span class="st">&quot;S100_GMP_like&quot;</span>,<span class="st">&quot;GMP_like&quot;</span>,<span class="st">&quot;Cycling_GMP_like&quot;</span>,<span class="st">&quot;MDP_like&quot;</span>,<span class="st">&quot;Bcell&quot;</span>,<span class="st">&quot;Tcell&quot;</span>,<span class="st">&quot;Ery_HBB&quot;</span>)</span>
-<span id="cb24-5"><a href="deconvolution.html#cb24-5" tabindex="-1"></a>pred.score <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb24-6"><a href="deconvolution.html#cb24-6" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(branch.name)) {</span>
-<span id="cb24-7"><a href="deconvolution.html#cb24-7" tabindex="-1"></a>  exp <span class="ot">=</span> <span class="fu">as.matrix</span>(decon.bulk[, i])</span>
-<span id="cb24-8"><a href="deconvolution.html#cb24-8" tabindex="-1"></a>  </span>
-<span id="cb24-9"><a href="deconvolution.html#cb24-9" tabindex="-1"></a>  lm.model <span class="ot">&lt;-</span> linear.model[[i]]</span>
-<span id="cb24-10"><a href="deconvolution.html#cb24-10" tabindex="-1"></a>  pred.obv <span class="ot">&lt;-</span>  <span class="fu">as.numeric</span>(lm.model<span class="sc">$</span>coefficients[<span class="dv">1</span>]) <span class="sc">+</span> </span>
-<span id="cb24-11"><a href="deconvolution.html#cb24-11" tabindex="-1"></a>    <span class="fu">as.numeric</span>(lm.model<span class="sc">$</span>coefficients[<span class="dv">2</span>]) <span class="sc">*</span> <span class="fu">as.numeric</span>(decon.bulk[, i])</span>
-<span id="cb24-12"><a href="deconvolution.html#cb24-12" tabindex="-1"></a>  pred.score <span class="ot">&lt;-</span> <span class="fu">cbind</span>(pred.score, pred.obv)</span>
-<span id="cb24-13"><a href="deconvolution.html#cb24-13" tabindex="-1"></a>}</span>
-<span id="cb24-14"><a href="deconvolution.html#cb24-14" tabindex="-1"></a><span class="fu">rownames</span>(pred.score) <span class="ot">&lt;-</span> <span class="fu">rownames</span>(decon.bulk)</span>
-<span id="cb24-15"><a href="deconvolution.html#cb24-15" tabindex="-1"></a><span class="fu">colnames</span>(pred.score) <span class="ot">&lt;-</span> branch.name</span>
-<span id="cb24-16"><a href="deconvolution.html#cb24-16" tabindex="-1"></a></span>
-<span id="cb24-17"><a href="deconvolution.html#cb24-17" tabindex="-1"></a><span class="co"># Coefficeint matrix</span></span>
-<span id="cb24-18"><a href="deconvolution.html#cb24-18" tabindex="-1"></a>pred.score</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="deconvolution.html#cb25-1" tabindex="-1"></a><span class="co"># Read model</span></span>
+<span id="cb25-2"><a href="deconvolution.html#cb25-2" tabindex="-1"></a>linear.model <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/PredModel.rds&quot;</span>)</span>
+<span id="cb25-3"><a href="deconvolution.html#cb25-3" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="deconvolution.html#cb25-4" tabindex="-1"></a>branch.name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Stem_like&quot;</span>,<span class="st">&quot;CMP_like&quot;</span>,<span class="st">&quot;S100_GMP_like&quot;</span>,<span class="st">&quot;GMP_like&quot;</span>,<span class="st">&quot;Cycling_GMP_like&quot;</span>,<span class="st">&quot;MDP_like&quot;</span>,<span class="st">&quot;Bcell&quot;</span>,<span class="st">&quot;Tcell&quot;</span>,<span class="st">&quot;Ery_HBB&quot;</span>)</span>
+<span id="cb25-5"><a href="deconvolution.html#cb25-5" tabindex="-1"></a>pred.score <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb25-6"><a href="deconvolution.html#cb25-6" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(branch.name)) {</span>
+<span id="cb25-7"><a href="deconvolution.html#cb25-7" tabindex="-1"></a>  exp <span class="ot">=</span> <span class="fu">as.matrix</span>(decon.bulk[, i])</span>
+<span id="cb25-8"><a href="deconvolution.html#cb25-8" tabindex="-1"></a>  </span>
+<span id="cb25-9"><a href="deconvolution.html#cb25-9" tabindex="-1"></a>  lm.model <span class="ot">&lt;-</span> linear.model[[i]]</span>
+<span id="cb25-10"><a href="deconvolution.html#cb25-10" tabindex="-1"></a>  pred.obv <span class="ot">&lt;-</span>  <span class="fu">as.numeric</span>(lm.model<span class="sc">$</span>coefficients[<span class="dv">1</span>]) <span class="sc">+</span> </span>
+<span id="cb25-11"><a href="deconvolution.html#cb25-11" tabindex="-1"></a>    <span class="fu">as.numeric</span>(lm.model<span class="sc">$</span>coefficients[<span class="dv">2</span>]) <span class="sc">*</span> <span class="fu">as.numeric</span>(decon.bulk[, i])</span>
+<span id="cb25-12"><a href="deconvolution.html#cb25-12" tabindex="-1"></a>  pred.score <span class="ot">&lt;-</span> <span class="fu">cbind</span>(pred.score, pred.obv)</span>
+<span id="cb25-13"><a href="deconvolution.html#cb25-13" tabindex="-1"></a>}</span>
+<span id="cb25-14"><a href="deconvolution.html#cb25-14" tabindex="-1"></a><span class="fu">rownames</span>(pred.score) <span class="ot">&lt;-</span> <span class="fu">rownames</span>(decon.bulk)</span>
+<span id="cb25-15"><a href="deconvolution.html#cb25-15" tabindex="-1"></a><span class="fu">colnames</span>(pred.score) <span class="ot">&lt;-</span> branch.name</span>
+<span id="cb25-16"><a href="deconvolution.html#cb25-16" tabindex="-1"></a></span>
+<span id="cb25-17"><a href="deconvolution.html#cb25-17" tabindex="-1"></a><span class="co"># Coefficeint matrix</span></span>
+<span id="cb25-18"><a href="deconvolution.html#cb25-18" tabindex="-1"></a>pred.score</span></code></pre></div>
 <pre><code>##             Stem_like  CMP_like S100_GMP_like GMP_like Cycling_GMP_like  MDP_like    Bcell    Tcell   Ery_HBB
 ## Sample1_D0  2.0158598  6.990032      22.47653 56.60889         12.89132 0.2585436 1.863082 5.170869 0.7296987
 ## Sample1_D2 -0.2064932  8.106715      19.15908 51.55584         15.45176 1.0538323 2.035280 3.350186 0.9362890
 ## Sample2_D0  1.9453732  9.024004      23.14179 50.25093         14.03999 0.4811723 1.959813 5.061971 0.6398924
 ## Sample2_D2 -0.7605606 11.299307      20.08907 42.76156         13.56451 1.9169828 1.926964 4.476400 0.6773634</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="deconvolution.html#cb26-1" tabindex="-1"></a>pred.percent <span class="ot">&lt;-</span> pred.score</span>
-<span id="cb26-2"><a href="deconvolution.html#cb26-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(pred.percent)) {</span>
-<span id="cb26-3"><a href="deconvolution.html#cb26-3" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(pred.percent[i, ] <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb26-4"><a href="deconvolution.html#cb26-4" tabindex="-1"></a>    pred.percent[i, ] <span class="ot">&lt;-</span> pred.percent[i, ] <span class="sc">-</span> <span class="fu">min</span>(pred.percent[i, ]) </span>
-<span id="cb26-5"><a href="deconvolution.html#cb26-5" tabindex="-1"></a>    pred.percent[i, ] <span class="ot">&lt;-</span> pred.percent[i, ] <span class="sc">/</span> <span class="fu">sum</span>(pred.percent[i, ]) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb26-6"><a href="deconvolution.html#cb26-6" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb26-7"><a href="deconvolution.html#cb26-7" tabindex="-1"></a>    pred.percent[i, ] <span class="ot">&lt;-</span> pred.percent[i, ] <span class="sc">/</span> <span class="fu">sum</span>(pred.percent[i, ]) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb26-8"><a href="deconvolution.html#cb26-8" tabindex="-1"></a>  }</span>
-<span id="cb26-9"><a href="deconvolution.html#cb26-9" tabindex="-1"></a>}</span>
-<span id="cb26-10"><a href="deconvolution.html#cb26-10" tabindex="-1"></a></span>
-<span id="cb26-11"><a href="deconvolution.html#cb26-11" tabindex="-1"></a><span class="co"># Proportion estimation</span></span>
-<span id="cb26-12"><a href="deconvolution.html#cb26-12" tabindex="-1"></a>pred.percent</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="deconvolution.html#cb27-1" tabindex="-1"></a>pred.percent <span class="ot">&lt;-</span> pred.score</span>
+<span id="cb27-2"><a href="deconvolution.html#cb27-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(pred.percent)) {</span>
+<span id="cb27-3"><a href="deconvolution.html#cb27-3" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(pred.percent[i, ] <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb27-4"><a href="deconvolution.html#cb27-4" tabindex="-1"></a>    pred.percent[i, ] <span class="ot">&lt;-</span> pred.percent[i, ] <span class="sc">-</span> <span class="fu">min</span>(pred.percent[i, ]) </span>
+<span id="cb27-5"><a href="deconvolution.html#cb27-5" tabindex="-1"></a>    pred.percent[i, ] <span class="ot">&lt;-</span> pred.percent[i, ] <span class="sc">/</span> <span class="fu">sum</span>(pred.percent[i, ]) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb27-6"><a href="deconvolution.html#cb27-6" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb27-7"><a href="deconvolution.html#cb27-7" tabindex="-1"></a>    pred.percent[i, ] <span class="ot">&lt;-</span> pred.percent[i, ] <span class="sc">/</span> <span class="fu">sum</span>(pred.percent[i, ]) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb27-8"><a href="deconvolution.html#cb27-8" tabindex="-1"></a>  }</span>
+<span id="cb27-9"><a href="deconvolution.html#cb27-9" tabindex="-1"></a>}</span>
+<span id="cb27-10"><a href="deconvolution.html#cb27-10" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="deconvolution.html#cb27-11" tabindex="-1"></a><span class="co"># Proportion estimation</span></span>
+<span id="cb27-12"><a href="deconvolution.html#cb27-12" tabindex="-1"></a>pred.percent</span></code></pre></div>
 <pre><code>##            Stem_like  CMP_like S100_GMP_like GMP_like Cycling_GMP_like  MDP_like    Bcell    Tcell   Ery_HBB
 ## Sample1_D0  1.849331  6.412590      20.61976 51.93246         11.82638 0.2371855 1.709173 4.743706 0.6694187
 ## Sample1_D2  0.000000  8.047565      18.74675 50.10830         15.15790 1.2200524 2.170139 3.443028 1.1062652

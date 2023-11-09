@@ -23,7 +23,7 @@
 <meta name="author" content="Yu-Ting Dai, Wen Jin" />
 
 
-<meta name="date" content="2023-11-08" />
+<meta name="date" content="2023-11-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,8 +158,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.5.1" data-path="scrna-seq.html"><a href="scrna-seq.html#integration-of-apls-and-normal-bmmcs"><i class="fa fa-check"></i><b>2.5.1</b> Integration of APLs and normal BMMCs</a></li>
 <li class="chapter" data-level="2.5.2" data-path="scrna-seq.html"><a href="scrna-seq.html#normalization"><i class="fa fa-check"></i><b>2.5.2</b> Normalization</a></li>
-<li class="chapter" data-level="2.5.3" data-path="scrna-seq.html"><a href="scrna-seq.html#batch-effect-adjustment"><i class="fa fa-check"></i><b>2.5.3</b> Batch effect adjustment</a></li>
-<li class="chapter" data-level="2.5.4" data-path="scrna-seq.html"><a href="scrna-seq.html#cell-annotation"><i class="fa fa-check"></i><b>2.5.4</b> Cell annotation</a></li>
+<li class="chapter" data-level="2.5.3" data-path="scrna-seq.html"><a href="scrna-seq.html#before-batch-effect-adjustment"><i class="fa fa-check"></i><b>2.5.3</b> Before batch effect adjustment</a></li>
+<li class="chapter" data-level="2.5.4" data-path="scrna-seq.html"><a href="scrna-seq.html#batch-effect-adjustment"><i class="fa fa-check"></i><b>2.5.4</b> Batch effect adjustment</a></li>
+<li class="chapter" data-level="2.5.5" data-path="scrna-seq.html"><a href="scrna-seq.html#cell-annotation"><i class="fa fa-check"></i><b>2.5.5</b> Cell annotation</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="scrna-seq.html"><a href="scrna-seq.html#apl-blasts"><i class="fa fa-check"></i><b>2.6</b> APL blasts</a>
 <ul>
@@ -211,41 +212,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="pre-processing" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Pre-processing<a href="bulk.html#pre-processing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In bulk RNA-seq analysis, Salmon was used to generate the count and transcripts per kilobase of exon model per million mapped reads (TPM) matrix. For normalization of the count matrix, we used DESeq2 to transform count matrix via <code>varianceStabilizingTransformation</code>. The limma package was used to calculate differentially expressed genes (DEGs) with significance level setting as adjusted P-value &lt; 0.05 and log2FC &gt; 0.58 or &lt; -0.58 (Log2 Fold change 1.5).</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="bulk.html#cb18-1" tabindex="-1"></a><span class="co"># Pre-processing of bulk RNA-seq data was performed using salmon</span></span>
-<span id="cb18-2"><a href="bulk.html#cb18-2" tabindex="-1"></a>gtf_file<span class="ot">=</span><span class="er">$</span>{hg38}<span class="sc">/</span>gencode.v38.annotation.gtf</span>
-<span id="cb18-3"><a href="bulk.html#cb18-3" tabindex="-1"></a>out_path<span class="ot">=</span><span class="er">$</span>{out_path}</span>
-<span id="cb18-4"><a href="bulk.html#cb18-4" tabindex="-1"></a>salmon_index<span class="ot">=</span><span class="er">$</span>{salmon_index}</span>
-<span id="cb18-5"><a href="bulk.html#cb18-5" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="bulk.html#cb18-6" tabindex="-1"></a><span class="sc">$</span>SALMON quant <span class="sc">-</span>p <span class="dv">8</span> <span class="sc">-</span>l IU <span class="sc">-</span>i <span class="sc">$</span>{salmon_index} <span class="sc">-</span>o <span class="sc">$</span>{out_path}<span class="sc">/</span><span class="er">$</span>{id} <span class="sc">-</span><span class="dv">1</span> <span class="sc">$</span>{fq1} <span class="sc">-</span><span class="dv">2</span> <span class="sc">$</span>{fq2} <span class="sc">-</span>g <span class="sc">$</span>{gtf_file} <span class="sc">--</span>gcBias <span class="sc">--</span>validateMappings</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="bulk.html#cb19-1" tabindex="-1"></a><span class="co"># Pre-processing of bulk RNA-seq data was performed using salmon</span></span>
+<span id="cb19-2"><a href="bulk.html#cb19-2" tabindex="-1"></a>gtf_file<span class="ot">=</span><span class="er">$</span>{hg38}<span class="sc">/</span>gencode.v38.annotation.gtf</span>
+<span id="cb19-3"><a href="bulk.html#cb19-3" tabindex="-1"></a>out_path<span class="ot">=</span><span class="er">$</span>{out_path}</span>
+<span id="cb19-4"><a href="bulk.html#cb19-4" tabindex="-1"></a>salmon_index<span class="ot">=</span><span class="er">$</span>{salmon_index}</span>
+<span id="cb19-5"><a href="bulk.html#cb19-5" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="bulk.html#cb19-6" tabindex="-1"></a><span class="sc">$</span>SALMON quant <span class="sc">-</span>p <span class="dv">8</span> <span class="sc">-</span>l IU <span class="sc">-</span>i <span class="sc">$</span>{salmon_index} <span class="sc">-</span>o <span class="sc">$</span>{out_path}<span class="sc">/</span><span class="er">$</span>{id} <span class="sc">-</span><span class="dv">1</span> <span class="sc">$</span>{fq1} <span class="sc">-</span><span class="dv">2</span> <span class="sc">$</span>{fq2} <span class="sc">-</span>g <span class="sc">$</span>{gtf_file} <span class="sc">--</span>gcBias <span class="sc">--</span>validateMappings</span></code></pre></div>
 <p>Then the TPM and count matrices were generated.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="bulk.html#cb19-1" tabindex="-1"></a><span class="co"># read count data using DESeq2</span></span>
-<span id="cb19-2"><a href="bulk.html#cb19-2" tabindex="-1"></a>ddsHTSeq <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> exp.count, <span class="fu">DataFrame</span>(condition), <span class="sc">~</span> condition)</span>
-<span id="cb19-3"><a href="bulk.html#cb19-3" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(ddsHTSeq)</span>
-<span id="cb19-4"><a href="bulk.html#cb19-4" tabindex="-1"></a>dds.vsd <span class="ot">&lt;-</span> <span class="fu">varianceStabilizingTransformation</span>(dds, <span class="at">blind =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb19-5"><a href="bulk.html#cb19-5" tabindex="-1"></a>exp.vst <span class="ot">&lt;-</span> <span class="fu">assay</span>(dds.vsd)</span>
-<span id="cb19-6"><a href="bulk.html#cb19-6" tabindex="-1"></a>exp.vst <span class="ot">&lt;-</span> exp.vst <span class="sc">-</span> <span class="fu">min</span>(exp.vst)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="bulk.html#cb20-1" tabindex="-1"></a><span class="co"># read count data using DESeq2</span></span>
+<span id="cb20-2"><a href="bulk.html#cb20-2" tabindex="-1"></a>ddsHTSeq <span class="ot">&lt;-</span> <span class="fu">DESeqDataSetFromMatrix</span>(<span class="at">countData =</span> exp.count, <span class="fu">DataFrame</span>(condition), <span class="sc">~</span> condition)</span>
+<span id="cb20-3"><a href="bulk.html#cb20-3" tabindex="-1"></a>dds <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(ddsHTSeq)</span>
+<span id="cb20-4"><a href="bulk.html#cb20-4" tabindex="-1"></a>dds.vsd <span class="ot">&lt;-</span> <span class="fu">varianceStabilizingTransformation</span>(dds, <span class="at">blind =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-5"><a href="bulk.html#cb20-5" tabindex="-1"></a>exp.vst <span class="ot">&lt;-</span> <span class="fu">assay</span>(dds.vsd)</span>
+<span id="cb20-6"><a href="bulk.html#cb20-6" tabindex="-1"></a>exp.vst <span class="ot">&lt;-</span> exp.vst <span class="sc">-</span> <span class="fu">min</span>(exp.vst)</span></code></pre></div>
 </div>
 <div id="degs" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> DEGs<a href="bulk.html#degs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="bulk.html#cb20-1" tabindex="-1"></a>pdata <span class="ot">&lt;-</span> meta.data</span>
-<span id="cb20-2"><a href="bulk.html#cb20-2" tabindex="-1"></a>pdata<span class="sc">$</span>con <span class="ot">&lt;-</span> meta.data<span class="sc">$</span>EarlyDeath</span>
-<span id="cb20-3"><a href="bulk.html#cb20-3" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> <span class="fu">as.factor</span>(con), <span class="at">data =</span> pdata)</span>
-<span id="cb20-4"><a href="bulk.html#cb20-4" tabindex="-1"></a><span class="fu">colnames</span>(design) <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(<span class="fu">colnames</span>(design), <span class="fu">fixed</span>(<span class="st">&quot;as.factor(con)&quot;</span>), <span class="st">&quot;&quot;</span>)</span>
-<span id="cb20-5"><a href="bulk.html#cb20-5" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lmFit</span>(exp.vst[, pdata<span class="sc">$</span>ID], design)</span>
-<span id="cb20-6"><a href="bulk.html#cb20-6" tabindex="-1"></a></span>
-<span id="cb20-7"><a href="bulk.html#cb20-7" tabindex="-1"></a><span class="co"># make contrast</span></span>
-<span id="cb20-8"><a href="bulk.html#cb20-8" tabindex="-1"></a>contrast <span class="ot">&lt;-</span> <span class="fu">makeContrasts</span>(<span class="at">ED =</span> ED <span class="sc">-</span> Alive,</span>
-<span id="cb20-9"><a href="bulk.html#cb20-9" tabindex="-1"></a>                          <span class="at">levels =</span> design)</span>
-<span id="cb20-10"><a href="bulk.html#cb20-10" tabindex="-1"></a>fits <span class="ot">&lt;-</span> <span class="fu">contrasts.fit</span>(fit, contrast)</span>
-<span id="cb20-11"><a href="bulk.html#cb20-11" tabindex="-1"></a>ebFit <span class="ot">&lt;-</span> <span class="fu">eBayes</span>(fits)</span>
-<span id="cb20-12"><a href="bulk.html#cb20-12" tabindex="-1"></a></span>
-<span id="cb20-13"><a href="bulk.html#cb20-13" tabindex="-1"></a>deg.data <span class="ot">&lt;-</span> deg_sig_list[<span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(deg_sig_list<span class="sc">$</span>adj.P.Val)), ]</span>
-<span id="cb20-14"><a href="bulk.html#cb20-14" tabindex="-1"></a>deg.data<span class="sc">$</span>logP <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(deg.data<span class="sc">$</span>adj.P.Val)</span>
-<span id="cb20-15"><a href="bulk.html#cb20-15" tabindex="-1"></a>deg.data<span class="sc">$</span>group <span class="ot">=</span> <span class="st">&quot;zz&quot;</span></span>
-<span id="cb20-16"><a href="bulk.html#cb20-16" tabindex="-1"></a>deg.data<span class="sc">$</span>group[<span class="fu">which</span>( (deg.data<span class="sc">$</span>adj.P.Val <span class="sc">&lt;</span> <span class="fl">0.05</span>) <span class="sc">&amp;</span> (deg.data<span class="sc">$</span>logFC <span class="sc">&gt;</span> <span class="dv">0</span>) )] <span class="ot">=</span> <span class="st">&quot;up&quot;</span></span>
-<span id="cb20-17"><a href="bulk.html#cb20-17" tabindex="-1"></a>deg.data<span class="sc">$</span>group[<span class="fu">which</span>( (deg.data<span class="sc">$</span>adj.P.Val <span class="sc">&lt;</span> <span class="fl">0.05</span>) <span class="sc">&amp;</span> (deg.data<span class="sc">$</span>logFC <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">0</span>) )] <span class="ot">=</span> <span class="st">&quot;down&quot;</span></span>
-<span id="cb20-18"><a href="bulk.html#cb20-18" tabindex="-1"></a>deg.data<span class="sc">$</span>tag <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;ED - Alive&quot;</span>)</span>
-<span id="cb20-19"><a href="bulk.html#cb20-19" tabindex="-1"></a>deg.data<span class="sc">$</span>Gene <span class="ot">&lt;-</span> <span class="fu">rownames</span>(deg.data)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="bulk.html#cb21-1" tabindex="-1"></a>pdata <span class="ot">&lt;-</span> meta.data</span>
+<span id="cb21-2"><a href="bulk.html#cb21-2" tabindex="-1"></a>pdata<span class="sc">$</span>con <span class="ot">&lt;-</span> meta.data<span class="sc">$</span>EarlyDeath</span>
+<span id="cb21-3"><a href="bulk.html#cb21-3" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> <span class="fu">as.factor</span>(con), <span class="at">data =</span> pdata)</span>
+<span id="cb21-4"><a href="bulk.html#cb21-4" tabindex="-1"></a><span class="fu">colnames</span>(design) <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(<span class="fu">colnames</span>(design), <span class="fu">fixed</span>(<span class="st">&quot;as.factor(con)&quot;</span>), <span class="st">&quot;&quot;</span>)</span>
+<span id="cb21-5"><a href="bulk.html#cb21-5" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lmFit</span>(exp.vst[, pdata<span class="sc">$</span>ID], design)</span>
+<span id="cb21-6"><a href="bulk.html#cb21-6" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="bulk.html#cb21-7" tabindex="-1"></a><span class="co"># make contrast</span></span>
+<span id="cb21-8"><a href="bulk.html#cb21-8" tabindex="-1"></a>contrast <span class="ot">&lt;-</span> <span class="fu">makeContrasts</span>(<span class="at">ED =</span> ED <span class="sc">-</span> Alive,</span>
+<span id="cb21-9"><a href="bulk.html#cb21-9" tabindex="-1"></a>                          <span class="at">levels =</span> design)</span>
+<span id="cb21-10"><a href="bulk.html#cb21-10" tabindex="-1"></a>fits <span class="ot">&lt;-</span> <span class="fu">contrasts.fit</span>(fit, contrast)</span>
+<span id="cb21-11"><a href="bulk.html#cb21-11" tabindex="-1"></a>ebFit <span class="ot">&lt;-</span> <span class="fu">eBayes</span>(fits)</span>
+<span id="cb21-12"><a href="bulk.html#cb21-12" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="bulk.html#cb21-13" tabindex="-1"></a>deg.data <span class="ot">&lt;-</span> deg_sig_list[<span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(deg_sig_list<span class="sc">$</span>adj.P.Val)), ]</span>
+<span id="cb21-14"><a href="bulk.html#cb21-14" tabindex="-1"></a>deg.data<span class="sc">$</span>logP <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(deg.data<span class="sc">$</span>adj.P.Val)</span>
+<span id="cb21-15"><a href="bulk.html#cb21-15" tabindex="-1"></a>deg.data<span class="sc">$</span>group <span class="ot">=</span> <span class="st">&quot;zz&quot;</span></span>
+<span id="cb21-16"><a href="bulk.html#cb21-16" tabindex="-1"></a>deg.data<span class="sc">$</span>group[<span class="fu">which</span>( (deg.data<span class="sc">$</span>adj.P.Val <span class="sc">&lt;</span> <span class="fl">0.05</span>) <span class="sc">&amp;</span> (deg.data<span class="sc">$</span>logFC <span class="sc">&gt;</span> <span class="dv">0</span>) )] <span class="ot">=</span> <span class="st">&quot;up&quot;</span></span>
+<span id="cb21-17"><a href="bulk.html#cb21-17" tabindex="-1"></a>deg.data<span class="sc">$</span>group[<span class="fu">which</span>( (deg.data<span class="sc">$</span>adj.P.Val <span class="sc">&lt;</span> <span class="fl">0.05</span>) <span class="sc">&amp;</span> (deg.data<span class="sc">$</span>logFC <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">0</span>) )] <span class="ot">=</span> <span class="st">&quot;down&quot;</span></span>
+<span id="cb21-18"><a href="bulk.html#cb21-18" tabindex="-1"></a>deg.data<span class="sc">$</span>tag <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;ED - Alive&quot;</span>)</span>
+<span id="cb21-19"><a href="bulk.html#cb21-19" tabindex="-1"></a>deg.data<span class="sc">$</span>Gene <span class="ot">&lt;-</span> <span class="fu">rownames</span>(deg.data)</span></code></pre></div>
 
 </div>
 </div>
