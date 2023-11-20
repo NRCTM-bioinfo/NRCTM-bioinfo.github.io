@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 差异代谢物 | Metabolism course</title>
+  <meta name="description" content="Chapter 4 差异代谢物 | Metabolism course" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 差异代谢物 | Metabolism course" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 差异代谢物 | Metabolism course" />
+  
+  
+  
+
+<meta name="author" content="Tuantuan Gui and Xuan Liu" />
+
+
+<meta name="date" content="2023-11-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="数据前处理.html"/>
+<link rel="next" href="pathway分析.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Metabolomics Data Analysis</a></li>
+<li class="chapter" data-level="2" data-path="install-mnet-package.html"><a href="install-mnet-package.html"><i class="fa fa-check"></i><b>2</b> install MNet package</a></li>
+<li class="chapter" data-level="3" data-path="数据前处理.html"><a href="数据前处理.html"><i class="fa fa-check"></i><b>3</b> 数据前处理</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="数据前处理.html"><a href="数据前处理.html#代谢物鉴定"><i class="fa fa-check"></i><b>3.1</b> 代谢物鉴定</a></li>
+<li class="chapter" data-level="3.2" data-path="数据前处理.html"><a href="数据前处理.html#代谢物名称统一"><i class="fa fa-check"></i><b>3.2</b> 代谢物名称统一</a></li>
+<li class="chapter" data-level="3.3" data-path="数据前处理.html"><a href="数据前处理.html#批次矫正"><i class="fa fa-check"></i><b>3.3</b> 批次矫正</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="数据前处理.html"><a href="数据前处理.html#data-for-serrf"><i class="fa fa-check"></i><b>3.3.1</b> data for SERRF</a></li>
+<li class="chapter" data-level="3.3.2" data-path="数据前处理.html"><a href="数据前处理.html#对serrf校正前后的数据进行pca分析"><i class="fa fa-check"></i><b>3.3.2</b> 对SERRF校正前后的数据进行PCA分析</a></li>
+<li class="chapter" data-level="3.3.3" data-path="数据前处理.html"><a href="数据前处理.html#data-filter"><i class="fa fa-check"></i><b>3.3.3</b> data filter</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="差异代谢物.html"><a href="差异代谢物.html"><i class="fa fa-check"></i><b>4</b> 差异代谢物</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="差异代谢物.html"><a href="差异代谢物.html#pca"><i class="fa fa-check"></i><b>4.1</b> PCA</a></li>
+<li class="chapter" data-level="4.2" data-path="差异代谢物.html"><a href="差异代谢物.html#limma"><i class="fa fa-check"></i><b>4.2</b> limma</a></li>
+<li class="chapter" data-level="4.3" data-path="差异代谢物.html"><a href="差异代谢物.html#opls-da"><i class="fa fa-check"></i><b>4.3</b> OPLS-DA</a></li>
+<li class="chapter" data-level="4.4" data-path="差异代谢物.html"><a href="差异代谢物.html#可视化"><i class="fa fa-check"></i><b>4.4</b> 可视化</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="差异代谢物.html"><a href="差异代谢物.html#heatmap"><i class="fa fa-check"></i><b>4.4.1</b> Heatmap</a></li>
+<li class="chapter" data-level="4.4.2" data-path="差异代谢物.html"><a href="差异代谢物.html#volcano-plot"><i class="fa fa-check"></i><b>4.4.2</b> Volcano Plot</a></li>
+<li class="chapter" data-level="4.4.3" data-path="差异代谢物.html"><a href="差异代谢物.html#z-score"><i class="fa fa-check"></i><b>4.4.3</b> Z-score</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="pathway分析.html"><a href="pathway分析.html"><i class="fa fa-check"></i><b>5</b> Pathway分析</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="pathway分析.html"><a href="pathway分析.html#pathway-enrichment-analysis"><i class="fa fa-check"></i><b>5.1</b> Pathway Enrichment Analysis</a></li>
+<li class="chapter" data-level="5.2" data-path="pathway分析.html"><a href="pathway分析.html#differential-abundance-analysis"><i class="fa fa-check"></i><b>5.2</b> Differential Abundance Analysis</a></li>
+<li class="chapter" data-level="5.3" data-path="pathway分析.html"><a href="pathway分析.html#msea"><i class="fa fa-check"></i><b>5.3</b> MSEA</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Metabolism course</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="差异代谢物" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> 差异代谢物<a href="差异代谢物.html#差异代谢物" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="差异代谢物.html#cb7-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb7-2"><a href="差异代谢物.html#cb7-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-3"><a href="差异代谢物.html#cb7-3" tabindex="-1"></a><span class="fu">library</span>(MNet)</span></code></pre></div>
+<div id="pca" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> PCA<a href="差异代谢物.html#pca" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>主成分分析(Principal Component Analysis，PCA) 是从原始变量之间的相互关系入手，根据变异最大化的原则将其线性变换到几个独立的综合指标上(即主成分),取2～3个主成分作图,直观地描述不同组别之间的代谢模式差别和聚类结果,并通过载荷图寻找对组间分类有贡献的原始变量作为生物标志物.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="差异代谢物.html#cb8-1" tabindex="-1"></a><span class="do">## 操作者需根据自己的数据更改tumor-normal组名称及对应样本数</span></span>
+<span id="cb8-2"><a href="差异代谢物.html#cb8-2" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;tumor&quot;</span>,<span class="dv">24</span>),<span class="fu">rep</span>(<span class="st">&quot;normal&quot;</span>,<span class="dv">7</span>))</span>
+<span id="cb8-3"><a href="差异代谢物.html#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="差异代谢物.html#cb8-4" tabindex="-1"></a><span class="do">## 对代谢组数据根据分组进行主成分分析</span></span>
+<span id="cb8-5"><a href="差异代谢物.html#cb8-5" tabindex="-1"></a>p_out <span class="ot">&lt;-</span> <span class="fu">pPCA</span>(meta_dat,group)</span>
+<span id="cb8-6"><a href="差异代谢物.html#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="差异代谢物.html#cb8-7" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.PCA_p1.pdf&quot;</span>,p_out<span class="sc">$</span>p1,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="fl">3.9</span>)</span>
+<span id="cb8-8"><a href="差异代谢物.html#cb8-8" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.PCA_p2.pdf&quot;</span>,p_out<span class="sc">$</span>p2,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="fl">3.9</span>)</span>
+<span id="cb8-9"><a href="差异代谢物.html#cb8-9" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.PCA_p3.pdf&quot;</span>,p_out<span class="sc">$</span>p3,<span class="at">width=</span><span class="dv">8</span>,<span class="at">height =</span> <span class="dv">6</span>)</span>
+<span id="cb8-10"><a href="差异代谢物.html#cb8-10" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.PCA_p1.png&quot;</span>,p_out<span class="sc">$</span>p1,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="fl">3.9</span>)</span>
+<span id="cb8-11"><a href="差异代谢物.html#cb8-11" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.PCA_p2.png&quot;</span>,p_out<span class="sc">$</span>p2,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="fl">3.9</span>)</span>
+<span id="cb8-12"><a href="差异代谢物.html#cb8-12" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.PCA_p3.png&quot;</span>,p_out<span class="sc">$</span>p3,<span class="at">width=</span><span class="dv">8</span>,<span class="at">height =</span> <span class="dv">6</span>)</span></code></pre></div>
+<p>PCA_p1
+<img src="result/03.PCA_p1.png" /></p>
+<p>PCA_p2
+<img src="result/03.PCA_p2.png" /></p>
+<p>PCA_p3
+<img src="result/03.PCA_p3.png" /></p>
+</div>
+<div id="limma" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> limma<a href="差异代谢物.html#limma" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>limma分析可用于代谢组及转录组差异分析.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="差异代谢物.html#cb9-1" tabindex="-1"></a>result_mlimma_all <span class="ot">&lt;-</span> <span class="fu">mlimma</span>(meta_dat,group)</span>
+<span id="cb9-2"><a href="差异代谢物.html#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="差异代谢物.html#cb9-3" tabindex="-1"></a><span class="fu">write.table</span>(result_mlimma_all,<span class="st">&quot;result/03.result_mlimma_all.txt&quot;</span>,<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+</div>
+<div id="opls-da" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> OPLS-DA<a href="差异代谢物.html#opls-da" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>正交-偏最小二乘判别分析(OPLS-DA)使用正交信号校正技术，将X矩阵信息分解成与Y相关和不相关的两类信息，然后过滤掉与分类无关的信息，相关的信息主要集中在第一个预测成分.
+通常,根据 VIP(Variable Importance for the Projection)值来说明变量(特征峰) 能解释X数据集和关联Y数据集的重要性.所有VIP值的平方之和与模型中的变量总数相等,因此,其平均值为1.当某个变量的VIP&gt;1时，说明该变量时重要的，通常将此作为潜在生物标记物对筛选条件之一.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="差异代谢物.html#cb10-1" tabindex="-1"></a><span class="do">## fold change, p value and vip of the data</span></span>
+<span id="cb10-2"><a href="差异代谢物.html#cb10-2" tabindex="-1"></a>result_DM_all <span class="ot">&lt;-</span> <span class="fu">DM</span>(<span class="dv">2</span><span class="sc">**</span>meta_dat,group)</span>
+<span id="cb10-3"><a href="差异代谢物.html#cb10-3" tabindex="-1"></a><span class="fu">write.table</span>(result_DM_all,<span class="st">&quot;result/03.result_DM_all.txt&quot;</span>,<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+</div>
+<div id="可视化" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> 可视化<a href="差异代谢物.html#可视化" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="heatmap" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Heatmap<a href="差异代谢物.html#heatmap" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="差异代谢物.html#cb11-1" tabindex="-1"></a>result_mlimma_filter <span class="ot">&lt;-</span> result_mlimma_all <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="差异代谢物.html#cb11-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">abs</span>(logFC) <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="差异代谢物.html#cb11-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="st">`</span><span class="at">adj.P.Val</span><span class="st">`</span> <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
+<span id="cb11-4"><a href="差异代谢物.html#cb11-4" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="差异代谢物.html#cb11-5" tabindex="-1"></a>dat_filter <span class="ot">&lt;-</span> meta_dat <span class="sc">%&gt;%</span></span>
+<span id="cb11-6"><a href="差异代谢物.html#cb11-6" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var=</span><span class="st">&quot;label&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-7"><a href="差异代谢物.html#cb11-7" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(label <span class="sc">%in%</span> result_mlimma_filter<span class="sc">$</span>name) <span class="sc">%&gt;%</span></span>
+<span id="cb11-8"><a href="差异代谢物.html#cb11-8" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">column_to_rownames</span>(<span class="st">&quot;label&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-9"><a href="差异代谢物.html#cb11-9" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n=</span><span class="dv">10</span>)</span>
+<span id="cb11-10"><a href="差异代谢物.html#cb11-10" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="差异代谢物.html#cb11-11" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&quot;result/03.p_heatmap.pdf&quot;</span>,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="dv">5</span>)</span>
+<span id="cb11-12"><a href="差异代谢物.html#cb11-12" tabindex="-1"></a>p_heatmap <span class="ot">&lt;-</span> MNet<span class="sc">::</span><span class="fu">pHeatmap</span>(dat_filter,group,<span class="at">clustering_distance_cols =</span><span class="st">&quot;manhattan&quot;</span>,</span>
+<span id="cb11-13"><a href="差异代谢物.html#cb11-13" tabindex="-1"></a>                            <span class="at">clustering_method=</span><span class="st">&quot;ward.D&quot;</span>,<span class="at">fontsize_row=</span><span class="dv">3</span>)</span>
+<span id="cb11-14"><a href="差异代谢物.html#cb11-14" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb11-15"><a href="差异代谢物.html#cb11-15" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="差异代谢物.html#cb11-16" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="差异代谢物.html#cb11-17" tabindex="-1"></a><span class="fu">png</span>(<span class="st">&quot;result/03.p_heatmap.png&quot;</span>, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">7</span>, <span class="at">units =</span> <span class="st">&#39;in&#39;</span>, <span class="at">res =</span> <span class="dv">200</span> )</span>
+<span id="cb11-18"><a href="差异代谢物.html#cb11-18" tabindex="-1"></a>p_heatmap <span class="ot">&lt;-</span> MNet<span class="sc">::</span><span class="fu">pHeatmap</span>(dat_filter,group,<span class="at">clustering_distance_cols =</span><span class="st">&quot;manhattan&quot;</span>,</span>
+<span id="cb11-19"><a href="差异代谢物.html#cb11-19" tabindex="-1"></a>                            <span class="at">clustering_method=</span><span class="st">&quot;ward.D&quot;</span>,<span class="at">fontsize_row=</span><span class="dv">3</span>)</span>
+<span id="cb11-20"><a href="差异代谢物.html#cb11-20" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p>p_heatmap
+<img src="result/03.p_heatmap.png" /></p>
+</div>
+<div id="volcano-plot" class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Volcano Plot<a href="差异代谢物.html#volcano-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="差异代谢物.html#cb12-1" tabindex="-1"></a>p_Volcano <span class="ot">&lt;-</span> <span class="fu">pVolcano</span>(result_DM_all,<span class="at">foldchange_threshold =</span> <span class="fl">1.5</span>,<span class="at">p_threshold =</span> <span class="fl">0.01</span>)</span>
+<span id="cb12-2"><a href="差异代谢物.html#cb12-2" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.p_valocano.pdf&quot;</span>,p_Volcano,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="dv">4</span>)</span>
+<span id="cb12-3"><a href="差异代谢物.html#cb12-3" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.p_valocano.png&quot;</span>,p_Volcano,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="dv">4</span>)</span></code></pre></div>
+<p>p_valocano
+<img src="result/03.p_valocano.png" /></p>
+</div>
+<div id="z-score" class="section level3 hasAnchor" number="4.4.3">
+<h3><span class="header-section-number">4.4.3</span> Z-score<a href="差异代谢物.html#z-score" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Z-score(标准分数)是基于代谢物的相对含量转换而来的值，用于衡量同一水平面上代谢物的相对含量的高低.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="差异代谢物.html#cb13-1" tabindex="-1"></a>p_Zscore <span class="ot">&lt;-</span> <span class="fu">pZscore</span>(dat_filter,group)</span>
+<span id="cb13-2"><a href="差异代谢物.html#cb13-2" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.p_Zscore.pdf&quot;</span>,p_Zscore,<span class="at">width=</span><span class="dv">3</span>,<span class="at">height =</span> <span class="fl">1.5</span>)</span>
+<span id="cb13-3"><a href="差异代谢物.html#cb13-3" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.p_Zscore.png&quot;</span>,p_Zscore,<span class="at">width=</span><span class="dv">3</span>,<span class="at">height =</span> <span class="fl">1.5</span>)</span></code></pre></div>
+<p>p_Zscore
+<img src="result/03.p_Zscore.png" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="数据前处理.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pathway分析.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-差异代谢物.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
