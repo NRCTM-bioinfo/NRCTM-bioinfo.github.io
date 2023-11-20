@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 install MNet package | Metabolism course</title>
-  <meta name="description" content="Chapter 2 install MNet package | Metabolism course" />
+  <title>Chapter 2 install MNet package | 生信分析系列培训课程（第2期）</title>
+  <meta name="description" content="Chapter 2 install MNet package | 生信分析系列培训课程（第2期）" />
   <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 install MNet package | Metabolism course" />
+  <meta property="og:title" content="Chapter 2 install MNet package | 生信分析系列培训课程（第2期）" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 install MNet package | Metabolism course" />
+  <meta name="twitter:title" content="Chapter 2 install MNet package | 生信分析系列培训课程（第2期）" />
   
   
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Tuantuan Gui and Xuan Liu" />
 
 
-<meta name="date" content="2023-11-19" />
+<meta name="date" content="2023-11-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -183,7 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Metabolism course</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">生信分析系列培训课程（第2期）</a>
           </h1>
         </div>
 
@@ -198,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="install-mnet-package.html#cb1-1" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;BiocManager&quot;</span>)){<span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)}</span>
 <span id="cb1-2"><a href="install-mnet-package.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(BiocManager)</span>
 <span id="cb1-3"><a href="install-mnet-package.html#cb1-3" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;Biobase&quot;</span>)){BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;Biobase&quot;</span>)}</span>
-<span id="cb1-4"><a href="install-mnet-package.html#cb1-4" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;BiocStyle&quot;</span>)){BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;BioStyle&quot;</span>)}</span>
+<span id="cb1-4"><a href="install-mnet-package.html#cb1-4" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;BiocStyle&quot;</span>)){BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;BiocStyle&quot;</span>)}</span>
 <span id="cb1-5"><a href="install-mnet-package.html#cb1-5" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;BiocGenerics&quot;</span>)){BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;BiocGenerics&quot;</span>)}</span>
 <span id="cb1-6"><a href="install-mnet-package.html#cb1-6" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;ropls&quot;</span>)){BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;ropls&quot;</span>)}</span>
 <span id="cb1-7"><a href="install-mnet-package.html#cb1-7" tabindex="-1"></a></span>
@@ -207,11 +207,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-10"><a href="install-mnet-package.html#cb1-10" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
 <span id="cb1-11"><a href="install-mnet-package.html#cb1-11" tabindex="-1"></a></span>
 <span id="cb1-12"><a href="install-mnet-package.html#cb1-12" tabindex="-1"></a><span class="fu">p_load</span>(readxl,ggplot2,fgsea,limma,reshape2,dnet,dplyr,stats,pathview,survival,igraph,caret,xgboost,graphite,e1071,magrittr,vegan,stringr,survminer,pROC,randomForest,jsonlite,tibble,utils,tidyr,grDevices,ggpubr,graph,ggrepel,Boruta,filesstrings,methods,tidyselect,AnnotationDbi,rmarkdown,RUnit)</span></code></pre></div>
-<p>MNet 需要通过 Github命令安装</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="install-mnet-package.html#cb2-1" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(devtools)){<span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)}</span>
-<span id="cb2-2"><a href="install-mnet-package.html#cb2-2" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;tuantuangui/MNet&quot;</span>)</span>
-<span id="cb2-3"><a href="install-mnet-package.html#cb2-3" tabindex="-1"></a><span class="co"># 安装成功即可运行MNet</span></span>
-<span id="cb2-4"><a href="install-mnet-package.html#cb2-4" tabindex="-1"></a><span class="fu">library</span>(MNet)</span></code></pre></div>
+<p>MNet 安装</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="install-mnet-package.html#cb2-1" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;remotes&quot;</span>, <span class="at">dependencies=</span>T)</span>
+<span id="cb2-2"><a href="install-mnet-package.html#cb2-2" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;devtools &quot;</span>, <span class="at">dependencies=</span>T)</span>
+<span id="cb2-3"><a href="install-mnet-package.html#cb2-3" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;tuantuangui/MNet&quot;</span>, <span class="at">dependencies=</span>T)</span>
+<span id="cb2-4"><a href="install-mnet-package.html#cb2-4" tabindex="-1"></a><span class="co"># 安装成功即可运行MNet</span></span>
+<span id="cb2-5"><a href="install-mnet-package.html#cb2-5" tabindex="-1"></a><span class="fu">library</span>(MNet)</span></code></pre></div>
 
 </div>
             </section>
