@@ -23,7 +23,7 @@
 <meta name="author" content="Tuantuan Gui and Xuan Liu" />
 
 
-<meta name="date" content="2023-11-20" />
+<meta name="date" content="2023-11-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -243,14 +243,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-4"><a href="pathway分析.html#cb17-4" tabindex="-1"></a><span class="fu">names</span>(d_logFC) <span class="ot">&lt;-</span> dd_arrange<span class="sc">$</span>name</span>
 <span id="cb17-5"><a href="pathway分析.html#cb17-5" tabindex="-1"></a>result_msea <span class="ot">&lt;-</span> <span class="fu">MSEA</span>(d_logFC)</span>
 <span id="cb17-6"><a href="pathway分析.html#cb17-6" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="pathway分析.html#cb17-7" tabindex="-1"></a><span class="do">## 想看哪个通路就输入哪个通路名字</span></span>
-<span id="cb17-8"><a href="pathway分析.html#cb17-8" tabindex="-1"></a>p_MSEA <span class="ot">&lt;-</span> <span class="fu">pMSEA</span>(<span class="st">&quot;Pyrimidine metabolism&quot;</span>,d_logFC)</span>
-<span id="cb17-9"><a href="pathway分析.html#cb17-9" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/04.p_MSEA_pyrimidine.pdf&quot;</span>,p_MSEA,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="dv">4</span>)</span>
-<span id="cb17-10"><a href="pathway分析.html#cb17-10" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/04.p_MSEA_pyrimidine.png&quot;</span>,p_MSEA,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="dv">4</span>)</span>
+<span id="cb17-7"><a href="pathway分析.html#cb17-7" tabindex="-1"></a>result_msea <span class="ot">&lt;-</span> result_msea <span class="sc">%&gt;%</span></span>
+<span id="cb17-8"><a href="pathway分析.html#cb17-8" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">leadingEdge=</span><span class="fu">as.character</span>(leadingEdge))</span>
+<span id="cb17-9"><a href="pathway分析.html#cb17-9" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="pathway分析.html#cb17-10" tabindex="-1"></a><span class="fu">write.table</span>(result_msea,<span class="st">&quot;result/04.MSEA.txt&quot;</span>,<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
 <span id="cb17-11"><a href="pathway分析.html#cb17-11" tabindex="-1"></a></span>
-<span id="cb17-12"><a href="pathway分析.html#cb17-12" tabindex="-1"></a>p_MSEA <span class="ot">&lt;-</span> <span class="fu">pMSEA</span>(<span class="st">&quot;Fatty acid biosynthesis&quot;</span>,d_logFC)</span>
-<span id="cb17-13"><a href="pathway分析.html#cb17-13" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/04.p_MSEA_fatty.pdf&quot;</span>,p_MSEA,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="dv">4</span>)</span>
-<span id="cb17-14"><a href="pathway分析.html#cb17-14" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/04.p_MSEA_fatty.png&quot;</span>,p_MSEA,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="dv">4</span>)</span></code></pre></div>
+<span id="cb17-12"><a href="pathway分析.html#cb17-12" tabindex="-1"></a><span class="do">## 想看哪个通路就输入哪个通路名字</span></span>
+<span id="cb17-13"><a href="pathway分析.html#cb17-13" tabindex="-1"></a>p_MSEA <span class="ot">&lt;-</span> <span class="fu">pMSEA</span>(<span class="st">&quot;Pyrimidine metabolism&quot;</span>,d_logFC)</span>
+<span id="cb17-14"><a href="pathway分析.html#cb17-14" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/04.p_MSEA_pyrimidine.pdf&quot;</span>,p_MSEA,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="dv">4</span>)</span>
+<span id="cb17-15"><a href="pathway分析.html#cb17-15" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/04.p_MSEA_pyrimidine.png&quot;</span>,p_MSEA,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="dv">4</span>)</span>
+<span id="cb17-16"><a href="pathway分析.html#cb17-16" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="pathway分析.html#cb17-17" tabindex="-1"></a>p_MSEA <span class="ot">&lt;-</span> <span class="fu">pMSEA</span>(<span class="st">&quot;Fatty acid biosynthesis&quot;</span>,d_logFC)</span>
+<span id="cb17-18"><a href="pathway分析.html#cb17-18" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/04.p_MSEA_fatty.pdf&quot;</span>,p_MSEA,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="dv">4</span>)</span>
+<span id="cb17-19"><a href="pathway分析.html#cb17-19" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/04.p_MSEA_fatty.png&quot;</span>,p_MSEA,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p>p_MSEA_pyrimidine
 <img src="result/04.p_MSEA_pyrimidine.png" /></p>
 <p>p_MSEA_fatty

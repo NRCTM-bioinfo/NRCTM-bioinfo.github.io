@@ -23,7 +23,7 @@
 <meta name="author" content="Tuantuan Gui and Xuan Liu" />
 
 
-<meta name="date" content="2023-11-20" />
+<meta name="date" content="2023-11-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -198,19 +198,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-3"><a href="差异代谢物.html#cb7-3" tabindex="-1"></a><span class="fu">library</span>(MNet)</span></code></pre></div>
 <div id="pca" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> PCA<a href="差异代谢物.html#pca" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>主成分分析(Principal Component Analysis，PCA) 是从原始变量之间的相互关系入手，根据变异最大化的原则将其线性变换到几个独立的综合指标上(即主成分),取2～3个主成分作图,直观地描述不同组别之间的代谢模式差别和聚类结果,并通过载荷图寻找对组间分类有贡献的原始变量作为生物标志物.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="差异代谢物.html#cb8-1" tabindex="-1"></a><span class="do">## 操作者需根据自己的数据更改tumor-normal组名称及对应样本数</span></span>
-<span id="cb8-2"><a href="差异代谢物.html#cb8-2" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;tumor&quot;</span>,<span class="dv">24</span>),<span class="fu">rep</span>(<span class="st">&quot;normal&quot;</span>,<span class="dv">7</span>))</span>
-<span id="cb8-3"><a href="差异代谢物.html#cb8-3" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="差异代谢物.html#cb8-4" tabindex="-1"></a><span class="do">## 对代谢组数据根据分组进行主成分分析</span></span>
-<span id="cb8-5"><a href="差异代谢物.html#cb8-5" tabindex="-1"></a>p_out <span class="ot">&lt;-</span> <span class="fu">pPCA</span>(meta_dat,group)</span>
-<span id="cb8-6"><a href="差异代谢物.html#cb8-6" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="差异代谢物.html#cb8-7" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.PCA_p1.pdf&quot;</span>,p_out<span class="sc">$</span>p1,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="fl">3.9</span>)</span>
-<span id="cb8-8"><a href="差异代谢物.html#cb8-8" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.PCA_p2.pdf&quot;</span>,p_out<span class="sc">$</span>p2,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="fl">3.9</span>)</span>
-<span id="cb8-9"><a href="差异代谢物.html#cb8-9" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.PCA_p3.pdf&quot;</span>,p_out<span class="sc">$</span>p3,<span class="at">width=</span><span class="dv">8</span>,<span class="at">height =</span> <span class="dv">6</span>)</span>
-<span id="cb8-10"><a href="差异代谢物.html#cb8-10" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.PCA_p1.png&quot;</span>,p_out<span class="sc">$</span>p1,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="fl">3.9</span>)</span>
-<span id="cb8-11"><a href="差异代谢物.html#cb8-11" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.PCA_p2.png&quot;</span>,p_out<span class="sc">$</span>p2,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="fl">3.9</span>)</span>
-<span id="cb8-12"><a href="差异代谢物.html#cb8-12" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.PCA_p3.png&quot;</span>,p_out<span class="sc">$</span>p3,<span class="at">width=</span><span class="dv">8</span>,<span class="at">height =</span> <span class="dv">6</span>)</span></code></pre></div>
+<p>主成分分析(Principal Component Analysis，PCA)：是从原始变量之间的相互关系入手，根据变异最大化的原则将其线性变换到几个独立的综合指标上（即主成分），取2～3个主成分作图,直观地描述不同组别之间的代谢模式差别和聚类结果,并通过载荷图寻找对组间分类有贡献的原始变量作为生物标志物.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="差异代谢物.html#cb8-1" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;result&quot;</span>)</span>
+<span id="cb8-2"><a href="差异代谢物.html#cb8-2" tabindex="-1"></a><span class="do">## 操作者需根据自己的数据更改tumor-normal组名称及对应样本数</span></span>
+<span id="cb8-3"><a href="差异代谢物.html#cb8-3" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;tumor&quot;</span>,<span class="dv">24</span>),<span class="fu">rep</span>(<span class="st">&quot;normal&quot;</span>,<span class="dv">7</span>))</span>
+<span id="cb8-4"><a href="差异代谢物.html#cb8-4" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="差异代谢物.html#cb8-5" tabindex="-1"></a><span class="co"># meta_dat是 MNet R包内的一个数据框</span></span>
+<span id="cb8-6"><a href="差异代谢物.html#cb8-6" tabindex="-1"></a><span class="fu">View</span>(meta_dat)</span>
+<span id="cb8-7"><a href="差异代谢物.html#cb8-7" tabindex="-1"></a><span class="do">## 对代谢组数据根据分组进行主成分分析</span></span>
+<span id="cb8-8"><a href="差异代谢物.html#cb8-8" tabindex="-1"></a>p_out <span class="ot">&lt;-</span> <span class="fu">pPCA</span>(meta_dat,group)</span>
+<span id="cb8-9"><a href="差异代谢物.html#cb8-9" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="差异代谢物.html#cb8-10" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.PCA_p1.pdf&quot;</span>,p_out<span class="sc">$</span>p1,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="fl">3.9</span>)</span>
+<span id="cb8-11"><a href="差异代谢物.html#cb8-11" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.PCA_p2.pdf&quot;</span>,p_out<span class="sc">$</span>p2,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="fl">3.9</span>)</span>
+<span id="cb8-12"><a href="差异代谢物.html#cb8-12" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.PCA_p3.pdf&quot;</span>,p_out<span class="sc">$</span>p3,<span class="at">width=</span><span class="dv">8</span>,<span class="at">height =</span> <span class="dv">6</span>)</span>
+<span id="cb8-13"><a href="差异代谢物.html#cb8-13" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.PCA_p1.png&quot;</span>,p_out<span class="sc">$</span>p1,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="fl">3.9</span>)</span>
+<span id="cb8-14"><a href="差异代谢物.html#cb8-14" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.PCA_p2.png&quot;</span>,p_out<span class="sc">$</span>p2,<span class="at">width=</span><span class="dv">5</span>,<span class="at">height =</span> <span class="fl">3.9</span>)</span>
+<span id="cb8-15"><a href="差异代谢物.html#cb8-15" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;result/03.PCA_p3.png&quot;</span>,p_out<span class="sc">$</span>p3,<span class="at">width=</span><span class="dv">8</span>,<span class="at">height =</span> <span class="dv">6</span>)</span></code></pre></div>
 <p>PCA_p1
 <img src="result/03.PCA_p1.png" /></p>
 <p>PCA_p2
@@ -227,9 +230,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="opls-da" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> OPLS-DA<a href="差异代谢物.html#opls-da" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>正交-偏最小二乘判别分析(OPLS-DA)使用正交信号校正技术，将X矩阵信息分解成与Y相关和不相关的两类信息，然后过滤掉与分类无关的信息，相关的信息主要集中在第一个预测成分.
-通常,根据 VIP(Variable Importance for the Projection)值来说明变量(特征峰) 能解释X数据集和关联Y数据集的重要性.所有VIP值的平方之和与模型中的变量总数相等,因此,其平均值为1.当某个变量的VIP&gt;1时，说明该变量时重要的，通常将此作为潜在生物标记物对筛选条件之一.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="差异代谢物.html#cb10-1" tabindex="-1"></a><span class="do">## fold change, p value and vip of the data</span></span>
+<p>正交-偏最小二乘判别分(OPLS-DA)使用正交信号校正技术，将X矩阵信息分解成与Y相关和不相关的两类信息，然后过滤掉与分类无关的信息，相关的信息主要集中在第一个预测成分.
+通常,根据 VIP(Variable Importance for the Projection)值来说明变量(特征峰)能解释X数据集和关联Y数据集的重要性.所有VIP值的平方之和与模型中的变量总数相等,因此,其平均值为1.当某个变量的VIP&gt;1时，说明该变量是重要的，通常将此作为潜在生物标记物对筛选条件之一.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="差异代谢物.html#cb10-1" tabindex="-1"></a><span class="do">## fold change, p value and VIP of the data</span></span>
 <span id="cb10-2"><a href="差异代谢物.html#cb10-2" tabindex="-1"></a>result_DM_all <span class="ot">&lt;-</span> <span class="fu">DM</span>(<span class="dv">2</span><span class="sc">**</span>meta_dat,group)</span>
 <span id="cb10-3"><a href="差异代谢物.html#cb10-3" tabindex="-1"></a><span class="fu">write.table</span>(result_DM_all,<span class="st">&quot;result/03.result_DM_all.txt&quot;</span>,<span class="at">quote=</span>F,<span class="at">row.names=</span>F,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
 </div>
