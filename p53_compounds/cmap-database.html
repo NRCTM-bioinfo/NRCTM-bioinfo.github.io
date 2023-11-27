@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 CMAP database | p53 compounds</title>
+  <meta name="description" content="This is the tutorial of p53 compounds project." />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 CMAP database | p53 compounds" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is the tutorial of p53 compounds project." />
+  <meta name="github-repo" content="NRCTM-bioinfo/p53-compounds" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 CMAP database | p53 compounds" />
+  
+  <meta name="twitter:description" content="This is the tutorial of p53 compounds project." />
+  
+
+<meta name="author" content="Yu-Ting Dai" />
+
+
+<meta name="date" content="2023-11-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="enrichment-analysis.html"/>
+<link rel="next" href="tcga-pancanatlas.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="http://www.rescuep53.net/">p53 compounds</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="data-preprocessing.html"><a href="data-preprocessing.html"><i class="fa fa-check"></i><b>2</b> Data Preprocessing</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-preprocessing.html"><a href="data-preprocessing.html#rna-seq-data"><i class="fa fa-check"></i><b>2.1</b> RNA-seq data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-preprocessing.html"><a href="data-preprocessing.html#geo-data"><i class="fa fa-check"></i><b>2.2</b> GEO data</a></li>
+<li class="chapter" data-level="2.3" data-path="data-preprocessing.html"><a href="data-preprocessing.html#source-data"><i class="fa fa-check"></i><b>2.3</b> Source data</a></li>
+<li class="chapter" data-level="2.4" data-path="data-preprocessing.html"><a href="data-preprocessing.html#tcga-data"><i class="fa fa-check"></i><b>2.4</b> TCGA data</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="target-evaluation.html"><a href="target-evaluation.html"><i class="fa fa-check"></i><b>3</b> Target Evaluation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="target-evaluation.html"><a href="target-evaluation.html#load-packages"><i class="fa fa-check"></i><b>3.1</b> Load packages</a></li>
+<li class="chapter" data-level="3.2" data-path="target-evaluation.html"><a href="target-evaluation.html#merge-profiling"><i class="fa fa-check"></i><b>3.2</b> Merge profiling</a></li>
+<li class="chapter" data-level="3.3" data-path="target-evaluation.html"><a href="target-evaluation.html#normalization"><i class="fa fa-check"></i><b>3.3</b> Normalization</a></li>
+<li class="chapter" data-level="3.4" data-path="target-evaluation.html"><a href="target-evaluation.html#confident-p53-targets"><i class="fa fa-check"></i><b>3.4</b> 32 confident p53 targets</a></li>
+<li class="chapter" data-level="3.5" data-path="target-evaluation.html"><a href="target-evaluation.html#p53-targets"><i class="fa fa-check"></i><b>3.5</b> 116 p53 targets</a></li>
+<li class="chapter" data-level="3.6" data-path="target-evaluation.html"><a href="target-evaluation.html#p53-transactivation"><i class="fa fa-check"></i><b>3.6</b> p53 transactivation</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="enrichment-analysis.html"><a href="enrichment-analysis.html"><i class="fa fa-check"></i><b>4</b> Enrichment analysis</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="enrichment-analysis.html"><a href="enrichment-analysis.html#calculated-degs"><i class="fa fa-check"></i><b>4.1</b> Calculated DEGs</a></li>
+<li class="chapter" data-level="4.2" data-path="enrichment-analysis.html"><a href="enrichment-analysis.html#enrichr-analysis"><i class="fa fa-check"></i><b>4.2</b> Enrichr analysis</a></li>
+<li class="chapter" data-level="4.3" data-path="enrichment-analysis.html"><a href="enrichment-analysis.html#msigdb-hallmark"><i class="fa fa-check"></i><b>4.3</b> MSigDB Hallmark</a></li>
+<li class="chapter" data-level="4.4" data-path="enrichment-analysis.html"><a href="enrichment-analysis.html#kegg"><i class="fa fa-check"></i><b>4.4</b> KEGG</a></li>
+<li class="chapter" data-level="4.5" data-path="enrichment-analysis.html"><a href="enrichment-analysis.html#trrust"><i class="fa fa-check"></i><b>4.5</b> TRRUST</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cmap-database.html"><a href="cmap-database.html"><i class="fa fa-check"></i><b>5</b> CMAP database</a></li>
+<li class="chapter" data-level="6" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html"><i class="fa fa-check"></i><b>6</b> TCGA PanCanAtlas</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#wt-up-genes"><i class="fa fa-check"></i><b>6.1</b> WT-up genes</a></li>
+<li class="chapter" data-level="6.2" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#mut-up-genes"><i class="fa fa-check"></i><b>6.2</b> MUT-up genes</a></li>
+<li class="chapter" data-level="6.3" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#hr-of-high-expression"><i class="fa fa-check"></i><b>6.3</b> HR of high expression</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#p53-targets-1"><i class="fa fa-check"></i><b>6.3.1</b> 116 p53 targets</a></li>
+<li class="chapter" data-level="6.3.2" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#wt-up-genes-1"><i class="fa fa-check"></i><b>6.3.2</b> WT-up genes</a></li>
+<li class="chapter" data-level="6.3.3" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#mut-up-genes-1"><i class="fa fa-check"></i><b>6.3.3</b> MUT-up genes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#powerfulness-in-regulating"><i class="fa fa-check"></i><b>6.4</b> Powerfulness in regulating</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#p53-targets-2"><i class="fa fa-check"></i><b>6.4.1</b> 116 p53 targets</a></li>
+<li class="chapter" data-level="6.4.2" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#wt-up-genes-2"><i class="fa fa-check"></i><b>6.4.2</b> WT-up genes</a></li>
+<li class="chapter" data-level="6.4.3" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#mut-up-genes-2"><i class="fa fa-check"></i><b>6.4.3</b> MUT-up genes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#hr-for-p53-mutations"><i class="fa fa-check"></i><b>6.5</b> HR for p53 mutations</a></li>
+<li class="chapter" data-level="6.6" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#mdm2-expression"><i class="fa fa-check"></i><b>6.6</b> MDM2 expression</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#radar-plot"><i class="fa fa-check"></i><b>6.6.1</b> Radar plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="about-this-project.html"><a href="about-this-project.html"><i class="fa fa-check"></i><b>7</b> About this project</a>
+<ul>
+<li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#current-version"><i class="fa fa-check"></i>Current version</a></li>
+<li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#session-information"><i class="fa fa-check"></i>Session Information</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">p53 compounds</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="cmap-database" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> CMAP database<a href="cmap-database.html#cmap-database" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="cmap-database.html#cb21-1" tabindex="-1"></a><span class="fu">library</span>(cmapR)</span>
+<span id="cb21-2"><a href="cmap-database.html#cb21-2" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb21-3"><a href="cmap-database.html#cb21-3" tabindex="-1"></a><span class="fu">library</span>(enrichR)</span>
+<span id="cb21-4"><a href="cmap-database.html#cb21-4" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="cmap-database.html#cb21-5" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="cmap-database.html#cb21-6" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="cmap-database.html#cb21-7" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="cmap-database.html#cb21-8" tabindex="-1"></a><span class="do">############ read data</span></span>
+<span id="cb21-9"><a href="cmap-database.html#cb21-9" tabindex="-1"></a>sinfo.data <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;siginfo_beta.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> T)</span>
+<span id="cb21-10"><a href="cmap-database.html#cb21-10" tabindex="-1"></a><span class="fu">head</span>(sinfo.data, <span class="dv">2</span>)</span>
+<span id="cb21-11"><a href="cmap-database.html#cb21-11" tabindex="-1"></a><span class="fu">table</span>(sinfo.data<span class="sc">$</span>pert_type)</span>
+<span id="cb21-12"><a href="cmap-database.html#cb21-12" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="cmap-database.html#cb21-13" tabindex="-1"></a>gctx.all <span class="ot">=</span> <span class="fu">parse_gctx</span>(<span class="st">&quot;level5_beta_all_n1201944x12328.gctx&quot;</span>)</span>
+<span id="cb21-14"><a href="cmap-database.html#cb21-14" tabindex="-1"></a><span class="fu">dim</span>(gctx.all<span class="sc">@</span>mat)</span>
+<span id="cb21-15"><a href="cmap-database.html#cb21-15" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="cmap-database.html#cb21-16" tabindex="-1"></a></span>
+<span id="cb21-17"><a href="cmap-database.html#cb21-17" tabindex="-1"></a></span>
+<span id="cb21-18"><a href="cmap-database.html#cb21-18" tabindex="-1"></a></span>
+<span id="cb21-19"><a href="cmap-database.html#cb21-19" tabindex="-1"></a><span class="do">############ preprocess data</span></span>
+<span id="cb21-20"><a href="cmap-database.html#cb21-20" tabindex="-1"></a>sinfo.data.untrt <span class="ot">&lt;-</span> sinfo.data[<span class="fu">which</span>(sinfo.data<span class="sc">$</span>pert_type <span class="sc">==</span> <span class="st">&quot;ctl_untrt&quot;</span>), ]</span>
+<span id="cb21-21"><a href="cmap-database.html#cb21-21" tabindex="-1"></a>sinfo.data.untrt <span class="ot">&lt;-</span> sinfo.data.untrt[<span class="fu">which</span>(sinfo.data.untrt<span class="sc">$</span>pert_time <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span> sinfo.data.untrt<span class="sc">$</span>pert_time <span class="sc">&lt;=</span> <span class="dv">120</span> ), ]</span>
+<span id="cb21-22"><a href="cmap-database.html#cb21-22" tabindex="-1"></a>sinfo.data.untrt <span class="ot">&lt;-</span> sinfo.data.untrt[<span class="fu">which</span>(sinfo.data.untrt<span class="sc">$</span>bead_batch <span class="sc">!=</span> <span class="st">&quot;b44&quot;</span>), ]</span>
+<span id="cb21-23"><a href="cmap-database.html#cb21-23" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(sinfo.data.untrt<span class="sc">$</span>cell_iname))</span>
+<span id="cb21-24"><a href="cmap-database.html#cb21-24" tabindex="-1"></a><span class="st">&quot;JURKAT&quot;</span> <span class="sc">%in%</span> sinfo.data.untrt<span class="sc">$</span>cell_iname</span>
+<span id="cb21-25"><a href="cmap-database.html#cb21-25" tabindex="-1"></a></span>
+<span id="cb21-26"><a href="cmap-database.html#cb21-26" tabindex="-1"></a>sinfo.data.cp <span class="ot">&lt;-</span> sinfo.data[<span class="fu">which</span>(sinfo.data<span class="sc">$</span>pert_type <span class="sc">==</span> <span class="st">&quot;trt_cp&quot;</span>), ]</span>
+<span id="cb21-27"><a href="cmap-database.html#cb21-27" tabindex="-1"></a>sinfo.data.cp <span class="ot">&lt;-</span> sinfo.data.cp[<span class="fu">which</span>(sinfo.data.cp<span class="sc">$</span>pert_time <span class="sc">&gt;=</span> <span class="dv">24</span> <span class="sc">&amp;</span> sinfo.data.cp<span class="sc">$</span>pert_time <span class="sc">&lt;=</span> <span class="dv">48</span> ), ]</span>
+<span id="cb21-28"><a href="cmap-database.html#cb21-28" tabindex="-1"></a>sinfo.data.cp <span class="ot">&lt;-</span> sinfo.data.cp[<span class="fu">which</span>(sinfo.data.cp<span class="sc">$</span>pert_dose <span class="sc">&lt;=</span> <span class="dv">101</span> <span class="sc">&amp;</span> sinfo.data.cp<span class="sc">$</span>pert_dose <span class="sc">&gt;=</span> <span class="fl">0.1</span>), ]</span>
+<span id="cb21-29"><a href="cmap-database.html#cb21-29" tabindex="-1"></a>sinfo.data.cp<span class="sc">$</span>dose_type <span class="ot">&lt;-</span> <span class="st">&quot;0.1-1&quot;</span></span>
+<span id="cb21-30"><a href="cmap-database.html#cb21-30" tabindex="-1"></a>sinfo.data.cp<span class="sc">$</span>dose_type[<span class="fu">which</span>(sinfo.data.cp<span class="sc">$</span>pert_dose <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> sinfo.data.cp<span class="sc">$</span>pert_dose <span class="sc">&lt;</span> <span class="dv">10</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;1-10&quot;</span></span>
+<span id="cb21-31"><a href="cmap-database.html#cb21-31" tabindex="-1"></a>sinfo.data.cp<span class="sc">$</span>dose_type[<span class="fu">which</span>(sinfo.data.cp<span class="sc">$</span>pert_dose <span class="sc">&gt;=</span> <span class="dv">10</span> <span class="sc">&amp;</span> sinfo.data.cp<span class="sc">$</span>pert_dose <span class="sc">&lt;</span> <span class="dv">101</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;10-100&quot;</span></span>
+<span id="cb21-32"><a href="cmap-database.html#cb21-32" tabindex="-1"></a><span class="fu">table</span>(sinfo.data.cp<span class="sc">$</span>dose_type)</span>
+<span id="cb21-33"><a href="cmap-database.html#cb21-33" tabindex="-1"></a>sinfo.data.cp <span class="ot">&lt;-</span> sinfo.data.cp[<span class="fu">which</span>(sinfo.data.cp<span class="sc">$</span>bead_batch <span class="sc">!=</span> <span class="st">&quot;b44&quot;</span>), ]</span>
+<span id="cb21-34"><a href="cmap-database.html#cb21-34" tabindex="-1"></a><span class="st">&quot;JURKAT&quot;</span> <span class="sc">%in%</span> sinfo.data.cp<span class="sc">$</span>cell_iname</span>
+<span id="cb21-35"><a href="cmap-database.html#cb21-35" tabindex="-1"></a></span>
+<span id="cb21-36"><a href="cmap-database.html#cb21-36" tabindex="-1"></a></span>
+<span id="cb21-37"><a href="cmap-database.html#cb21-37" tabindex="-1"></a><span class="fu">dim</span>(sinfo.data.untrt)</span>
+<span id="cb21-38"><a href="cmap-database.html#cb21-38" tabindex="-1"></a><span class="fu">dim</span>(sinfo.data.cp)</span>
+<span id="cb21-39"><a href="cmap-database.html#cb21-39" tabindex="-1"></a></span>
+<span id="cb21-40"><a href="cmap-database.html#cb21-40" tabindex="-1"></a>cell.common <span class="ot">&lt;-</span> <span class="fu">unique</span>(sinfo.data.untrt<span class="sc">$</span>cell_iname)</span>
+<span id="cb21-41"><a href="cmap-database.html#cb21-41" tabindex="-1"></a>cell.common <span class="ot">&lt;-</span> cell.common[cell.common <span class="sc">%in%</span> sinfo.data.cp<span class="sc">$</span>cell_iname] </span>
+<span id="cb21-42"><a href="cmap-database.html#cb21-42" tabindex="-1"></a></span>
+<span id="cb21-43"><a href="cmap-database.html#cb21-43" tabindex="-1"></a></span>
+<span id="cb21-44"><a href="cmap-database.html#cb21-44" tabindex="-1"></a>sinfo.data.untrt <span class="ot">&lt;-</span> sinfo.data.untrt[sinfo.data.untrt<span class="sc">$</span>cell_iname <span class="sc">%in%</span> cell.common, ]</span>
+<span id="cb21-45"><a href="cmap-database.html#cb21-45" tabindex="-1"></a>sinfo.data.cp <span class="ot">&lt;-</span> sinfo.data.cp[sinfo.data.cp<span class="sc">$</span>cell_iname <span class="sc">%in%</span> cell.common, ]</span>
+<span id="cb21-46"><a href="cmap-database.html#cb21-46" tabindex="-1"></a></span>
+<span id="cb21-47"><a href="cmap-database.html#cb21-47" tabindex="-1"></a>comp.info <span class="ot">&lt;-</span> comp.info.raw</span>
+<span id="cb21-48"><a href="cmap-database.html#cb21-48" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">table</span>(sinfo.data.cp<span class="sc">$</span>cmap_name)</span>
+<span id="cb21-49"><a href="cmap-database.html#cb21-49" tabindex="-1"></a>comp.info<span class="sc">$</span>Freq <span class="ot">&lt;-</span> sub[<span class="fu">match</span>(comp.info<span class="sc">$</span>cmap_name, <span class="fu">names</span>(sub))]</span>
+<span id="cb21-50"><a href="cmap-database.html#cb21-50" tabindex="-1"></a>comp.info <span class="ot">&lt;-</span> comp.info[<span class="fu">which</span>(comp.info<span class="sc">$</span>Freq <span class="sc">&gt;</span> <span class="dv">1</span>), ]</span>
+<span id="cb21-51"><a href="cmap-database.html#cb21-51" tabindex="-1"></a>comp.info <span class="ot">&lt;-</span> comp.info[<span class="fu">order</span>(comp.info<span class="sc">$</span>Freq, <span class="at">decreasing =</span> T), ]</span>
+<span id="cb21-52"><a href="cmap-database.html#cb21-52" tabindex="-1"></a></span>
+<span id="cb21-53"><a href="cmap-database.html#cb21-53" tabindex="-1"></a>sinfo.data.cp <span class="ot">&lt;-</span> sinfo.data.cp[sinfo.data.cp<span class="sc">$</span>cmap_name <span class="sc">%in%</span> comp.info<span class="sc">$</span>cmap_name, ]</span>
+<span id="cb21-54"><a href="cmap-database.html#cb21-54" tabindex="-1"></a>cell.common <span class="ot">&lt;-</span> cell.common[cell.common <span class="sc">%in%</span> sinfo.data.cp<span class="sc">$</span>cell_iname]</span>
+<span id="cb21-55"><a href="cmap-database.html#cb21-55" tabindex="-1"></a>cell.common <span class="ot">&lt;-</span> cell.common[<span class="fu">order</span>(cell.common)]</span>
+<span id="cb21-56"><a href="cmap-database.html#cb21-56" tabindex="-1"></a>sinfo.data.untrt <span class="ot">&lt;-</span> sinfo.data.untrt[sinfo.data.untrt<span class="sc">$</span>cell_iname <span class="sc">%in%</span> cell.common, ]</span>
+<span id="cb21-57"><a href="cmap-database.html#cb21-57" tabindex="-1"></a></span>
+<span id="cb21-58"><a href="cmap-database.html#cb21-58" tabindex="-1"></a>comp.info<span class="sc">$</span>Freq <span class="ot">&lt;-</span> sub[<span class="fu">match</span>(comp.info<span class="sc">$</span>cmap_name, <span class="fu">names</span>(sub))]</span>
+<span id="cb21-59"><a href="cmap-database.html#cb21-59" tabindex="-1"></a></span>
+<span id="cb21-60"><a href="cmap-database.html#cb21-60" tabindex="-1"></a></span>
+<span id="cb21-61"><a href="cmap-database.html#cb21-61" tabindex="-1"></a>sinfo.data.untrt<span class="sc">$</span>DrugName <span class="ot">&lt;-</span> <span class="fu">paste0</span>(sinfo.data.untrt<span class="sc">$</span>cell_iname, <span class="st">&quot;|&quot;</span>, sinfo.data.untrt<span class="sc">$</span>cmap_name)</span>
+<span id="cb21-62"><a href="cmap-database.html#cb21-62" tabindex="-1"></a>sinfo.data.cp<span class="sc">$</span>DrugName <span class="ot">&lt;-</span> <span class="fu">paste0</span>(sinfo.data.cp<span class="sc">$</span>cell_iname, <span class="st">&quot;|&quot;</span>, sinfo.data.cp<span class="sc">$</span>cmap_name, <span class="st">&quot;|&quot;</span>, </span>
+<span id="cb21-63"><a href="cmap-database.html#cb21-63" tabindex="-1"></a>                                   sinfo.data.cp<span class="sc">$</span>dose_type,<span class="st">&quot;uM|&quot;</span>, sinfo.data.cp<span class="sc">$</span>pert_time, <span class="st">&quot;h&quot;</span>)</span>
+<span id="cb21-64"><a href="cmap-database.html#cb21-64" tabindex="-1"></a>sinfo.data.cp<span class="sc">$</span>Group <span class="ot">&lt;-</span> <span class="fu">paste0</span>(sinfo.data.cp<span class="sc">$</span>dose_type,<span class="st">&quot;uM|&quot;</span>, sinfo.data.cp<span class="sc">$</span>pert_time, <span class="st">&quot;h&quot;</span>)</span>
+<span id="cb21-65"><a href="cmap-database.html#cb21-65" tabindex="-1"></a>sinfo.data.cp<span class="sc">$</span>ControlName <span class="ot">&lt;-</span> <span class="fu">paste0</span>(sinfo.data.cp<span class="sc">$</span>cell_iname, <span class="st">&quot;|UnTrt&quot;</span>)</span>
+<span id="cb21-66"><a href="cmap-database.html#cb21-66" tabindex="-1"></a></span>
+<span id="cb21-67"><a href="cmap-database.html#cb21-67" tabindex="-1"></a></span>
+<span id="cb21-68"><a href="cmap-database.html#cb21-68" tabindex="-1"></a>sinfo.data.cp<span class="sc">$</span>ControlName[<span class="sc">!</span>sinfo.data.cp<span class="sc">$</span>ControlName <span class="sc">%in%</span> sinfo.data.untrt<span class="sc">$</span>DrugName]</span>
+<span id="cb21-69"><a href="cmap-database.html#cb21-69" tabindex="-1"></a></span>
+<span id="cb21-70"><a href="cmap-database.html#cb21-70" tabindex="-1"></a><span class="fu">length</span>(sinfo.data.cp<span class="sc">$</span>DrugName)</span>
+<span id="cb21-71"><a href="cmap-database.html#cb21-71" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(sinfo.data.cp<span class="sc">$</span>DrugName))</span>
+<span id="cb21-72"><a href="cmap-database.html#cb21-72" tabindex="-1"></a></span>
+<span id="cb21-73"><a href="cmap-database.html#cb21-73" tabindex="-1"></a></span>
+<span id="cb21-74"><a href="cmap-database.html#cb21-74" tabindex="-1"></a><span class="fu">dim</span>(comp.info)</span>
+<span id="cb21-75"><a href="cmap-database.html#cb21-75" tabindex="-1"></a>sinfo.data.cp<span class="sc">$</span>cmap_name <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">as.character</span>(sinfo.data.cp<span class="sc">$</span>cmap_name), <span class="at">levels =</span> comp.info<span class="sc">$</span>cmap_name)</span>
+<span id="cb21-76"><a href="cmap-database.html#cb21-76" tabindex="-1"></a>sinfo.data.cp<span class="sc">$</span>cell_iname <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">as.character</span>(sinfo.data.cp<span class="sc">$</span>cell_iname), <span class="at">levels =</span> cell.common)</span>
+<span id="cb21-77"><a href="cmap-database.html#cb21-77" tabindex="-1"></a>sinfo.data.cp <span class="ot">&lt;-</span> sinfo.data.cp[<span class="fu">order</span>(sinfo.data.cp<span class="sc">$</span>Group, sinfo.data.cp<span class="sc">$</span>cmap_name, sinfo.data.cp<span class="sc">$</span>cell_iname), ]</span>
+<span id="cb21-78"><a href="cmap-database.html#cb21-78" tabindex="-1"></a></span>
+<span id="cb21-79"><a href="cmap-database.html#cb21-79" tabindex="-1"></a></span>
+<span id="cb21-80"><a href="cmap-database.html#cb21-80" tabindex="-1"></a></span>
+<span id="cb21-81"><a href="cmap-database.html#cb21-81" tabindex="-1"></a><span class="do">#################### expression matrix</span></span>
+<span id="cb21-82"><a href="cmap-database.html#cb21-82" tabindex="-1"></a>expmat.untrt <span class="ot">&lt;-</span> gctx.all<span class="sc">@</span>mat[, sinfo.data.untrt<span class="sc">$</span>sig_id]</span>
+<span id="cb21-83"><a href="cmap-database.html#cb21-83" tabindex="-1"></a>expmat.cp <span class="ot">&lt;-</span> gctx.all<span class="sc">@</span>mat[, sinfo.data.cp<span class="sc">$</span>sig_id]</span>
+<span id="cb21-84"><a href="cmap-database.html#cb21-84" tabindex="-1"></a></span>
+<span id="cb21-85"><a href="cmap-database.html#cb21-85" tabindex="-1"></a><span class="fu">dim</span>(expmat.untrt)</span>
+<span id="cb21-86"><a href="cmap-database.html#cb21-86" tabindex="-1"></a><span class="fu">dim</span>(expmat.cp)</span>
+<span id="cb21-87"><a href="cmap-database.html#cb21-87" tabindex="-1"></a></span>
+<span id="cb21-88"><a href="cmap-database.html#cb21-88" tabindex="-1"></a>gene.info <span class="ot">&lt;-</span> gene.info.raw</span>
+<span id="cb21-89"><a href="cmap-database.html#cb21-89" tabindex="-1"></a>gene.info <span class="ot">&lt;-</span> gene.info[<span class="fu">match</span>(<span class="fu">unique</span>(gene.info<span class="sc">$</span>gene_symbol), gene.info<span class="sc">$</span>gene_symbol), ]</span>
+<span id="cb21-90"><a href="cmap-database.html#cb21-90" tabindex="-1"></a>gene.info <span class="ot">&lt;-</span> gene.info[gene.info<span class="sc">$</span>gene_symbol <span class="sc">%in%</span> p53.gene<span class="sc">$</span>GeneSymbol, ]</span>
+<span id="cb21-91"><a href="cmap-database.html#cb21-91" tabindex="-1"></a>gene.info<span class="sc">$</span>Index <span class="ot">&lt;-</span> <span class="fu">rownames</span>(p53.gene)[<span class="fu">match</span>(gene.info<span class="sc">$</span>gene_symbol, p53.gene<span class="sc">$</span>GeneSymbol)]</span>
+<span id="cb21-92"><a href="cmap-database.html#cb21-92" tabindex="-1"></a>gene.info<span class="sc">$</span>Index <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(gene.info<span class="sc">$</span>Index)</span>
+<span id="cb21-93"><a href="cmap-database.html#cb21-93" tabindex="-1"></a>gene.info<span class="sc">$</span>GeneType <span class="ot">&lt;-</span> p53.gene<span class="sc">$</span>GeneType[<span class="fu">match</span>(gene.info<span class="sc">$</span>gene_symbol, p53.gene<span class="sc">$</span>GeneSymbol)]</span>
+<span id="cb21-94"><a href="cmap-database.html#cb21-94" tabindex="-1"></a>gene.info <span class="ot">&lt;-</span> gene.info[<span class="fu">order</span>(gene.info<span class="sc">$</span>Index), ]</span>
+<span id="cb21-95"><a href="cmap-database.html#cb21-95" tabindex="-1"></a></span>
+<span id="cb21-96"><a href="cmap-database.html#cb21-96" tabindex="-1"></a>expmat.untrt <span class="ot">&lt;-</span> expmat.untrt[<span class="fu">match</span>(gene.info<span class="sc">$</span>gene_id, <span class="fu">rownames</span>(expmat.untrt)), ]</span>
+<span id="cb21-97"><a href="cmap-database.html#cb21-97" tabindex="-1"></a>expmat.cp <span class="ot">&lt;-</span> expmat.cp[<span class="fu">match</span>(gene.info<span class="sc">$</span>gene_id, <span class="fu">rownames</span>(expmat.cp)), ]</span>
+<span id="cb21-98"><a href="cmap-database.html#cb21-98" tabindex="-1"></a><span class="fu">rownames</span>(expmat.untrt) <span class="ot">&lt;-</span> gene.info<span class="sc">$</span>gene_symbol[<span class="fu">match</span>(<span class="fu">rownames</span>(expmat.untrt), gene.info<span class="sc">$</span>gene_id)]</span>
+<span id="cb21-99"><a href="cmap-database.html#cb21-99" tabindex="-1"></a><span class="fu">rownames</span>(expmat.cp) <span class="ot">&lt;-</span> gene.info<span class="sc">$</span>gene_symbol[<span class="fu">match</span>(<span class="fu">rownames</span>(expmat.cp), gene.info<span class="sc">$</span>gene_id)]</span>
+<span id="cb21-100"><a href="cmap-database.html#cb21-100" tabindex="-1"></a></span>
+<span id="cb21-101"><a href="cmap-database.html#cb21-101" tabindex="-1"></a><span class="fu">write.xlsx</span>(gene.info, <span class="st">&quot;analysis/gene.info.xlsx&quot;</span>, <span class="at">overwrite =</span> T)</span>
+<span id="cb21-102"><a href="cmap-database.html#cb21-102" tabindex="-1"></a></span>
+<span id="cb21-103"><a href="cmap-database.html#cb21-103" tabindex="-1"></a></span>
+<span id="cb21-104"><a href="cmap-database.html#cb21-104" tabindex="-1"></a></span>
+<span id="cb21-105"><a href="cmap-database.html#cb21-105" tabindex="-1"></a></span>
+<span id="cb21-106"><a href="cmap-database.html#cb21-106" tabindex="-1"></a><span class="do">#################### Stat matrix</span></span>
+<span id="cb21-107"><a href="cmap-database.html#cb21-107" tabindex="-1"></a>stat.info <span class="ot">&lt;-</span> <span class="fu">table</span>(sinfo.data.cp[, <span class="fu">c</span>(<span class="st">&quot;cmap_name&quot;</span>,<span class="st">&quot;cell_iname&quot;</span>)])</span>
+<span id="cb21-108"><a href="cmap-database.html#cb21-108" tabindex="-1"></a>stat.info[stat.info <span class="sc">&gt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb21-109"><a href="cmap-database.html#cb21-109" tabindex="-1"></a></span>
+<span id="cb21-110"><a href="cmap-database.html#cb21-110" tabindex="-1"></a><span class="fu">write.xlsx</span>(<span class="fu">list</span>(<span class="at">comp.info =</span> comp.info, <span class="at">stat.info =</span> stat.info), <span class="st">&quot;analysis/2.stat.cell_line.compound.xlsx&quot;</span>, <span class="at">overwrite =</span> T)</span>
+<span id="cb21-111"><a href="cmap-database.html#cb21-111" tabindex="-1"></a></span>
+<span id="cb21-112"><a href="cmap-database.html#cb21-112" tabindex="-1"></a>cell.info <span class="ot">&lt;-</span> cell.info.raw[<span class="fu">match</span>(cell.common, cell.info.raw<span class="sc">$</span>cell_iname), ]</span>
+<span id="cb21-113"><a href="cmap-database.html#cb21-113" tabindex="-1"></a><span class="fu">write.xlsx</span>(cell.info, <span class="st">&quot;analysis/2.stat.cell_line.xlsx&quot;</span>, <span class="at">overwrite =</span> T)</span>
+<span id="cb21-114"><a href="cmap-database.html#cb21-114" tabindex="-1"></a></span>
+<span id="cb21-115"><a href="cmap-database.html#cb21-115" tabindex="-1"></a></span>
+<span id="cb21-116"><a href="cmap-database.html#cb21-116" tabindex="-1"></a></span>
+<span id="cb21-117"><a href="cmap-database.html#cb21-117" tabindex="-1"></a><span class="fu">saveRDS</span>(sinfo.data.cp, <span class="st">&quot;analysis/sinfo.data.cp.rds&quot;</span>)</span>
+<span id="cb21-118"><a href="cmap-database.html#cb21-118" tabindex="-1"></a><span class="fu">saveRDS</span>(sinfo.data.untrt, <span class="st">&quot;analysis/sinfo.data.untrt.rds&quot;</span>)</span>
+<span id="cb21-119"><a href="cmap-database.html#cb21-119" tabindex="-1"></a><span class="fu">saveRDS</span>(expmat.untrt, <span class="st">&quot;analysis/expmat.untrt.rds&quot;</span>)</span>
+<span id="cb21-120"><a href="cmap-database.html#cb21-120" tabindex="-1"></a><span class="fu">saveRDS</span>(expmat.cp, <span class="st">&quot;analysis/expmat.cp.rds&quot;</span>)</span>
+<span id="cb21-121"><a href="cmap-database.html#cb21-121" tabindex="-1"></a><span class="fu">saveRDS</span>(gene.info, <span class="st">&quot;analysis/gene.info.rds&quot;</span>)</span>
+<span id="cb21-122"><a href="cmap-database.html#cb21-122" tabindex="-1"></a></span>
+<span id="cb21-123"><a href="cmap-database.html#cb21-123" tabindex="-1"></a></span>
+<span id="cb21-124"><a href="cmap-database.html#cb21-124" tabindex="-1"></a></span>
+<span id="cb21-125"><a href="cmap-database.html#cb21-125" tabindex="-1"></a></span>
+<span id="cb21-126"><a href="cmap-database.html#cb21-126" tabindex="-1"></a></span>
+<span id="cb21-127"><a href="cmap-database.html#cb21-127" tabindex="-1"></a><span class="do">############## boxplot</span></span>
+<span id="cb21-128"><a href="cmap-database.html#cb21-128" tabindex="-1"></a>cmap.db <span class="ot">&lt;-</span> <span class="st">&quot;/Users/daiyuting/Documents/projects/tcga/cmap/analysis/cell&quot;</span></span>
+<span id="cb21-129"><a href="cmap-database.html#cb21-129" tabindex="-1"></a>cmap.meta <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="fu">paste0</span>(cmap.db, <span class="st">&quot;/1.JURKAT.cmap.meta.xlsx&quot;</span>), <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">rowNames =</span> T)</span>
+<span id="cb21-130"><a href="cmap-database.html#cb21-130" tabindex="-1"></a>cmap.exp <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="fu">paste0</span>(cmap.db, <span class="st">&quot;/1.JURKAT.cmap.meta.xlsx&quot;</span>), <span class="at">sheet =</span> <span class="dv">2</span>, <span class="at">rowNames =</span> T)</span>
+<span id="cb21-131"><a href="cmap-database.html#cb21-131" tabindex="-1"></a></span>
+<span id="cb21-132"><a href="cmap-database.html#cb21-132" tabindex="-1"></a>cmap.gene.info <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;/Users/daiyuting/Documents/projects/tcga/cmap/analysis/gene.info.xlsx&quot;</span>)</span>
+<span id="cb21-133"><a href="cmap-database.html#cb21-133" tabindex="-1"></a>cmap.gene.info <span class="ot">&lt;-</span> cmap.gene.info[<span class="fu">which</span>(cmap.gene.info<span class="sc">$</span>feature_space <span class="sc">==</span> <span class="st">&#39;landmark&#39;</span>), ]</span>
+<span id="cb21-134"><a href="cmap-database.html#cb21-134" tabindex="-1"></a>cmap.gene.info <span class="ot">&lt;-</span> cmap.gene.info[<span class="fu">which</span>(cmap.gene.info<span class="sc">$</span>gene_symbol <span class="sc">%in%</span> <span class="fu">rownames</span>(cmap.exp)), ]</span>
+<span id="cb21-135"><a href="cmap-database.html#cb21-135" tabindex="-1"></a></span>
+<span id="cb21-136"><a href="cmap-database.html#cb21-136" tabindex="-1"></a>cmap.exp <span class="ot">&lt;-</span> cmap.exp[<span class="fu">match</span>(cmap.gene.info<span class="sc">$</span>gene_symbol, <span class="fu">rownames</span>(cmap.exp)), ]</span>
+<span id="cb21-137"><a href="cmap-database.html#cb21-137" tabindex="-1"></a></span>
+<span id="cb21-138"><a href="cmap-database.html#cb21-138" tabindex="-1"></a></span>
+<span id="cb21-139"><a href="cmap-database.html#cb21-139" tabindex="-1"></a><span class="fu">dim</span>(cmap.meta)</span>
+<span id="cb21-140"><a href="cmap-database.html#cb21-140" tabindex="-1"></a><span class="fu">dim</span>(cmap.exp)</span>
+<span id="cb21-141"><a href="cmap-database.html#cb21-141" tabindex="-1"></a></span>
+<span id="cb21-142"><a href="cmap-database.html#cb21-142" tabindex="-1"></a><span class="fu">sum</span>(cmap.meta<span class="sc">$</span>sig_id <span class="sc">!=</span> <span class="fu">colnames</span>(cmap.exp))</span>
+<span id="cb21-143"><a href="cmap-database.html#cb21-143" tabindex="-1"></a></span>
+<span id="cb21-144"><a href="cmap-database.html#cb21-144" tabindex="-1"></a></span>
+<span id="cb21-145"><a href="cmap-database.html#cb21-145" tabindex="-1"></a>drug.name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;MG-132&quot;</span>,<span class="st">&quot;nutlin-3&quot;</span>,<span class="st">&quot;cytarabine&quot;</span>,<span class="st">&quot;paclitaxel&quot;</span>,<span class="st">&quot;decitabine&quot;</span>,<span class="st">&quot;gemcitabine&quot;</span>,<span class="st">&quot;etoposide&quot;</span>,<span class="st">&quot;AMG-232&quot;</span>,<span class="st">&quot;metformin&quot;</span>,<span class="st">&quot;azacitidine&quot;</span>,<span class="st">&quot;docetaxel&quot;</span>)</span>
+<span id="cb21-146"><a href="cmap-database.html#cb21-146" tabindex="-1"></a></span>
+<span id="cb21-147"><a href="cmap-database.html#cb21-147" tabindex="-1"></a></span>
+<span id="cb21-148"><a href="cmap-database.html#cb21-148" tabindex="-1"></a></span>
+<span id="cb21-149"><a href="cmap-database.html#cb21-149" tabindex="-1"></a></span>
+<span id="cb21-150"><a href="cmap-database.html#cb21-150" tabindex="-1"></a></span>
+<span id="cb21-151"><a href="cmap-database.html#cb21-151" tabindex="-1"></a></span>
+<span id="cb21-152"><a href="cmap-database.html#cb21-152" tabindex="-1"></a></span>
+<span id="cb21-153"><a href="cmap-database.html#cb21-153" tabindex="-1"></a></span>
+<span id="cb21-154"><a href="cmap-database.html#cb21-154" tabindex="-1"></a>cmap.exp.nor <span class="ot">&lt;-</span> cmap.exp<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb21-155"><a href="cmap-database.html#cb21-155" tabindex="-1"></a></span>
+<span id="cb21-156"><a href="cmap-database.html#cb21-156" tabindex="-1"></a></span>
+<span id="cb21-157"><a href="cmap-database.html#cb21-157" tabindex="-1"></a></span>
+<span id="cb21-158"><a href="cmap-database.html#cb21-158" tabindex="-1"></a></span>
+<span id="cb21-159"><a href="cmap-database.html#cb21-159" tabindex="-1"></a>cmap.meta<span class="sc">$</span>CDKN1A <span class="ot">&lt;-</span> cmap.exp.nor[ <span class="fu">which</span>(<span class="fu">rownames</span>(cmap.exp.nor) <span class="sc">==</span> <span class="st">&quot;CDKN1A&quot;</span>), cmap.meta<span class="sc">$</span>sig_id ] <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>()</span>
+<span id="cb21-160"><a href="cmap-database.html#cb21-160" tabindex="-1"></a>cmap.meta<span class="sc">$</span>BAX <span class="ot">&lt;-</span> cmap.exp.nor[ <span class="fu">which</span>(<span class="fu">rownames</span>(cmap.exp.nor) <span class="sc">==</span> <span class="st">&quot;BAX&quot;</span>), cmap.meta<span class="sc">$</span>sig_id ] <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>()</span>
+<span id="cb21-161"><a href="cmap-database.html#cb21-161" tabindex="-1"></a></span>
+<span id="cb21-162"><a href="cmap-database.html#cb21-162" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> cmap.meta</span>
+<span id="cb21-163"><a href="cmap-database.html#cb21-163" tabindex="-1"></a>plot.data<span class="sc">$</span>CDKN1A_fc <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">**</span> ( (plot.data<span class="sc">$</span>CDKN1A <span class="sc">-</span> plot.data<span class="sc">$</span>CDKN1A[<span class="dv">1</span>]) )</span>
+<span id="cb21-164"><a href="cmap-database.html#cb21-164" tabindex="-1"></a>plot.data<span class="sc">$</span>BAX_fc <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">**</span> ( (plot.data<span class="sc">$</span>BAX <span class="sc">-</span> plot.data<span class="sc">$</span>BAX[<span class="dv">1</span>]) )</span>
+<span id="cb21-165"><a href="cmap-database.html#cb21-165" tabindex="-1"></a><span class="fu">range</span>(plot.data<span class="sc">$</span>CDKN1A_fc)</span>
+<span id="cb21-166"><a href="cmap-database.html#cb21-166" tabindex="-1"></a><span class="fu">range</span>(plot.data<span class="sc">$</span>BAX_fc)</span>
+<span id="cb21-167"><a href="cmap-database.html#cb21-167" tabindex="-1"></a></span>
+<span id="cb21-168"><a href="cmap-database.html#cb21-168" tabindex="-1"></a></span>
+<span id="cb21-169"><a href="cmap-database.html#cb21-169" tabindex="-1"></a></span>
+<span id="cb21-170"><a href="cmap-database.html#cb21-170" tabindex="-1"></a></span>
+<span id="cb21-171"><a href="cmap-database.html#cb21-171" tabindex="-1"></a>drug.name.sel <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;UnTrt&quot;</span>,<span class="st">&quot;MG-132&quot;</span>,<span class="st">&quot;nutlin-3&quot;</span>,<span class="st">&quot;cytarabine&quot;</span>,<span class="st">&quot;paclitaxel&quot;</span>,<span class="st">&quot;decitabine&quot;</span>,<span class="st">&quot;gemcitabine&quot;</span>,<span class="st">&quot;etoposide&quot;</span>,<span class="st">&quot;AMG-232&quot;</span>,<span class="st">&quot;metformin&quot;</span>,<span class="st">&quot;azacitidine&quot;</span>,<span class="st">&quot;docetaxel&quot;</span>)</span>
+<span id="cb21-172"><a href="cmap-database.html#cb21-172" tabindex="-1"></a>plot.data.sub <span class="ot">&lt;-</span> plot.data[plot.data<span class="sc">$</span>cmap_name <span class="sc">%in%</span> drug.name.sel, ]</span>
+<span id="cb21-173"><a href="cmap-database.html#cb21-173" tabindex="-1"></a>plot.data.sub<span class="sc">$</span>cmap_name <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">as.character</span>(plot.data.sub<span class="sc">$</span>cmap_name), <span class="at">levels =</span> drug.name.sel)</span>
+<span id="cb21-174"><a href="cmap-database.html#cb21-174" tabindex="-1"></a>plot.data.sub <span class="ot">&lt;-</span> plot.data.sub[plot.data.sub<span class="sc">$</span>pert_idose <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;&quot;</span>,<span class="st">&quot;3.33 uM&quot;</span>,<span class="st">&quot;10 uM&quot;</span>,<span class="st">&quot;20 uM&quot;</span>), ]</span>
+<span id="cb21-175"><a href="cmap-database.html#cb21-175" tabindex="-1"></a>plot.data.sub<span class="sc">$</span>dose_type <span class="ot">&lt;-</span> <span class="st">&quot;Low&quot;</span></span>
+<span id="cb21-176"><a href="cmap-database.html#cb21-176" tabindex="-1"></a>plot.data.sub<span class="sc">$</span>dose_type[<span class="fu">which</span>(plot.data.sub<span class="sc">$</span>pert_idose <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;10 uM&quot;</span>,<span class="st">&quot;20 uM&quot;</span>))] <span class="ot">&lt;-</span> <span class="st">&quot;High&quot;</span></span>
+<span id="cb21-177"><a href="cmap-database.html#cb21-177" tabindex="-1"></a>plot.data.sub<span class="sc">$</span>dose_type <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">as.character</span>(plot.data.sub<span class="sc">$</span>dose_type), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>,<span class="st">&quot;High&quot;</span>))</span>
+<span id="cb21-178"><a href="cmap-database.html#cb21-178" tabindex="-1"></a></span>
+<span id="cb21-179"><a href="cmap-database.html#cb21-179" tabindex="-1"></a><span class="fu">aggregate</span>(plot.data.sub[, <span class="fu">c</span>(<span class="st">&quot;CDKN1A_fc&quot;</span>,<span class="st">&quot;BAX_fc&quot;</span>)], <span class="fu">list</span>(<span class="at">Dose =</span> plot.data.sub<span class="sc">$</span>dose_type, <span class="at">Drug =</span> plot.data.sub<span class="sc">$</span>cmap_name), mean)</span>
+<span id="cb21-180"><a href="cmap-database.html#cb21-180" tabindex="-1"></a></span>
+<span id="cb21-181"><a href="cmap-database.html#cb21-181" tabindex="-1"></a></span>
+<span id="cb21-182"><a href="cmap-database.html#cb21-182" tabindex="-1"></a>drug.sel <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;MG-132&quot;</span>,<span class="st">&quot;nutlin-3&quot;</span>,<span class="st">&quot;decitabine&quot;</span>,<span class="st">&quot;gemcitabine&quot;</span>,<span class="st">&quot;etoposide&quot;</span>,<span class="st">&quot;AMG-232&quot;</span>,<span class="st">&quot;metformin&quot;</span>,<span class="st">&quot;azacitidine&quot;</span>)</span>
+<span id="cb21-183"><a href="cmap-database.html#cb21-183" tabindex="-1"></a>sub <span class="ot">&lt;-</span> plot.data.sub[plot.data.sub<span class="sc">$</span>cmap_name <span class="sc">%in%</span> drug.sel, ]</span>
+<span id="cb21-184"><a href="cmap-database.html#cb21-184" tabindex="-1"></a>sub<span class="sc">$</span>cmap_name <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">as.character</span>(sub<span class="sc">$</span>cmap_name), <span class="at">levels =</span> drug.sel)</span>
+<span id="cb21-185"><a href="cmap-database.html#cb21-185" tabindex="-1"></a>plot.sub <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(sub[, <span class="fu">c</span>(<span class="st">&quot;CDKN1A_fc&quot;</span>,<span class="st">&quot;BAX_fc&quot;</span>)], <span class="fu">list</span>(<span class="at">dose_type =</span> sub<span class="sc">$</span>dose_type, <span class="at">cmap_name =</span> sub<span class="sc">$</span>cmap_name), mean)</span>
+<span id="cb21-186"><a href="cmap-database.html#cb21-186" tabindex="-1"></a></span>
+<span id="cb21-187"><a href="cmap-database.html#cb21-187" tabindex="-1"></a></span>
+<span id="cb21-188"><a href="cmap-database.html#cb21-188" tabindex="-1"></a>out.cmap.meta <span class="ot">&lt;-</span> sub</span>
+<span id="cb21-189"><a href="cmap-database.html#cb21-189" tabindex="-1"></a>out.cmap.nor <span class="ot">&lt;-</span> cmap.exp.nor[, <span class="fu">c</span>(<span class="st">&quot;T1D.KD001_JURKAT_120H:TRCN0000000000:-666&quot;</span>,sub<span class="sc">$</span>sig_id)]</span>
+<span id="cb21-190"><a href="cmap-database.html#cb21-190" tabindex="-1"></a>  </span>
+<span id="cb21-191"><a href="cmap-database.html#cb21-191" tabindex="-1"></a><span class="fu">write.xlsx</span>(<span class="fu">list</span>(<span class="at">meta =</span> sub, <span class="at">mat =</span> <span class="fu">as.data.frame</span>(<span class="fu">round</span>(out.cmap.nor, <span class="dv">2</span>))), <span class="st">&quot;output/9.pcr/1.JURKAT.cmap.meta.xlsx&quot;</span>, <span class="at">overwrite =</span> T, <span class="at">rowNames =</span> T)</span>
+<span id="cb21-192"><a href="cmap-database.html#cb21-192" tabindex="-1"></a></span>
+<span id="cb21-193"><a href="cmap-database.html#cb21-193" tabindex="-1"></a></span>
+<span id="cb21-194"><a href="cmap-database.html#cb21-194" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggbarplot</span>(plot.sub, <span class="at">x =</span> <span class="st">&quot;cmap_name&quot;</span>, <span class="at">y =</span> <span class="st">&quot;CDKN1A_fc&quot;</span>,</span>
+<span id="cb21-195"><a href="cmap-database.html#cb21-195" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&quot;dose_type&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>,</span>
+<span id="cb21-196"><a href="cmap-database.html#cb21-196" tabindex="-1"></a>               <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#AAAAAA&quot;</span>,<span class="st">&quot;#AAAAAA&quot;</span>), <span class="at">width =</span> <span class="fl">0.5</span>,</span>
+<span id="cb21-197"><a href="cmap-database.html#cb21-197" tabindex="-1"></a>               <span class="co">#add = c(&quot;mean_se&quot;), add.param = list(width = 0.25, size = 0.5, color = &quot;black&quot;),</span></span>
+<span id="cb21-198"><a href="cmap-database.html#cb21-198" tabindex="-1"></a>               <span class="at">main =</span> <span class="st">&quot;CDKN1A_fc&quot;</span>,</span>
+<span id="cb21-199"><a href="cmap-database.html#cb21-199" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.6</span>),</span>
+<span id="cb21-200"><a href="cmap-database.html#cb21-200" tabindex="-1"></a>               <span class="at">ylab =</span> <span class="st">&quot;CDKN1A_fc&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">theme_base</span>()</span>
+<span id="cb21-201"><a href="cmap-database.html#cb21-201" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">15</span>))</span>
+<span id="cb21-202"><a href="cmap-database.html#cb21-202" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">1</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#222222&quot;</span>)</span>
+<span id="cb21-203"><a href="cmap-database.html#cb21-203" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>( <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">16</span> ))</span>
+<span id="cb21-204"><a href="cmap-database.html#cb21-204" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(<span class="st">&quot;output/9.pcr/1.jurkat.bar.CDKN1A.cmap.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">6</span>)</span>
+<span id="cb21-205"><a href="cmap-database.html#cb21-205" tabindex="-1"></a></span>
+<span id="cb21-206"><a href="cmap-database.html#cb21-206" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggbarplot</span>(plot.sub, <span class="at">x =</span> <span class="st">&quot;cmap_name&quot;</span>, <span class="at">y =</span> <span class="st">&quot;BAX_fc&quot;</span>,</span>
+<span id="cb21-207"><a href="cmap-database.html#cb21-207" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&quot;dose_type&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>,</span>
+<span id="cb21-208"><a href="cmap-database.html#cb21-208" tabindex="-1"></a>               <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#AAAAAA&quot;</span>,<span class="st">&quot;#AAAAAA&quot;</span>), <span class="at">width =</span> <span class="fl">0.5</span>,</span>
+<span id="cb21-209"><a href="cmap-database.html#cb21-209" tabindex="-1"></a>               <span class="co">#add = c(&quot;mean_se&quot;), add.param = list(width = 0.25, size = 0.5, color = &quot;black&quot;),</span></span>
+<span id="cb21-210"><a href="cmap-database.html#cb21-210" tabindex="-1"></a>               <span class="at">main =</span> <span class="st">&quot;BAX_fc&quot;</span>,</span>
+<span id="cb21-211"><a href="cmap-database.html#cb21-211" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.6</span>),</span>
+<span id="cb21-212"><a href="cmap-database.html#cb21-212" tabindex="-1"></a>               <span class="at">ylab =</span> <span class="st">&quot;BAX_fc&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">theme_base</span>()</span>
+<span id="cb21-213"><a href="cmap-database.html#cb21-213" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">40</span>))</span>
+<span id="cb21-214"><a href="cmap-database.html#cb21-214" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">1</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#222222&quot;</span>)</span>
+<span id="cb21-215"><a href="cmap-database.html#cb21-215" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>( <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">16</span> ))</span>
+<span id="cb21-216"><a href="cmap-database.html#cb21-216" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(<span class="st">&quot;output/9.pcr/1.jurkat.bar.BAX.cmap.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">6</span>)</span>
+<span id="cb21-217"><a href="cmap-database.html#cb21-217" tabindex="-1"></a></span>
+<span id="cb21-218"><a href="cmap-database.html#cb21-218" tabindex="-1"></a></span>
+<span id="cb21-219"><a href="cmap-database.html#cb21-219" tabindex="-1"></a></span>
+<span id="cb21-220"><a href="cmap-database.html#cb21-220" tabindex="-1"></a></span>
+<span id="cb21-221"><a href="cmap-database.html#cb21-221" tabindex="-1"></a></span>
+<span id="cb21-222"><a href="cmap-database.html#cb21-222" tabindex="-1"></a></span>
+<span id="cb21-223"><a href="cmap-database.html#cb21-223" tabindex="-1"></a><span class="do">########################################################################################################</span></span>
+<span id="cb21-224"><a href="cmap-database.html#cb21-224" tabindex="-1"></a><span class="do">##### PC3</span></span>
+<span id="cb21-225"><a href="cmap-database.html#cb21-225" tabindex="-1"></a>cmap.db <span class="ot">&lt;-</span> <span class="st">&quot;/Users/daiyuting/Documents/projects/tcga/cmap/analysis/cell&quot;</span></span>
+<span id="cb21-226"><a href="cmap-database.html#cb21-226" tabindex="-1"></a>cmap.meta <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="fu">paste0</span>(cmap.db, <span class="st">&quot;/2.PC3.cmap.meta.xlsx&quot;</span>), <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">rowNames =</span> T)</span>
+<span id="cb21-227"><a href="cmap-database.html#cb21-227" tabindex="-1"></a>cmap.exp <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="fu">paste0</span>(cmap.db, <span class="st">&quot;/2.PC3.cmap.meta.xlsx&quot;</span>), <span class="at">sheet =</span> <span class="dv">2</span>, <span class="at">rowNames =</span> T)</span>
+<span id="cb21-228"><a href="cmap-database.html#cb21-228" tabindex="-1"></a></span>
+<span id="cb21-229"><a href="cmap-database.html#cb21-229" tabindex="-1"></a>cmap.gene.info <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;/Users/daiyuting/Documents/projects/tcga/cmap/analysis/gene.info.xlsx&quot;</span>)</span>
+<span id="cb21-230"><a href="cmap-database.html#cb21-230" tabindex="-1"></a>cmap.gene.info <span class="ot">&lt;-</span> cmap.gene.info[<span class="fu">which</span>(cmap.gene.info<span class="sc">$</span>feature_space <span class="sc">==</span> <span class="st">&#39;landmark&#39;</span>), ]</span>
+<span id="cb21-231"><a href="cmap-database.html#cb21-231" tabindex="-1"></a>cmap.gene.info <span class="ot">&lt;-</span> cmap.gene.info[<span class="fu">which</span>(cmap.gene.info<span class="sc">$</span>gene_symbol <span class="sc">%in%</span> <span class="fu">rownames</span>(cmap.exp)), ]</span>
+<span id="cb21-232"><a href="cmap-database.html#cb21-232" tabindex="-1"></a></span>
+<span id="cb21-233"><a href="cmap-database.html#cb21-233" tabindex="-1"></a>cmap.exp <span class="ot">&lt;-</span> cmap.exp[<span class="fu">match</span>(cmap.gene.info<span class="sc">$</span>gene_symbol, <span class="fu">rownames</span>(cmap.exp)), ]</span>
+<span id="cb21-234"><a href="cmap-database.html#cb21-234" tabindex="-1"></a></span>
+<span id="cb21-235"><a href="cmap-database.html#cb21-235" tabindex="-1"></a></span>
+<span id="cb21-236"><a href="cmap-database.html#cb21-236" tabindex="-1"></a><span class="fu">dim</span>(cmap.meta)</span>
+<span id="cb21-237"><a href="cmap-database.html#cb21-237" tabindex="-1"></a><span class="fu">dim</span>(cmap.exp)</span>
+<span id="cb21-238"><a href="cmap-database.html#cb21-238" tabindex="-1"></a></span>
+<span id="cb21-239"><a href="cmap-database.html#cb21-239" tabindex="-1"></a><span class="fu">sum</span>(cmap.meta<span class="sc">$</span>sig_id <span class="sc">!=</span> <span class="fu">colnames</span>(cmap.exp))</span>
+<span id="cb21-240"><a href="cmap-database.html#cb21-240" tabindex="-1"></a></span>
+<span id="cb21-241"><a href="cmap-database.html#cb21-241" tabindex="-1"></a></span>
+<span id="cb21-242"><a href="cmap-database.html#cb21-242" tabindex="-1"></a></span>
+<span id="cb21-243"><a href="cmap-database.html#cb21-243" tabindex="-1"></a></span>
+<span id="cb21-244"><a href="cmap-database.html#cb21-244" tabindex="-1"></a>cmap.exp.nor <span class="ot">&lt;-</span> cmap.exp<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb21-245"><a href="cmap-database.html#cb21-245" tabindex="-1"></a></span>
+<span id="cb21-246"><a href="cmap-database.html#cb21-246" tabindex="-1"></a>cmap.meta<span class="sc">$</span>CDKN1A <span class="ot">&lt;-</span> cmap.exp.nor[ <span class="fu">which</span>(<span class="fu">rownames</span>(cmap.exp.nor) <span class="sc">==</span> <span class="st">&quot;CDKN1A&quot;</span>), cmap.meta<span class="sc">$</span>sig_id ] <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>()</span>
+<span id="cb21-247"><a href="cmap-database.html#cb21-247" tabindex="-1"></a>cmap.meta<span class="sc">$</span>BAX <span class="ot">&lt;-</span> cmap.exp.nor[ <span class="fu">which</span>(<span class="fu">rownames</span>(cmap.exp.nor) <span class="sc">==</span> <span class="st">&quot;BAX&quot;</span>), cmap.meta<span class="sc">$</span>sig_id ] <span class="sc">%&gt;%</span> <span class="fu">as.numeric</span>()</span>
+<span id="cb21-248"><a href="cmap-database.html#cb21-248" tabindex="-1"></a></span>
+<span id="cb21-249"><a href="cmap-database.html#cb21-249" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> cmap.meta</span>
+<span id="cb21-250"><a href="cmap-database.html#cb21-250" tabindex="-1"></a>plot.data<span class="sc">$</span>CDKN1A_fc <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">**</span> ( (plot.data<span class="sc">$</span>CDKN1A <span class="sc">-</span> plot.data<span class="sc">$</span>CDKN1A[<span class="dv">1</span>]) )</span>
+<span id="cb21-251"><a href="cmap-database.html#cb21-251" tabindex="-1"></a>plot.data<span class="sc">$</span>BAX_fc <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">**</span> ( (plot.data<span class="sc">$</span>BAX <span class="sc">-</span> plot.data<span class="sc">$</span>BAX[<span class="dv">1</span>]) )</span>
+<span id="cb21-252"><a href="cmap-database.html#cb21-252" tabindex="-1"></a><span class="fu">range</span>(plot.data<span class="sc">$</span>CDKN1A_fc)</span>
+<span id="cb21-253"><a href="cmap-database.html#cb21-253" tabindex="-1"></a><span class="fu">range</span>(plot.data<span class="sc">$</span>BAX_fc)</span>
+<span id="cb21-254"><a href="cmap-database.html#cb21-254" tabindex="-1"></a></span>
+<span id="cb21-255"><a href="cmap-database.html#cb21-255" tabindex="-1"></a></span>
+<span id="cb21-256"><a href="cmap-database.html#cb21-256" tabindex="-1"></a></span>
+<span id="cb21-257"><a href="cmap-database.html#cb21-257" tabindex="-1"></a></span>
+<span id="cb21-258"><a href="cmap-database.html#cb21-258" tabindex="-1"></a>drug.name.sel <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;UnTrt&quot;</span>,<span class="st">&quot;MG-132&quot;</span>,<span class="st">&quot;nutlin-3&quot;</span>,<span class="st">&quot;cytarabine&quot;</span>,<span class="st">&quot;paclitaxel&quot;</span>,<span class="st">&quot;decitabine&quot;</span>,<span class="st">&quot;gemcitabine&quot;</span>,<span class="st">&quot;etoposide&quot;</span>,<span class="st">&quot;AMG-232&quot;</span>,<span class="st">&quot;metformin&quot;</span>,<span class="st">&quot;azacitidine&quot;</span>,<span class="st">&quot;docetaxel&quot;</span>)</span>
+<span id="cb21-259"><a href="cmap-database.html#cb21-259" tabindex="-1"></a>plot.data.sub <span class="ot">&lt;-</span> plot.data[plot.data<span class="sc">$</span>cmap_name <span class="sc">%in%</span> drug.name.sel, ]</span>
+<span id="cb21-260"><a href="cmap-database.html#cb21-260" tabindex="-1"></a>plot.data.sub<span class="sc">$</span>cmap_name <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">as.character</span>(plot.data.sub<span class="sc">$</span>cmap_name), <span class="at">levels =</span> drug.name.sel)</span>
+<span id="cb21-261"><a href="cmap-database.html#cb21-261" tabindex="-1"></a>plot.data.sub <span class="ot">&lt;-</span> plot.data.sub[plot.data.sub<span class="sc">$</span>pert_idose <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;&quot;</span>,<span class="st">&quot;3.33 uM&quot;</span>,<span class="st">&quot;10 uM&quot;</span>,<span class="st">&quot;20 uM&quot;</span>), ]</span>
+<span id="cb21-262"><a href="cmap-database.html#cb21-262" tabindex="-1"></a>plot.data.sub<span class="sc">$</span>dose_type <span class="ot">&lt;-</span> <span class="st">&quot;Low&quot;</span></span>
+<span id="cb21-263"><a href="cmap-database.html#cb21-263" tabindex="-1"></a>plot.data.sub<span class="sc">$</span>dose_type[<span class="fu">which</span>(plot.data.sub<span class="sc">$</span>pert_idose <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;10 uM&quot;</span>,<span class="st">&quot;20 uM&quot;</span>))] <span class="ot">&lt;-</span> <span class="st">&quot;High&quot;</span></span>
+<span id="cb21-264"><a href="cmap-database.html#cb21-264" tabindex="-1"></a>plot.data.sub<span class="sc">$</span>dose_type[<span class="fu">which</span>(plot.data.sub<span class="sc">$</span>pert_idose <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;10 uM&quot;</span>) <span class="sc">&amp;</span> plot.data<span class="sc">$</span>cmap_name <span class="sc">==</span> <span class="st">&quot;MG-132&quot;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Low&quot;</span></span>
+<span id="cb21-265"><a href="cmap-database.html#cb21-265" tabindex="-1"></a>plot.data.sub<span class="sc">$</span>dose_type <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">as.character</span>(plot.data.sub<span class="sc">$</span>dose_type), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Low&quot;</span>,<span class="st">&quot;High&quot;</span>))</span>
+<span id="cb21-266"><a href="cmap-database.html#cb21-266" tabindex="-1"></a></span>
+<span id="cb21-267"><a href="cmap-database.html#cb21-267" tabindex="-1"></a><span class="fu">aggregate</span>(plot.data.sub[, <span class="fu">c</span>(<span class="st">&quot;CDKN1A_fc&quot;</span>,<span class="st">&quot;BAX_fc&quot;</span>)], <span class="fu">list</span>(<span class="at">Dose =</span> plot.data.sub<span class="sc">$</span>dose_type, <span class="at">Drug =</span> plot.data.sub<span class="sc">$</span>cmap_name), mean)</span>
+<span id="cb21-268"><a href="cmap-database.html#cb21-268" tabindex="-1"></a></span>
+<span id="cb21-269"><a href="cmap-database.html#cb21-269" tabindex="-1"></a></span>
+<span id="cb21-270"><a href="cmap-database.html#cb21-270" tabindex="-1"></a>drug.sel <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;MG-132&quot;</span>,<span class="st">&quot;nutlin-3&quot;</span>,<span class="st">&quot;decitabine&quot;</span>,<span class="st">&quot;gemcitabine&quot;</span>,<span class="st">&quot;etoposide&quot;</span>,<span class="st">&quot;AMG-232&quot;</span>,<span class="st">&quot;metformin&quot;</span>,<span class="st">&quot;azacitidine&quot;</span>)</span>
+<span id="cb21-271"><a href="cmap-database.html#cb21-271" tabindex="-1"></a>sub <span class="ot">&lt;-</span> plot.data.sub[plot.data.sub<span class="sc">$</span>cmap_name <span class="sc">%in%</span> drug.sel, ]</span>
+<span id="cb21-272"><a href="cmap-database.html#cb21-272" tabindex="-1"></a>sub<span class="sc">$</span>cmap_name <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">as.character</span>(sub<span class="sc">$</span>cmap_name), <span class="at">levels =</span> drug.sel)</span>
+<span id="cb21-273"><a href="cmap-database.html#cb21-273" tabindex="-1"></a>plot.sub <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(sub[, <span class="fu">c</span>(<span class="st">&quot;CDKN1A_fc&quot;</span>,<span class="st">&quot;BAX_fc&quot;</span>)], <span class="fu">list</span>(<span class="at">dose_type =</span> sub<span class="sc">$</span>dose_type, <span class="at">cmap_name =</span> sub<span class="sc">$</span>cmap_name), mean)</span>
+<span id="cb21-274"><a href="cmap-database.html#cb21-274" tabindex="-1"></a></span>
+<span id="cb21-275"><a href="cmap-database.html#cb21-275" tabindex="-1"></a></span>
+<span id="cb21-276"><a href="cmap-database.html#cb21-276" tabindex="-1"></a>out.cmap.meta <span class="ot">&lt;-</span> sub</span>
+<span id="cb21-277"><a href="cmap-database.html#cb21-277" tabindex="-1"></a>out.cmap.nor <span class="ot">&lt;-</span> cmap.exp.nor[, <span class="fu">c</span>(<span class="st">&quot;CRCGN004_PC3_6H:CMAP-000:-666&quot;</span>,sub<span class="sc">$</span>sig_id)]</span>
+<span id="cb21-278"><a href="cmap-database.html#cb21-278" tabindex="-1"></a></span>
+<span id="cb21-279"><a href="cmap-database.html#cb21-279" tabindex="-1"></a><span class="fu">write.xlsx</span>(<span class="fu">list</span>(<span class="at">meta =</span> sub, <span class="at">mat =</span> <span class="fu">as.data.frame</span>(<span class="fu">round</span>(out.cmap.nor, <span class="dv">2</span>))), <span class="st">&quot;output/9.pcr/2.PC3.cmap.meta.xlsx&quot;</span>, <span class="at">overwrite =</span> T, <span class="at">rowNames =</span> T)</span>
+<span id="cb21-280"><a href="cmap-database.html#cb21-280" tabindex="-1"></a></span>
+<span id="cb21-281"><a href="cmap-database.html#cb21-281" tabindex="-1"></a></span>
+<span id="cb21-282"><a href="cmap-database.html#cb21-282" tabindex="-1"></a></span>
+<span id="cb21-283"><a href="cmap-database.html#cb21-283" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggbarplot</span>(plot.sub, <span class="at">x =</span> <span class="st">&quot;cmap_name&quot;</span>, <span class="at">y =</span> <span class="st">&quot;CDKN1A_fc&quot;</span>,</span>
+<span id="cb21-284"><a href="cmap-database.html#cb21-284" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&quot;dose_type&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>,</span>
+<span id="cb21-285"><a href="cmap-database.html#cb21-285" tabindex="-1"></a>               <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#AAAAAA&quot;</span>,<span class="st">&quot;#AAAAAA&quot;</span>), <span class="at">width =</span> <span class="fl">0.5</span>,</span>
+<span id="cb21-286"><a href="cmap-database.html#cb21-286" tabindex="-1"></a>               <span class="co">#add = c(&quot;mean_se&quot;), add.param = list(width = 0.25, size = 0.5, color = &quot;black&quot;),</span></span>
+<span id="cb21-287"><a href="cmap-database.html#cb21-287" tabindex="-1"></a>               <span class="at">main =</span> <span class="st">&quot;CDKN1A_fc&quot;</span>,</span>
+<span id="cb21-288"><a href="cmap-database.html#cb21-288" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.6</span>),</span>
+<span id="cb21-289"><a href="cmap-database.html#cb21-289" tabindex="-1"></a>               <span class="at">ylab =</span> <span class="st">&quot;CDKN1A_fc&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">theme_base</span>()</span>
+<span id="cb21-290"><a href="cmap-database.html#cb21-290" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">50</span>))</span>
+<span id="cb21-291"><a href="cmap-database.html#cb21-291" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">1</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#222222&quot;</span>)</span>
+<span id="cb21-292"><a href="cmap-database.html#cb21-292" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>( <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">16</span> ))</span>
+<span id="cb21-293"><a href="cmap-database.html#cb21-293" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(<span class="st">&quot;output/9.pcr/2.pc3.bar.CDKN1A.cmap.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">6</span>)</span>
+<span id="cb21-294"><a href="cmap-database.html#cb21-294" tabindex="-1"></a></span>
+<span id="cb21-295"><a href="cmap-database.html#cb21-295" tabindex="-1"></a></span>
+<span id="cb21-296"><a href="cmap-database.html#cb21-296" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggbarplot</span>(plot.sub, <span class="at">x =</span> <span class="st">&quot;cmap_name&quot;</span>, <span class="at">y =</span> <span class="st">&quot;BAX_fc&quot;</span>,</span>
+<span id="cb21-297"><a href="cmap-database.html#cb21-297" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&quot;dose_type&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>,</span>
+<span id="cb21-298"><a href="cmap-database.html#cb21-298" tabindex="-1"></a>               <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#AAAAAA&quot;</span>,<span class="st">&quot;#AAAAAA&quot;</span>), <span class="at">width =</span> <span class="fl">0.5</span>,</span>
+<span id="cb21-299"><a href="cmap-database.html#cb21-299" tabindex="-1"></a>               <span class="co">#add = c(&quot;mean_se&quot;), add.param = list(width = 0.25, size = 0.5, color = &quot;black&quot;),</span></span>
+<span id="cb21-300"><a href="cmap-database.html#cb21-300" tabindex="-1"></a>               <span class="at">main =</span> <span class="st">&quot;BAX_fc&quot;</span>,</span>
+<span id="cb21-301"><a href="cmap-database.html#cb21-301" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.6</span>),</span>
+<span id="cb21-302"><a href="cmap-database.html#cb21-302" tabindex="-1"></a>               <span class="at">ylab =</span> <span class="st">&quot;BAX_fc&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">theme_base</span>()</span>
+<span id="cb21-303"><a href="cmap-database.html#cb21-303" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">8</span>))</span>
+<span id="cb21-304"><a href="cmap-database.html#cb21-304" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">1</span>, <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#222222&quot;</span>)</span>
+<span id="cb21-305"><a href="cmap-database.html#cb21-305" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>( <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">16</span> ))</span>
+<span id="cb21-306"><a href="cmap-database.html#cb21-306" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(<span class="st">&quot;output/9.pcr/2.pc3.bar.BAX.cmap.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">6</span>)</span></code></pre></div>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="enrichment-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tcga-pancanatlas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-CMAP.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["p53-compounds.pdf", "p53-compounds.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
