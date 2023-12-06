@@ -17,6 +17,7 @@ enrichr-analysis
 msigdb-hallmark
 kegg
 trrust
+cmap-database
 tcga-pancanatlas
 wt-up-genes
 mut-up-genes

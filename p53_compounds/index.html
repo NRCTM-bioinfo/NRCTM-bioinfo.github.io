@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>p53 compounds</title>
   <meta name="description" content="This is the tutorial of p53 compounds project." />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="p53 compounds" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Yu-Ting Dai" />
 
 
-<meta name="date" content="2023-07-24" />
+<meta name="date" content="2023-11-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -150,10 +154,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="target-evaluation.html"><a href="target-evaluation.html#merge-profiling"><i class="fa fa-check"></i><b>3.2</b> Merge profiling</a></li>
 <li class="chapter" data-level="3.3" data-path="target-evaluation.html"><a href="target-evaluation.html#normalization"><i class="fa fa-check"></i><b>3.3</b> Normalization</a></li>
 <li class="chapter" data-level="3.4" data-path="target-evaluation.html"><a href="target-evaluation.html#confident-p53-targets"><i class="fa fa-check"></i><b>3.4</b> 32 confident p53 targets</a></li>
-<li class="chapter" data-level="3.5" data-path="target-evaluation.html"><a href="target-evaluation.html#p53-targets"><i class="fa fa-check"></i><b>3.5</b> 116 p53 targets</a>
-<ul>
-<li class="chapter" data-level="3.5.1" data-path="target-evaluation.html"><a href="target-evaluation.html#p53-transactivation"><i class="fa fa-check"></i><b>3.5.1</b> p53 transactivation</a></li>
-</ul></li>
+<li class="chapter" data-level="3.5" data-path="target-evaluation.html"><a href="target-evaluation.html#p53-targets"><i class="fa fa-check"></i><b>3.5</b> 116 p53 targets</a></li>
+<li class="chapter" data-level="3.6" data-path="target-evaluation.html"><a href="target-evaluation.html#p53-transactivation"><i class="fa fa-check"></i><b>3.6</b> p53 transactivation</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="enrichment-analysis.html"><a href="enrichment-analysis.html"><i class="fa fa-check"></i><b>4</b> Enrichment analysis</a>
 <ul>
@@ -163,29 +165,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="enrichment-analysis.html"><a href="enrichment-analysis.html#kegg"><i class="fa fa-check"></i><b>4.4</b> KEGG</a></li>
 <li class="chapter" data-level="4.5" data-path="enrichment-analysis.html"><a href="enrichment-analysis.html#trrust"><i class="fa fa-check"></i><b>4.5</b> TRRUST</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html"><i class="fa fa-check"></i><b>5</b> TCGA PanCanAtlas</a>
+<li class="chapter" data-level="5" data-path="cmap-database.html"><a href="cmap-database.html"><i class="fa fa-check"></i><b>5</b> CMAP database</a></li>
+<li class="chapter" data-level="6" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html"><i class="fa fa-check"></i><b>6</b> TCGA PanCanAtlas</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#wt-up-genes"><i class="fa fa-check"></i><b>5.1</b> WT-up genes</a></li>
-<li class="chapter" data-level="5.2" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#mut-up-genes"><i class="fa fa-check"></i><b>5.2</b> MUT-up genes</a></li>
-<li class="chapter" data-level="5.3" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#hr-of-high-expression"><i class="fa fa-check"></i><b>5.3</b> HR of high expression</a>
+<li class="chapter" data-level="6.1" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#wt-up-genes"><i class="fa fa-check"></i><b>6.1</b> WT-up genes</a></li>
+<li class="chapter" data-level="6.2" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#mut-up-genes"><i class="fa fa-check"></i><b>6.2</b> MUT-up genes</a></li>
+<li class="chapter" data-level="6.3" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#hr-of-high-expression"><i class="fa fa-check"></i><b>6.3</b> HR of high expression</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#p53-targets-1"><i class="fa fa-check"></i><b>5.3.1</b> 116 p53 targets</a></li>
-<li class="chapter" data-level="5.3.2" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#wt-up-genes-1"><i class="fa fa-check"></i><b>5.3.2</b> WT-up genes</a></li>
-<li class="chapter" data-level="5.3.3" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#mut-up-genes-1"><i class="fa fa-check"></i><b>5.3.3</b> MUT-up genes</a></li>
+<li class="chapter" data-level="6.3.1" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#p53-targets-1"><i class="fa fa-check"></i><b>6.3.1</b> 116 p53 targets</a></li>
+<li class="chapter" data-level="6.3.2" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#wt-up-genes-1"><i class="fa fa-check"></i><b>6.3.2</b> WT-up genes</a></li>
+<li class="chapter" data-level="6.3.3" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#mut-up-genes-1"><i class="fa fa-check"></i><b>6.3.3</b> MUT-up genes</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#powerfulness-in-regulating"><i class="fa fa-check"></i><b>5.4</b> Powerfulness in regulating</a>
+<li class="chapter" data-level="6.4" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#powerfulness-in-regulating"><i class="fa fa-check"></i><b>6.4</b> Powerfulness in regulating</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#p53-targets-2"><i class="fa fa-check"></i><b>5.4.1</b> 116 p53 targets</a></li>
-<li class="chapter" data-level="5.4.2" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#wt-up-genes-2"><i class="fa fa-check"></i><b>5.4.2</b> WT-up genes</a></li>
-<li class="chapter" data-level="5.4.3" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#mut-up-genes-2"><i class="fa fa-check"></i><b>5.4.3</b> MUT-up genes</a></li>
+<li class="chapter" data-level="6.4.1" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#p53-targets-2"><i class="fa fa-check"></i><b>6.4.1</b> 116 p53 targets</a></li>
+<li class="chapter" data-level="6.4.2" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#wt-up-genes-2"><i class="fa fa-check"></i><b>6.4.2</b> WT-up genes</a></li>
+<li class="chapter" data-level="6.4.3" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#mut-up-genes-2"><i class="fa fa-check"></i><b>6.4.3</b> MUT-up genes</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#hr-for-p53-mutations"><i class="fa fa-check"></i><b>5.5</b> HR for p53 mutations</a></li>
-<li class="chapter" data-level="5.6" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#mdm2-expression"><i class="fa fa-check"></i><b>5.6</b> MDM2 expression</a>
+<li class="chapter" data-level="6.5" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#hr-for-p53-mutations"><i class="fa fa-check"></i><b>6.5</b> HR for p53 mutations</a></li>
+<li class="chapter" data-level="6.6" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#mdm2-expression"><i class="fa fa-check"></i><b>6.6</b> MDM2 expression</a>
 <ul>
-<li class="chapter" data-level="5.6.1" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#radar-plot"><i class="fa fa-check"></i><b>5.6.1</b> Radar plot</a></li>
+<li class="chapter" data-level="6.6.1" data-path="tcga-pancanatlas.html"><a href="tcga-pancanatlas.html#radar-plot"><i class="fa fa-check"></i><b>6.6.1</b> Radar plot</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="about-this-project.html"><a href="about-this-project.html"><i class="fa fa-check"></i><b>6</b> About this project</a>
+<li class="chapter" data-level="7" data-path="about-this-project.html"><a href="about-this-project.html"><i class="fa fa-check"></i><b>7</b> About this project</a>
 <ul>
 <li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#current-version"><i class="fa fa-check"></i>Current version</a></li>
 <li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#session-information"><i class="fa fa-check"></i>Session Information</a></li>
@@ -213,7 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">p53 compounds</h1>
 <p class="author"><em>Yu-Ting Dai</em></p>
-<p class="date"><em>2023-07-24</em></p>
+<p class="date"><em>2023-11-27</em></p>
 </div>
 <div id="introduction" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
