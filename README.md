@@ -32,5 +32,9 @@ please visit [scRNAseq_tutorial](https://nrctm-bioinfo.github.io/scRNAseq_tutori
 please visit [Metabolomics_tutorial](https://nrctm-bioinfo.github.io/Metabolomics_course/index.html) 
 
 
+### NRCTM bioinformatics course III : RNA&PRO_tutorial
+
+please visit [RNA&PRO_tutorial](https://nrctm-bioinfo.github.io/RNA_PRO_course/index.html) 
+
 
 
