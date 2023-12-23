@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Bulk RNA-seq | HematoMap Tutorial</title>
   <meta name="description" content="This is the tutorial of HematoMap package." />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Bulk RNA-seq | HematoMap Tutorial" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Yu-Ting Dai, Wen Ou-Yang" />
 
 
-<meta name="date" content="2023-05-08" />
+<meta name="date" content="2023-12-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -204,79 +208,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.1</span> Load bulk RNA-seq data<a href="bulk.html#load-bulk-rna-seq-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The expample data of B-ALL bulk RNA-seq can be downloaded via <a href="https://nrctm-bioinfo.github.io/HematoMap/data/BALL_bulk_TPM.rds"><strong>B-ALL bulk demo data</strong></a></p>
 <p>The expample data of AML bulk RNA-seq can be downloaded via <a href="https://nrctm-bioinfo.github.io/HematoMap/data/AML_bulk_TPM.rds"><strong>AML bulk demo data</strong></a></p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="bulk.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Library package</span></span>
-<span id="cb34-2"><a href="bulk.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(HematoMap)</span>
-<span id="cb34-3"><a href="bulk.html#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-4"><a href="bulk.html#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read TPM matrix of B-ALL</span></span>
-<span id="cb34-5"><a href="bulk.html#cb34-5" aria-hidden="true" tabindex="-1"></a>ball.tpm <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/BALL_bulk_TPM.rds&quot;</span>)</span>
-<span id="cb34-6"><a href="bulk.html#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ball.tpm)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="bulk.html#cb38-1" tabindex="-1"></a><span class="co"># Library package</span></span>
+<span id="cb38-2"><a href="bulk.html#cb38-2" tabindex="-1"></a><span class="fu">library</span>(HematoMap)</span>
+<span id="cb38-3"><a href="bulk.html#cb38-3" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="bulk.html#cb38-4" tabindex="-1"></a><span class="co"># Read TPM matrix of B-ALL</span></span>
+<span id="cb38-5"><a href="bulk.html#cb38-5" tabindex="-1"></a>ball.tpm <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/BALL_bulk_TPM.rds&quot;</span>)</span>
+<span id="cb38-6"><a href="bulk.html#cb38-6" tabindex="-1"></a><span class="fu">dim</span>(ball.tpm)</span></code></pre></div>
 <pre><code>## [1] 59982    10</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="bulk.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ball.tpm)</span></code></pre></div>
-<pre><code>##         MEF2D_fus_B_ALL TCF3_PBX1_B_ALL ETV6_RUNX1_B_ALL DUX4_fus_B_ALL ZNF384_B_ALL
-## MT-TP          0.000000         0.00000          0.00000        0.00000      0.00000
-## MT-TT          0.000000         0.00000          0.00000        0.00000      0.00000
-## MT-CYB        10.861661        11.80655         13.01606       13.08215     12.02703
-## MT-TE          0.000000         0.00000          0.00000        0.00000      0.00000
-## MT-ND5         9.876408        10.28068         12.35682       11.15292     10.73049
-## MT-ND4L       12.379609        12.66812         14.46629       14.45933     10.79544
-##         BCR_ABL1_B_ALL High_hyperdiploidy_B_ALL MLL_r_B_ALL PAX5_P80R_B_ALL NUTM1_B_ALL
-## MT-TP         0.000000                  0.00000    0.000000        0.000000     0.00000
-## MT-TT         0.000000                  0.00000    0.000000        0.000000     0.00000
-## MT-CYB        9.611027                 11.68826    4.346375       11.188107    11.74427
-## MT-TE         0.000000                  0.00000    0.000000        0.000000     0.00000
-## MT-ND5        8.870821                 10.29339    4.261952        9.351564    10.81120
-## MT-ND4L       8.224942                 12.60082    5.284707       12.037825    13.19659</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="bulk.html#cb38-1" aria-hidden="true" tabindex="-1"></a>hmap.bulk.ball <span class="ot">&lt;-</span> <span class="fu">computeLassoScore</span>(ball.tpm)</span>
-<span id="cb38-2"><a href="bulk.html#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-3"><a href="bulk.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Read TPM matrix of AML</span></span>
-<span id="cb38-4"><a href="bulk.html#cb38-4" aria-hidden="true" tabindex="-1"></a>aml.tpm <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/AML_bulk_TPM.rds&quot;</span>)</span>
-<span id="cb38-5"><a href="bulk.html#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(aml.tpm)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="bulk.html#cb40-1" tabindex="-1"></a><span class="fu">head</span>(ball.tpm)</span>
+<span id="cb40-2"><a href="bulk.html#cb40-2" tabindex="-1"></a>hmap.bulk.ball <span class="ot">&lt;-</span> <span class="fu">computeLassoScore</span>(ball.tpm)</span>
+<span id="cb40-3"><a href="bulk.html#cb40-3" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="bulk.html#cb40-4" tabindex="-1"></a><span class="co"># Read TPM matrix of AML</span></span>
+<span id="cb40-5"><a href="bulk.html#cb40-5" tabindex="-1"></a>aml.tpm <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/AML_bulk_TPM.rds&quot;</span>)</span>
+<span id="cb40-6"><a href="bulk.html#cb40-6" tabindex="-1"></a><span class="fu">dim</span>(aml.tpm)</span></code></pre></div>
 <pre><code>## [1] 59344    10</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="bulk.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aml.tpm)</span></code></pre></div>
-<pre><code>##                 TCGA-AB-2949-03B TCGA-AB-2877-03A TCGA-AB-2851-03A TCGA-AB-2822-03A
-## LINC02082               15.89255          0.00000        10.018739         12.91832
-## ST8SIA5-DT              10.72205          0.00000         7.177938         11.52864
-## RAB4B                   16.31146         16.74863        16.829243         15.93479
-## ENSG00000273842          0.00000          0.00000         0.000000          0.00000
-## TIGAR                   16.10892         15.75176        16.734626         14.05694
-## RNF44                   19.15915         19.93164        19.912893         19.52847
-##                 TCGA-AB-2939-03A TCGA-AB-2931-03A TCGA-AB-2921-03A TCGA-AB-2937-03A
-## LINC02082               0.000000         0.000000         9.379699          0.00000
-## ST8SIA5-DT              8.585912         6.779892         8.532027          0.00000
-## RAB4B                  16.606627        16.078616        17.200956         16.80562
-## ENSG00000273842         0.000000         0.000000         0.000000          0.00000
-## TIGAR                  15.484459        16.084462        16.744835         14.04176
-## RNF44                  19.101099        19.433780        19.536016         19.69645
-##                 TCGA-AB-3009-03A TCGA-AB-2963-03A
-## LINC02082                0.00000          0.00000
-## ST8SIA5-DT              12.55882          0.00000
-## RAB4B                   15.80262         15.68409
-## ENSG00000273842          0.00000          0.00000
-## TIGAR                   16.10891         16.21604
-## RNF44                   19.47520         18.74694</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="bulk.html#cb42-1" aria-hidden="true" tabindex="-1"></a>hmap.bulk.aml <span class="ot">&lt;-</span> <span class="fu">computeLassoScore</span>(aml.tpm)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="bulk.html#cb42-1" tabindex="-1"></a><span class="fu">head</span>(aml.tpm)</span>
+<span id="cb42-2"><a href="bulk.html#cb42-2" tabindex="-1"></a>hmap.bulk.aml <span class="ot">&lt;-</span> <span class="fu">computeLassoScore</span>(aml.tpm)</span></code></pre></div>
 </div>
 <div id="visualization-1" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Visualization<a href="bulk.html#visualization-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="bulk.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotLassoLollipop</span>(hmap.bulk.ball)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="bulk.html#cb43-1" tabindex="-1"></a><span class="fu">plotLassoLollipop</span>(hmap.bulk.ball)</span></code></pre></div>
 <p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-16-1.png" width="384" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="bulk.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotLassoLollipop</span>(hmap.bulk.aml)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="bulk.html#cb44-1" tabindex="-1"></a><span class="fu">plotLassoLollipop</span>(hmap.bulk.aml)</span></code></pre></div>
 <p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-16-2.png" width="384" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="bulk.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotLassoTree</span>(hmap.bulk.ball, <span class="at">color.mapping =</span> <span class="st">&quot;value&quot;</span>, </span>
-<span id="cb45-2"><a href="bulk.html#cb45-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">title =</span> <span class="st">&quot;B-ALL bulk&quot;</span>, <span class="at">point.size =</span> <span class="dv">2</span>, </span>
-<span id="cb45-3"><a href="bulk.html#cb45-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">label.cell =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="bulk.html#cb45-1" tabindex="-1"></a><span class="fu">plotLassoTree</span>(hmap.bulk.ball, <span class="at">color.mapping =</span> <span class="st">&quot;value&quot;</span>, </span>
+<span id="cb45-2"><a href="bulk.html#cb45-2" tabindex="-1"></a>              <span class="at">title =</span> <span class="st">&quot;B-ALL bulk&quot;</span>, <span class="at">point.size =</span> <span class="dv">2</span>, </span>
+<span id="cb45-3"><a href="bulk.html#cb45-3" tabindex="-1"></a>              <span class="at">label.cell =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-17-1.png" width="480" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="bulk.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotLassoTree</span>(hmap.bulk.ball, <span class="at">color.mapping =</span> <span class="st">&quot;cell.type&quot;</span>, </span>
-<span id="cb46-2"><a href="bulk.html#cb46-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">title =</span> <span class="st">&quot;B-ALL bulk&quot;</span>, <span class="at">point.size =</span> <span class="dv">2</span>, </span>
-<span id="cb46-3"><a href="bulk.html#cb46-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">label.cell =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="bulk.html#cb46-1" tabindex="-1"></a><span class="fu">plotLassoTree</span>(hmap.bulk.ball, <span class="at">color.mapping =</span> <span class="st">&quot;cell.type&quot;</span>, </span>
+<span id="cb46-2"><a href="bulk.html#cb46-2" tabindex="-1"></a>              <span class="at">title =</span> <span class="st">&quot;B-ALL bulk&quot;</span>, <span class="at">point.size =</span> <span class="dv">2</span>, </span>
+<span id="cb46-3"><a href="bulk.html#cb46-3" tabindex="-1"></a>              <span class="at">label.cell =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-17-2.png" width="480" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="bulk.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotLassoTree</span>(hmap.bulk.aml, <span class="at">color.mapping =</span> <span class="st">&quot;value&quot;</span>, </span>
-<span id="cb47-2"><a href="bulk.html#cb47-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">title =</span> <span class="st">&quot;AML bulk&quot;</span>, <span class="at">point.size =</span> <span class="dv">2</span>, </span>
-<span id="cb47-3"><a href="bulk.html#cb47-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">label.cell =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="bulk.html#cb47-1" tabindex="-1"></a><span class="fu">plotLassoTree</span>(hmap.bulk.aml, <span class="at">color.mapping =</span> <span class="st">&quot;value&quot;</span>, </span>
+<span id="cb47-2"><a href="bulk.html#cb47-2" tabindex="-1"></a>              <span class="at">title =</span> <span class="st">&quot;AML bulk&quot;</span>, <span class="at">point.size =</span> <span class="dv">2</span>, </span>
+<span id="cb47-3"><a href="bulk.html#cb47-3" tabindex="-1"></a>              <span class="at">label.cell =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="bulk.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotLassoTree</span>(hmap.bulk.aml, <span class="at">color.mapping =</span> <span class="st">&quot;cell.type&quot;</span>, </span>
-<span id="cb48-2"><a href="bulk.html#cb48-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">title =</span> <span class="st">&quot;AML bulk&quot;</span>, <span class="at">point.size =</span> <span class="dv">2</span>, </span>
-<span id="cb48-3"><a href="bulk.html#cb48-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">label.cell =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="bulk.html#cb48-1" tabindex="-1"></a><span class="fu">plotLassoTree</span>(hmap.bulk.aml, <span class="at">color.mapping =</span> <span class="st">&quot;cell.type&quot;</span>, </span>
+<span id="cb48-2"><a href="bulk.html#cb48-2" tabindex="-1"></a>              <span class="at">title =</span> <span class="st">&quot;AML bulk&quot;</span>, <span class="at">point.size =</span> <span class="dv">2</span>, </span>
+<span id="cb48-3"><a href="bulk.html#cb48-3" tabindex="-1"></a>              <span class="at">label.cell =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="HematoMap-tutorial_files/figure-html/unnamed-chunk-18-2.png" width="480" style="display: block; margin: auto;" /></p>
 
 </div>
