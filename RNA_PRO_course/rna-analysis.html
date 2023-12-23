@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 RNA-Analysis | 生信分析系列培训课程（第3期）</title>
+  <meta name="description" content="Chapter 4 RNA-Analysis | 生信分析系列培训课程（第3期）" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 RNA-Analysis | 生信分析系列培训课程（第3期）" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 RNA-Analysis | 生信分析系列培训课程（第3期）" />
+  
+  
+  
+
+<meta name="author" content="Chenxu Gao" />
+
+
+<meta name="date" content="2023-12-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="rna-data.html"/>
+<link rel="next" href="pro-data.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.30/datatables.js"></script>
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
+<link href="libs/dt-ext-buttons-1.13.4/css/buttons.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-buttons-1.13.4/js/dataTables.buttons.min.js"></script>
+<script src="libs/dt-ext-buttons-1.13.4/js/buttons.html5.min.js"></script>
+<script src="libs/dt-ext-buttons-1.13.4/js/buttons.colVis.min.js"></script>
+<script src="libs/dt-ext-buttons-1.13.4/js/buttons.print.min.js"></script>
+<link href="libs/dt-ext-fixedcolumns-1.13.4/css/fixedColumns.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-fixedcolumns-1.13.4/js/dataTables.fixedColumns.min.js"></script>
+<link href="libs/dt-plugin-searchhighlight-1.13.4/source.css" rel="stylesheet" />
+<script src="libs/dt-plugin-searchhighlight-1.13.4/jquery.highlight.js"></script>
+<script src="libs/dt-plugin-searchhighlight-1.13.4/source.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">RNA&PRO</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="install-r-packages.html"><a href="install-r-packages.html"><i class="fa fa-check"></i><b>2</b> install R packages</a></li>
+<li class="chapter" data-level="3" data-path="rna-data.html"><a href="rna-data.html"><i class="fa fa-check"></i><b>3</b> RNA-Data</a></li>
+<li class="chapter" data-level="4" data-path="rna-analysis.html"><a href="rna-analysis.html"><i class="fa fa-check"></i><b>4</b> RNA-Analysis</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rna-analysis.html"><a href="rna-analysis.html#基础分析"><i class="fa fa-check"></i><b>4.1</b> 基础分析</a></li>
+<li class="chapter" data-level="4.2" data-path="rna-analysis.html"><a href="rna-analysis.html#进阶分析"><i class="fa fa-check"></i><b>4.2</b> 进阶分析</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="pro-data.html"><a href="pro-data.html"><i class="fa fa-check"></i><b>5</b> PRO-Data</a></li>
+<li class="chapter" data-level="6" data-path="pro-analysis.html"><a href="pro-analysis.html"><i class="fa fa-check"></i><b>6</b> PRO-Analysis</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="pro-analysis.html"><a href="pro-analysis.html#qc"><i class="fa fa-check"></i><b>6.1</b> QC</a></li>
+<li class="chapter" data-level="6.2" data-path="pro-analysis.html"><a href="pro-analysis.html#differential-protein-expression-analysis"><i class="fa fa-check"></i><b>6.2</b> Differential Protein Expression Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="session-information.html"><a href="session-information.html"><i class="fa fa-check"></i><b>7</b> Session Information</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="session-information.html"><a href="session-information.html#r-session-info"><i class="fa fa-check"></i><b>7.1</b> R Session info</a></li>
+<li class="chapter" data-level="7.2" data-path="session-information.html"><a href="session-information.html#reference"><i class="fa fa-check"></i><b>7.2</b> Reference</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">生信分析系列培训课程（第3期）</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="rna-analysis" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> RNA-Analysis<a href="rna-analysis.html#rna-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="基础分析" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> 基础分析<a href="rna-analysis.html#基础分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="rna-analysis.html#cb5-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-2"><a href="rna-analysis.html#cb5-2" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb5-3"><a href="rna-analysis.html#cb5-3" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb5-4"><a href="rna-analysis.html#cb5-4" tabindex="-1"></a><span class="fu">library</span>(gmodels)</span>
+<span id="cb5-5"><a href="rna-analysis.html#cb5-5" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb5-6"><a href="rna-analysis.html#cb5-6" tabindex="-1"></a><span class="fu">library</span>(limma)</span>
+<span id="cb5-7"><a href="rna-analysis.html#cb5-7" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb5-8"><a href="rna-analysis.html#cb5-8" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span>
+<span id="cb5-9"><a href="rna-analysis.html#cb5-9" tabindex="-1"></a><span class="fu">library</span>(XGR)   <span class="co"># BiocManager::install(&quot;hfang-bristol/XGR&quot;, dependencies=T)</span></span>
+<span id="cb5-10"><a href="rna-analysis.html#cb5-10" tabindex="-1"></a><span class="fu">library</span>(PIONE) <span class="co"># BiocManager::install(&quot;hfang-bristol/PIONE&quot;, dependencies=T)</span></span>
+<span id="cb5-11"><a href="rna-analysis.html#cb5-11" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;./results/RNA&quot;</span>,<span class="at">recursive =</span> T)</span>
+<span id="cb5-12"><a href="rna-analysis.html#cb5-12" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb5-13"><a href="rna-analysis.html#cb5-13" tabindex="-1"></a><span class="co">#  Step 1: Load the Data</span></span>
+<span id="cb5-14"><a href="rna-analysis.html#cb5-14" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb5-15"><a href="rna-analysis.html#cb5-15" tabindex="-1"></a>rna  <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;./data/20231113_RNA_log2.rds&quot;</span>)</span>
+<span id="cb5-16"><a href="rna-analysis.html#cb5-16" tabindex="-1"></a>meta <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;./data/20231113_META.rds&quot;</span>)</span>
+<span id="cb5-17"><a href="rna-analysis.html#cb5-17" tabindex="-1"></a><span class="fu">identical</span>(<span class="fu">colnames</span>(rna),<span class="fu">rownames</span>(meta))</span>
+<span id="cb5-18"><a href="rna-analysis.html#cb5-18" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb5-19"><a href="rna-analysis.html#cb5-19" tabindex="-1"></a><span class="co">#  Step 2: Boxplot</span></span>
+<span id="cb5-20"><a href="rna-analysis.html#cb5-20" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb5-21"><a href="rna-analysis.html#cb5-21" tabindex="-1"></a>rna.long <span class="ot">&lt;-</span> rna <span class="sc">%&gt;%</span> </span>
+<span id="cb5-22"><a href="rna-analysis.html#cb5-22" tabindex="-1"></a>            <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(),<span class="at">names_to =</span> <span class="st">&quot;ID&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;logFPKM&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-23"><a href="rna-analysis.html#cb5-23" tabindex="-1"></a>            <span class="fu">left_join</span>(meta,<span class="at">by=</span><span class="st">&quot;ID&quot;</span>)</span>
+<span id="cb5-24"><a href="rna-analysis.html#cb5-24" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggboxplot</span>(rna.long, <span class="at">x=</span><span class="st">&quot;ID&quot;</span>, <span class="at">y=</span><span class="st">&quot;logFPKM&quot;</span>,</span>
+<span id="cb5-25"><a href="rna-analysis.html#cb5-25" tabindex="-1"></a>               <span class="at">ylab=</span><span class="st">&quot;log2FPKM&quot;</span>,<span class="at">xlab =</span> <span class="st">&quot;Sample&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-26"><a href="rna-analysis.html#cb5-26" tabindex="-1"></a>      <span class="fu">theme_base</span>() <span class="sc">+</span> </span>
+<span id="cb5-27"><a href="rna-analysis.html#cb5-27" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_blank</span>()) </span>
+<span id="cb5-28"><a href="rna-analysis.html#cb5-28" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;./results/RNA/1.Box.png&quot;</span>,p,<span class="at">width =</span> <span class="dv">8</span>,<span class="at">height =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="results/RNA/1.Box.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="rna-analysis.html#cb6-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb6-2"><a href="rna-analysis.html#cb6-2" tabindex="-1"></a><span class="co">#  Step 3: PCA</span></span>
+<span id="cb6-3"><a href="rna-analysis.html#cb6-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb6-4"><a href="rna-analysis.html#cb6-4" tabindex="-1"></a>pca.info <span class="ot">&lt;-</span> <span class="fu">fast.prcomp</span>(rna) </span>
+<span id="cb6-5"><a href="rna-analysis.html#cb6-5" tabindex="-1"></a>pca.data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">sample =</span> <span class="fu">rownames</span>(pca.info<span class="sc">$</span>rotation),</span>
+<span id="cb6-6"><a href="rna-analysis.html#cb6-6" tabindex="-1"></a>                       <span class="at">Type =</span> meta<span class="sc">$</span>Type,</span>
+<span id="cb6-7"><a href="rna-analysis.html#cb6-7" tabindex="-1"></a>                       pca.info<span class="sc">$</span>rotation)</span>
+<span id="cb6-8"><a href="rna-analysis.html#cb6-8" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggscatter</span>(pca.data, <span class="at">x =</span> <span class="st">&quot;PC1&quot;</span>, <span class="at">y =</span> <span class="st">&quot;PC2&quot;</span>,</span>
+<span id="cb6-9"><a href="rna-analysis.html#cb6-9" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;Type&quot;</span>, </span>
+<span id="cb6-10"><a href="rna-analysis.html#cb6-10" tabindex="-1"></a>              <span class="at">ellipse =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-11"><a href="rna-analysis.html#cb6-11" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">3</span>, </span>
+<span id="cb6-12"><a href="rna-analysis.html#cb6-12" tabindex="-1"></a>              <span class="at">label =</span> <span class="st">&quot;sample&quot;</span> ,<span class="at">font.label =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="st">&quot;plain&quot;</span>),</span>
+<span id="cb6-13"><a href="rna-analysis.html#cb6-13" tabindex="-1"></a>              <span class="at">main =</span> <span class="st">&quot;PCA&quot;</span>) <span class="sc">+</span> <span class="fu">theme_base</span>() <span class="sc">+</span></span>
+<span id="cb6-14"><a href="rna-analysis.html#cb6-14" tabindex="-1"></a>              <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb6-15"><a href="rna-analysis.html#cb6-15" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggscatter</span>(pca.data, <span class="at">x =</span> <span class="st">&quot;PC2&quot;</span>, <span class="at">y =</span> <span class="st">&quot;PC3&quot;</span>,</span>
+<span id="cb6-16"><a href="rna-analysis.html#cb6-16" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">&quot;Type&quot;</span>, </span>
+<span id="cb6-17"><a href="rna-analysis.html#cb6-17" tabindex="-1"></a>              <span class="at">ellipse =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-18"><a href="rna-analysis.html#cb6-18" tabindex="-1"></a>              <span class="at">size =</span> <span class="dv">3</span>, </span>
+<span id="cb6-19"><a href="rna-analysis.html#cb6-19" tabindex="-1"></a>              <span class="at">label =</span> <span class="st">&quot;sample&quot;</span> ,<span class="at">font.label =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="st">&quot;plain&quot;</span>),</span>
+<span id="cb6-20"><a href="rna-analysis.html#cb6-20" tabindex="-1"></a>              <span class="at">main =</span> <span class="st">&quot;PCA&quot;</span>) <span class="sc">+</span> <span class="fu">theme_base</span>() <span class="sc">+</span></span>
+<span id="cb6-21"><a href="rna-analysis.html#cb6-21" tabindex="-1"></a>              <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb6-22"><a href="rna-analysis.html#cb6-22" tabindex="-1"></a>p <span class="ot">&lt;-</span> p1<span class="sc">+</span>p2<span class="sc">+</span><span class="fu">plot_layout</span>(<span class="at">guides=</span><span class="st">&quot;collect&quot;</span>)</span>
+<span id="cb6-23"><a href="rna-analysis.html#cb6-23" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;./results/RNA/2.PCA.png&quot;</span>,p,<span class="at">width =</span> <span class="dv">12</span>,<span class="at">height =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="results/RNA/2.PCA.png" width="1800" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="rna-analysis.html#cb7-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb7-2"><a href="rna-analysis.html#cb7-2" tabindex="-1"></a><span class="co">#  Step 4: DEG</span></span>
+<span id="cb7-3"><a href="rna-analysis.html#cb7-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb7-4"><a href="rna-analysis.html#cb7-4" tabindex="-1"></a><span class="do">## limma</span></span>
+<span id="cb7-5"><a href="rna-analysis.html#cb7-5" tabindex="-1"></a>meta<span class="sc">$</span>contrast <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(meta<span class="sc">$</span>Type)</span>
+<span id="cb7-6"><a href="rna-analysis.html#cb7-6" tabindex="-1"></a>design    <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> contrast  , <span class="at">data =</span> meta) </span>
+<span id="cb7-7"><a href="rna-analysis.html#cb7-7" tabindex="-1"></a>fit       <span class="ot">&lt;-</span> <span class="fu">lmFit</span>(rna, design)</span>
+<span id="cb7-8"><a href="rna-analysis.html#cb7-8" tabindex="-1"></a>contrast  <span class="ot">&lt;-</span> <span class="fu">makeContrasts</span>( <span class="at">KO_WT =</span> contrastKO <span class="sc">-</span> contrastWT ,</span>
+<span id="cb7-9"><a href="rna-analysis.html#cb7-9" tabindex="-1"></a>                            <span class="at">levels =</span> design)</span>
+<span id="cb7-10"><a href="rna-analysis.html#cb7-10" tabindex="-1"></a>fits      <span class="ot">&lt;-</span> <span class="fu">contrasts.fit</span>(fit, contrast)</span>
+<span id="cb7-11"><a href="rna-analysis.html#cb7-11" tabindex="-1"></a>ebFit     <span class="ot">&lt;-</span> <span class="fu">eBayes</span>(fits)</span>
+<span id="cb7-12"><a href="rna-analysis.html#cb7-12" tabindex="-1"></a><span class="do">## result</span></span>
+<span id="cb7-13"><a href="rna-analysis.html#cb7-13" tabindex="-1"></a><span class="co"># KO_WT</span></span>
+<span id="cb7-14"><a href="rna-analysis.html#cb7-14" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">topTable</span>(ebFit, <span class="at">coef =</span> <span class="st">&quot;KO_WT&quot;</span>, <span class="at">adjust.method =</span> <span class="st">&#39;fdr&#39;</span>, <span class="at">number =</span> <span class="cn">Inf</span>)</span>
+<span id="cb7-15"><a href="rna-analysis.html#cb7-15" tabindex="-1"></a>limma.res <span class="ot">&lt;-</span>  res <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(adj.P.Val)) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-16"><a href="rna-analysis.html#cb7-16" tabindex="-1"></a>              <span class="fu">mutate</span>( <span class="at">logP =</span> <span class="sc">-</span><span class="fu">log10</span>(P.Value) ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-17"><a href="rna-analysis.html#cb7-17" tabindex="-1"></a>              <span class="fu">mutate</span>( <span class="at">contrast =</span> <span class="st">&quot;KO_WT&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-18"><a href="rna-analysis.html#cb7-18" tabindex="-1"></a>              <span class="fu">mutate</span>( <span class="at">logFDR =</span> <span class="sc">-</span><span class="fu">log10</span>(adj.P.Val) ) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-19"><a href="rna-analysis.html#cb7-19" tabindex="-1"></a>              <span class="fu">mutate</span>( <span class="at">GeneSymbol =</span> <span class="fu">rownames</span>(res)) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-20"><a href="rna-analysis.html#cb7-20" tabindex="-1"></a>              dplyr<span class="sc">::</span><span class="fu">select</span>(GeneSymbol,<span class="fu">everything</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-21"><a href="rna-analysis.html#cb7-21" tabindex="-1"></a>              <span class="fu">as_tibble</span>()</span>
+<span id="cb7-22"><a href="rna-analysis.html#cb7-22" tabindex="-1"></a><span class="do">## cutoff: adj.P.Val &lt; 0.05 &amp;&amp; |FC| &gt; 1.5</span></span>
+<span id="cb7-23"><a href="rna-analysis.html#cb7-23" tabindex="-1"></a>limma.res <span class="ot">&lt;-</span> limma.res <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">group =</span> <span class="fu">case_when</span>( adj.P.Val<span class="sc">&lt;</span><span class="fl">0.05</span><span class="sc">&amp;</span>logFC<span class="sc">&gt;</span><span class="fl">0.58</span> <span class="sc">~</span> <span class="st">&quot;up&quot;</span>,</span>
+<span id="cb7-24"><a href="rna-analysis.html#cb7-24" tabindex="-1"></a>                                                     adj.P.Val<span class="sc">&lt;</span><span class="fl">0.05</span><span class="sc">&amp;</span>logFC<span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">0.58</span> <span class="sc">~</span> <span class="st">&quot;down&quot;</span>,</span>
+<span id="cb7-25"><a href="rna-analysis.html#cb7-25" tabindex="-1"></a>                                                     <span class="at">.default =</span> <span class="st">&quot;not sig&quot;</span>))</span>
+<span id="cb7-26"><a href="rna-analysis.html#cb7-26" tabindex="-1"></a>limma.res <span class="sc">%&gt;%</span> <span class="fu">count</span>(group) </span>
+<span id="cb7-27"><a href="rna-analysis.html#cb7-27" tabindex="-1"></a><span class="do">## output</span></span>
+<span id="cb7-28"><a href="rna-analysis.html#cb7-28" tabindex="-1"></a><span class="fu">write.xlsx</span>( limma.res, <span class="st">&quot;./results/RNA/3.Limma_fdr0.05_fc1.5.xlsx&quot;</span>, <span class="at">overwrite =</span> T, <span class="at">rowNames =</span> F) </span>
+<span id="cb7-29"><a href="rna-analysis.html#cb7-29" tabindex="-1"></a><span class="fu">saveRDS</span>(limma.res,<span class="st">&quot;./results/RNA/3.Limma_fdr0.05_fc1.5.rds&quot;</span>)</span></code></pre></div>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-3fa2ee4ac01e998e2e12" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-3fa2ee4ac01e998e2e12">{"x":{"filter":"none","vertical":false,"extensions":["Buttons","FixedColumns"],"caption":"<caption><\/caption>","data":[["ALK","ANTXR1","FREM2","CAPN8","TLE1","ANO4"],[3.86003866666667,2.95654066666667,-4.23086,2.86715233333333,-2.82475,-4.02496],[1.233514,2.35811633333333,0.341303333333333,2.0194905,2.583795,0.133226666666667],[44.273477888077,31.9169505954663,-30.1064348161129,29.3537770052405,-28.0961404456906,-27.3409817033083],[2.37492716280183e-10,2.73537357382319e-09,4.22683302156675e-09,5.10391248411637e-09,7.07064176650647e-09,8.659293904723201e-09],[3.4633562815139e-06,1.86075889389672e-05,1.86075889389672e-05,1.86075889389672e-05,1.89175992295752e-05,1.89175992295752e-05],[13.065147441889,11.5797475200796,11.2693957621819,11.130844972009,10.8856628226267,10.7296507527655],[9.6243497053142,8.562983353070679,8.37398490836793,8.29209678099363,8.150541165693451,8.062517519736071],["KO_WT","KO_WT","KO_WT","KO_WT","KO_WT","KO_WT"],[5.46050282951999,4.73030989652739,4.73030989652739,4.73030989652739,4.72313397932451,4.72313397932451],["up","up","down","up","down","down"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>GeneSymbol<\/th>\n      <th>logFC<\/th>\n      <th>AveExpr<\/th>\n      <th>t<\/th>\n      <th>P.Value<\/th>\n      <th>adj.P.Val<\/th>\n      <th>B<\/th>\n      <th>logP<\/th>\n      <th>contrast<\/th>\n      <th>logFDR<\/th>\n      <th>group<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"searchHighlight":true,"dom":"Bfrtip","buttons":["csv","copy"],"scrollX":true,"fixedColumns":{"leftColumns":1},"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,9]}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="rna-analysis.html#cb8-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb8-2"><a href="rna-analysis.html#cb8-2" tabindex="-1"></a><span class="co">#  Step 5: Volcano </span></span>
+<span id="cb8-3"><a href="rna-analysis.html#cb8-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb8-4"><a href="rna-analysis.html#cb8-4" tabindex="-1"></a><span class="do">## volcano</span></span>
+<span id="cb8-5"><a href="rna-analysis.html#cb8-5" tabindex="-1"></a><span class="co"># KO_WT</span></span>
+<span id="cb8-6"><a href="rna-analysis.html#cb8-6" tabindex="-1"></a>pdata <span class="ot">&lt;-</span> limma.res <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">group=</span><span class="fu">factor</span>(group,<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;up&quot;</span>,<span class="st">&quot;down&quot;</span>,<span class="st">&quot;not sig&quot;</span>)))</span>
+<span id="cb8-7"><a href="rna-analysis.html#cb8-7" tabindex="-1"></a>my_label <span class="ot">&lt;-</span> <span class="fu">paste0</span>( <span class="st">&quot;Cutoff:FDR&lt;0.05 &amp; |FC|&gt;1.5 ; </span><span class="sc">\n</span><span class="st">&quot;</span> , <span class="st">&quot;Up:&quot;</span>,<span class="fu">table</span>(pdata<span class="sc">$</span>group)[<span class="dv">1</span>],<span class="st">&quot; ; &quot;</span> ,<span class="st">&quot;Down:&quot;</span> , <span class="fu">table</span>(pdata<span class="sc">$</span>group)[<span class="dv">2</span>])</span>
+<span id="cb8-8"><a href="rna-analysis.html#cb8-8" tabindex="-1"></a><span class="co"># label top 20 sig genes</span></span>
+<span id="cb8-9"><a href="rna-analysis.html#cb8-9" tabindex="-1"></a>degs<span class="fl">.1</span> <span class="ot">&lt;-</span> limma.res <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(P.Value) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(group<span class="sc">==</span><span class="st">&quot;up&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GeneSymbol)</span>
+<span id="cb8-10"><a href="rna-analysis.html#cb8-10" tabindex="-1"></a>degs<span class="fl">.2</span> <span class="ot">&lt;-</span> limma.res <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(P.Value) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(group<span class="sc">==</span><span class="st">&quot;down&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GeneSymbol)</span>
+<span id="cb8-11"><a href="rna-analysis.html#cb8-11" tabindex="-1"></a>pdata <span class="ot">&lt;-</span> pdata <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">label=</span><span class="fu">case_when</span>(GeneSymbol <span class="sc">%in%</span> <span class="fu">c</span>(degs<span class="fl">.1</span>,degs<span class="fl">.2</span>) <span class="sc">~</span> GeneSymbol,</span>
+<span id="cb8-12"><a href="rna-analysis.html#cb8-12" tabindex="-1"></a>                                          <span class="at">.default =</span> <span class="st">&quot;&quot;</span>))</span>
+<span id="cb8-13"><a href="rna-analysis.html#cb8-13" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb8-14"><a href="rna-analysis.html#cb8-14" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggscatter</span>(pdata,</span>
+<span id="cb8-15"><a href="rna-analysis.html#cb8-15" tabindex="-1"></a>                 <span class="at">x =</span> <span class="st">&quot;logFC&quot;</span>, <span class="at">y =</span> <span class="st">&quot;logFDR&quot;</span>,</span>
+<span id="cb8-16"><a href="rna-analysis.html#cb8-16" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">&quot;group&quot;</span>, <span class="at">size =</span> <span class="fl">0.5</span>,</span>
+<span id="cb8-17"><a href="rna-analysis.html#cb8-17" tabindex="-1"></a>                 <span class="at">main =</span> <span class="fu">paste0</span>(<span class="st">&quot;KO vs WT&quot;</span>) ,</span>
+<span id="cb8-18"><a href="rna-analysis.html#cb8-18" tabindex="-1"></a>                 <span class="at">xlab =</span> <span class="st">&quot;log2FoldChange&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;-log10(FDR)&quot;</span>,</span>
+<span id="cb8-19"><a href="rna-analysis.html#cb8-19" tabindex="-1"></a>                 <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#CC0000&quot;</span>,<span class="st">&quot;#339900&quot;</span>,<span class="st">&quot;#444444&quot;</span>),</span>
+<span id="cb8-20"><a href="rna-analysis.html#cb8-20" tabindex="-1"></a>                 <span class="at">label =</span> pdata<span class="sc">$</span>label,<span class="at">font.label =</span> <span class="dv">10</span>, <span class="at">repel =</span> T,</span>
+<span id="cb8-21"><a href="rna-analysis.html#cb8-21" tabindex="-1"></a>                 <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb8-22"><a href="rna-analysis.html#cb8-22" tabindex="-1"></a>               )<span class="sc">+</span></span>
+<span id="cb8-23"><a href="rna-analysis.html#cb8-23" tabindex="-1"></a>    <span class="fu">theme_base</span>()<span class="sc">+</span></span>
+<span id="cb8-24"><a href="rna-analysis.html#cb8-24" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span>), <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#222222&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-25"><a href="rna-analysis.html#cb8-25" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">log2</span>(<span class="fl">1.5</span>) , <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#222222&quot;</span>)<span class="sc">+</span></span>
+<span id="cb8-26"><a href="rna-analysis.html#cb8-26" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="sc">-</span><span class="fu">log2</span>(<span class="fl">1.5</span>) , <span class="at">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#222222&quot;</span>)<span class="sc">+</span></span>
+<span id="cb8-27"><a href="rna-analysis.html#cb8-27" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">subtitle =</span> my_label) <span class="sc">+</span> </span>
+<span id="cb8-28"><a href="rna-analysis.html#cb8-28" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_blank</span>()) </span>
+<span id="cb8-29"><a href="rna-analysis.html#cb8-29" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;./results/RNA/4.Volcano.png&quot;</span>, p, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">8</span>)</span>
+<span id="cb8-30"><a href="rna-analysis.html#cb8-30" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;./results/RNA/4.Volcano.pdf&quot;</span>, p, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">8</span>)</span></code></pre></div>
+<p><img src="results/RNA/4.Volcano.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="rna-analysis.html#cb9-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb9-2"><a href="rna-analysis.html#cb9-2" tabindex="-1"></a><span class="co">#  Step 6: GO Enrichment </span></span>
+<span id="cb9-3"><a href="rna-analysis.html#cb9-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb9-4"><a href="rna-analysis.html#cb9-4" tabindex="-1"></a>placeholder <span class="ot">&lt;-</span> <span class="st">&quot;http://www.comptransmed.pro/bigdata_ctm&quot;</span></span>
+<span id="cb9-5"><a href="rna-analysis.html#cb9-5" tabindex="-1"></a><span class="do">## Gene ontology</span></span>
+<span id="cb9-6"><a href="rna-analysis.html#cb9-6" tabindex="-1"></a><span class="co">#sets &lt;- tibble(onto=c(&#39;GOBP&#39;,&#39;GOCC&#39;,&#39;GOMF&#39;)) %&gt;%</span></span>
+<span id="cb9-7"><a href="rna-analysis.html#cb9-7" tabindex="-1"></a><span class="co">#          mutate(set=map(onto,~oRDS(str_c(&quot;org.Mm.eg&quot;,.x),placeholder=placeholder))) ## 小鼠</span></span>
+<span id="cb9-8"><a href="rna-analysis.html#cb9-8" tabindex="-1"></a>sets <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">onto=</span><span class="fu">c</span>(<span class="st">&#39;GOBP&#39;</span>,<span class="st">&#39;GOCC&#39;</span>,<span class="st">&#39;GOMF&#39;</span>)) <span class="sc">%&gt;%</span> <span class="co"># KEGG</span></span>
+<span id="cb9-9"><a href="rna-analysis.html#cb9-9" tabindex="-1"></a>          <span class="fu">mutate</span>(<span class="at">set=</span><span class="fu">map</span>(onto,<span class="sc">~</span><span class="fu">oRDS</span>(<span class="fu">str_c</span>(<span class="st">&quot;org.Hs.eg&quot;</span>,.x),<span class="at">placeholder=</span>placeholder))) <span class="do">## 人</span></span>
+<span id="cb9-10"><a href="rna-analysis.html#cb9-10" tabindex="-1"></a><span class="do">## KO_WT</span></span>
+<span id="cb9-11"><a href="rna-analysis.html#cb9-11" tabindex="-1"></a><span class="co"># DE genes </span></span>
+<span id="cb9-12"><a href="rna-analysis.html#cb9-12" tabindex="-1"></a>deg_vec <span class="ot">&lt;-</span> limma.res <span class="sc">%&gt;%</span> <span class="fu">filter</span>(group<span class="sc">!=</span><span class="st">&quot;not sig&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GeneSymbol) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() </span>
+<span id="cb9-13"><a href="rna-analysis.html#cb9-13" tabindex="-1"></a><span class="co"># enrichment</span></span>
+<span id="cb9-14"><a href="rna-analysis.html#cb9-14" tabindex="-1"></a>esad <span class="ot">&lt;-</span> <span class="fu">oSEAadv</span>(deg_vec, sets, <span class="at">size.range=</span><span class="fu">c</span>(<span class="dv">15</span>,<span class="dv">1500</span>), <span class="at">test=</span><span class="st">&quot;fisher&quot;</span>, <span class="at">min.overlap=</span><span class="dv">5</span>) </span>
+<span id="cb9-15"><a href="rna-analysis.html#cb9-15" tabindex="-1"></a>df_eTerm <span class="ot">&lt;-</span> esad <span class="sc">%&gt;%</span> <span class="fu">oSEAextract</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb9-16"><a href="rna-analysis.html#cb9-16" tabindex="-1"></a>                  <span class="fu">filter</span>(adjp<span class="sc">&lt;</span><span class="fl">5e-2</span>, distance<span class="sc">==</span><span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-17"><a href="rna-analysis.html#cb9-17" tabindex="-1"></a>                  <span class="fu">mutate</span>(<span class="at">group=</span>namespace) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(group) <span class="sc">%&gt;%</span> <span class="fu">top_n</span>(<span class="dv">100</span>,<span class="sc">-</span>adjp) <span class="sc">%&gt;%</span></span>
+<span id="cb9-18"><a href="rna-analysis.html#cb9-18" tabindex="-1"></a>                  <span class="fu">arrange</span>(group,adjp)</span>
+<span id="cb9-19"><a href="rna-analysis.html#cb9-19" tabindex="-1"></a><span class="co"># output </span></span>
+<span id="cb9-20"><a href="rna-analysis.html#cb9-20" tabindex="-1"></a>df_eTerm <span class="sc">%&gt;%</span> openxlsx<span class="sc">::</span><span class="fu">write.xlsx</span>(<span class="st">&quot;./results/RNA/5.Enrichment_GO_KO_WT.xlsx&quot;</span>)</span>
+<span id="cb9-21"><a href="rna-analysis.html#cb9-21" tabindex="-1"></a><span class="co"># plot : oSEAballoon</span></span>
+<span id="cb9-22"><a href="rna-analysis.html#cb9-22" tabindex="-1"></a>gp <span class="ot">&lt;-</span> df_eTerm <span class="sc">%&gt;%</span> <span class="fu">oSEAballoon</span>(<span class="at">top=</span><span class="dv">20</span>, <span class="at">adjp.cutoff=</span><span class="fl">0.05</span>, <span class="at">zlim=</span><span class="cn">NULL</span>, <span class="at">slim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="at">size.range=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">2</span>), <span class="at">shape=</span><span class="dv">19</span>, <span class="at">colormap=</span><span class="st">&quot;grey90-orange-darkred&quot;</span>)</span>
+<span id="cb9-23"><a href="rna-analysis.html#cb9-23" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;./results/RNA/5.Enrichment_GO_KO_WT.png&quot;</span>, gp, <span class="at">width=</span><span class="dv">5</span>, <span class="at">height=</span><span class="dv">5</span>) </span></code></pre></div>
+<p><img src="results/RNA/5.Enrichment_GO_KO_WT.png" width="600px" style="display: block; margin: auto;" /></p>
+</div>
+<div id="进阶分析" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> 进阶分析<a href="rna-analysis.html#进阶分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="rna-analysis.html#cb10-1" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb10-2"><a href="rna-analysis.html#cb10-2" tabindex="-1"></a><span class="co">#  Step 7: KEGG pathway Crosstalk analysis </span></span>
+<span id="cb10-3"><a href="rna-analysis.html#cb10-3" tabindex="-1"></a><span class="co">#----------------------------------------------------------------------------------</span></span>
+<span id="cb10-4"><a href="rna-analysis.html#cb10-4" tabindex="-1"></a><span class="do">## define KEGG-merged gene interaction network</span></span>
+<span id="cb10-5"><a href="rna-analysis.html#cb10-5" tabindex="-1"></a>placeholder <span class="ot">&lt;-</span> <span class="st">&quot;http://www.comptransmed.pro/bigdata_ctm&quot;</span></span>
+<span id="cb10-6"><a href="rna-analysis.html#cb10-6" tabindex="-1"></a>ig.KEGG.category <span class="ot">&lt;-</span> <span class="fu">oRDS</span>(<span class="st">&#39;ig.KEGG.merged&#39;</span>, <span class="at">placeholder=</span>placeholder)</span>
+<span id="cb10-7"><a href="rna-analysis.html#cb10-7" tabindex="-1"></a><span class="do">## input : genes , p-value</span></span>
+<span id="cb10-8"><a href="rna-analysis.html#cb10-8" tabindex="-1"></a>data.net <span class="ot">&lt;-</span> limma.res <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(GeneSymbol,P.Value)</span>
+<span id="cb10-9"><a href="rna-analysis.html#cb10-9" tabindex="-1"></a><span class="do">## maximum-scoring subnetwork</span></span>
+<span id="cb10-10"><a href="rna-analysis.html#cb10-10" tabindex="-1"></a>subg <span class="ot">&lt;-</span> <span class="fu">xSubneterGenes</span>(data.net,<span class="at">network.customised=</span>ig.KEGG.category, <span class="at">subnet.size=</span><span class="dv">30</span>) </span>
+<span id="cb10-11"><a href="rna-analysis.html#cb10-11" tabindex="-1"></a><span class="co"># result</span></span>
+<span id="cb10-12"><a href="rna-analysis.html#cb10-12" tabindex="-1"></a>subg <span class="ot">&lt;-</span> subg <span class="sc">%&gt;%</span> <span class="fu">xLayout</span>(<span class="st">&quot;layout_with_kk&quot;</span>) </span>
+<span id="cb10-13"><a href="rna-analysis.html#cb10-13" tabindex="-1"></a>df_subg <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Symbol=</span><span class="fu">V</span>(subg)<span class="sc">$</span>name) <span class="sc">%&gt;%</span> <span class="fu">inner_join</span>(limma.res, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&#39;Symbol&#39;</span><span class="ot">=</span><span class="st">&#39;GeneSymbol&#39;</span>))</span>
+<span id="cb10-14"><a href="rna-analysis.html#cb10-14" tabindex="-1"></a><span class="fu">V</span>(subg)<span class="sc">$</span>logP   <span class="ot">&lt;-</span> df_subg<span class="sc">$</span>logP</span>
+<span id="cb10-15"><a href="rna-analysis.html#cb10-15" tabindex="-1"></a><span class="fu">V</span>(subg)<span class="sc">$</span>logFDR <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(df_subg<span class="sc">$</span>adj.P.Val)</span>
+<span id="cb10-16"><a href="rna-analysis.html#cb10-16" tabindex="-1"></a><span class="fu">V</span>(subg)<span class="sc">$</span>logFC  <span class="ot">&lt;-</span> df_subg<span class="sc">$</span>logFC</span>
+<span id="cb10-17"><a href="rna-analysis.html#cb10-17" tabindex="-1"></a><span class="co"># output</span></span>
+<span id="cb10-18"><a href="rna-analysis.html#cb10-18" tabindex="-1"></a>out <span class="ot">&lt;-</span> igraph<span class="sc">::</span><span class="fu">as_data_frame</span>(subg, <span class="at">what=</span><span class="st">&quot;vertices&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="sc">-</span>logP) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">gene=</span>name)</span>
+<span id="cb10-19"><a href="rna-analysis.html#cb10-19" tabindex="-1"></a><span class="fu">write.xlsx</span>(out,<span class="st">&quot;./results/RNA/6.KEGG_subg.KO_WT.xlsx&quot;</span>,<span class="at">overwrite =</span> T)</span>
+<span id="cb10-20"><a href="rna-analysis.html#cb10-20" tabindex="-1"></a><span class="fu">saveRDS</span>(subg,<span class="at">file =</span> <span class="st">&quot;./results/RNA/6.KEGG_subg.KO_WT.rds&quot;</span>)</span>
+<span id="cb10-21"><a href="rna-analysis.html#cb10-21" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb10-22"><a href="rna-analysis.html#cb10-22" tabindex="-1"></a>gg_subg <span class="ot">&lt;-</span> <span class="fu">xGGnetwork</span>(subg, </span>
+<span id="cb10-23"><a href="rna-analysis.html#cb10-23" tabindex="-1"></a>                      <span class="at">node.label=</span><span class="st">&#39;name&#39;</span>, <span class="at">node.label.size=</span><span class="dv">3</span>, </span>
+<span id="cb10-24"><a href="rna-analysis.html#cb10-24" tabindex="-1"></a>                      <span class="at">node.label.color=</span><span class="st">&#39;black&#39;</span>, <span class="at">node.label.alpha=</span><span class="dv">1</span>,</span>
+<span id="cb10-25"><a href="rna-analysis.html#cb10-25" tabindex="-1"></a>                      <span class="at">node.label.padding=</span><span class="fl">0.1</span>, <span class="at">node.label.arrow=</span><span class="dv">0</span>,</span>
+<span id="cb10-26"><a href="rna-analysis.html#cb10-26" tabindex="-1"></a>                      <span class="at">node.label.force=</span><span class="fl">0.1</span>, </span>
+<span id="cb10-27"><a href="rna-analysis.html#cb10-27" tabindex="-1"></a>                      <span class="at">node.xcoord=</span><span class="st">&quot;xcoord&quot;</span>, <span class="at">node.ycoord=</span><span class="st">&quot;ycoord&quot;</span>,</span>
+<span id="cb10-28"><a href="rna-analysis.html#cb10-28" tabindex="-1"></a>                      <span class="at">node.color=</span><span class="st">&quot;logFC&quot;</span>, <span class="at">colormap=</span><span class="st">&quot;spectral&quot;</span>, </span>
+<span id="cb10-29"><a href="rna-analysis.html#cb10-29" tabindex="-1"></a>                      <span class="at">zlim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>), <span class="at">node.color.title=</span><span class="st">&#39;log2FC&#39;</span>,</span>
+<span id="cb10-30"><a href="rna-analysis.html#cb10-30" tabindex="-1"></a>                      <span class="at">node.color.alpha=</span><span class="fl">0.8</span>, <span class="at">node.size=</span><span class="st">&quot;logP&quot;</span>, <span class="at">node.size.range=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">10</span>),</span>
+<span id="cb10-31"><a href="rna-analysis.html#cb10-31" tabindex="-1"></a>                      <span class="at">slim=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">6</span>), <span class="at">node.size.title=</span><span class="st">&quot;-log10(Pvalue)&quot;</span>, <span class="at">edge.color=</span><span class="st">&quot;steelblue1&quot;</span>,</span>
+<span id="cb10-32"><a href="rna-analysis.html#cb10-32" tabindex="-1"></a>                      <span class="at">edge.color.alpha=</span><span class="fl">0.5</span>,<span class="at">edge.curve=</span><span class="dv">0</span>,<span class="at">edge.arrow.gap=</span><span class="fl">0.01</span>,</span>
+<span id="cb10-33"><a href="rna-analysis.html#cb10-33" tabindex="-1"></a>                      <span class="at">title=</span><span class="fu">paste0</span>(<span class="st">&quot;Maximum-scoring KEGG subnetwork in KO vs WT&quot;</span>))</span>
+<span id="cb10-34"><a href="rna-analysis.html#cb10-34" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;./results/RNA/6.KEGG_subg.KO_WT.png&quot;</span>, gg_subg, <span class="at">width=</span><span class="dv">6</span>, <span class="at">height=</span><span class="dv">5</span>)</span>
+<span id="cb10-35"><a href="rna-analysis.html#cb10-35" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;./results/RNA/6.KEGG_subg.KO_WT.pdf&quot;</span>, gg_subg, <span class="at">width=</span><span class="dv">6</span>, <span class="at">height=</span><span class="dv">5</span>)</span></code></pre></div>
+<p><img src="results/RNA/6.KEGG_subg.KO_WT.png" width="600px" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="rna-analysis.html#cb11-1" tabindex="-1"></a><span class="do">## network KEGG pathway enrichment</span></span>
+<span id="cb11-2"><a href="rna-analysis.html#cb11-2" tabindex="-1"></a>placeholder <span class="ot">&lt;-</span> <span class="st">&quot;http://www.comptransmed.pro/bigdata_ctm&quot;</span></span>
+<span id="cb11-3"><a href="rna-analysis.html#cb11-3" tabindex="-1"></a>sets <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">onto=</span><span class="fu">c</span>(<span class="st">&#39;KEGG&#39;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="rna-analysis.html#cb11-4" tabindex="-1"></a>          <span class="fu">mutate</span>(<span class="at">set=</span><span class="fu">map</span>(onto,<span class="sc">~</span><span class="fu">oRDS</span>(<span class="fu">str_c</span>(<span class="st">&quot;org.Hs.eg&quot;</span>,.x),<span class="at">placeholder=</span>placeholder)))</span>
+<span id="cb11-5"><a href="rna-analysis.html#cb11-5" tabindex="-1"></a>subg.node <span class="ot">&lt;-</span> <span class="fu">vertex_attr</span>(subg)<span class="sc">$</span>name</span>
+<span id="cb11-6"><a href="rna-analysis.html#cb11-6" tabindex="-1"></a>subg.enrich <span class="ot">&lt;-</span> <span class="fu">oSEAadv</span>(subg.node,sets, <span class="at">size.range=</span><span class="fu">c</span>(<span class="dv">15</span>,<span class="dv">1500</span>), <span class="at">test=</span><span class="st">&quot;fisher&quot;</span>, <span class="at">min.overlap=</span><span class="dv">5</span>)</span>
+<span id="cb11-7"><a href="rna-analysis.html#cb11-7" tabindex="-1"></a>subg.enrich.df <span class="ot">&lt;-</span> subg.enrich <span class="sc">%&gt;%</span> <span class="fu">oSEAextract</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-8"><a href="rna-analysis.html#cb11-8" tabindex="-1"></a>                  <span class="fu">mutate</span>(<span class="at">group=</span>namespace) <span class="sc">%&gt;%</span></span>
+<span id="cb11-9"><a href="rna-analysis.html#cb11-9" tabindex="-1"></a>                  <span class="fu">arrange</span>(adjp) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-10"><a href="rna-analysis.html#cb11-10" tabindex="-1"></a>                  <span class="fu">filter</span>(distance<span class="sc">==</span><span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-11"><a href="rna-analysis.html#cb11-11" tabindex="-1"></a>                  dplyr<span class="sc">::</span><span class="fu">select</span>(name,adjp,distance,<span class="fu">everything</span>())</span>
+<span id="cb11-12"><a href="rna-analysis.html#cb11-12" tabindex="-1"></a><span class="fu">write.xlsx</span>(subg.enrich.df,<span class="st">&quot;./results/RNA/7.KEGG_subg.KO_WT_enrichment.xlsx&quot;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+name
+</th>
+<th style="text-align:right;">
+adjp
+</th>
+<th style="text-align:left;">
+group
+</th>
+<th style="text-align:right;">
+nO
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+PI3K-Akt signaling pathway
+</td>
+<td style="text-align:right;">
+0.0e+00
+</td>
+<td style="text-align:left;">
+Environmental Process
+</td>
+<td style="text-align:right;">
+15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MAPK signaling pathway
+</td>
+<td style="text-align:right;">
+0.0e+00
+</td>
+<td style="text-align:left;">
+Environmental Process
+</td>
+<td style="text-align:right;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Pathways in cancer
+</td>
+<td style="text-align:right;">
+0.0e+00
+</td>
+<td style="text-align:left;">
+Human Disease
+</td>
+<td style="text-align:right;">
+14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ras signaling pathway
+</td>
+<td style="text-align:right;">
+1.0e-07
+</td>
+<td style="text-align:left;">
+Environmental Process
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Leishmaniasis
+</td>
+<td style="text-align:right;">
+2.4e-06
+</td>
+<td style="text-align:left;">
+Human Disease
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ECM-receptor interaction
+</td>
+<td style="text-align:right;">
+4.5e-06
+</td>
+<td style="text-align:left;">
+Environmental Process
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="rna-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pro-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03.analysis.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
