@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Target Evaluation | p53 compounds</title>
   <meta name="description" content="This is the tutorial of p53 compounds project." />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Target Evaluation | p53 compounds" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Yu-Ting Dai" />
 
 
-<meta name="date" content="2023-11-27" />
+<meta name="date" content="2024-01-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -251,21 +251,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="merge-profiling" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Merge profiling<a href="target-evaluation.html#merge-profiling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We provided the merged profiling, which could be downloaded via <a href="https://github.com/NRCTM-bioinfo/p53_compounds" class="uri">https://github.com/NRCTM-bioinfo/p53_compounds</a>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="target-evaluation.html#cb6-1" tabindex="-1"></a>tp53.targets <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;02.Profiling/p53_targets.xlsx&quot;</span>)</span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="target-evaluation.html#cb6-1" tabindex="-1"></a>tp53.targets <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;01.Profiling/p53_targets.xlsx&quot;</span>)</span>
 <span id="cb6-2"><a href="target-evaluation.html#cb6-2" tabindex="-1"></a><span class="fu">rownames</span>(tp53.targets) <span class="ot">&lt;-</span> tp53.targets<span class="sc">$</span>Gene</span>
 <span id="cb6-3"><a href="target-evaluation.html#cb6-3" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="target-evaluation.html#cb6-4" tabindex="-1"></a>tp53.target.g32 <span class="ot">&lt;-</span> tp53.targets<span class="sc">$</span>Gene[<span class="fu">which</span>(tp53.targets<span class="sc">$</span>LiteratureNum <span class="sc">&gt;=</span> <span class="dv">10</span>)]</span>
 <span id="cb6-5"><a href="target-evaluation.html#cb6-5" tabindex="-1"></a>tp53.target.g116 <span class="ot">&lt;-</span> tp53.targets<span class="sc">$</span>Gene</span>
 <span id="cb6-6"><a href="target-evaluation.html#cb6-6" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="target-evaluation.html#cb6-7" tabindex="-1"></a>merge.meta.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;02.Profiling/p53_meta.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">1</span>)</span>
+<span id="cb6-7"><a href="target-evaluation.html#cb6-7" tabindex="-1"></a>merge.meta.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;01.Profiling/p53_meta.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">1</span>)</span>
 <span id="cb6-8"><a href="target-evaluation.html#cb6-8" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="target-evaluation.html#cb6-9" tabindex="-1"></a>merge.compare.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;02.Profiling/TableS1A.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">startRow =</span> <span class="dv">2</span>)</span>
+<span id="cb6-9"><a href="target-evaluation.html#cb6-9" tabindex="-1"></a>merge.compare.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;01.Profiling/Table1.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">startRow =</span> <span class="dv">2</span>)</span>
 <span id="cb6-10"><a href="target-evaluation.html#cb6-10" tabindex="-1"></a>merge.compare.data<span class="sc">$</span>Sample <span class="ot">&lt;-</span> merge.compare.data<span class="sc">$</span><span class="st">`</span><span class="at">Sample.name.(after.treatment)</span><span class="st">`</span></span>
 <span id="cb6-11"><a href="target-evaluation.html#cb6-11" tabindex="-1"></a>merge.compare.data<span class="sc">$</span>Control <span class="ot">&lt;-</span> merge.compare.data<span class="sc">$</span><span class="st">`</span><span class="at">Sample.name.(untreated.samples)</span><span class="st">`</span></span>
 <span id="cb6-12"><a href="target-evaluation.html#cb6-12" tabindex="-1"></a>merge.compare.data<span class="sc">$</span>Group <span class="ot">&lt;-</span> <span class="fu">str_replace</span>(merge.compare.data<span class="sc">$</span>Sample, <span class="fu">regex</span>(<span class="st">&quot;_rep.$&quot;</span>), <span class="st">&quot;&quot;</span>)</span>
 <span id="cb6-13"><a href="target-evaluation.html#cb6-13" tabindex="-1"></a><span class="fu">rownames</span>(merge.compare.data) <span class="ot">&lt;-</span> merge.compare.data<span class="sc">$</span><span class="st">`</span><span class="at">Sample.name.(after.treatment)</span><span class="st">`</span></span>
 <span id="cb6-14"><a href="target-evaluation.html#cb6-14" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="target-evaluation.html#cb6-15" tabindex="-1"></a>merge.mat <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;02.Profiling/TableS1B.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">startRow =</span> <span class="dv">3</span>, <span class="at">rowNames =</span> T)</span></code></pre></div>
+<span id="cb6-15"><a href="target-evaluation.html#cb6-15" tabindex="-1"></a>merge.mat <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;01.Profiling/Table2.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">startRow =</span> <span class="dv">3</span>, <span class="at">rowNames =</span> T)</span></code></pre></div>
 </div>
 <div id="normalization" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Normalization<a href="target-evaluation.html#normalization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -296,55 +296,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## CDKN1A 3.1916457       3.080478       1.957199      2.0917992      0.7774611      2.1667723      1.9077609
 ## RRM2B  0.8391627       1.001993       1.187001      0.6459767      0.4785670      0.8683713      0.5825729
 ## MDM2   2.7245150       2.028156       1.302068      1.1567997      0.8098108      1.5695778      1.3455218
-##        U937_F270I_ATO U937_F270V_ATO U937_V272A_ATO U937_V272M_ATO U937_V272M_PAT Kasumi-1_R248Q_Kevetrin_6h_rep1
-## CDKN1A       3.947027       2.909291       2.035912       3.675682       3.269377                     -0.00507247
-## RRM2B        1.860397       1.479516       0.708025       1.567485       1.557309                      0.66265896
-## MDM2         2.642251       2.444877       1.671464       3.256886       2.245890                      0.04900353
-##        Kasumi-1_R248Q_Kevetrin_6h_rep2 Kasumi-1_R248Q_Kevetrin_6h_rep3 SKM1_R248Q_APR-246_rep1
-## CDKN1A                     -0.03563892                      0.17165276             -0.07281667
-## RRM2B                       0.57210179                      0.51180155              0.13078333
-## MDM2                       -0.04690794                     -0.01286232              0.18355667
-##        SKM1_R248Q_APR-246_rep2 SKM1_R248Q_APR-246_rep3 staET7.1_R273H_APR-246_rep1 staET7.1_R273H_APR-246_rep2
-## CDKN1A              0.02994333             -0.26504667                   0.4066695                 -0.31610198
-## RRM2B               0.05577333             -0.27296667                   0.6471832                  0.12121419
-## MDM2               -0.07633333             -0.09720333                   0.2011240                 -0.04862277
-##        staET7.2_R273H_APR-246_rep1 staET7.3_R273H_APR-246_rep1 staET7.3_R273H_APR-246_rep2
-## CDKN1A                  -0.1298085                 -0.41130580                -0.091652792
-## RRM2B                    0.3475557                  0.07482002                 0.356190359
-## MDM2                     0.1818754                  0.07292721                 0.001335775
-##        staET7.2_R273H_APR-246_rep2 Saos-2_R273H_APR-246_6h_rep1 Saos-2_R273H_APR-246_6h_rep2
-## CDKN1A                   1.1191052                  -0.02540054                   -0.1177016
-## RRM2B                    0.5005976                   1.05526980                    1.1814193
-## MDM2                     0.2663554                  -0.08762767                    0.3947754
-##        Saos-2_R273H_APR-246_6h_rep3 Saos-2_R273H_APR-246_12h_rep1 Saos-2_R273H_APR-246_12h_rep2
-## CDKN1A                 -0.534773959                   -0.62120069                   -0.10077979
-## RRM2B                   0.431825568                    1.03123586                    0.75826079
-## MDM2                   -0.008325736                    0.06401986                    0.02695217
-##        Saos-2_R273H_APR-246_12h_rep3 Kasumi-1_R248Q_Kevetrin_48h_rep1 Kasumi-1_R248Q_Kevetrin_48h_rep2
-## CDKN1A                    -0.3485730                        0.3656561                        0.6150592
-## RRM2B                      0.6167059                        1.0807021                        1.0029696
-## MDM2                       0.0326328                       -0.4937894                       -0.5052966
-##        Kasumi-1_R248Q_Kevetrin_48h_rep3 PCI13_G245D_COTI-2_rep1 PCI13_G245D_COTI-2_rep2 PCI13_G245D_COTI-2_rep3
-## CDKN1A                        0.5977127               0.7164330               0.6274429             0.647518846
-## RRM2B                         1.2170216               0.1130768              -0.0679887            -0.006853216
-## MDM2                         -0.2238308               0.2377859               0.2552303             0.341083919
-##        U266_A161T_PRIMA-1_rep1 U266_A161T_PRIMA-1_rep2 U937_R273H_ATO U937_R273H_PAT PCI13_G245D_CDDP_rep1
-## CDKN1A               0.1974164               0.4389011      0.3927590      0.1909721           -0.21575276
-## RRM2B               -0.2733003              -0.3027616      0.2643679     -0.1862437           -0.28507761
-## MDM2                -0.2199022              -0.2003108     -0.5397466     -0.4929459            0.06734607
-##        PCI13_G245D_CDDP_rep2 PCI13_G245D_CDDP_rep3 8266R5_null_PRIMA-1_rep1 8266R5_null_PRIMA-1_rep2
-## CDKN1A           -0.29477320            -0.3104395               -0.1462286               -0.1858493
-## RRM2B            -0.56260138            -0.4041368               -0.2320481                0.2372455
-## MDM2              0.07106408             0.1046652                0.2465478                0.3169312
-##        Saos-2_null_APR-246_6h_rep1 Saos-2_null_APR-246_6h_rep2 Saos-2_null_APR-246_6h_rep3
-## CDKN1A                   1.0204064                  -0.2922208                  0.16556354
-## RRM2B                    0.2411493                   0.4065886                 -0.31879809
-## MDM2                    -0.6160103                  -0.6468282                 -0.05262877
-##        Saos-2_null_APR-246_12h_rep1 Saos-2_null_APR-246_12h_rep2
-## CDKN1A                 -0.252144504                   -0.2329088
-## RRM2B                   0.490890719                   -0.4246623
-## MDM2                    0.001146008                   -0.1160399</code></pre>
-<p>The <code>compare.mat</code> was generated and provided as Table S1C.</p>
+##        U937_F270I_ATO U937_F270V_ATO U937_V272A_ATO U937_V272M_ATO U937_V272M_PAT
+## CDKN1A       3.947027       2.909291       2.035912       3.675682       3.269377
+## RRM2B        1.860397       1.479516       0.708025       1.567485       1.557309
+## MDM2         2.642251       2.444877       1.671464       3.256886       2.245890
+##        Kasumi-1_R248Q_Kevetrin_6h_rep1 Kasumi-1_R248Q_Kevetrin_6h_rep2 Kasumi-1_R248Q_Kevetrin_6h_rep3
+## CDKN1A                     -0.00507247                     -0.03563892                      0.17165276
+## RRM2B                       0.66265896                      0.57210179                      0.51180155
+## MDM2                        0.04900353                     -0.04690794                     -0.01286232
+##        SKM1_R248Q_APR-246_rep1 SKM1_R248Q_APR-246_rep2 SKM1_R248Q_APR-246_rep3 staET7.1_R273H_APR-246_rep1
+## CDKN1A             -0.07281667              0.02994333             -0.26504667                   0.4066695
+## RRM2B               0.13078333              0.05577333             -0.27296667                   0.6471832
+## MDM2                0.18355667             -0.07633333             -0.09720333                   0.2011240
+##        staET7.1_R273H_APR-246_rep2 staET7.2_R273H_APR-246_rep1 staET7.3_R273H_APR-246_rep1
+## CDKN1A                 -0.31610198                  -0.1298085                 -0.41130580
+## RRM2B                   0.12121419                   0.3475557                  0.07482002
+## MDM2                   -0.04862277                   0.1818754                  0.07292721
+##        staET7.3_R273H_APR-246_rep2 staET7.2_R273H_APR-246_rep2 Saos-2_R273H_APR-246_6h_rep1
+## CDKN1A                -0.091652792                   1.1191052                  -0.02540054
+## RRM2B                  0.356190359                   0.5005976                   1.05526980
+## MDM2                   0.001335775                   0.2663554                  -0.08762767
+##        Saos-2_R273H_APR-246_6h_rep2 Saos-2_R273H_APR-246_6h_rep3 Saos-2_R273H_APR-246_12h_rep1
+## CDKN1A                   -0.1177016                 -0.534773959                   -0.62120069
+## RRM2B                     1.1814193                  0.431825568                    1.03123586
+## MDM2                      0.3947754                 -0.008325736                    0.06401986
+##        Saos-2_R273H_APR-246_12h_rep2 Saos-2_R273H_APR-246_12h_rep3 Kasumi-1_R248Q_Kevetrin_48h_rep1
+## CDKN1A                   -0.10077979                    -0.3485730                        0.3656561
+## RRM2B                     0.75826079                     0.6167059                        1.0807021
+## MDM2                      0.02695217                     0.0326328                       -0.4937894
+##        Kasumi-1_R248Q_Kevetrin_48h_rep2 Kasumi-1_R248Q_Kevetrin_48h_rep3 PCI13_G245D_COTI-2_rep1
+## CDKN1A                        0.6150592                        0.5977127               0.7164330
+## RRM2B                         1.0029696                        1.2170216               0.1130768
+## MDM2                         -0.5052966                       -0.2238308               0.2377859
+##        PCI13_G245D_COTI-2_rep2 PCI13_G245D_COTI-2_rep3 U266_A161T_PRIMA-1_rep1 U266_A161T_PRIMA-1_rep2
+## CDKN1A               0.6274429             0.647518846               0.1974164               0.4389011
+## RRM2B               -0.0679887            -0.006853216              -0.2733003              -0.3027616
+## MDM2                 0.2552303             0.341083919              -0.2199022              -0.2003108
+##        U937_R273H_ATO U937_R273H_PAT PCI13_G245D_CDDP_rep1 PCI13_G245D_CDDP_rep2 PCI13_G245D_CDDP_rep3
+## CDKN1A      0.3927590      0.1909721           -0.21575276           -0.29477320            -0.3104395
+## RRM2B       0.2643679     -0.1862437           -0.28507761           -0.56260138            -0.4041368
+## MDM2       -0.5397466     -0.4929459            0.06734607            0.07106408             0.1046652
+##        8266R5_null_PRIMA-1_rep1 8266R5_null_PRIMA-1_rep2 Saos-2_null_APR-246_6h_rep1 Saos-2_null_APR-246_6h_rep2
+## CDKN1A               -0.1462286               -0.1858493                   1.0204064                  -0.2922208
+## RRM2B                -0.2320481                0.2372455                   0.2411493                   0.4065886
+## MDM2                  0.2465478                0.3169312                  -0.6160103                  -0.6468282
+##        Saos-2_null_APR-246_6h_rep3 Saos-2_null_APR-246_12h_rep1 Saos-2_null_APR-246_12h_rep2
+## CDKN1A                  0.16556354                 -0.252144504                   -0.2329088
+## RRM2B                  -0.31879809                  0.490890719                   -0.4246623
+## MDM2                   -0.05262877                  0.001146008                   -0.1160399</code></pre>
 </div>
 <div id="confident-p53-targets" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> 32 confident p53 targets<a href="target-evaluation.html#confident-p53-targets" class="anchor-section" aria-label="Anchor link to header"></a></h2>

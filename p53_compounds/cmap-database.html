@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 CMAP database | p53 compounds</title>
   <meta name="description" content="This is the tutorial of p53 compounds project." />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 CMAP database | p53 compounds" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Yu-Ting Dai" />
 
 
-<meta name="date" content="2023-11-27" />
+<meta name="date" content="2024-01-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -342,11 +342,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb21-125"><a href="cmap-database.html#cb21-125" tabindex="-1"></a></span>
 <span id="cb21-126"><a href="cmap-database.html#cb21-126" tabindex="-1"></a></span>
 <span id="cb21-127"><a href="cmap-database.html#cb21-127" tabindex="-1"></a><span class="do">############## boxplot</span></span>
-<span id="cb21-128"><a href="cmap-database.html#cb21-128" tabindex="-1"></a>cmap.db <span class="ot">&lt;-</span> <span class="st">&quot;/Users/daiyuting/Documents/projects/tcga/cmap/analysis/cell&quot;</span></span>
+<span id="cb21-128"><a href="cmap-database.html#cb21-128" tabindex="-1"></a>cmap.db <span class="ot">&lt;-</span> <span class="st">&quot;&quot;</span></span>
 <span id="cb21-129"><a href="cmap-database.html#cb21-129" tabindex="-1"></a>cmap.meta <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="fu">paste0</span>(cmap.db, <span class="st">&quot;/1.JURKAT.cmap.meta.xlsx&quot;</span>), <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">rowNames =</span> T)</span>
 <span id="cb21-130"><a href="cmap-database.html#cb21-130" tabindex="-1"></a>cmap.exp <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="fu">paste0</span>(cmap.db, <span class="st">&quot;/1.JURKAT.cmap.meta.xlsx&quot;</span>), <span class="at">sheet =</span> <span class="dv">2</span>, <span class="at">rowNames =</span> T)</span>
 <span id="cb21-131"><a href="cmap-database.html#cb21-131" tabindex="-1"></a></span>
-<span id="cb21-132"><a href="cmap-database.html#cb21-132" tabindex="-1"></a>cmap.gene.info <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;/Users/daiyuting/Documents/projects/tcga/cmap/analysis/gene.info.xlsx&quot;</span>)</span>
+<span id="cb21-132"><a href="cmap-database.html#cb21-132" tabindex="-1"></a>cmap.gene.info <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;gene.info.xlsx&quot;</span>)</span>
 <span id="cb21-133"><a href="cmap-database.html#cb21-133" tabindex="-1"></a>cmap.gene.info <span class="ot">&lt;-</span> cmap.gene.info[<span class="fu">which</span>(cmap.gene.info<span class="sc">$</span>feature_space <span class="sc">==</span> <span class="st">&#39;landmark&#39;</span>), ]</span>
 <span id="cb21-134"><a href="cmap-database.html#cb21-134" tabindex="-1"></a>cmap.gene.info <span class="ot">&lt;-</span> cmap.gene.info[<span class="fu">which</span>(cmap.gene.info<span class="sc">$</span>gene_symbol <span class="sc">%in%</span> <span class="fu">rownames</span>(cmap.exp)), ]</span>
 <span id="cb21-135"><a href="cmap-database.html#cb21-135" tabindex="-1"></a></span>
@@ -439,11 +439,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb21-222"><a href="cmap-database.html#cb21-222" tabindex="-1"></a></span>
 <span id="cb21-223"><a href="cmap-database.html#cb21-223" tabindex="-1"></a><span class="do">########################################################################################################</span></span>
 <span id="cb21-224"><a href="cmap-database.html#cb21-224" tabindex="-1"></a><span class="do">##### PC3</span></span>
-<span id="cb21-225"><a href="cmap-database.html#cb21-225" tabindex="-1"></a>cmap.db <span class="ot">&lt;-</span> <span class="st">&quot;/Users/daiyuting/Documents/projects/tcga/cmap/analysis/cell&quot;</span></span>
+<span id="cb21-225"><a href="cmap-database.html#cb21-225" tabindex="-1"></a>cmap.db <span class="ot">&lt;-</span> <span class="st">&quot;l&quot;</span></span>
 <span id="cb21-226"><a href="cmap-database.html#cb21-226" tabindex="-1"></a>cmap.meta <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="fu">paste0</span>(cmap.db, <span class="st">&quot;/2.PC3.cmap.meta.xlsx&quot;</span>), <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">rowNames =</span> T)</span>
 <span id="cb21-227"><a href="cmap-database.html#cb21-227" tabindex="-1"></a>cmap.exp <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="fu">paste0</span>(cmap.db, <span class="st">&quot;/2.PC3.cmap.meta.xlsx&quot;</span>), <span class="at">sheet =</span> <span class="dv">2</span>, <span class="at">rowNames =</span> T)</span>
 <span id="cb21-228"><a href="cmap-database.html#cb21-228" tabindex="-1"></a></span>
-<span id="cb21-229"><a href="cmap-database.html#cb21-229" tabindex="-1"></a>cmap.gene.info <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;/Users/daiyuting/Documents/projects/tcga/cmap/analysis/gene.info.xlsx&quot;</span>)</span>
+<span id="cb21-229"><a href="cmap-database.html#cb21-229" tabindex="-1"></a>cmap.gene.info <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;gene.info.xlsx&quot;</span>)</span>
 <span id="cb21-230"><a href="cmap-database.html#cb21-230" tabindex="-1"></a>cmap.gene.info <span class="ot">&lt;-</span> cmap.gene.info[<span class="fu">which</span>(cmap.gene.info<span class="sc">$</span>feature_space <span class="sc">==</span> <span class="st">&#39;landmark&#39;</span>), ]</span>
 <span id="cb21-231"><a href="cmap-database.html#cb21-231" tabindex="-1"></a>cmap.gene.info <span class="ot">&lt;-</span> cmap.gene.info[<span class="fu">which</span>(cmap.gene.info<span class="sc">$</span>gene_symbol <span class="sc">%in%</span> <span class="fu">rownames</span>(cmap.exp)), ]</span>
 <span id="cb21-232"><a href="cmap-database.html#cb21-232" tabindex="-1"></a></span>
