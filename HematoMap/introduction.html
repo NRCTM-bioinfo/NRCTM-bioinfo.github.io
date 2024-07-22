@@ -23,7 +23,7 @@
 <meta name="author" content="Yu-Ting Dai, Wen Ou-Yang" />
 
 
-<meta name="date" content="2023-12-23" />
+<meta name="date" content="2024-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -229,7 +229,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><p><strong>Level 1: Lineages</strong>. HSPCs, Myeloids, Bcells, T/NKcells.</p></li>
 <li><p><strong>Level 2: Populations</strong>. HSPCs, Monocytes, Dendritic cells, Erythrocytes, pro B cells, mature B cells, CD8+ T cells, CD4+ T cells, NK cells</p></li>
-<li><p><strong>Level 3: Types</strong>. The 42 cell types (including 4 cell cycle related cell types): HSC/MPP, LMPP, CLP, CMP, MDP, GMP, CDP, MEP, pro-Mono, CD14 Mono, CD16 Mono, pre-DC, pDC, cDC1, mo-DC, MKP, MK, pro-Ery1, pro-Ery2, Ery, pre-pro-B, Early pro-B, 23 Early cycling pro-B, Late pro-B, Late cycling pro-B, pre-B, Immature B, Naive B, Memory B 1, Memory B 2, CD8 Tnaive, CD8 Teff, CD8 Tex, CD8 Tdpe, CD8 Tmpe, CD4 Tnaive, CD4 Tem, CD4 Treg, NK, NK-XCL1, cycling NK, cycling NK/T.</p></li>
+<li><p><strong>Level 3: Types</strong>. The 42 cell types (including 4 cell cycle related cell types): HSC/MPP, LMPP, CLP, CMP, MDP, GMP, CDP, MEP, GMP-Mono, CD14 Mono, CD16 Mono, pre-DC, pDC, cDC1, mo-DC, MKP, MK, pro-Ery1, pro-Ery2, Ery, pre-pro-B, Early pro-B, 23 Early cycling pro-B, Late pro-B, Late cycling pro-B, pre-B, Immature B, Naive B, Memory B 1, Memory B 2, CD8 Tnaive, CD8 Teff, CD8 Tex, CD8 Tdpe, CD8 Tmpe, CD4 Tnaive, CD4 Tem, CD4 Treg, NK, NK-XCL1, cycling NK, cycling NK/T.</p></li>
 <li><p><strong>Level 4: Sub-clusters</strong>. The 1079 cell sub-clusters, for example, HSC/MPP:0001, HSC/MPP:0002, HSC/MPP:0003.</p></li>
 </ul>
 <p>The relationship of the four levels and the related marker for cell type identification were listed as followed.</p>
@@ -321,8 +321,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td align="left">Myeloids</td>
 <td align="left">Monocytes</td>
-<td align="left">pro-Mono</td>
-<td align="left">Promonocytes</td>
+<td align="left">GMP-Mono</td>
+<td align="left">GMP-Monocytes</td>
 <td align="left">CD34(-), KIT(-), CD300E(-), LYZ(+), CD36(+), MPO(+), FCGR1A(+), CD4(+)</td>
 <td align="left">26282340; 28514689;</td>
 </tr>
@@ -595,7 +595,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="outline-of-this-tutorial" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> Outline of this tutorial<a href="introduction.html#outline-of-this-tutorial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The <a href="https://github.com/NRCTM-bioinfo/HematoMap"><strong><code>HematoMap</code></strong></a> is an R-based package for lineage aberrancy inference based on single-cell RNA sequencing (<strong>scRNA-seq</strong>) and bulk RNA sequencing (<strong>bulk RNA-seq</strong>) data of acute leukemia, including . In this tutorial, we will present:</p>
+<p>The <a href="https://github.com/NRCTM-bioinfo/HematoMap"><strong><code>HematoMap</code></strong></a> is an R-based package for lineage aberrancy inference based on single-cell RNA sequencing (<strong>scRNA-seq</strong>) and bulk RNA sequencing (<strong>bulk RNA-seq</strong>) data of acute leukemia. In this tutorial, we will present:</p>
 <ul>
 <li><ol style="list-style-type: decimal">
 <li>How to install <code>HematoMap</code>.</li>
