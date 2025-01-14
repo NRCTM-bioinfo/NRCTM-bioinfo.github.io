@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 scRNA-seq | Immune analysis for p53 project</title>
+  <meta name="description" content="This is the tutorial of p53 project." />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 scRNA-seq | Immune analysis for p53 project" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://nrctm-bioinfo.github.io/p53_immune_2025/index.html/figure/cover.jpg" />
+  <meta property="og:description" content="This is the tutorial of p53 project." />
+  <meta name="github-repo" content="NRCTM-bioinfo/p53_immune_2025" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 scRNA-seq | Immune analysis for p53 project" />
+  
+  <meta name="twitter:description" content="This is the tutorial of p53 project." />
+  <meta name="twitter:image" content="https://nrctm-bioinfo.github.io/p53_immune_2025/index.html/figure/cover.jpg" />
+
+<meta name="author" content="Jia-Bing Li, Yu-Ting Dai" />
+
+
+<meta name="date" content="2025-01-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="tcga.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://github.com/NRCTM-bioinfo/p53_immune_2025"><center><b>p53_immune_2025</b></center></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="scrna-seq.html"><a href="scrna-seq.html"><i class="fa fa-check"></i><b>2</b> scRNA-seq</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="scrna-seq.html"><a href="scrna-seq.html#load-packages"><i class="fa fa-check"></i><b>2.1</b> Load packages</a></li>
+<li class="chapter" data-level="2.2" data-path="scrna-seq.html"><a href="scrna-seq.html#analysis-of-scrna-seq-data"><i class="fa fa-check"></i><b>2.2</b> Analysis of scRNA-seq data</a></li>
+<li class="chapter" data-level="2.3" data-path="scrna-seq.html"><a href="scrna-seq.html#visualization-of-scrna-seq-data"><i class="fa fa-check"></i><b>2.3</b> Visualization of scRNA-seq data</a></li>
+<li class="chapter" data-level="2.4" data-path="scrna-seq.html"><a href="scrna-seq.html#markers-identification"><i class="fa fa-check"></i><b>2.4</b> Markers identification</a></li>
+<li class="chapter" data-level="2.5" data-path="scrna-seq.html"><a href="scrna-seq.html#cellphonedb-analysis"><i class="fa fa-check"></i><b>2.5</b> CellPhoneDB analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="tcga.html"><a href="tcga.html"><i class="fa fa-check"></i><b>3</b> TCGA</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="tcga.html"><a href="tcga.html#download-data"><i class="fa fa-check"></i><b>3.1</b> Download data</a></li>
+<li class="chapter" data-level="3.2" data-path="tcga.html"><a href="tcga.html#load-packages-1"><i class="fa fa-check"></i><b>3.2</b> Load packages</a></li>
+<li class="chapter" data-level="3.3" data-path="tcga.html"><a href="tcga.html#estimate-score"><i class="fa fa-check"></i><b>3.3</b> Estimate score</a></li>
+<li class="chapter" data-level="3.4" data-path="tcga.html"><a href="tcga.html#visualization"><i class="fa fa-check"></i><b>3.4</b> Visualization</a></li>
+<li class="chapter" data-level="3.5" data-path="tcga.html"><a href="tcga.html#t-cell-signature"><i class="fa fa-check"></i><b>3.5</b> T-cell signature</a></li>
+<li class="chapter" data-level="3.6" data-path="tcga.html"><a href="tcga.html#t-cell-signature-1"><i class="fa fa-check"></i><b>3.6</b> T-cell signature</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="about-this-project.html"><a href="about-this-project.html"><i class="fa fa-check"></i><b>4</b> About this project</a>
+<ul>
+<li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#current-version"><i class="fa fa-check"></i>Current version</a></li>
+<li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#session-information"><i class="fa fa-check"></i>Session Information</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Immune analysis for p53 project</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="scrna-seq" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> scRNA-seq<a href="scrna-seq.html#scrna-seq" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="load-packages" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Load packages<a href="scrna-seq.html#load-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="scrna-seq.html#cb1-1" tabindex="-1"></a><span class="fu">suppressMessages</span>({</span>
+<span id="cb1-2"><a href="scrna-seq.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(Seurat)</span>
+<span id="cb1-3"><a href="scrna-seq.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="scrna-seq.html#cb1-4" tabindex="-1"></a><span class="fu">library</span>(Matrix)</span>
+<span id="cb1-5"><a href="scrna-seq.html#cb1-5" tabindex="-1"></a><span class="fu">library</span>(gplots)</span>
+<span id="cb1-6"><a href="scrna-seq.html#cb1-6" tabindex="-1"></a><span class="fu">library</span>(matrixStats)</span>
+<span id="cb1-7"><a href="scrna-seq.html#cb1-7" tabindex="-1"></a><span class="fu">library</span>(sva)</span>
+<span id="cb1-8"><a href="scrna-seq.html#cb1-8" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb1-9"><a href="scrna-seq.html#cb1-9" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb1-10"><a href="scrna-seq.html#cb1-10" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-11"><a href="scrna-seq.html#cb1-11" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb1-12"><a href="scrna-seq.html#cb1-12" tabindex="-1"></a><span class="fu">library</span>(destiny)</span>
+<span id="cb1-13"><a href="scrna-seq.html#cb1-13" tabindex="-1"></a><span class="fu">library</span>(grDevices)</span>
+<span id="cb1-14"><a href="scrna-seq.html#cb1-14" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb1-15"><a href="scrna-seq.html#cb1-15" tabindex="-1"></a><span class="fu">library</span>(L1Graph)</span>
+<span id="cb1-16"><a href="scrna-seq.html#cb1-16" tabindex="-1"></a><span class="fu">library</span>(Biobase)</span>
+<span id="cb1-17"><a href="scrna-seq.html#cb1-17" tabindex="-1"></a><span class="fu">library</span>(scatterplot3d)</span>
+<span id="cb1-18"><a href="scrna-seq.html#cb1-18" tabindex="-1"></a><span class="fu">library</span>(monocle)</span>
+<span id="cb1-19"><a href="scrna-seq.html#cb1-19" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span>
+<span id="cb1-20"><a href="scrna-seq.html#cb1-20" tabindex="-1"></a><span class="fu">library</span>(harmony)</span>
+<span id="cb1-21"><a href="scrna-seq.html#cb1-21" tabindex="-1"></a><span class="fu">library</span>(SingleR)</span>
+<span id="cb1-22"><a href="scrna-seq.html#cb1-22" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-23"><a href="scrna-seq.html#cb1-23" tabindex="-1"></a><span class="fu">library</span>(clusterProfiler)</span>
+<span id="cb1-24"><a href="scrna-seq.html#cb1-24" tabindex="-1"></a><span class="fu">library</span>(colorRamps)</span>
+<span id="cb1-25"><a href="scrna-seq.html#cb1-25" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb1-26"><a href="scrna-seq.html#cb1-26" tabindex="-1"></a>})</span>
+<span id="cb1-27"><a href="scrna-seq.html#cb1-27" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="scrna-seq.html#cb1-28" tabindex="-1"></a>color.lib <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#A6761D&quot;</span>, <span class="st">&quot;#A6CEE3&quot;</span>, <span class="st">&quot;#1F78B4&quot;</span>, <span class="st">&quot;#B2DF8A&quot;</span>, <span class="st">&quot;#33A02C&quot;</span>, <span class="st">&quot;#FB9A99&quot;</span>, </span>
+<span id="cb1-29"><a href="scrna-seq.html#cb1-29" tabindex="-1"></a>               <span class="st">&quot;#E31A1C&quot;</span>, <span class="st">&quot;#FDBF6F&quot;</span>, <span class="st">&quot;#FF7F00&quot;</span>, <span class="st">&quot;#CAB2D6&quot;</span>, <span class="st">&quot;#6A3D9A&quot;</span>, <span class="st">&quot;#F4B3BE&quot;</span>,</span>
+<span id="cb1-30"><a href="scrna-seq.html#cb1-30" tabindex="-1"></a>               <span class="st">&quot;#1B9E77&quot;</span>, <span class="st">&quot;#D95F02&quot;</span>, <span class="st">&quot;#7570B3&quot;</span>, <span class="st">&quot;#E7298A&quot;</span>, <span class="st">&quot;#66A61E&quot;</span>, <span class="st">&quot;#E6AB02&quot;</span>, </span>
+<span id="cb1-31"><a href="scrna-seq.html#cb1-31" tabindex="-1"></a>               <span class="st">&quot;#F4A11D&quot;</span>, <span class="st">&quot;#8DC8ED&quot;</span>, <span class="st">&quot;#4C6CB0&quot;</span>, <span class="st">&quot;#8A1C1B&quot;</span>, <span class="st">&quot;#CBCC2B&quot;</span>, <span class="st">&quot;#EA644C&quot;</span>,</span>
+<span id="cb1-32"><a href="scrna-seq.html#cb1-32" tabindex="-1"></a>               <span class="st">&quot;#634795&quot;</span>, <span class="st">&quot;#005B1D&quot;</span>, <span class="st">&quot;#26418A&quot;</span>, <span class="st">&quot;#CB8A93&quot;</span>, <span class="st">&quot;#F1E404&quot;</span>, <span class="st">&quot;#E22826&quot;</span>,</span>
+<span id="cb1-33"><a href="scrna-seq.html#cb1-33" tabindex="-1"></a>               <span class="st">&quot;#50C1FF&quot;</span>, <span class="st">&quot;#F4D31D&quot;</span>, <span class="st">&quot;#F4A11D&quot;</span>, <span class="st">&quot;#82C800&quot;</span>, <span class="st">&quot;#8B5900&quot;</span>, <span class="st">&quot;#858ED1&quot;</span>,</span>
+<span id="cb1-34"><a href="scrna-seq.html#cb1-34" tabindex="-1"></a>               <span class="st">&quot;#FF72E1&quot;</span>, <span class="st">&quot;#CB50B2&quot;</span>, <span class="st">&quot;#007D9B&quot;</span>, <span class="st">&quot;#26418A&quot;</span>, <span class="st">&quot;#8B495F&quot;</span>, <span class="st">&quot;#FF394B&quot;</span>)</span></code></pre></div>
+</div>
+<div id="analysis-of-scrna-seq-data" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Analysis of scRNA-seq data<a href="scrna-seq.html#analysis-of-scrna-seq-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="scrna-seq.html#cb2-1" tabindex="-1"></a>out.path <span class="ot">&lt;-</span> <span class="st">&quot;out.path&quot;</span></span>
+<span id="cb2-2"><a href="scrna-seq.html#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="scrna-seq.html#cb2-3" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/2.filter.vlnplot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb2-4"><a href="scrna-seq.html#cb2-4" tabindex="-1"></a><span class="fu">VlnPlot</span>(p53, <span class="at">features =</span> <span class="fu">c</span>(<span class="st">&quot;nFeature_RNA&quot;</span>, <span class="st">&quot;nCount_RNA&quot;</span>, <span class="st">&quot;percent.mt&quot;</span>), <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb2-5"><a href="scrna-seq.html#cb2-5" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb2-6"><a href="scrna-seq.html#cb2-6" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="scrna-seq.html#cb2-7" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/2.filter.geneplot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb2-8"><a href="scrna-seq.html#cb2-8" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(p53, <span class="at">feature1 =</span> <span class="st">&quot;nCount_RNA&quot;</span>, <span class="at">group.by =</span> <span class="st">&quot;Sample&quot;</span>, <span class="at">feature2 =</span> <span class="st">&quot;percent.mt&quot;</span>)</span>
+<span id="cb2-9"><a href="scrna-seq.html#cb2-9" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">FeatureScatter</span>(p53, <span class="at">feature1 =</span> <span class="st">&quot;nCount_RNA&quot;</span>, <span class="at">group.by =</span> <span class="st">&quot;Sample&quot;</span>, <span class="at">feature2 =</span> <span class="st">&quot;nFeature_RNA&quot;</span>)</span>
+<span id="cb2-10"><a href="scrna-seq.html#cb2-10" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2</span>
+<span id="cb2-11"><a href="scrna-seq.html#cb2-11" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb2-12"><a href="scrna-seq.html#cb2-12" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="scrna-seq.html#cb2-13" tabindex="-1"></a>p53 <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(p53, <span class="at">normalization.method =</span> <span class="st">&quot;LogNormalize&quot;</span>, <span class="at">scale.factor =</span> <span class="dv">10000</span>)</span>
+<span id="cb2-14"><a href="scrna-seq.html#cb2-14" tabindex="-1"></a>p53 <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(p53, <span class="at">selection.method =</span> <span class="st">&quot;vst&quot;</span>, <span class="at">nfeatures =</span> <span class="dv">2000</span>)</span>
+<span id="cb2-15"><a href="scrna-seq.html#cb2-15" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="scrna-seq.html#cb2-16" tabindex="-1"></a><span class="co"># Identify the 10 most highly variable genes</span></span>
+<span id="cb2-17"><a href="scrna-seq.html#cb2-17" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> <span class="fu">head</span>(<span class="fu">VariableFeatures</span>(p53), <span class="dv">10</span>)</span>
+<span id="cb2-18"><a href="scrna-seq.html#cb2-18" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="scrna-seq.html#cb2-19" tabindex="-1"></a><span class="co"># plot variable features with and without labels</span></span>
+<span id="cb2-20"><a href="scrna-seq.html#cb2-20" tabindex="-1"></a><span class="fu">pdf</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/3.VariableFeaturePlot.pdf&quot;</span>), <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb2-21"><a href="scrna-seq.html#cb2-21" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">VariableFeaturePlot</span>(p53)</span>
+<span id="cb2-22"><a href="scrna-seq.html#cb2-22" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">LabelPoints</span>(<span class="at">plot =</span> plot1, <span class="at">points =</span> top10, <span class="at">repel =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-23"><a href="scrna-seq.html#cb2-23" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2</span>
+<span id="cb2-24"><a href="scrna-seq.html#cb2-24" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb2-25"><a href="scrna-seq.html#cb2-25" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="scrna-seq.html#cb2-26" tabindex="-1"></a>all.genes <span class="ot">&lt;-</span> <span class="fu">rownames</span>(p53)</span>
+<span id="cb2-27"><a href="scrna-seq.html#cb2-27" tabindex="-1"></a>p53 <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(p53, <span class="at">features =</span> <span class="fu">VariableFeatures</span>(<span class="at">object =</span> p53))</span>
+<span id="cb2-28"><a href="scrna-seq.html#cb2-28" tabindex="-1"></a>p53 <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(p53, <span class="at">features =</span> <span class="fu">VariableFeatures</span>(<span class="at">object =</span> p53))</span>
+<span id="cb2-29"><a href="scrna-seq.html#cb2-29" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="scrna-seq.html#cb2-30" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(p53, <span class="at">reduction =</span> <span class="st">&quot;pca&quot;</span>, <span class="at">group.by =</span> <span class="st">&quot;Sample&quot;</span>) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb2-31"><a href="scrna-seq.html#cb2-31" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/4.PCA.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb2-32"><a href="scrna-seq.html#cb2-32" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="scrna-seq.html#cb2-33" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="scrna-seq.html#cb2-34" tabindex="-1"></a>p53 <span class="ot">&lt;-</span> <span class="fu">RunHarmony</span>(p53, <span class="st">&quot;Batch&quot;</span>, <span class="at">max.iter.harmony =</span> <span class="dv">3</span>, <span class="at">sigma =</span> <span class="fl">0.1</span>, <span class="at">max.iter.cluster =</span> <span class="dv">10</span>)</span>
+<span id="cb2-35"><a href="scrna-seq.html#cb2-35" tabindex="-1"></a>p53 <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(p53, <span class="at">reduction =</span> <span class="st">&quot;harmony&quot;</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb2-36"><a href="scrna-seq.html#cb2-36" tabindex="-1"></a>p53 <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(p53, <span class="at">resolution =</span> <span class="fl">0.8</span>)</span>
+<span id="cb2-37"><a href="scrna-seq.html#cb2-37" tabindex="-1"></a>p53 <span class="ot">&lt;-</span> <span class="fu">RunTSNE</span>(p53, <span class="at">reduction =</span> <span class="st">&quot;harmony&quot;</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">perplexity =</span> <span class="dv">50</span>)</span>
+<span id="cb2-38"><a href="scrna-seq.html#cb2-38" tabindex="-1"></a>p53 <span class="ot">&lt;-</span> <span class="fu">RunUMAP</span>(p53, <span class="at">reduction =</span> <span class="st">&quot;harmony&quot;</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb2-39"><a href="scrna-seq.html#cb2-39" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="scrna-seq.html#cb2-40" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">Idents</span>(p53))</span></code></pre></div>
+</div>
+<div id="visualization-of-scrna-seq-data" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Visualization of scRNA-seq data<a href="scrna-seq.html#visualization-of-scrna-seq-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="scrna-seq.html#cb3-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(p53, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="fl">0.5</span>, <span class="at">group.by =</span> <span class="st">&quot;clusters&quot;</span>,</span>
+<span id="cb3-2"><a href="scrna-seq.html#cb3-2" tabindex="-1"></a>             <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb3-3"><a href="scrna-seq.html#cb3-3" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/5.UMAP.cluster.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb3-4"><a href="scrna-seq.html#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="scrna-seq.html#cb3-5" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(p53, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="fl">0.5</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">10</span>,</span>
+<span id="cb3-6"><a href="scrna-seq.html#cb3-6" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;clusters&quot;</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb3-7"><a href="scrna-seq.html#cb3-7" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/5.UMAP.cluster.label.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb3-8"><a href="scrna-seq.html#cb3-8" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="scrna-seq.html#cb3-9" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(p53, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="fl">0.5</span>,</span>
+<span id="cb3-10"><a href="scrna-seq.html#cb3-10" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;Sample&quot;</span>, <span class="at">cols =</span> color.sample) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb3-11"><a href="scrna-seq.html#cb3-11" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/5.UMAP.sample.pdf&quot;</span>), p, <span class="at">width =</span> <span class="fl">8.5</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb3-12"><a href="scrna-seq.html#cb3-12" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="scrna-seq.html#cb3-13" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(p53, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="fl">0.5</span>,</span>
+<span id="cb3-14"><a href="scrna-seq.html#cb3-14" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType&quot;</span>, <span class="at">cols =</span> color.cell) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb3-15"><a href="scrna-seq.html#cb3-15" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/5.UMAP.cell.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb3-16"><a href="scrna-seq.html#cb3-16" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="scrna-seq.html#cb3-17" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(p53, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="fl">0.5</span>,</span>
+<span id="cb3-18"><a href="scrna-seq.html#cb3-18" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType&quot;</span>, <span class="at">split.by =</span> <span class="st">&quot;Sample&quot;</span>, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">cols =</span> color.cell) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb3-19"><a href="scrna-seq.html#cb3-19" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/5.UMAP.cell.SplitSample.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">10</span>)</span>
+<span id="cb3-20"><a href="scrna-seq.html#cb3-20" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="scrna-seq.html#cb3-21" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="scrna-seq.html#cb3-22" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(p53, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="fl">0.5</span>, <span class="at">group.by =</span> <span class="st">&quot;clusters&quot;</span>,</span>
+<span id="cb3-23"><a href="scrna-seq.html#cb3-23" tabindex="-1"></a>             <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb3-24"><a href="scrna-seq.html#cb3-24" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/6.tSNE.cluster.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb3-25"><a href="scrna-seq.html#cb3-25" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="scrna-seq.html#cb3-26" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(p53, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="fl">0.5</span>, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">10</span>, <span class="at">group.by =</span> <span class="st">&quot;clusters&quot;</span>,</span>
+<span id="cb3-27"><a href="scrna-seq.html#cb3-27" tabindex="-1"></a>             <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb3-28"><a href="scrna-seq.html#cb3-28" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/6.tSNE.cluster.label.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb3-29"><a href="scrna-seq.html#cb3-29" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="scrna-seq.html#cb3-30" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(p53, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="fl">0.5</span>, </span>
+<span id="cb3-31"><a href="scrna-seq.html#cb3-31" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;Sample&quot;</span>, <span class="at">cols =</span> color.sample) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb3-32"><a href="scrna-seq.html#cb3-32" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/6.tSNE.sample.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb3-33"><a href="scrna-seq.html#cb3-33" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="scrna-seq.html#cb3-34" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(p53, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="fl">0.5</span>,</span>
+<span id="cb3-35"><a href="scrna-seq.html#cb3-35" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType&quot;</span>, <span class="at">cols =</span> color.cell) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb3-36"><a href="scrna-seq.html#cb3-36" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/6.tSNE.cell.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb3-37"><a href="scrna-seq.html#cb3-37" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="scrna-seq.html#cb3-38" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(p53, <span class="at">reduction =</span> <span class="st">&quot;tsne&quot;</span>, <span class="at">pt.size =</span> <span class="fl">0.5</span>,</span>
+<span id="cb3-39"><a href="scrna-seq.html#cb3-39" tabindex="-1"></a>             <span class="at">group.by =</span> <span class="st">&quot;CellType&quot;</span>, <span class="at">split.by =</span> <span class="st">&quot;Sample&quot;</span>, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">cols =</span> color.cell) <span class="sc">+</span> <span class="fu">theme_few</span>()</span>
+<span id="cb3-40"><a href="scrna-seq.html#cb3-40" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/6.tSNE.cell.SplitSample.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">12</span>, <span class="at">height =</span> <span class="dv">10</span>)</span></code></pre></div>
+</div>
+<div id="markers-identification" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Markers identification<a href="scrna-seq.html#markers-identification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="scrna-seq.html#cb4-1" tabindex="-1"></a><span class="fu">Idents</span>(p53) <span class="ot">&lt;-</span> p53<span class="sc">$</span>CellType</span>
+<span id="cb4-2"><a href="scrna-seq.html#cb4-2" tabindex="-1"></a>all.markers <span class="ot">&lt;-</span> <span class="fu">FindAllMarkers</span>(p53, <span class="at">only.pos =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-3"><a href="scrna-seq.html#cb4-3" tabindex="-1"></a>all.markers <span class="ot">&lt;-</span> all.markers[<span class="fu">which</span>(all.markers<span class="sc">$</span>p_val_adj <span class="sc">&lt;</span> <span class="fl">0.05</span>), ]</span>
+<span id="cb4-4"><a href="scrna-seq.html#cb4-4" tabindex="-1"></a><span class="fu">write.xlsx</span>(all.markers, <span class="fu">paste0</span>(out.path, <span class="st">&quot;/1.topMarkers.CellType.xlsx&quot;</span>), <span class="at">rowNames =</span> T, <span class="at">overwrite =</span> T)</span>
+<span id="cb4-5"><a href="scrna-seq.html#cb4-5" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="scrna-seq.html#cb4-6" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="scrna-seq.html#cb4-7" tabindex="-1"></a>all.markers <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/1.topMarkers.CellType.xlsx&quot;</span>), <span class="at">rowNames =</span> T)</span>
+<span id="cb4-8"><a href="scrna-seq.html#cb4-8" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> all.markers <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span> <span class="fu">top_n</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">wt =</span> avg_log2FC)</span>
+<span id="cb4-9"><a href="scrna-seq.html#cb4-9" tabindex="-1"></a>gene.list <span class="ot">&lt;-</span> <span class="fu">unique</span>(top10<span class="sc">$</span>gene)</span>
+<span id="cb4-10"><a href="scrna-seq.html#cb4-10" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">DotPlot</span>(p53, <span class="at">features =</span> <span class="fu">rev</span>(gene.list), <span class="at">group.by =</span> <span class="st">&quot;CellType&quot;</span>, <span class="at">dot.scale =</span> <span class="dv">8</span>, <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&quot;#DDDDDD&quot;</span>, <span class="st">&quot;#003366&quot;</span> ), <span class="at">col.min =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span> <span class="fu">RotatedAxis</span>()</span>
+<span id="cb4-11"><a href="scrna-seq.html#cb4-11" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_base</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>,<span class="at">hjust =</span> <span class="dv">1</span>,<span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">size=</span><span class="dv">20</span>))</span>
+<span id="cb4-12"><a href="scrna-seq.html#cb4-12" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))</span>
+<span id="cb4-13"><a href="scrna-seq.html#cb4-13" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">coord_flip</span>() <span class="sc">+</span> <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>))</span>
+<span id="cb4-14"><a href="scrna-seq.html#cb4-14" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">gradient_color</span>(<span class="fu">c</span>(<span class="st">&quot;#EEEEEE&quot;</span>,<span class="st">&quot;#ffb459&quot;</span>,<span class="st">&quot;#e8613c&quot;</span>,<span class="st">&quot;#b70909&quot;</span>))</span>
+<span id="cb4-15"><a href="scrna-seq.html#cb4-15" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/Top.markers.CellType.pdf&quot;</span>), p, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">13</span>)</span></code></pre></div>
+</div>
+<div id="cellphonedb-analysis" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> CellPhoneDB analysis<a href="scrna-seq.html#cellphonedb-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="scrna-seq.html#cb5-1" tabindex="-1"></a><span class="do">########### cellphonedb</span></span>
+<span id="cb5-2"><a href="scrna-seq.html#cb5-2" tabindex="-1"></a>out.path.ccc <span class="ot">&lt;-</span> <span class="fu">paste0</span>(out.path, <span class="st">&quot;/ccc_all_state&quot;</span>)</span>
+<span id="cb5-3"><a href="scrna-seq.html#cb5-3" tabindex="-1"></a><span class="fu">system</span>(<span class="fu">sprintf</span>(<span class="st">&quot;mkdir %s&quot;</span>, out.path.ccc))</span>
+<span id="cb5-4"><a href="scrna-seq.html#cb5-4" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="scrna-seq.html#cb5-5" tabindex="-1"></a>gene.id <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;/public/home/daiyt/reference/human/hg38/gencode/gene.id.v40.txt&quot;</span>)</span>
+<span id="cb5-6"><a href="scrna-seq.html#cb5-6" tabindex="-1"></a>gene.id.coding <span class="ot">&lt;-</span> gene.id[<span class="fu">which</span>(gene.id<span class="sc">$</span>V6 <span class="sc">==</span> <span class="st">&quot;protein_coding&quot;</span>), ]</span>
+<span id="cb5-7"><a href="scrna-seq.html#cb5-7" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="scrna-seq.html#cb5-8" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="scrna-seq.html#cb5-9" tabindex="-1"></a>out.data <span class="ot">&lt;-</span> p53<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">@</span>data[, <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(p53<span class="sc">$</span>CellTypeAnno))]</span>
+<span id="cb5-10"><a href="scrna-seq.html#cb5-10" tabindex="-1"></a>out.data <span class="ot">&lt;-</span> out.data[<span class="fu">rowSums</span>(out.data) <span class="sc">&gt;</span> <span class="dv">0</span>, ]</span>
+<span id="cb5-11"><a href="scrna-seq.html#cb5-11" tabindex="-1"></a>out.data <span class="ot">&lt;-</span> out.data[<span class="fu">rownames</span>(out.data) <span class="sc">%in%</span> gene.id.coding<span class="sc">$</span>V7, ]</span>
+<span id="cb5-12"><a href="scrna-seq.html#cb5-12" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="scrna-seq.html#cb5-13" tabindex="-1"></a>out.data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(out.data)</span>
+<span id="cb5-14"><a href="scrna-seq.html#cb5-14" tabindex="-1"></a>out.data <span class="ot">&lt;-</span> <span class="fu">round</span>(out.data, <span class="dv">5</span>)</span>
+<span id="cb5-15"><a href="scrna-seq.html#cb5-15" tabindex="-1"></a>out.ccc.mat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Gene =</span> <span class="fu">rownames</span>(out.data), out.data)</span>
+<span id="cb5-16"><a href="scrna-seq.html#cb5-16" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="scrna-seq.html#cb5-17" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="scrna-seq.html#cb5-18" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="scrna-seq.html#cb5-19" tabindex="-1"></a>out.meta <span class="ot">&lt;-</span> p53<span class="sc">@</span>meta.data[<span class="fu">colnames</span>(out.data), <span class="fu">c</span>(<span class="st">&quot;CellType&quot;</span>,<span class="st">&quot;CellTypeAnno&quot;</span>)]</span>
+<span id="cb5-20"><a href="scrna-seq.html#cb5-20" tabindex="-1"></a><span class="fu">colnames</span>(out.meta) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Cell&quot;</span>, <span class="st">&quot;cell_type&quot;</span>)</span>
+<span id="cb5-21"><a href="scrna-seq.html#cb5-21" tabindex="-1"></a>out.meta<span class="sc">$</span>Cell <span class="ot">=</span> <span class="fu">rownames</span>(out.meta)</span>
+<span id="cb5-22"><a href="scrna-seq.html#cb5-22" tabindex="-1"></a>out.meta<span class="sc">$</span>Cell <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(out.meta<span class="sc">$</span>Cell, <span class="st">&quot;-&quot;</span>, <span class="st">&quot;.&quot;</span>)</span>
+<span id="cb5-23"><a href="scrna-seq.html#cb5-23" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="scrna-seq.html#cb5-24" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="scrna-seq.html#cb5-25" tabindex="-1"></a><span class="fu">sum</span>(out.meta<span class="sc">$</span>Cell <span class="sc">!=</span> <span class="fu">colnames</span>(out.ccc.mat)[<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(out.ccc.mat)])</span>
+<span id="cb5-26"><a href="scrna-seq.html#cb5-26" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="scrna-seq.html#cb5-27" tabindex="-1"></a><span class="fu">write.table</span>(out.ccc.mat, <span class="fu">paste0</span>(out.path.ccc, <span class="st">&quot;/exp.mat.txt&quot;</span>), <span class="at">row.names =</span> F, <span class="at">col.names =</span> T, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">quote =</span> F)</span>
+<span id="cb5-28"><a href="scrna-seq.html#cb5-28" tabindex="-1"></a><span class="fu">write.table</span>(out.meta, <span class="fu">paste0</span>(out.path.ccc, <span class="st">&quot;/meta.data.txt&quot;</span>), <span class="at">row.names =</span> F, <span class="at">col.names =</span> T, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">quote =</span> F)</span>
+<span id="cb5-29"><a href="scrna-seq.html#cb5-29" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="scrna-seq.html#cb5-30" tabindex="-1"></a><span class="st">&#39;</span></span>
+<span id="cb5-31"><a href="scrna-seq.html#cb5-31" tabindex="-1"></a><span class="st">cellphonedb method statistical_analysis meta.data.txt exp.mat.txt --threads=20 --iterations=100 --counts-data=gene_name --output-path=out.merge_tumor_T</span></span>
+<span id="cb5-32"><a href="scrna-seq.html#cb5-32" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="scrna-seq.html#cb5-33" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="scrna-seq.html#cb5-34" tabindex="-1"></a><span class="st">&#39;</span></span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tcga.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-scRNAseq.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["p53_immune_2025.pdf", "p53_immune_2025.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

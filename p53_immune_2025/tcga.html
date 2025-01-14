@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 TCGA | Immune analysis for p53 project</title>
+  <meta name="description" content="This is the tutorial of p53 project." />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 TCGA | Immune analysis for p53 project" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://nrctm-bioinfo.github.io/p53_immune_2025/index.html/figure/cover.jpg" />
+  <meta property="og:description" content="This is the tutorial of p53 project." />
+  <meta name="github-repo" content="NRCTM-bioinfo/p53_immune_2025" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 TCGA | Immune analysis for p53 project" />
+  
+  <meta name="twitter:description" content="This is the tutorial of p53 project." />
+  <meta name="twitter:image" content="https://nrctm-bioinfo.github.io/p53_immune_2025/index.html/figure/cover.jpg" />
+
+<meta name="author" content="Jia-Bing Li, Yu-Ting Dai" />
+
+
+<meta name="date" content="2025-01-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="scrna-seq.html"/>
+<link rel="next" href="about-this-project.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://github.com/NRCTM-bioinfo/p53_immune_2025"><center><b>p53_immune_2025</b></center></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="scrna-seq.html"><a href="scrna-seq.html"><i class="fa fa-check"></i><b>2</b> scRNA-seq</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="scrna-seq.html"><a href="scrna-seq.html#load-packages"><i class="fa fa-check"></i><b>2.1</b> Load packages</a></li>
+<li class="chapter" data-level="2.2" data-path="scrna-seq.html"><a href="scrna-seq.html#analysis-of-scrna-seq-data"><i class="fa fa-check"></i><b>2.2</b> Analysis of scRNA-seq data</a></li>
+<li class="chapter" data-level="2.3" data-path="scrna-seq.html"><a href="scrna-seq.html#visualization-of-scrna-seq-data"><i class="fa fa-check"></i><b>2.3</b> Visualization of scRNA-seq data</a></li>
+<li class="chapter" data-level="2.4" data-path="scrna-seq.html"><a href="scrna-seq.html#markers-identification"><i class="fa fa-check"></i><b>2.4</b> Markers identification</a></li>
+<li class="chapter" data-level="2.5" data-path="scrna-seq.html"><a href="scrna-seq.html#cellphonedb-analysis"><i class="fa fa-check"></i><b>2.5</b> CellPhoneDB analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="tcga.html"><a href="tcga.html"><i class="fa fa-check"></i><b>3</b> TCGA</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="tcga.html"><a href="tcga.html#download-data"><i class="fa fa-check"></i><b>3.1</b> Download data</a></li>
+<li class="chapter" data-level="3.2" data-path="tcga.html"><a href="tcga.html#load-packages-1"><i class="fa fa-check"></i><b>3.2</b> Load packages</a></li>
+<li class="chapter" data-level="3.3" data-path="tcga.html"><a href="tcga.html#estimate-score"><i class="fa fa-check"></i><b>3.3</b> Estimate score</a></li>
+<li class="chapter" data-level="3.4" data-path="tcga.html"><a href="tcga.html#visualization"><i class="fa fa-check"></i><b>3.4</b> Visualization</a></li>
+<li class="chapter" data-level="3.5" data-path="tcga.html"><a href="tcga.html#t-cell-signature"><i class="fa fa-check"></i><b>3.5</b> T-cell signature</a></li>
+<li class="chapter" data-level="3.6" data-path="tcga.html"><a href="tcga.html#t-cell-signature-1"><i class="fa fa-check"></i><b>3.6</b> T-cell signature</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="about-this-project.html"><a href="about-this-project.html"><i class="fa fa-check"></i><b>4</b> About this project</a>
+<ul>
+<li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#current-version"><i class="fa fa-check"></i>Current version</a></li>
+<li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#session-information"><i class="fa fa-check"></i>Session Information</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Immune analysis for p53 project</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tcga" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> TCGA<a href="tcga.html#tcga" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="download-data" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Download data<a href="tcga.html#download-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The RNA-seq gene expressions, clinical characteristics, and mutation information of TCGA Pan-Cancer Atlas were downloaded from UCSC Xena (<a href="https://xenabrowser.net/" class="uri">https://xenabrowser.net/</a>) via data page (<a href="https://xenabrowser.net/datapages/" class="uri">https://xenabrowser.net/datapages/</a>).</p>
+</div>
+<div id="load-packages-1" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Load packages<a href="tcga.html#load-packages-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="tcga.html#cb6-1" tabindex="-1"></a><span class="fu">suppressMessages</span>({</span>
+<span id="cb6-2"><a href="tcga.html#cb6-2" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb6-3"><a href="tcga.html#cb6-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb6-4"><a href="tcga.html#cb6-4" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb6-5"><a href="tcga.html#cb6-5" tabindex="-1"></a><span class="fu">library</span>(DESeq2)</span>
+<span id="cb6-6"><a href="tcga.html#cb6-6" tabindex="-1"></a><span class="fu">library</span>(estimate)</span>
+<span id="cb6-7"><a href="tcga.html#cb6-7" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-8"><a href="tcga.html#cb6-8" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb6-9"><a href="tcga.html#cb6-9" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb6-10"><a href="tcga.html#cb6-10" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span>
+<span id="cb6-11"><a href="tcga.html#cb6-11" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb6-12"><a href="tcga.html#cb6-12" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb6-13"><a href="tcga.html#cb6-13" tabindex="-1"></a>})</span>
+<span id="cb6-14"><a href="tcga.html#cb6-14" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="tcga.html#cb6-15" tabindex="-1"></a>color.lib <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#A6761D&quot;</span>, <span class="st">&quot;#A6CEE3&quot;</span>, <span class="st">&quot;#1F78B4&quot;</span>, <span class="st">&quot;#B2DF8A&quot;</span>, <span class="st">&quot;#33A02C&quot;</span>, <span class="st">&quot;#FB9A99&quot;</span>, </span>
+<span id="cb6-16"><a href="tcga.html#cb6-16" tabindex="-1"></a>               <span class="st">&quot;#E31A1C&quot;</span>, <span class="st">&quot;#FDBF6F&quot;</span>, <span class="st">&quot;#FF7F00&quot;</span>, <span class="st">&quot;#CAB2D6&quot;</span>, <span class="st">&quot;#6A3D9A&quot;</span>, <span class="st">&quot;#F4B3BE&quot;</span>,</span>
+<span id="cb6-17"><a href="tcga.html#cb6-17" tabindex="-1"></a>               <span class="st">&quot;#1B9E77&quot;</span>, <span class="st">&quot;#D95F02&quot;</span>, <span class="st">&quot;#7570B3&quot;</span>, <span class="st">&quot;#E7298A&quot;</span>, <span class="st">&quot;#66A61E&quot;</span>, <span class="st">&quot;#E6AB02&quot;</span>, </span>
+<span id="cb6-18"><a href="tcga.html#cb6-18" tabindex="-1"></a>               <span class="st">&quot;#F4A11D&quot;</span>, <span class="st">&quot;#8DC8ED&quot;</span>, <span class="st">&quot;#4C6CB0&quot;</span>, <span class="st">&quot;#8A1C1B&quot;</span>, <span class="st">&quot;#CBCC2B&quot;</span>, <span class="st">&quot;#EA644C&quot;</span>,</span>
+<span id="cb6-19"><a href="tcga.html#cb6-19" tabindex="-1"></a>               <span class="st">&quot;#634795&quot;</span>, <span class="st">&quot;#005B1D&quot;</span>, <span class="st">&quot;#26418A&quot;</span>, <span class="st">&quot;#CB8A93&quot;</span>, <span class="st">&quot;#F1E404&quot;</span>, <span class="st">&quot;#E22826&quot;</span>,</span>
+<span id="cb6-20"><a href="tcga.html#cb6-20" tabindex="-1"></a>               <span class="st">&quot;#50C1FF&quot;</span>, <span class="st">&quot;#F4D31D&quot;</span>, <span class="st">&quot;#F4A11D&quot;</span>, <span class="st">&quot;#82C800&quot;</span>, <span class="st">&quot;#8B5900&quot;</span>, <span class="st">&quot;#858ED1&quot;</span>,</span>
+<span id="cb6-21"><a href="tcga.html#cb6-21" tabindex="-1"></a>               <span class="st">&quot;#FF72E1&quot;</span>, <span class="st">&quot;#CB50B2&quot;</span>, <span class="st">&quot;#007D9B&quot;</span>, <span class="st">&quot;#26418A&quot;</span>, <span class="st">&quot;#8B495F&quot;</span>, <span class="st">&quot;#FF394B&quot;</span>)</span></code></pre></div>
+</div>
+<div id="estimate-score" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Estimate score<a href="tcga.html#estimate-score" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="tcga.html#cb7-1" tabindex="-1"></a><span class="do">######## estimate Score</span></span>
+<span id="cb7-2"><a href="tcga.html#cb7-2" tabindex="-1"></a>total.score <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb7-3"><a href="tcga.html#cb7-3" tabindex="-1"></a><span class="cf">for</span> (kkk <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">33</span>) {</span>
+<span id="cb7-4"><a href="tcga.html#cb7-4" tabindex="-1"></a>  <span class="fu">message</span>(kkk, <span class="st">&quot;   &quot;</span>, TCGA.COHORT[kkk])</span>
+<span id="cb7-5"><a href="tcga.html#cb7-5" tabindex="-1"></a>    sub <span class="ot">&lt;-</span> tcga.meta[<span class="fu">which</span>(tcga.meta<span class="sc">$</span>project_id <span class="sc">==</span> TCGA.COHORT[kkk] ), ]</span>
+<span id="cb7-6"><a href="tcga.html#cb7-6" tabindex="-1"></a>    sub.mat <span class="ot">&lt;-</span> tcga.fpkm[, sub<span class="sc">$</span>sample]</span>
+<span id="cb7-7"><a href="tcga.html#cb7-7" tabindex="-1"></a>    <span class="fu">write.table</span>(sub.mat, <span class="st">&quot;output/estimate/Exp.mat.txt&quot;</span>, <span class="at">row.names =</span> T, <span class="at">col.names =</span> T, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">quote =</span> F)</span>
+<span id="cb7-8"><a href="tcga.html#cb7-8" tabindex="-1"></a>    <span class="fu">filterCommonGenes</span>(<span class="at">input.f =</span> <span class="st">&quot;output/estimate/Exp.mat.txt&quot;</span>, </span>
+<span id="cb7-9"><a href="tcga.html#cb7-9" tabindex="-1"></a>                      <span class="at">output.f=</span><span class="st">&quot;output/estimate/Exp.mat.gct&quot;</span>, <span class="at">id=</span><span class="st">&quot;GeneSymbol&quot;</span>)</span>
+<span id="cb7-10"><a href="tcga.html#cb7-10" tabindex="-1"></a>    <span class="fu">estimateScore</span>(<span class="st">&quot;output/estimate/Exp.mat.gct&quot;</span>, <span class="st">&quot;output/estimate/estimateScore.gct&quot;</span>, <span class="at">platform=</span><span class="st">&quot;affymetrix&quot;</span>)</span>
+<span id="cb7-11"><a href="tcga.html#cb7-11" tabindex="-1"></a>  </span>
+<span id="cb7-12"><a href="tcga.html#cb7-12" tabindex="-1"></a>  estimate.score <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;output/estimate/estimateScore.gct&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> T, <span class="at">row.names =</span> <span class="dv">1</span>, <span class="at">check.names =</span> F)</span>
+<span id="cb7-13"><a href="tcga.html#cb7-13" tabindex="-1"></a>  estimate.score <span class="ot">&lt;-</span> estimate.score[, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb7-14"><a href="tcga.html#cb7-14" tabindex="-1"></a>  estimate.score <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">t</span>(estimate.score))</span>
+<span id="cb7-15"><a href="tcga.html#cb7-15" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(estimate.score)) {</span>
+<span id="cb7-16"><a href="tcga.html#cb7-16" tabindex="-1"></a>    estimate.score[, i] <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(estimate.score[, i])</span>
+<span id="cb7-17"><a href="tcga.html#cb7-17" tabindex="-1"></a>  }</span>
+<span id="cb7-18"><a href="tcga.html#cb7-18" tabindex="-1"></a>  estimate.score<span class="sc">$</span>Sample <span class="ot">&lt;-</span> <span class="fu">colnames</span>(sub.mat)</span>
+<span id="cb7-19"><a href="tcga.html#cb7-19" tabindex="-1"></a>  <span class="fu">write.xlsx</span>(estimate.score, <span class="fu">paste0</span>(<span class="st">&quot;output/estimate/&quot;</span>, TCGA.COHORT[kkk], <span class="st">&quot;.estimate.xlsx&quot;</span>))</span>
+<span id="cb7-20"><a href="tcga.html#cb7-20" tabindex="-1"></a>}</span>
+<span id="cb7-21"><a href="tcga.html#cb7-21" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="tcga.html#cb7-22" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="tcga.html#cb7-23" tabindex="-1"></a><span class="do">######## estimate Score</span></span>
+<span id="cb7-24"><a href="tcga.html#cb7-24" tabindex="-1"></a>total.score <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb7-25"><a href="tcga.html#cb7-25" tabindex="-1"></a><span class="cf">for</span> (kkk <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">33</span>) {</span>
+<span id="cb7-26"><a href="tcga.html#cb7-26" tabindex="-1"></a>  estimate.score <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="fu">paste0</span>(<span class="st">&quot;output/estimate/&quot;</span>, TCGA.COHORT[kkk], <span class="st">&quot;.estimate.xlsx&quot;</span>))</span>
+<span id="cb7-27"><a href="tcga.html#cb7-27" tabindex="-1"></a>  estimate.score<span class="sc">$</span>ImmuneScoreNor <span class="ot">&lt;-</span> estimate.score<span class="sc">$</span>ImmuneScore <span class="sc">-</span> <span class="fu">min</span>(estimate.score<span class="sc">$</span>ImmuneScore)</span>
+<span id="cb7-28"><a href="tcga.html#cb7-28" tabindex="-1"></a>  total.score <span class="ot">&lt;-</span> <span class="fu">rbind</span>(total.score, estimate.score)</span>
+<span id="cb7-29"><a href="tcga.html#cb7-29" tabindex="-1"></a>}</span>
+<span id="cb7-30"><a href="tcga.html#cb7-30" tabindex="-1"></a><span class="fu">write.xlsx</span>(total.score, <span class="st">&quot;output/estimate/1.ImmuneScore.xlsx&quot;</span>)</span></code></pre></div>
+</div>
+<div id="visualization" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Visualization<a href="tcga.html#visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="tcga.html#cb8-1" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;output/estimate/1.ImmuneScore.xlsx&quot;</span>)</span>
+<span id="cb8-2"><a href="tcga.html#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="tcga.html#cb8-3" tabindex="-1"></a>TCGA.ALL <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;TCGA-OV&quot;</span>,<span class="st">&quot;TCGA-UCS&quot;</span>,<span class="st">&quot;TCGA-LUSC&quot;</span>,<span class="st">&quot;TCGA-ESCA&quot;</span>,<span class="st">&quot;TCGA-READ&quot;</span>,<span class="st">&quot;TCGA-HNSC&quot;</span>,<span class="st">&quot;TCGA-PAAD&quot;</span>,</span>
+<span id="cb8-4"><a href="tcga.html#cb8-4" tabindex="-1"></a><span class="st">&quot;TCGA-COAD&quot;</span>,<span class="st">&quot;TCGA-LUAD&quot;</span>,<span class="st">&quot;TCGA-BLCA&quot;</span>,<span class="st">&quot;TCGA-STAD&quot;</span>,<span class="st">&quot;TCGA-LGG&quot;</span>,<span class="st">&quot;TCGA-UCEC&quot;</span>,<span class="st">&quot;TCGA-SARC&quot;</span>,</span>
+<span id="cb8-5"><a href="tcga.html#cb8-5" tabindex="-1"></a><span class="st">&quot;TCGA-BRCA&quot;</span>,<span class="st">&quot;TCGA-GBM&quot;</span>,<span class="st">&quot;TCGA-LIHC&quot;</span>,<span class="st">&quot;TCGA-KICH&quot;</span>,<span class="st">&quot;TCGA-ACC&quot;</span>,<span class="st">&quot;TCGA-MESO&quot;</span>,<span class="st">&quot;TCGA-DLBC&quot;</span>,</span>
+<span id="cb8-6"><a href="tcga.html#cb8-6" tabindex="-1"></a><span class="st">&quot;TCGA-PRAD&quot;</span>,<span class="st">&quot;TCGA-CHOL&quot;</span>,<span class="st">&quot;TCGA-SKCM&quot;</span>,<span class="st">&quot;TCGA-CESC&quot;</span>,<span class="st">&quot;TCGA-LAML&quot;</span>,<span class="st">&quot;TCGA-THYM&quot;</span>,<span class="st">&quot;TCGA-KIRC&quot;</span>,</span>
+<span id="cb8-7"><a href="tcga.html#cb8-7" tabindex="-1"></a><span class="st">&quot;TCGA-KIRP&quot;</span>,<span class="st">&quot;TCGA-TGCT&quot;</span>,<span class="st">&quot;TCGA-THCA&quot;</span>,<span class="st">&quot;TCGA-PCPG&quot;</span>,<span class="st">&quot;TCGA-UVM&quot;</span>)</span>
+<span id="cb8-8"><a href="tcga.html#cb8-8" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="tcga.html#cb8-9" tabindex="-1"></a>enroll.id <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;HNSC&quot;</span>,<span class="st">&quot;STAD&quot;</span>,<span class="st">&quot;LUSC&quot;</span>,<span class="st">&quot;COAD&quot;</span>,<span class="st">&quot;UCEC&quot;</span>,<span class="st">&quot;CESC&quot;</span>,<span class="st">&quot;GBM&quot;</span>,<span class="st">&quot;LIHC&quot;</span>,<span class="st">&quot;LUAD&quot;</span>,<span class="st">&quot;SKCM&quot;</span>,<span class="st">&quot;ESCA&quot;</span>,<span class="st">&quot;OV&quot;</span>,<span class="st">&quot;READ&quot;</span>,<span class="st">&quot;LAML&quot;</span>,<span class="st">&quot;PAAD&quot;</span>,<span class="st">&quot;BLCA&quot;</span>,<span class="st">&quot;PRAD&quot;</span>,<span class="st">&quot;SARC&quot;</span>,<span class="st">&quot;LGG&quot;</span>,<span class="st">&quot;BRCA&quot;</span>)</span>
+<span id="cb8-10"><a href="tcga.html#cb8-10" tabindex="-1"></a>enroll.id <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;TCGA-&quot;</span>, enroll.id)</span>
+<span id="cb8-11"><a href="tcga.html#cb8-11" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="tcga.html#cb8-12" tabindex="-1"></a>plot.info <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Cohort =</span> TCGA.ALL, <span class="at">Diff =</span> <span class="dv">0</span>, <span class="at">P =</span> <span class="cn">NA</span>)</span>
+<span id="cb8-13"><a href="tcga.html#cb8-13" tabindex="-1"></a>plot.info <span class="ot">&lt;-</span> plot.info[plot.info<span class="sc">$</span>Cohort <span class="sc">%in%</span> enroll.id, ]</span>
+<span id="cb8-14"><a href="tcga.html#cb8-14" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="tcga.html#cb8-15" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(plot.info)) {</span>
+<span id="cb8-16"><a href="tcga.html#cb8-16" tabindex="-1"></a>  sub <span class="ot">&lt;-</span> plot.data[<span class="fu">which</span>(plot.data<span class="sc">$</span>project_id <span class="sc">==</span> plot.info<span class="sc">$</span>Cohort[i] ), ]</span>
+<span id="cb8-17"><a href="tcga.html#cb8-17" tabindex="-1"></a>  sub<span class="fl">.1</span> <span class="ot">&lt;-</span> sub[<span class="fu">which</span>(sub<span class="sc">$</span>TP53mut <span class="sc">==</span> <span class="st">&quot;No&quot;</span>), ]</span>
+<span id="cb8-18"><a href="tcga.html#cb8-18" tabindex="-1"></a>  sub<span class="fl">.2</span> <span class="ot">&lt;-</span> sub[<span class="fu">which</span>(sub<span class="sc">$</span>TP53mut <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>), ]</span>
+<span id="cb8-19"><a href="tcga.html#cb8-19" tabindex="-1"></a>  plot.info<span class="sc">$</span>Score_wt[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(sub<span class="fl">.1</span><span class="sc">$</span>ImmuneScoreNor) </span>
+<span id="cb8-20"><a href="tcga.html#cb8-20" tabindex="-1"></a>  plot.info<span class="sc">$</span>Score_mut[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(sub<span class="fl">.2</span><span class="sc">$</span>ImmuneScoreNor) </span>
+<span id="cb8-21"><a href="tcga.html#cb8-21" tabindex="-1"></a>  plot.info<span class="sc">$</span>Diff[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(sub<span class="fl">.1</span><span class="sc">$</span>ImmuneScoreNor) <span class="sc">-</span> <span class="fu">mean</span>(sub<span class="fl">.2</span><span class="sc">$</span>ImmuneScoreNor)</span>
+<span id="cb8-22"><a href="tcga.html#cb8-22" tabindex="-1"></a>  plot.info<span class="sc">$</span>P[i] <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(sub<span class="fl">.1</span><span class="sc">$</span>ImmuneScoreNor, sub<span class="fl">.2</span><span class="sc">$</span>ImmuneScoreNor )<span class="sc">$</span>p.value</span>
+<span id="cb8-23"><a href="tcga.html#cb8-23" tabindex="-1"></a>}</span>
+<span id="cb8-24"><a href="tcga.html#cb8-24" tabindex="-1"></a>plot.info<span class="sc">$</span>LogP <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(plot.info<span class="sc">$</span>P)</span>
+<span id="cb8-25"><a href="tcga.html#cb8-25" tabindex="-1"></a>plot.info<span class="sc">$</span>AbsDiff <span class="ot">&lt;-</span> <span class="fu">abs</span>(plot.info<span class="sc">$</span>Diff)</span>
+<span id="cb8-26"><a href="tcga.html#cb8-26" tabindex="-1"></a>plot.info <span class="ot">&lt;-</span> plot.info[<span class="fu">order</span>(plot.info<span class="sc">$</span>LogP, <span class="at">decreasing =</span> T), ]</span>
+<span id="cb8-27"><a href="tcga.html#cb8-27" tabindex="-1"></a>plot.info<span class="sc">$</span>Type <span class="ot">&lt;-</span> <span class="st">&quot;notSig&quot;</span></span>
+<span id="cb8-28"><a href="tcga.html#cb8-28" tabindex="-1"></a>plot.info<span class="sc">$</span>Type[<span class="fu">which</span>(plot.info<span class="sc">$</span>P <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> plot.info<span class="sc">$</span>Diff <span class="sc">&gt;</span> <span class="dv">0</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;up&quot;</span></span>
+<span id="cb8-29"><a href="tcga.html#cb8-29" tabindex="-1"></a>plot.info<span class="sc">$</span>Type[<span class="fu">which</span>(plot.info<span class="sc">$</span>P <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> plot.info<span class="sc">$</span>Diff <span class="sc">&lt;</span> <span class="dv">0</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;down&quot;</span></span>
+<span id="cb8-30"><a href="tcga.html#cb8-30" tabindex="-1"></a>plot.info<span class="sc">$</span>Mod_P <span class="ot">&lt;-</span> plot.info<span class="sc">$</span>LogP</span>
+<span id="cb8-31"><a href="tcga.html#cb8-31" tabindex="-1"></a>plot.info<span class="sc">$</span>Mod_P[<span class="fu">which</span>(plot.info<span class="sc">$</span>Mod_P <span class="sc">&gt;</span> <span class="dv">4</span>)] <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb8-32"><a href="tcga.html#cb8-32" tabindex="-1"></a><span class="co">#plot.info$Mod_P[which(plot.info$Mod_P &lt; 1.30)] &lt;- 1.30</span></span>
+<span id="cb8-33"><a href="tcga.html#cb8-33" tabindex="-1"></a>plot.info<span class="sc">$</span>Sign_P <span class="ot">&lt;-</span> plot.info<span class="sc">$</span>Mod_P</span>
+<span id="cb8-34"><a href="tcga.html#cb8-34" tabindex="-1"></a>plot.info<span class="sc">$</span>Sign_P[<span class="fu">which</span>(plot.info<span class="sc">$</span>Diff <span class="sc">&lt;</span> <span class="dv">0</span> )] <span class="ot">&lt;-</span> plot.info<span class="sc">$</span>Sign_P[<span class="fu">which</span>(plot.info<span class="sc">$</span>Diff <span class="sc">&lt;</span> <span class="dv">0</span> )] <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb8-35"><a href="tcga.html#cb8-35" tabindex="-1"></a>plot.info<span class="sc">$</span>Label <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(plot.info<span class="sc">$</span>Cohort, <span class="st">&quot;TCGA-&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
+<span id="cb8-36"><a href="tcga.html#cb8-36" tabindex="-1"></a>plot.info<span class="sc">$</span>Label[<span class="fu">which</span>(plot.info<span class="sc">$</span>Type <span class="sc">==</span> <span class="st">&quot;notSig&quot;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb8-37"><a href="tcga.html#cb8-37" tabindex="-1"></a></span>
+<span id="cb8-38"><a href="tcga.html#cb8-38" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="tcga.html#cb8-39" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggscatter</span>(plot.info, <span class="at">x =</span> <span class="st">&quot;Score_mut&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Score_wt&quot;</span>,</span>
+<span id="cb8-40"><a href="tcga.html#cb8-40" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">&quot;Type&quot;</span>,</span>
+<span id="cb8-41"><a href="tcga.html#cb8-41" tabindex="-1"></a>               <span class="at">palette =</span> <span class="fu">c</span>(<span class="at">down =</span>  <span class="st">&quot;#2bb0f2&quot;</span>, <span class="at">up =</span> <span class="st">&quot;#CE0000&quot;</span>, <span class="at">notSig =</span> <span class="st">&quot;#666666&quot;</span>),</span>
+<span id="cb8-42"><a href="tcga.html#cb8-42" tabindex="-1"></a>               <span class="at">label =</span> <span class="st">&quot;Label&quot;</span>,</span>
+<span id="cb8-43"><a href="tcga.html#cb8-43" tabindex="-1"></a>               <span class="at">size =</span> <span class="st">&quot;Mod_P&quot;</span>)</span>
+<span id="cb8-44"><a href="tcga.html#cb8-44" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_base</span>() <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1000</span>,<span class="dv">2800</span>)) <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1000</span>,<span class="dv">2800</span>))</span>
+<span id="cb8-45"><a href="tcga.html#cb8-45" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">6</span>)) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb8-46"><a href="tcga.html#cb8-46" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="p53_immune_2025_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="t-cell-signature" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> T-cell signature<a href="tcga.html#t-cell-signature" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="tcga.html#cb9-1" tabindex="-1"></a>signature.t.cell <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;output/T_signature/T-marker.xlsx&quot;</span>)</span>
+<span id="cb9-2"><a href="tcga.html#cb9-2" tabindex="-1"></a>signature.t.cell<span class="sc">$</span>CellTypeAll <span class="ot">&lt;-</span> <span class="fu">paste0</span>(signature.t.cell<span class="sc">$</span>Cell, <span class="st">&quot;_&quot;</span>, signature.t.cell<span class="sc">$</span>CellType)</span>
+<span id="cb9-3"><a href="tcga.html#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="tcga.html#cb9-4" tabindex="-1"></a>score.mat <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb9-5"><a href="tcga.html#cb9-5" tabindex="-1"></a>plot.cell <span class="ot">&lt;-</span> <span class="fu">unique</span>(signature.t.cell<span class="sc">$</span>CellTypeAll)</span>
+<span id="cb9-6"><a href="tcga.html#cb9-6" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(plot.cell)) {</span>
+<span id="cb9-7"><a href="tcga.html#cb9-7" tabindex="-1"></a>  sub <span class="ot">&lt;-</span> signature.t.cell[<span class="fu">which</span>(signature.t.cell<span class="sc">$</span>CellTypeAll <span class="sc">==</span> plot.cell[i]), ]</span>
+<span id="cb9-8"><a href="tcga.html#cb9-8" tabindex="-1"></a>  sub.mat <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(tcga.fpkm[<span class="fu">rownames</span>(tcga.fpkm) <span class="sc">%in%</span> sub<span class="sc">$</span>Gene, ])</span>
+<span id="cb9-9"><a href="tcga.html#cb9-9" tabindex="-1"></a>  score.mat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(score.mat, sub.mat)</span>
+<span id="cb9-10"><a href="tcga.html#cb9-10" tabindex="-1"></a>}</span>
+<span id="cb9-11"><a href="tcga.html#cb9-11" tabindex="-1"></a><span class="fu">colnames</span>(score.mat) <span class="ot">&lt;-</span> plot.cell</span>
+<span id="cb9-12"><a href="tcga.html#cb9-12" tabindex="-1"></a><span class="fu">saveRDS</span>(score.mat, <span class="st">&quot;output/T_signature/t_signature.tcga.mat.rds&quot;</span>)</span></code></pre></div>
+</div>
+<div id="t-cell-signature-1" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> T-cell signature<a href="tcga.html#t-cell-signature-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="tcga.html#cb10-1" tabindex="-1"></a>score.mat <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;output/T_signature/t_signature.tcga.mat.rds&quot;</span>)</span>
+<span id="cb10-2"><a href="tcga.html#cb10-2" tabindex="-1"></a>tcga.meta <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;output/T_signature/tcga.meta.xlsx&quot;</span>)</span>
+<span id="cb10-3"><a href="tcga.html#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="tcga.html#cb10-4" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="tcga.html#cb10-5" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> tcga.meta[<span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(tcga.meta<span class="sc">$</span>TP53mut) <span class="sc">&amp;</span> tcga.meta<span class="sc">$</span>sample_type <span class="sc">==</span> <span class="st">&quot;Primary Tumor&quot;</span>), ]</span>
+<span id="cb10-6"><a href="tcga.html#cb10-6" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> plot.data[ plot.data<span class="sc">$</span>project_id <span class="sc">%in%</span> enroll.id, ]</span>
+<span id="cb10-7"><a href="tcga.html#cb10-7" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="tcga.html#cb10-8" tabindex="-1"></a>plot.info <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb10-9"><a href="tcga.html#cb10-9" tabindex="-1"></a><span class="cf">for</span> (kkk <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(score.mat)) {</span>
+<span id="cb10-10"><a href="tcga.html#cb10-10" tabindex="-1"></a>  plot.sub <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Cohort =</span> enroll.id, <span class="at">Diff =</span> <span class="dv">0</span>, <span class="at">P =</span> <span class="cn">NA</span>)</span>
+<span id="cb10-11"><a href="tcga.html#cb10-11" tabindex="-1"></a>  plot.sub <span class="ot">&lt;-</span> plot.sub[plot.sub<span class="sc">$</span>Cohort <span class="sc">%in%</span> enroll.id, ]</span>
+<span id="cb10-12"><a href="tcga.html#cb10-12" tabindex="-1"></a>  plot.data<span class="sc">$</span>Score <span class="ot">&lt;-</span> score.mat[plot.data<span class="sc">$</span>sample, kkk]</span>
+<span id="cb10-13"><a href="tcga.html#cb10-13" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(plot.sub)) {</span>
+<span id="cb10-14"><a href="tcga.html#cb10-14" tabindex="-1"></a>    sub <span class="ot">&lt;-</span> plot.data[<span class="fu">which</span>(plot.data<span class="sc">$</span>project_id <span class="sc">==</span> plot.sub<span class="sc">$</span>Cohort[i] ), ]</span>
+<span id="cb10-15"><a href="tcga.html#cb10-15" tabindex="-1"></a>    sub<span class="fl">.1</span> <span class="ot">&lt;-</span> sub[<span class="fu">which</span>(sub<span class="sc">$</span>TP53mut <span class="sc">==</span> <span class="st">&quot;No&quot;</span>), ]</span>
+<span id="cb10-16"><a href="tcga.html#cb10-16" tabindex="-1"></a>    sub<span class="fl">.2</span> <span class="ot">&lt;-</span> sub[<span class="fu">which</span>(sub<span class="sc">$</span>TP53mut <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>), ]</span>
+<span id="cb10-17"><a href="tcga.html#cb10-17" tabindex="-1"></a>    plot.sub<span class="sc">$</span>Diff[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(sub<span class="fl">.1</span><span class="sc">$</span>Score) <span class="sc">-</span> <span class="fu">mean</span>(sub<span class="fl">.2</span><span class="sc">$</span>Score)</span>
+<span id="cb10-18"><a href="tcga.html#cb10-18" tabindex="-1"></a>    plot.sub<span class="sc">$</span>P[i] <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(sub<span class="fl">.1</span><span class="sc">$</span>Score, sub<span class="fl">.2</span><span class="sc">$</span>Score, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)<span class="sc">$</span>p.value</span>
+<span id="cb10-19"><a href="tcga.html#cb10-19" tabindex="-1"></a>  }</span>
+<span id="cb10-20"><a href="tcga.html#cb10-20" tabindex="-1"></a>  plot.sub<span class="sc">$</span>CellTypeAll <span class="ot">&lt;-</span> <span class="fu">colnames</span>(score.mat)[kkk]</span>
+<span id="cb10-21"><a href="tcga.html#cb10-21" tabindex="-1"></a>  plot.info <span class="ot">&lt;-</span> <span class="fu">rbind</span>(plot.info, plot.sub)</span>
+<span id="cb10-22"><a href="tcga.html#cb10-22" tabindex="-1"></a>}</span>
+<span id="cb10-23"><a href="tcga.html#cb10-23" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="tcga.html#cb10-24" tabindex="-1"></a>plot.info<span class="sc">$</span>LogP <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(plot.info<span class="sc">$</span>P)</span>
+<span id="cb10-25"><a href="tcga.html#cb10-25" tabindex="-1"></a>plot.info<span class="sc">$</span>AbsDiff <span class="ot">&lt;-</span> <span class="fu">abs</span>(plot.info<span class="sc">$</span>Diff)</span>
+<span id="cb10-26"><a href="tcga.html#cb10-26" tabindex="-1"></a>plot.info<span class="sc">$</span>Type <span class="ot">&lt;-</span> <span class="st">&quot;notSig&quot;</span></span>
+<span id="cb10-27"><a href="tcga.html#cb10-27" tabindex="-1"></a>plot.info<span class="sc">$</span>Type[<span class="fu">which</span>(plot.info<span class="sc">$</span>P <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> plot.info<span class="sc">$</span>Diff <span class="sc">&gt;</span> <span class="dv">0</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;up&quot;</span></span>
+<span id="cb10-28"><a href="tcga.html#cb10-28" tabindex="-1"></a>plot.info<span class="sc">$</span>Type[<span class="fu">which</span>(plot.info<span class="sc">$</span>P <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> plot.info<span class="sc">$</span>Diff <span class="sc">&lt;</span> <span class="dv">0</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;down&quot;</span></span>
+<span id="cb10-29"><a href="tcga.html#cb10-29" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="tcga.html#cb10-30" tabindex="-1"></a>plot.info<span class="sc">$</span>Cohort <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">as.character</span>(plot.info<span class="sc">$</span>Cohort), <span class="at">levels =</span> <span class="fu">rev</span>(enroll.id) )</span>
+<span id="cb10-31"><a href="tcga.html#cb10-31" tabindex="-1"></a>plot.info<span class="sc">$</span>CellTypeAll <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">as.character</span>(plot.info<span class="sc">$</span>CellTypeAll), <span class="at">levels =</span> <span class="fu">colnames</span>(score.mat) )</span>
+<span id="cb10-32"><a href="tcga.html#cb10-32" tabindex="-1"></a></span>
+<span id="cb10-33"><a href="tcga.html#cb10-33" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot.info, <span class="fu">aes</span>( <span class="at">x =</span> CellTypeAll, <span class="at">y =</span> Cohort )) <span class="sc">+</span></span>
+<span id="cb10-34"><a href="tcga.html#cb10-34" tabindex="-1"></a>  <span class="fu">geom_point</span>( <span class="fu">aes</span>(<span class="at">size =</span> LogP, <span class="at">color =</span> Type), <span class="at">shape =</span> <span class="dv">15</span> )</span>
+<span id="cb10-35"><a href="tcga.html#cb10-35" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">&quot;T cell score&quot;</span>), <span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb10-36"><a href="tcga.html#cb10-36" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">down =</span> <span class="st">&quot;#9bdfff&quot;</span>, <span class="at">notSig =</span> <span class="st">&quot;#EEEEEE&quot;</span>, <span class="at">up =</span> <span class="st">&quot;#CE0000&quot;</span>) )</span>
+<span id="cb10-37"><a href="tcga.html#cb10-37" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb10-38"><a href="tcga.html#cb10-38" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>,<span class="at">hjust =</span> <span class="dv">1</span>,<span class="at">vjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb10-39"><a href="tcga.html#cb10-39" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)) </span>
+<span id="cb10-40"><a href="tcga.html#cb10-40" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="p53_immune_2025_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="scrna-seq.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="about-this-project.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-TCGA.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["p53_immune_2025.pdf", "p53_immune_2025.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
