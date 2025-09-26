@@ -30,14 +30,11 @@ See the tutorial of MM CAR-T project, please visit [Tutorial of MM-CAR-T](https:
 See the tutorial of p53 immune project, please visit [Tutorial of p53_immune_2025](https://nrctm-bioinfo.github.io/p53_immune_2025/index.html).
 
 
-### NRCTM bioinformatics course II : Metabolomics_tutorial
+### PitNETs project (2025)
 
-please visit [Metabolomics_tutorial](https://nrctm-bioinfo.github.io/Metabolomics_course/index.html) 
+See the tutorial of PitNETs project, please visit [Tutorial of PitNETs_project_2025](https://nrctm-bioinfo.github.io/PitNETs_project_2025/index.html).
 
 
-### NRCTM bioinformatics course III : RNA&PRO_tutorial
-
-please visit [RNA&PRO_tutorial](https://nrctm-bioinfo.github.io/RNA_PRO_course/index.html) 
 
 
 

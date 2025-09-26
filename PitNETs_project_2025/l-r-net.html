@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 L-R net | PitNETs 2025</title>
+  <meta name="description" content="This is the tutorial of PitNETs project (2025)." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 L-R net | PitNETs 2025" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://nrctm-bioinfo.github.io/PitNETs_project_2025/index.html/figure/cover.jpg" />
+  <meta property="og:description" content="This is the tutorial of PitNETs project (2025)." />
+  <meta name="github-repo" content="NRCTM-bioinfo/HematoMap" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 L-R net | PitNETs 2025" />
+  
+  <meta name="twitter:description" content="This is the tutorial of PitNETs project (2025)." />
+  <meta name="twitter:image" content="https://nrctm-bioinfo.github.io/PitNETs_project_2025/index.html/figure/cover.jpg" />
+
+<meta name="author" content="Yu-Ting Dai" />
+
+
+<meta name="date" content="2025-09-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="post-surgery.html"/>
+<link rel="next" href="about-pitnets-2025.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://github.com/NRCTM-bioinfo/PitNETs_project_2025"><center><b>PitNETs 2025</b></center></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Abstract</a></li>
+<li class="chapter" data-level="2" data-path="pitnets.html"><a href="pitnets.html"><i class="fa fa-check"></i><b>2</b> PitNETs</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="pitnets.html"><a href="pitnets.html#rna-seq-data"><i class="fa fa-check"></i><b>2.1</b> RNA-seq data</a></li>
+<li class="chapter" data-level="2.2" data-path="pitnets.html"><a href="pitnets.html#pca"><i class="fa fa-check"></i><b>2.2</b> PCA</a></li>
+<li class="chapter" data-level="2.3" data-path="pitnets.html"><a href="pitnets.html#degs"><i class="fa fa-check"></i><b>2.3</b> DEGs</a></li>
+<li class="chapter" data-level="2.4" data-path="pitnets.html"><a href="pitnets.html#enrichment"><i class="fa fa-check"></i><b>2.4</b> Enrichment</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="pitnet-pbmc.html"><a href="pitnet-pbmc.html"><i class="fa fa-check"></i><b>3</b> PitNET PBMC</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="pitnet-pbmc.html"><a href="pitnet-pbmc.html#preprocessing"><i class="fa fa-check"></i><b>3.1</b> Preprocessing</a></li>
+<li class="chapter" data-level="3.2" data-path="pitnet-pbmc.html"><a href="pitnet-pbmc.html#immune-signatures"><i class="fa fa-check"></i><b>3.2</b> Immune signatures</a></li>
+<li class="chapter" data-level="3.3" data-path="pitnet-pbmc.html"><a href="pitnet-pbmc.html#bre"><i class="fa fa-check"></i><b>3.3</b> BRE</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="post-surgery.html"><a href="post-surgery.html"><i class="fa fa-check"></i><b>4</b> Post-surgery</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="post-surgery.html"><a href="post-surgery.html#bre-1"><i class="fa fa-check"></i><b>4.1</b> BRE</a></li>
+<li class="chapter" data-level="4.2" data-path="post-surgery.html"><a href="post-surgery.html#pitnet-tissue"><i class="fa fa-check"></i><b>4.2</b> PitNET tissue</a></li>
+<li class="chapter" data-level="4.3" data-path="post-surgery.html"><a href="post-surgery.html#scrna-seq"><i class="fa fa-check"></i><b>4.3</b> scRNA-seq</a></li>
+<li class="chapter" data-level="4.4" data-path="post-surgery.html"><a href="post-surgery.html#infercnv"><i class="fa fa-check"></i><b>4.4</b> inferCNV</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="l-r-net.html"><a href="l-r-net.html"><i class="fa fa-check"></i><b>5</b> L-R net</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="l-r-net.html"><a href="l-r-net.html#ligand-clusters"><i class="fa fa-check"></i><b>5.1</b> Ligand clusters</a></li>
+<li class="chapter" data-level="5.2" data-path="l-r-net.html"><a href="l-r-net.html#receptor"><i class="fa fa-check"></i><b>5.2</b> Receptor</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="about-pitnets-2025.html"><a href="about-pitnets-2025.html"><i class="fa fa-check"></i><b>6</b> About PitNETs 2025</a>
+<ul>
+<li class="chapter" data-level="" data-path="about-pitnets-2025.html"><a href="about-pitnets-2025.html#current-version"><i class="fa fa-check"></i>Current version</a></li>
+<li class="chapter" data-level="" data-path="about-pitnets-2025.html"><a href="about-pitnets-2025.html#session-information"><i class="fa fa-check"></i>Session Information</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">PitNETs 2025</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="l-r-net" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> L-R net<a href="l-r-net.html#l-r-net" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="ligand-clusters" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Ligand clusters<a href="l-r-net.html#ligand-clusters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="l-r-net.html#cb47-1" tabindex="-1"></a>node.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;data/node.data.xlsx&quot;</span>)</span>
+<span id="cb47-2"><a href="l-r-net.html#cb47-2" tabindex="-1"></a>edge.data <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(<span class="st">&quot;data/edge.data.xlsx&quot;</span>)</span>
+<span id="cb47-3"><a href="l-r-net.html#cb47-3" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="l-r-net.html#cb47-4" tabindex="-1"></a>mat.receptor <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/mat.receptor.rds&quot;</span>)</span>
+<span id="cb47-5"><a href="l-r-net.html#cb47-5" tabindex="-1"></a>mat.ligand <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/mat.ligand.rds&quot;</span>)</span>
+<span id="cb47-6"><a href="l-r-net.html#cb47-6" tabindex="-1"></a></span>
+<span id="cb47-7"><a href="l-r-net.html#cb47-7" tabindex="-1"></a></span>
+<span id="cb47-8"><a href="l-r-net.html#cb47-8" tabindex="-1"></a>gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()</span>
+<span id="cb47-9"><a href="l-r-net.html#cb47-9" tabindex="-1"></a>gg <span class="ot">&lt;-</span> gg <span class="sc">+</span> <span class="fu">geom_segment</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> from.x, <span class="at">y =</span> from.y, <span class="at">xend =</span> to.x, <span class="at">yend =</span> to.y), <span class="at">color =</span> <span class="st">&quot;#CCCCCC&quot;</span>, <span class="at">size =</span> <span class="fl">0.05</span>, <span class="at">data =</span> edge.data)</span>
+<span id="cb47-10"><a href="l-r-net.html#cb47-10" tabindex="-1"></a>gg <span class="ot">&lt;-</span> gg <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> pos.x, <span class="at">y =</span> pos.y, <span class="at">color =</span> Cluster), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">shape =</span> <span class="dv">18</span>,</span>
+<span id="cb47-11"><a href="l-r-net.html#cb47-11" tabindex="-1"></a>                      <span class="at">data =</span> node.data[<span class="fu">which</span>(node.data<span class="sc">$</span>Type <span class="sc">==</span> <span class="st">&quot;Receptor&quot;</span>), ])</span>
+<span id="cb47-12"><a href="l-r-net.html#cb47-12" tabindex="-1"></a>gg <span class="ot">&lt;-</span> gg <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> pos.x, <span class="at">y =</span> pos.y, <span class="at">color =</span> Cluster), <span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">16</span>,</span>
+<span id="cb47-13"><a href="l-r-net.html#cb47-13" tabindex="-1"></a>                      <span class="at">data =</span> node.data[<span class="fu">which</span>(node.data<span class="sc">$</span>Type <span class="sc">==</span> <span class="st">&quot;Ligand&quot;</span>), ])</span>
+<span id="cb47-14"><a href="l-r-net.html#cb47-14" tabindex="-1"></a>gg <span class="ot">&lt;-</span> gg <span class="sc">+</span> <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>) <span class="sc">*</span> <span class="dv">2</span>)</span>
+<span id="cb47-15"><a href="l-r-net.html#cb47-15" tabindex="-1"></a>gg <span class="ot">&lt;-</span> gg <span class="sc">+</span> <span class="fu">theme_void</span>()</span>
+<span id="cb47-16"><a href="l-r-net.html#cb47-16" tabindex="-1"></a>gg <span class="ot">&lt;-</span> gg <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>, <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">&quot;PPI&quot;</span>))</span>
+<span id="cb47-17"><a href="l-r-net.html#cb47-17" tabindex="-1"></a>gg <span class="ot">&lt;-</span> gg <span class="sc">+</span> <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(color.lr))</span>
+<span id="cb47-18"><a href="l-r-net.html#cb47-18" tabindex="-1"></a>gg</span></code></pre></div>
+<p><img src="PitNETs-2025_files/figure-html/unnamed-chunk-18-1.png" width="528" style="display: block; margin: auto;" /></p>
+</div>
+<div id="receptor" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Receptor<a href="l-r-net.html#receptor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="l-r-net.html#cb48-1" tabindex="-1"></a>plot.mat <span class="ot">&lt;-</span> mat.receptor[node.data<span class="sc">$</span>Gene[<span class="fu">which</span>(node.data<span class="sc">$</span>Type <span class="sc">==</span> <span class="st">&quot;Receptor&quot;</span>) ], ]</span>
+<span id="cb48-2"><a href="l-r-net.html#cb48-2" tabindex="-1"></a>plot.mat <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">scale</span>(<span class="fu">t</span>(plot.mat)))</span>
+<span id="cb48-3"><a href="l-r-net.html#cb48-3" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="l-r-net.html#cb48-4" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="l-r-net.html#cb48-5" tabindex="-1"></a>plot.cell <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;TB-CD4T_naive&quot;</span>,<span class="st">&quot;TB-CD4T_Tem&quot;</span>,<span class="st">&quot;TB-CD4T_Treg&quot;</span>,<span class="st">&quot;TB-CD8T_naive&quot;</span>,<span class="st">&quot;TB-CD8T_Tm&quot;</span>,</span>
+<span id="cb48-6"><a href="l-r-net.html#cb48-6" tabindex="-1"></a>              <span class="st">&quot;TB-CD8T_Tem&quot;</span>,<span class="st">&quot;TB-NKcell&quot;</span>,<span class="st">&quot;TB-B_cell&quot;</span>,<span class="st">&quot;TB-pDC&quot;</span>,<span class="st">&quot;TB-Monocyte_CD14&quot;</span>)</span>
+<span id="cb48-7"><a href="l-r-net.html#cb48-7" tabindex="-1"></a>plot.total.edge <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb48-8"><a href="l-r-net.html#cb48-8" tabindex="-1"></a>plot.total.node <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb48-9"><a href="l-r-net.html#cb48-9" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(plot.cell)) {</span>
+<span id="cb48-10"><a href="l-r-net.html#cb48-10" tabindex="-1"></a>  sub<span class="fl">.1</span> <span class="ot">&lt;-</span> edge.data </span>
+<span id="cb48-11"><a href="l-r-net.html#cb48-11" tabindex="-1"></a>  sub<span class="fl">.1</span><span class="sc">$</span>Group <span class="ot">&lt;-</span> plot.cell[i]</span>
+<span id="cb48-12"><a href="l-r-net.html#cb48-12" tabindex="-1"></a>  </span>
+<span id="cb48-13"><a href="l-r-net.html#cb48-13" tabindex="-1"></a>  sub<span class="fl">.2</span> <span class="ot">&lt;-</span> node.data</span>
+<span id="cb48-14"><a href="l-r-net.html#cb48-14" tabindex="-1"></a>  sub<span class="fl">.2</span><span class="sc">$</span>Group <span class="ot">&lt;-</span> plot.cell[i]</span>
+<span id="cb48-15"><a href="l-r-net.html#cb48-15" tabindex="-1"></a>  sub<span class="fl">.2</span><span class="sc">$</span>ReceptorExp <span class="ot">&lt;-</span> plot.mat[<span class="fu">match</span>(sub<span class="fl">.2</span><span class="sc">$</span>Gene, <span class="fu">rownames</span>(plot.mat)), plot.cell[i]]</span>
+<span id="cb48-16"><a href="l-r-net.html#cb48-16" tabindex="-1"></a>  sub<span class="fl">.2</span> <span class="ot">&lt;-</span> sub<span class="fl">.2</span>[<span class="fu">order</span>(sub<span class="fl">.2</span><span class="sc">$</span>ReceptorExp), ]</span>
+<span id="cb48-17"><a href="l-r-net.html#cb48-17" tabindex="-1"></a>  plot.total.edge <span class="ot">&lt;-</span> <span class="fu">rbind</span>(plot.total.edge, sub<span class="fl">.1</span>)</span>
+<span id="cb48-18"><a href="l-r-net.html#cb48-18" tabindex="-1"></a>  plot.total.node <span class="ot">&lt;-</span> <span class="fu">rbind</span>(plot.total.node, sub<span class="fl">.2</span>)</span>
+<span id="cb48-19"><a href="l-r-net.html#cb48-19" tabindex="-1"></a>}</span>
+<span id="cb48-20"><a href="l-r-net.html#cb48-20" tabindex="-1"></a>plot.total.node<span class="sc">$</span>ReceptorExpMod <span class="ot">&lt;-</span> plot.total.node<span class="sc">$</span>ReceptorExp</span>
+<span id="cb48-21"><a href="l-r-net.html#cb48-21" tabindex="-1"></a>plot.total.node<span class="sc">$</span>ReceptorExpMod[<span class="fu">which</span>(plot.total.node<span class="sc">$</span>ReceptorExp <span class="sc">&gt;</span> <span class="dv">2</span>)] <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb48-22"><a href="l-r-net.html#cb48-22" tabindex="-1"></a>plot.total.node<span class="sc">$</span>ReceptorExpMod[<span class="fu">which</span>(plot.total.node<span class="sc">$</span>ReceptorExp <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">2</span>)] <span class="ot">=</span> <span class="sc">-</span><span class="dv">2</span></span>
+<span id="cb48-23"><a href="l-r-net.html#cb48-23" tabindex="-1"></a>plot.total.node<span class="sc">$</span>Group <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">as.character</span>(plot.total.node<span class="sc">$</span>Group), <span class="at">levels =</span> plot.cell)</span>
+<span id="cb48-24"><a href="l-r-net.html#cb48-24" tabindex="-1"></a>plot.total.edge<span class="sc">$</span>Group <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">as.character</span>(plot.total.edge<span class="sc">$</span>Group), <span class="at">levels =</span> plot.cell)</span>
+<span id="cb48-25"><a href="l-r-net.html#cb48-25" tabindex="-1"></a>gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>()</span>
+<span id="cb48-26"><a href="l-r-net.html#cb48-26" tabindex="-1"></a>gg <span class="ot">&lt;-</span> gg <span class="sc">+</span> <span class="fu">geom_segment</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> from.x, <span class="at">y =</span> from.y, <span class="at">xend =</span> to.x, <span class="at">yend =</span> to.y), <span class="at">color =</span> <span class="st">&quot;#CCCCCC&quot;</span>, <span class="at">size =</span> <span class="fl">0.05</span>, <span class="at">data =</span> plot.total.edge)</span>
+<span id="cb48-27"><a href="l-r-net.html#cb48-27" tabindex="-1"></a>gg <span class="ot">&lt;-</span> gg <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> pos.x, <span class="at">y =</span> pos.y), <span class="at">color =</span> <span class="st">&quot;#CCCCCC&quot;</span>, <span class="at">size =</span> <span class="fl">0.2</span>, <span class="at">shape =</span> <span class="dv">16</span>,</span>
+<span id="cb48-28"><a href="l-r-net.html#cb48-28" tabindex="-1"></a>                      <span class="at">data =</span> plot.total.node[<span class="fu">which</span>(plot.total.node<span class="sc">$</span>Type <span class="sc">==</span> <span class="st">&quot;Ligand&quot;</span>), ])</span>
+<span id="cb48-29"><a href="l-r-net.html#cb48-29" tabindex="-1"></a>gg <span class="ot">&lt;-</span> gg <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> pos.x, <span class="at">y =</span> pos.y, <span class="at">color =</span> ReceptorExpMod), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">shape =</span> <span class="dv">18</span>,</span>
+<span id="cb48-30"><a href="l-r-net.html#cb48-30" tabindex="-1"></a>                      <span class="at">data =</span> plot.total.node[<span class="fu">which</span>(plot.total.node<span class="sc">$</span>Type <span class="sc">==</span> <span class="st">&quot;Receptor&quot;</span>), ])</span>
+<span id="cb48-31"><a href="l-r-net.html#cb48-31" tabindex="-1"></a>gg <span class="ot">&lt;-</span> gg <span class="sc">+</span> <span class="fu">theme_void</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span> Group, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
+<span id="cb48-32"><a href="l-r-net.html#cb48-32" tabindex="-1"></a>gg <span class="ot">&lt;-</span> gg <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;&quot;</span>, <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">&quot;PPI&quot;</span>))</span>
+<span id="cb48-33"><a href="l-r-net.html#cb48-33" tabindex="-1"></a>gg <span class="ot">&lt;-</span> gg <span class="sc">+</span><span class="fu">scale_colour_gradientn</span>(<span class="at">colors =</span> <span class="fu">c</span>(<span class="st">&quot;#00408e&quot;</span>,</span>
+<span id="cb48-34"><a href="l-r-net.html#cb48-34" tabindex="-1"></a>                                            <span class="st">&quot;#007ed8&quot;</span>,<span class="st">&quot;#62aee5&quot;</span>,<span class="st">&quot;#a8dcff&quot;</span>,</span>
+<span id="cb48-35"><a href="l-r-net.html#cb48-35" tabindex="-1"></a>                                            <span class="st">&quot;#fffef3&quot;</span>,</span>
+<span id="cb48-36"><a href="l-r-net.html#cb48-36" tabindex="-1"></a>                                            <span class="st">&quot;#ffca79&quot;</span>,<span class="st">&quot;#e5524c&quot;</span>,<span class="st">&quot;#c52f4e&quot;</span>,</span>
+<span id="cb48-37"><a href="l-r-net.html#cb48-37" tabindex="-1"></a>                                            <span class="st">&quot;#D01910&quot;</span>))</span>
+<span id="cb48-38"><a href="l-r-net.html#cb48-38" tabindex="-1"></a>gg</span></code></pre></div>
+<p><img src="PitNETs-2025_files/figure-html/unnamed-chunk-19-1.png" width="1152" style="display: block; margin: auto;" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="post-surgery.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="about-pitnets-2025.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-LRnet.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["PitNETs-2025.pdf", "PitNETs-2025.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>
