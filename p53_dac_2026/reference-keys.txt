@@ -1,5 +1,6 @@
 introduction
 scrna-seq
+preprocessing
 load-packages
 analysis-of-scrna-seq-data
 visualization-of-scrna-seq-data
@@ -7,4 +8,8 @@ qc-for-droplets
 merge-scrna-seq-data
 markers-identification
 cellphonedb-analysis
+rna-seq
+preprocessing-1
+salmon
+ervmap
 about-this-project
