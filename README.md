@@ -29,6 +29,10 @@ See the tutorial of MM CAR-T project, please visit [Tutorial of MM-CAR-T](https:
 
 See the tutorial of p53 immune project, please visit [Tutorial of p53_immune_2025](https://nrctm-bioinfo.github.io/p53_immune_2025/index.html).
 
+### p53 dac project (2026)
+
+See the tutorial of p53 dac project, please visit [Tutorial of p53_dac_2026](https://nrctm-bioinfo.github.io/p53_dac_2026/index.html).
+
 
 ### PitNETs project (2025)
 
