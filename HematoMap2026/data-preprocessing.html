@@ -144,12 +144,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="data-preprocessing.html"><a href="data-preprocessing.html"><i class="fa fa-check"></i><b>2</b> Data Preprocessing</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="data-preprocessing.html"><a href="data-preprocessing.html#scrna-seq"><i class="fa fa-check"></i><b>2.1</b> scRNA-seq</a>
+<li class="chapter" data-level="2.1" data-path="data-preprocessing.html"><a href="data-preprocessing.html#scrna-seq-data"><i class="fa fa-check"></i><b>2.1</b> scRNA-seq data</a>
 <ul>
 <li class="chapter" data-level="2.1.1" data-path="data-preprocessing.html"><a href="data-preprocessing.html#preprocessing"><i class="fa fa-check"></i><b>2.1.1</b> Preprocessing</a></li>
 <li class="chapter" data-level="2.1.2" data-path="data-preprocessing.html"><a href="data-preprocessing.html#rna-loom"><i class="fa fa-check"></i><b>2.1.2</b> RNA loom</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="data-preprocessing.html"><a href="data-preprocessing.html#spatial"><i class="fa fa-check"></i><b>2.2</b> Spatial</a>
+<li class="chapter" data-level="2.2" data-path="data-preprocessing.html"><a href="data-preprocessing.html#spatial-data"><i class="fa fa-check"></i><b>2.2</b> Spatial data</a>
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="data-preprocessing.html"><a href="data-preprocessing.html#preprocessing-1"><i class="fa fa-check"></i><b>2.2.1</b> Preprocessing</a></li>
 </ul></li>
@@ -161,10 +161,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3" data-path="scrna-seq-analysis.html"><a href="scrna-seq-analysis.html#marker-plot"><i class="fa fa-check"></i><b>3.3</b> Marker plot</a></li>
 <li class="chapter" data-level="3.4" data-path="scrna-seq-analysis.html"><a href="scrna-seq-analysis.html#knn"><i class="fa fa-check"></i><b>3.4</b> KNN</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="spatial-1.html"><a href="spatial-1.html"><i class="fa fa-check"></i><b>4</b> Spatial</a>
+<li class="chapter" data-level="4" data-path="spatial-analysis.html"><a href="spatial-analysis.html"><i class="fa fa-check"></i><b>4</b> Spatial analysis</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="spatial-1.html"><a href="spatial-1.html#preprocessing-2"><i class="fa fa-check"></i><b>4.1</b> Preprocessing</a></li>
-<li class="chapter" data-level="4.2" data-path="spatial-1.html"><a href="spatial-1.html#aucell"><i class="fa fa-check"></i><b>4.2</b> AUCell</a></li>
+<li class="chapter" data-level="4.1" data-path="spatial-analysis.html"><a href="spatial-analysis.html#preprocessing-2"><i class="fa fa-check"></i><b>4.1</b> Preprocessing</a></li>
+<li class="chapter" data-level="4.2" data-path="spatial-analysis.html"><a href="spatial-analysis.html#aucell"><i class="fa fa-check"></i><b>4.2</b> AUCell</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="about-this-project.html"><a href="about-this-project.html"><i class="fa fa-check"></i><b>5</b> About this project</a>
 <ul>
@@ -193,8 +193,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-preprocessing" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Data Preprocessing<a href="data-preprocessing.html#data-preprocessing" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This chapter describes the preprocessing workflows for single-cell RNA sequencing and spatial transcriptomic data. The scripts process sequencing reads into gene expression matrices, immune receptor annotations, and spatially resolved expression outputs. Additional preprocessing generates loom files for downstream RNA velocity analysis.</p>
-<div id="scrna-seq" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> scRNA-seq<a href="data-preprocessing.html#scrna-seq" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="scrna-seq-data" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> scRNA-seq data<a href="data-preprocessing.html#scrna-seq-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Single-cell preprocessing includes gene expression quantification, T-cell receptor (TCR) and B-cell receptor (BCR) reconstruction where corresponding libraries are available, and preparation of spliced and unspliced count matrices.</p>
 <div id="preprocessing" class="section level3 hasAnchor" number="2.1.1">
 <h3><span class="header-section-number">2.1.1</span> Preprocessing<a href="data-preprocessing.html#preprocessing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -261,8 +261,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-19"><a href="data-preprocessing.html#cb2-19" tabindex="-1"></a>  <span class="sc">-</span>o <span class="sc">$</span>{out_path}<span class="sc">/</span><span class="er">$</span>{sample} <span class="sc">-</span><span class="er">@</span> <span class="dv">40</span> <span class="sc">$</span>{bam_path}<span class="sc">/</span><span class="er">$</span>{sample}_RNA<span class="sc">/</span>outs<span class="sc">/</span>possorted_genome_bam.bam <span class="sc">$</span>{gtf_file}</span></code></pre></div>
 </div>
 </div>
-<div id="spatial" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Spatial<a href="data-preprocessing.html#spatial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="spatial-data" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Spatial data<a href="data-preprocessing.html#spatial-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Spatial preprocessing (10X visium HD) combines sequencing data with tissue images to generate gene expression outputs linked to their spatial locations.</p>
 <div id="preprocessing-1" class="section level3 hasAnchor" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Preprocessing<a href="data-preprocessing.html#preprocessing-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
