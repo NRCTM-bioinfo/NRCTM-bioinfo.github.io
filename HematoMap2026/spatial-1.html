@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Spatial | Spatiotemporal map of human osteo‑hematopoietic niches</title>
+  <meta name="description" content="This is the tutorial of HematoMap2026." />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Spatial | Spatiotemporal map of human osteo‑hematopoietic niches" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://nrctm-bioinfo.github.io/HematoMap2026/index.html/figure/cover.jpg" />
+  <meta property="og:description" content="This is the tutorial of HematoMap2026." />
+  <meta name="github-repo" content="NRCTM-bioinfo/HematoMap2026" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Spatial | Spatiotemporal map of human osteo‑hematopoietic niches" />
+  
+  <meta name="twitter:description" content="This is the tutorial of HematoMap2026." />
+  <meta name="twitter:image" content="https://nrctm-bioinfo.github.io/HematoMap2026/index.html/figure/cover.jpg" />
+
+<meta name="author" content="Yu-Ting Dai" />
+
+
+<meta name="date" content="2026-09-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="scrna-seq-analysis.html"/>
+<link rel="next" href="about-this-project.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://github.com/NRCTM-bioinfo/HematoMap2026"><center><b>HematoMap2026</b></center></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="data-preprocessing.html"><a href="data-preprocessing.html"><i class="fa fa-check"></i><b>2</b> Data Preprocessing</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-preprocessing.html"><a href="data-preprocessing.html#scrna-seq"><i class="fa fa-check"></i><b>2.1</b> scRNA-seq</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="data-preprocessing.html"><a href="data-preprocessing.html#preprocessing"><i class="fa fa-check"></i><b>2.1.1</b> Preprocessing</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data-preprocessing.html"><a href="data-preprocessing.html#rna-loom"><i class="fa fa-check"></i><b>2.1.2</b> RNA loom</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data-preprocessing.html"><a href="data-preprocessing.html#spatial"><i class="fa fa-check"></i><b>2.2</b> Spatial</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="data-preprocessing.html"><a href="data-preprocessing.html#preprocessing-1"><i class="fa fa-check"></i><b>2.2.1</b> Preprocessing</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="scrna-seq-analysis.html"><a href="scrna-seq-analysis.html"><i class="fa fa-check"></i><b>3</b> scRNA-seq analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="scrna-seq-analysis.html"><a href="scrna-seq-analysis.html#single-sample"><i class="fa fa-check"></i><b>3.1</b> Single sample</a></li>
+<li class="chapter" data-level="3.2" data-path="scrna-seq-analysis.html"><a href="scrna-seq-analysis.html#merge-sample"><i class="fa fa-check"></i><b>3.2</b> Merge sample</a></li>
+<li class="chapter" data-level="3.3" data-path="scrna-seq-analysis.html"><a href="scrna-seq-analysis.html#marker-plot"><i class="fa fa-check"></i><b>3.3</b> Marker plot</a></li>
+<li class="chapter" data-level="3.4" data-path="scrna-seq-analysis.html"><a href="scrna-seq-analysis.html#knn"><i class="fa fa-check"></i><b>3.4</b> KNN</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="spatial-1.html"><a href="spatial-1.html"><i class="fa fa-check"></i><b>4</b> Spatial</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="spatial-1.html"><a href="spatial-1.html#preprocessing-2"><i class="fa fa-check"></i><b>4.1</b> Preprocessing</a></li>
+<li class="chapter" data-level="4.2" data-path="spatial-1.html"><a href="spatial-1.html#aucell"><i class="fa fa-check"></i><b>4.2</b> AUCell</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="about-this-project.html"><a href="about-this-project.html"><i class="fa fa-check"></i><b>5</b> About this project</a>
+<ul>
+<li class="chapter" data-level="" data-path="about-this-project.html"><a href="about-this-project.html#current-version"><i class="fa fa-check"></i>Current version</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Spatiotemporal map of human osteo‑hematopoietic niches</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="spatial-1" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Spatial<a href="spatial-1.html#spatial-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This chapter covers spatial transcriptomic data preprocessing, clustering, visualization, and cell-type signature scoring.</p>
+<div id="preprocessing-2" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Preprocessing<a href="spatial-1.html#preprocessing-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Visium HD outputs are imported into Seurat, and spatial coordinates and tissue images are prepared for quality assessment and visualization. The workflow includes expression normalization, variable gene selection, dimensionality reduction, clustering, and visualization of clusters and selected gene expression patterns in tissue sections.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="spatial-1.html#cb8-1" tabindex="-1"></a>sample.name <span class="ot">&lt;-</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb8-2"><a href="spatial-1.html#cb8-2" tabindex="-1"></a>v3d <span class="ot">&lt;-</span> <span class="fu">Load10X_Spatial</span>(<span class="at">data.dir =</span> <span class="fu">paste0</span>(<span class="st">&quot;spaceranger_4/&quot;</span>, sample.name,<span class="st">&quot;_STR/outs/&quot;</span>), <span class="at">slice =</span> <span class="st">&quot;slice1&quot;</span>, <span class="at">bin.size =</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">16</span>, <span class="st">&quot;polygons&quot;</span>) )</span>
+<span id="cb8-3"><a href="spatial-1.html#cb8-3" tabindex="-1"></a>v3d<span class="sc">$</span>SampleID <span class="ot">&lt;-</span> sample.name</span>
+<span id="cb8-4"><a href="spatial-1.html#cb8-4" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="spatial-1.html#cb8-5" tabindex="-1"></a>v3d<span class="sc">@</span>assays</span>
+<span id="cb8-6"><a href="spatial-1.html#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="spatial-1.html#cb8-7" tabindex="-1"></a>v3d.img <span class="ot">&lt;-</span> <span class="fu">image_read</span>( <span class="fu">paste0</span>(<span class="st">&quot;&quot;</span>, sample.name, <span class="st">&quot;/&quot;</span>, sample.name, <span class="st">&quot;_PIC.jpg&quot;</span> ) ) </span>
+<span id="cb8-8"><a href="spatial-1.html#cb8-8" tabindex="-1"></a><span class="fu">message</span>(<span class="fu">paste</span>(<span class="st">&quot;Pic size:&quot;</span>, <span class="fu">image_info</span>(v3d.img)<span class="sc">$</span>width, <span class="st">&quot;x&quot;</span>, <span class="fu">image_info</span>(v3d.img)<span class="sc">$</span>height))</span>
+<span id="cb8-9"><a href="spatial-1.html#cb8-9" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="spatial-1.html#cb8-10" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="spatial-1.html#cb8-11" tabindex="-1"></a>out.path <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;spatial_&quot;</span>, sample.name)</span>
+<span id="cb8-12"><a href="spatial-1.html#cb8-12" tabindex="-1"></a><span class="fu">system</span>(<span class="fu">sprintf</span>(<span class="st">&quot;mkdir %s&quot;</span>, out.path))</span>
+<span id="cb8-13"><a href="spatial-1.html#cb8-13" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="spatial-1.html#cb8-14" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="spatial-1.html#cb8-15" tabindex="-1"></a><span class="do">#############################################################</span></span>
+<span id="cb8-16"><a href="spatial-1.html#cb8-16" tabindex="-1"></a><span class="do">####   Normalize coord</span></span>
+<span id="cb8-17"><a href="spatial-1.html#cb8-17" tabindex="-1"></a><span class="do">#############################################################</span></span>
+<span id="cb8-18"><a href="spatial-1.html#cb8-18" tabindex="-1"></a><span class="fu">DefaultAssay</span>(v3d) <span class="ot">&lt;-</span> <span class="st">&quot;Spatial.008um&quot;</span></span>
+<span id="cb8-19"><a href="spatial-1.html#cb8-19" tabindex="-1"></a>coord.dott <span class="ot">&lt;-</span> <span class="fu">cbind</span>(v3d<span class="sc">@</span>meta.data[<span class="sc">!</span><span class="fu">is.na</span>(v3d<span class="sc">$</span>nCount_Spatial<span class="fl">.008</span>um), ], <span class="fu">GetTissueCoordinates</span>(v3d) )</span>
+<span id="cb8-20"><a href="spatial-1.html#cb8-20" tabindex="-1"></a>coord.dott<span class="sc">$</span>width_nor <span class="ot">&lt;-</span> (coord.dott<span class="sc">$</span>y <span class="sc">-</span> <span class="fu">min</span>(coord.dott<span class="sc">$</span>y)) <span class="sc">/</span> <span class="fu">max</span>(coord.dott<span class="sc">$</span>y <span class="sc">-</span> <span class="fu">min</span>(coord.dott<span class="sc">$</span>y)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb8-21"><a href="spatial-1.html#cb8-21" tabindex="-1"></a>coord.dott<span class="sc">$</span>height_nor <span class="ot">&lt;-</span> <span class="fu">abs</span>( <span class="fu">max</span>(coord.dott<span class="sc">$</span>x) <span class="sc">-</span> coord.dott<span class="sc">$</span>x ) <span class="sc">/</span> <span class="fu">max</span>( <span class="fu">abs</span>(<span class="fu">max</span>(coord.dott<span class="sc">$</span>x) <span class="sc">-</span> coord.dott<span class="sc">$</span>x) ) <span class="sc">*</span> <span class="dv">100</span> </span>
+<span id="cb8-22"><a href="spatial-1.html#cb8-22" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="spatial-1.html#cb8-23" tabindex="-1"></a><span class="fu">DefaultAssay</span>(v3d) <span class="ot">&lt;-</span> <span class="st">&quot;Spatial.016um&quot;</span></span>
+<span id="cb8-24"><a href="spatial-1.html#cb8-24" tabindex="-1"></a>coord.rect <span class="ot">&lt;-</span> <span class="fu">cbind</span>(v3d<span class="sc">@</span>meta.data[<span class="sc">!</span><span class="fu">is.na</span>(v3d<span class="sc">$</span>nCount_Spatial<span class="fl">.016</span>um), ], <span class="fu">GetTissueCoordinates</span>(v3d) )</span>
+<span id="cb8-25"><a href="spatial-1.html#cb8-25" tabindex="-1"></a>coord.rect<span class="sc">$</span>width_nor <span class="ot">&lt;-</span> (coord.rect<span class="sc">$</span>y <span class="sc">-</span> <span class="fu">min</span>(coord.rect<span class="sc">$</span>y)) <span class="sc">/</span> <span class="fu">max</span>(coord.rect<span class="sc">$</span>y <span class="sc">-</span> <span class="fu">min</span>(coord.rect<span class="sc">$</span>y)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb8-26"><a href="spatial-1.html#cb8-26" tabindex="-1"></a>coord.rect<span class="sc">$</span>height_nor <span class="ot">&lt;-</span> <span class="fu">abs</span>( <span class="fu">max</span>(coord.rect<span class="sc">$</span>x) <span class="sc">-</span> coord.rect<span class="sc">$</span>x ) <span class="sc">/</span> <span class="fu">max</span>( <span class="fu">abs</span>(<span class="fu">max</span>(coord.rect<span class="sc">$</span>x) <span class="sc">-</span> coord.rect<span class="sc">$</span>x) ) <span class="sc">*</span> <span class="dv">100</span> </span>
+<span id="cb8-27"><a href="spatial-1.html#cb8-27" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="spatial-1.html#cb8-28" tabindex="-1"></a><span class="fu">DefaultAssay</span>(v3d) <span class="ot">&lt;-</span> <span class="st">&quot;Spatial.Polygons&quot;</span></span>
+<span id="cb8-29"><a href="spatial-1.html#cb8-29" tabindex="-1"></a>coord.core <span class="ot">&lt;-</span> <span class="fu">cbind</span>(v3d<span class="sc">@</span>meta.data[<span class="sc">!</span><span class="fu">is.na</span>(v3d<span class="sc">$</span>nCount_Spatial.Polygons), ], <span class="fu">GetTissueCoordinates</span>(v3d) )</span>
+<span id="cb8-30"><a href="spatial-1.html#cb8-30" tabindex="-1"></a>coord.core<span class="sc">$</span>width_nor <span class="ot">&lt;-</span> (coord.core<span class="sc">$</span>x <span class="sc">-</span> <span class="fu">min</span>(coord.core<span class="sc">$</span>x)) <span class="sc">/</span> <span class="fu">max</span>(coord.core<span class="sc">$</span>x <span class="sc">-</span> <span class="fu">min</span>(coord.core<span class="sc">$</span>x)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb8-31"><a href="spatial-1.html#cb8-31" tabindex="-1"></a>coord.core<span class="sc">$</span>height_nor <span class="ot">&lt;-</span> (coord.core<span class="sc">$</span>y <span class="sc">-</span> <span class="fu">min</span>(coord.core<span class="sc">$</span>y)) <span class="sc">/</span> <span class="fu">max</span>(coord.core<span class="sc">$</span>y <span class="sc">-</span> <span class="fu">min</span>(coord.core<span class="sc">$</span>y)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb8-32"><a href="spatial-1.html#cb8-32" tabindex="-1"></a></span>
+<span id="cb8-33"><a href="spatial-1.html#cb8-33" tabindex="-1"></a></span>
+<span id="cb8-34"><a href="spatial-1.html#cb8-34" tabindex="-1"></a><span class="do">#############################################################</span></span>
+<span id="cb8-35"><a href="spatial-1.html#cb8-35" tabindex="-1"></a><span class="do">####   Crop pic</span></span>
+<span id="cb8-36"><a href="spatial-1.html#cb8-36" tabindex="-1"></a><span class="do">#############################################################</span></span>
+<span id="cb8-37"><a href="spatial-1.html#cb8-37" tabindex="-1"></a><span class="fu">summary</span>(coord.rect<span class="sc">$</span>y)</span>
+<span id="cb8-38"><a href="spatial-1.html#cb8-38" tabindex="-1"></a><span class="fu">summary</span>(coord.rect<span class="sc">$</span>x)</span>
+<span id="cb8-39"><a href="spatial-1.html#cb8-39" tabindex="-1"></a></span>
+<span id="cb8-40"><a href="spatial-1.html#cb8-40" tabindex="-1"></a><span class="fu">image_info</span>(v3d.img)<span class="sc">$</span>width</span>
+<span id="cb8-41"><a href="spatial-1.html#cb8-41" tabindex="-1"></a><span class="fu">image_info</span>(v3d.img)<span class="sc">$</span>height</span>
+<span id="cb8-42"><a href="spatial-1.html#cb8-42" tabindex="-1"></a></span>
+<span id="cb8-43"><a href="spatial-1.html#cb8-43" tabindex="-1"></a>img.width <span class="ot">&lt;-</span> <span class="fu">max</span>(coord.rect<span class="sc">$</span>y) <span class="sc">-</span> <span class="fu">min</span>(coord.rect<span class="sc">$</span>y)  </span>
+<span id="cb8-44"><a href="spatial-1.html#cb8-44" tabindex="-1"></a>img.height <span class="ot">&lt;-</span>  <span class="fu">max</span>(coord.rect<span class="sc">$</span>x) <span class="sc">-</span> <span class="fu">min</span>(coord.rect<span class="sc">$</span>x)</span>
+<span id="cb8-45"><a href="spatial-1.html#cb8-45" tabindex="-1"></a>geometry <span class="ot">&lt;-</span> <span class="fu">paste0</span>(img.width, <span class="st">&quot;x&quot;</span>, img.height, <span class="st">&quot;+&quot;</span>, <span class="fu">min</span>(coord.rect<span class="sc">$</span>y),<span class="st">&quot;+&quot;</span>, <span class="fu">min</span>(coord.rect<span class="sc">$</span>x))</span>
+<span id="cb8-46"><a href="spatial-1.html#cb8-46" tabindex="-1"></a></span>
+<span id="cb8-47"><a href="spatial-1.html#cb8-47" tabindex="-1"></a>img.cropped <span class="ot">&lt;-</span> v3d.img <span class="sc">%&gt;%</span> <span class="fu">image_crop</span>(<span class="at">geometry =</span> geometry)</span>
+<span id="cb8-48"><a href="spatial-1.html#cb8-48" tabindex="-1"></a></span>
+<span id="cb8-49"><a href="spatial-1.html#cb8-49" tabindex="-1"></a><span class="fu">image_info</span>(img.cropped)<span class="sc">$</span>width</span>
+<span id="cb8-50"><a href="spatial-1.html#cb8-50" tabindex="-1"></a><span class="fu">image_info</span>(img.cropped)<span class="sc">$</span>height</span>
+<span id="cb8-51"><a href="spatial-1.html#cb8-51" tabindex="-1"></a></span>
+<span id="cb8-52"><a href="spatial-1.html#cb8-52" tabindex="-1"></a></span>
+<span id="cb8-53"><a href="spatial-1.html#cb8-53" tabindex="-1"></a><span class="fu">image_write</span>(img.cropped, <span class="fu">paste0</span>(out.path, <span class="st">&quot;/0.Pic_cropped.png&quot;</span>) )</span>
+<span id="cb8-54"><a href="spatial-1.html#cb8-54" tabindex="-1"></a>img.raster <span class="ot">&lt;-</span> <span class="fu">as.raster</span>(img.cropped)</span>
+<span id="cb8-55"><a href="spatial-1.html#cb8-55" tabindex="-1"></a></span>
+<span id="cb8-56"><a href="spatial-1.html#cb8-56" tabindex="-1"></a></span>
+<span id="cb8-57"><a href="spatial-1.html#cb8-57" tabindex="-1"></a></span>
+<span id="cb8-58"><a href="spatial-1.html#cb8-58" tabindex="-1"></a><span class="do">#############################################################</span></span>
+<span id="cb8-59"><a href="spatial-1.html#cb8-59" tabindex="-1"></a><span class="do">####  basic analysis</span></span>
+<span id="cb8-60"><a href="spatial-1.html#cb8-60" tabindex="-1"></a><span class="do">#############################################################</span></span>
+<span id="cb8-61"><a href="spatial-1.html#cb8-61" tabindex="-1"></a>coord.core<span class="sc">$</span>QC <span class="ot">&lt;-</span> <span class="st">&quot;YES&quot;</span></span>
+<span id="cb8-62"><a href="spatial-1.html#cb8-62" tabindex="-1"></a>coord.core<span class="sc">$</span>QC[<span class="fu">which</span>(coord.core<span class="sc">$</span>nCount_Spatial.Polygons <span class="sc">&lt;</span> <span class="dv">5</span>) ] <span class="ot">&lt;-</span> <span class="st">&quot;NO&quot;</span></span>
+<span id="cb8-63"><a href="spatial-1.html#cb8-63" tabindex="-1"></a><span class="fu">table</span>(coord.core<span class="sc">$</span>QC)</span>
+<span id="cb8-64"><a href="spatial-1.html#cb8-64" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">annotation_raster</span>(img.raster, <span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> <span class="dv">100</span>, <span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> <span class="dv">100</span>)</span>
+<span id="cb8-65"><a href="spatial-1.html#cb8-65" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data =</span> coord.core, <span class="fu">aes</span>(<span class="at">x =</span> width_nor, <span class="at">y =</span> height_nor, <span class="at">color =</span> QC, <span class="at">fill =</span> QC), <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">shape =</span> <span class="dv">16</span>)</span>
+<span id="cb8-66"><a href="spatial-1.html#cb8-66" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="fu">paste0</span>(<span class="st">&quot;QC YES: &quot;</span>,  <span class="fu">table</span>(coord.core<span class="sc">$</span>QC)[<span class="st">&quot;YES&quot;</span>], <span class="st">&quot;; NO: &quot;</span>,  <span class="fu">table</span>(coord.core<span class="sc">$</span>QC)[<span class="st">&quot;NO&quot;</span>] ) )</span>
+<span id="cb8-67"><a href="spatial-1.html#cb8-67" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#CE0000&quot;</span>, <span class="st">&quot;black&quot;</span>))</span>
+<span id="cb8-68"><a href="spatial-1.html#cb8-68" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_blank</span>() <span class="sc">+</span> <span class="fu">coord_fixed</span>(<span class="at">ratio =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">5</span>))) </span>
+<span id="cb8-69"><a href="spatial-1.html#cb8-69" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/1.nCount_Spatial.Polygons_QC.png&quot;</span>), p, <span class="at">width =</span> <span class="fl">9.2</span>, <span class="at">height =</span> <span class="dv">8</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb8-70"><a href="spatial-1.html#cb8-70" tabindex="-1"></a><span class="fu">saveRDS</span>(coord.core, <span class="fu">paste0</span>(out.path, <span class="st">&quot;/1.nCount_Spatial.Polygons_QC.rds&quot;</span>))</span>
+<span id="cb8-71"><a href="spatial-1.html#cb8-71" tabindex="-1"></a></span>
+<span id="cb8-72"><a href="spatial-1.html#cb8-72" tabindex="-1"></a></span>
+<span id="cb8-73"><a href="spatial-1.html#cb8-73" tabindex="-1"></a>coord.rect<span class="sc">$</span>QC <span class="ot">&lt;-</span> <span class="st">&quot;YES&quot;</span></span>
+<span id="cb8-74"><a href="spatial-1.html#cb8-74" tabindex="-1"></a>coord.rect<span class="sc">$</span>QC[<span class="fu">which</span>(coord.rect<span class="sc">$</span>nCount_Spatial<span class="fl">.016</span>um <span class="sc">&lt;</span> <span class="dv">3</span>) ] <span class="ot">&lt;-</span> <span class="st">&quot;NO&quot;</span></span>
+<span id="cb8-75"><a href="spatial-1.html#cb8-75" tabindex="-1"></a><span class="fu">table</span>(coord.rect<span class="sc">$</span>QC)</span>
+<span id="cb8-76"><a href="spatial-1.html#cb8-76" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">annotation_raster</span>(img.raster, <span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> <span class="dv">100</span>, <span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> <span class="dv">100</span>)</span>
+<span id="cb8-77"><a href="spatial-1.html#cb8-77" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data =</span> coord.rect, <span class="fu">aes</span>(<span class="at">x =</span> width_nor, <span class="at">y =</span> height_nor, <span class="at">color =</span> QC, <span class="at">fill =</span> QC), <span class="at">size =</span> <span class="fl">0.05</span>, <span class="at">shape =</span> <span class="dv">15</span>)</span>
+<span id="cb8-78"><a href="spatial-1.html#cb8-78" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="fu">paste0</span>(<span class="st">&quot;QC YES: &quot;</span>,  <span class="fu">table</span>(coord.rect<span class="sc">$</span>QC)[<span class="st">&quot;YES&quot;</span>], <span class="st">&quot;; NO: &quot;</span>,  <span class="fu">table</span>(coord.rect<span class="sc">$</span>QC)[<span class="st">&quot;NO&quot;</span>] ) )</span>
+<span id="cb8-79"><a href="spatial-1.html#cb8-79" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#CE0000&quot;</span>, <span class="st">&quot;black&quot;</span>))</span>
+<span id="cb8-80"><a href="spatial-1.html#cb8-80" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_blank</span>() <span class="sc">+</span> <span class="fu">coord_fixed</span>(<span class="at">ratio =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">5</span>))) </span>
+<span id="cb8-81"><a href="spatial-1.html#cb8-81" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/1.nCount_Spatial.016um_QC.png&quot;</span>), p, <span class="at">width =</span> <span class="fl">9.2</span>, <span class="at">height =</span> <span class="dv">8</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb8-82"><a href="spatial-1.html#cb8-82" tabindex="-1"></a><span class="fu">saveRDS</span>(coord.rect, <span class="fu">paste0</span>(out.path, <span class="st">&quot;/1.nCount_Spatial.016um_QC.rds&quot;</span>))</span>
+<span id="cb8-83"><a href="spatial-1.html#cb8-83" tabindex="-1"></a></span>
+<span id="cb8-84"><a href="spatial-1.html#cb8-84" tabindex="-1"></a></span>
+<span id="cb8-85"><a href="spatial-1.html#cb8-85" tabindex="-1"></a>coord.dott<span class="sc">$</span>QC <span class="ot">&lt;-</span> <span class="st">&quot;YES&quot;</span></span>
+<span id="cb8-86"><a href="spatial-1.html#cb8-86" tabindex="-1"></a>coord.dott<span class="sc">$</span>QC[<span class="fu">which</span>(coord.dott<span class="sc">$</span>nCount_Spatial<span class="fl">.008</span>um <span class="sc">&lt;</span> <span class="dv">3</span>) ] <span class="ot">&lt;-</span> <span class="st">&quot;NO&quot;</span></span>
+<span id="cb8-87"><a href="spatial-1.html#cb8-87" tabindex="-1"></a><span class="fu">table</span>(coord.dott<span class="sc">$</span>QC)</span>
+<span id="cb8-88"><a href="spatial-1.html#cb8-88" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">annotation_raster</span>(img.raster, <span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> <span class="dv">100</span>, <span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> <span class="dv">100</span>)</span>
+<span id="cb8-89"><a href="spatial-1.html#cb8-89" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data =</span> coord.dott, <span class="fu">aes</span>(<span class="at">x =</span> width_nor, <span class="at">y =</span> height_nor, <span class="at">color =</span> QC, <span class="at">fill =</span> QC), <span class="at">size =</span> <span class="fl">0.05</span>, <span class="at">shape =</span> <span class="dv">15</span>)</span>
+<span id="cb8-90"><a href="spatial-1.html#cb8-90" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="fu">paste0</span>(<span class="st">&quot;QC YES: &quot;</span>,  <span class="fu">table</span>(coord.dott<span class="sc">$</span>QC)[<span class="st">&quot;YES&quot;</span>], <span class="st">&quot;; NO: &quot;</span>,  <span class="fu">table</span>(coord.dott<span class="sc">$</span>QC)[<span class="st">&quot;NO&quot;</span>] ) )</span>
+<span id="cb8-91"><a href="spatial-1.html#cb8-91" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#CE0000&quot;</span>, <span class="st">&quot;black&quot;</span>))</span>
+<span id="cb8-92"><a href="spatial-1.html#cb8-92" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_blank</span>() <span class="sc">+</span> <span class="fu">coord_fixed</span>(<span class="at">ratio =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">5</span>))) </span>
+<span id="cb8-93"><a href="spatial-1.html#cb8-93" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/1.nCount_Spatial.008um_QC.png&quot;</span>), p, <span class="at">width =</span> <span class="fl">9.2</span>, <span class="at">height =</span> <span class="dv">8</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb8-94"><a href="spatial-1.html#cb8-94" tabindex="-1"></a><span class="fu">saveRDS</span>(coord.dott, <span class="fu">paste0</span>(out.path, <span class="st">&quot;/1.nCount_Spatial.008um_QC.rds&quot;</span>))</span>
+<span id="cb8-95"><a href="spatial-1.html#cb8-95" tabindex="-1"></a></span>
+<span id="cb8-96"><a href="spatial-1.html#cb8-96" tabindex="-1"></a></span>
+<span id="cb8-97"><a href="spatial-1.html#cb8-97" tabindex="-1"></a>exp.data <span class="ot">&lt;-</span> v3d.sub<span class="sc">@</span>assays<span class="sc">$</span>Spatial.Polygons<span class="sc">$</span>counts</span>
+<span id="cb8-98"><a href="spatial-1.html#cb8-98" tabindex="-1"></a><span class="fu">colnames</span>(exp.data) <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(<span class="fu">colnames</span>(exp.data), <span class="st">&quot;-1&quot;</span>, <span class="fu">paste0</span>(<span class="st">&quot;-&quot;</span>, sample.name) )</span>
+<span id="cb8-99"><a href="spatial-1.html#cb8-99" tabindex="-1"></a><span class="fu">message</span>(sample.name, <span class="st">&quot;  &quot;</span>, <span class="fu">ncol</span>(exp.data))</span>
+<span id="cb8-100"><a href="spatial-1.html#cb8-100" tabindex="-1"></a></span>
+<span id="cb8-101"><a href="spatial-1.html#cb8-101" tabindex="-1"></a></span>
+<span id="cb8-102"><a href="spatial-1.html#cb8-102" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">CreateSeuratObject</span>(<span class="at">counts =</span> exp.data, <span class="at">project =</span> <span class="st">&quot;sce&quot;</span>, <span class="at">min.cells =</span> <span class="dv">0</span>, <span class="at">min.features =</span> <span class="dv">0</span>)</span>
+<span id="cb8-103"><a href="spatial-1.html#cb8-103" tabindex="-1"></a>sce[[<span class="st">&quot;percent.mt&quot;</span>]] <span class="ot">&lt;-</span> <span class="fu">PercentageFeatureSet</span>(sce, <span class="at">pattern =</span> <span class="st">&quot;^MT-&quot;</span>)</span>
+<span id="cb8-104"><a href="spatial-1.html#cb8-104" tabindex="-1"></a>sce</span>
+<span id="cb8-105"><a href="spatial-1.html#cb8-105" tabindex="-1"></a><span class="fu">summary</span>(sce<span class="sc">@</span>meta.data<span class="sc">$</span>percent.mt)</span>
+<span id="cb8-106"><a href="spatial-1.html#cb8-106" tabindex="-1"></a></span>
+<span id="cb8-107"><a href="spatial-1.html#cb8-107" tabindex="-1"></a></span>
+<span id="cb8-108"><a href="spatial-1.html#cb8-108" tabindex="-1"></a>sce<span class="sc">$</span>SampleID <span class="ot">&lt;-</span> sample.name</span>
+<span id="cb8-109"><a href="spatial-1.html#cb8-109" tabindex="-1"></a>sce<span class="sc">$</span>width_nor <span class="ot">&lt;-</span> enroll.cell<span class="sc">$</span>width_nor</span>
+<span id="cb8-110"><a href="spatial-1.html#cb8-110" tabindex="-1"></a>sce<span class="sc">$</span>height_nor <span class="ot">&lt;-</span> enroll.cell<span class="sc">$</span>height_nor</span>
+<span id="cb8-111"><a href="spatial-1.html#cb8-111" tabindex="-1"></a></span>
+<span id="cb8-112"><a href="spatial-1.html#cb8-112" tabindex="-1"></a></span>
+<span id="cb8-113"><a href="spatial-1.html#cb8-113" tabindex="-1"></a></span>
+<span id="cb8-114"><a href="spatial-1.html#cb8-114" tabindex="-1"></a></span>
+<span id="cb8-115"><a href="spatial-1.html#cb8-115" tabindex="-1"></a><span class="do">#############################################################</span></span>
+<span id="cb8-116"><a href="spatial-1.html#cb8-116" tabindex="-1"></a><span class="do">####  basic analysis</span></span>
+<span id="cb8-117"><a href="spatial-1.html#cb8-117" tabindex="-1"></a><span class="do">#############################################################</span></span>
+<span id="cb8-118"><a href="spatial-1.html#cb8-118" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">NormalizeData</span>(sce, <span class="at">normalization.method =</span> <span class="st">&quot;LogNormalize&quot;</span>, <span class="at">scale.factor =</span> <span class="dv">10000</span>)</span>
+<span id="cb8-119"><a href="spatial-1.html#cb8-119" tabindex="-1"></a></span>
+<span id="cb8-120"><a href="spatial-1.html#cb8-120" tabindex="-1"></a></span>
+<span id="cb8-121"><a href="spatial-1.html#cb8-121" tabindex="-1"></a></span>
+<span id="cb8-122"><a href="spatial-1.html#cb8-122" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">VariableFeatures</span>(sce))</span>
+<span id="cb8-123"><a href="spatial-1.html#cb8-123" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">FindVariableFeatures</span>(sce, <span class="at">selection.method =</span> <span class="st">&quot;vst&quot;</span>, <span class="at">nfeatures =</span> <span class="dv">2000</span>)</span>
+<span id="cb8-124"><a href="spatial-1.html#cb8-124" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">VariableFeatures</span>(sce))</span>
+<span id="cb8-125"><a href="spatial-1.html#cb8-125" tabindex="-1"></a></span>
+<span id="cb8-126"><a href="spatial-1.html#cb8-126" tabindex="-1"></a>coord.core <span class="ot">&lt;-</span> sce<span class="sc">@</span>meta.data</span>
+<span id="cb8-127"><a href="spatial-1.html#cb8-127" tabindex="-1"></a></span>
+<span id="cb8-128"><a href="spatial-1.html#cb8-128" tabindex="-1"></a>sce<span class="sc">$</span>width_group <span class="ot">&lt;-</span> <span class="fu">cut</span>(sce<span class="sc">$</span>width_nor, <span class="at">breaks =</span> <span class="dv">10</span>)</span>
+<span id="cb8-129"><a href="spatial-1.html#cb8-129" tabindex="-1"></a>sce<span class="sc">$</span>height_group <span class="ot">&lt;-</span> <span class="fu">cut</span>(sce<span class="sc">$</span>height_nor, <span class="at">breaks =</span> <span class="dv">10</span>)</span>
+<span id="cb8-130"><a href="spatial-1.html#cb8-130" tabindex="-1"></a>sce<span class="sc">$</span>width_group <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;W&quot;</span>, <span class="fu">str_pad</span>(<span class="fu">as.numeric</span>(sce<span class="sc">$</span>width_group), <span class="dv">2</span>, <span class="st">&quot;left&quot;</span>, <span class="st">&quot;0&quot;</span>) )</span>
+<span id="cb8-131"><a href="spatial-1.html#cb8-131" tabindex="-1"></a>sce<span class="sc">$</span>height_group <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;H&quot;</span>, <span class="fu">str_pad</span>(<span class="fu">as.numeric</span>(sce<span class="sc">$</span>height_group), <span class="dv">2</span>, <span class="st">&quot;left&quot;</span>, <span class="st">&quot;0&quot;</span>) )</span>
+<span id="cb8-132"><a href="spatial-1.html#cb8-132" tabindex="-1"></a>sce<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="fu">paste0</span>(sce<span class="sc">$</span>width_group, <span class="st">&quot;_&quot;</span>, sce<span class="sc">$</span>height_group)</span>
+<span id="cb8-133"><a href="spatial-1.html#cb8-133" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(sce<span class="sc">$</span>group))</span>
+<span id="cb8-134"><a href="spatial-1.html#cb8-134" tabindex="-1"></a></span>
+<span id="cb8-135"><a href="spatial-1.html#cb8-135" tabindex="-1"></a>scell.subc.exp <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb8-136"><a href="spatial-1.html#cb8-136" tabindex="-1"></a>subc.name <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">table</span>(sce<span class="sc">$</span>group))</span>
+<span id="cb8-137"><a href="spatial-1.html#cb8-137" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(subc.name)) {</span>
+<span id="cb8-138"><a href="spatial-1.html#cb8-138" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">%%</span> <span class="dv">50</span> <span class="sc">==</span> <span class="dv">1</span>) <span class="fu">message</span>(i)</span>
+<span id="cb8-139"><a href="spatial-1.html#cb8-139" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(<span class="fu">which</span>(sce<span class="sc">$</span>group <span class="sc">==</span> subc.name[i] ) ) <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb8-140"><a href="spatial-1.html#cb8-140" tabindex="-1"></a>    sub <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(sce<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">$</span>data[, <span class="fu">rownames</span>(sce<span class="sc">@</span>meta.data)[<span class="fu">which</span>(sce<span class="sc">$</span>group <span class="sc">==</span> subc.name[i] )] ])</span>
+<span id="cb8-141"><a href="spatial-1.html#cb8-141" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb8-142"><a href="spatial-1.html#cb8-142" tabindex="-1"></a>    sub <span class="ot">&lt;-</span> sce<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">$</span>data[, <span class="fu">rownames</span>(sce<span class="sc">@</span>meta.data)[<span class="fu">which</span>(sce<span class="sc">$</span>group <span class="sc">==</span> subc.name[i] )] ]</span>
+<span id="cb8-143"><a href="spatial-1.html#cb8-143" tabindex="-1"></a>  }</span>
+<span id="cb8-144"><a href="spatial-1.html#cb8-144" tabindex="-1"></a>  scell.subc.exp <span class="ot">&lt;-</span> <span class="fu">cbind</span>(scell.subc.exp, sub)</span>
+<span id="cb8-145"><a href="spatial-1.html#cb8-145" tabindex="-1"></a>}</span>
+<span id="cb8-146"><a href="spatial-1.html#cb8-146" tabindex="-1"></a><span class="fu">colnames</span>(scell.subc.exp) <span class="ot">&lt;-</span> subc.name</span>
+<span id="cb8-147"><a href="spatial-1.html#cb8-147" tabindex="-1"></a>scell.subc.exp <span class="ot">&lt;-</span> limma<span class="sc">::</span><span class="fu">normalizeBetweenArrays</span>(scell.subc.exp)</span>
+<span id="cb8-148"><a href="spatial-1.html#cb8-148" tabindex="-1"></a></span>
+<span id="cb8-149"><a href="spatial-1.html#cb8-149" tabindex="-1"></a></span>
+<span id="cb8-150"><a href="spatial-1.html#cb8-150" tabindex="-1"></a>sce.gene.vars <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Gene =</span> <span class="fu">rownames</span>(scell.subc.exp), <span class="at">Vars =</span> <span class="fu">rowVars</span>(scell.subc.exp), </span>
+<span id="cb8-151"><a href="spatial-1.html#cb8-151" tabindex="-1"></a>                            <span class="at">MeanExp =</span> <span class="fu">rowMeans</span>(scell.subc.exp))</span>
+<span id="cb8-152"><a href="spatial-1.html#cb8-152" tabindex="-1"></a>sce.gene.vars <span class="ot">&lt;-</span> sce.gene.vars[<span class="fu">order</span>(sce.gene.vars<span class="sc">$</span>Vars, <span class="at">decreasing =</span> T), ]</span>
+<span id="cb8-153"><a href="spatial-1.html#cb8-153" tabindex="-1"></a>sce.gene.vars<span class="sc">$</span>Index <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(sce.gene.vars)</span>
+<span id="cb8-154"><a href="spatial-1.html#cb8-154" tabindex="-1"></a>sce.gene.vars<span class="sc">$</span>isVar <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb8-155"><a href="spatial-1.html#cb8-155" tabindex="-1"></a>sce.gene.vars<span class="sc">$</span>isVar[sce.gene.vars<span class="sc">$</span>Gene <span class="sc">%in%</span> <span class="fu">VariableFeatures</span>(sce) ] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb8-156"><a href="spatial-1.html#cb8-156" tabindex="-1"></a>sce.gene.vars<span class="sc">$</span>isCoding <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb8-157"><a href="spatial-1.html#cb8-157" tabindex="-1"></a>sce.gene.vars<span class="sc">$</span>isCoding[sce.gene.vars<span class="sc">$</span>Gene <span class="sc">%in%</span> gene.id.coding<span class="sc">$</span>V6 ] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb8-158"><a href="spatial-1.html#cb8-158" tabindex="-1"></a></span>
+<span id="cb8-159"><a href="spatial-1.html#cb8-159" tabindex="-1"></a>sub<span class="fl">.1</span> <span class="ot">&lt;-</span> sce.gene.vars[<span class="fu">which</span>(sce.gene.vars<span class="sc">$</span>Index <span class="sc">&lt;=</span> <span class="dv">2000</span> <span class="sc">&amp;</span> sce.gene.vars<span class="sc">$</span>MeanExp <span class="sc">&gt;</span> <span class="fl">0.01</span> <span class="sc">&amp;</span> sce.gene.vars<span class="sc">$</span>isCoding <span class="sc">==</span> <span class="dv">1</span>), ]</span>
+<span id="cb8-160"><a href="spatial-1.html#cb8-160" tabindex="-1"></a>sub<span class="fl">.2</span> <span class="ot">&lt;-</span> sce.gene.vars[<span class="fu">which</span>(sce.gene.vars<span class="sc">$</span>Index <span class="sc">&lt;=</span> <span class="dv">5000</span> <span class="sc">&amp;</span> sce.gene.vars<span class="sc">$</span>MeanExp <span class="sc">&gt;</span> <span class="fl">0.01</span> <span class="sc">&amp;</span> sce.gene.vars<span class="sc">$</span>isCoding <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> sce.gene.vars<span class="sc">$</span>isVar <span class="sc">==</span> <span class="dv">1</span>), ]</span>
+<span id="cb8-161"><a href="spatial-1.html#cb8-161" tabindex="-1"></a></span>
+<span id="cb8-162"><a href="spatial-1.html#cb8-162" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">union</span>(sub<span class="fl">.1</span><span class="sc">$</span>Gene, sub<span class="fl">.2</span><span class="sc">$</span>Gene))</span>
+<span id="cb8-163"><a href="spatial-1.html#cb8-163" tabindex="-1"></a></span>
+<span id="cb8-164"><a href="spatial-1.html#cb8-164" tabindex="-1"></a></span>
+<span id="cb8-165"><a href="spatial-1.html#cb8-165" tabindex="-1"></a><span class="fu">VariableFeatures</span>(sce) <span class="ot">&lt;-</span> <span class="fu">union</span>(sub<span class="fl">.1</span><span class="sc">$</span>Gene, sub<span class="fl">.2</span><span class="sc">$</span>Gene)</span>
+<span id="cb8-166"><a href="spatial-1.html#cb8-166" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">VariableFeatures</span>(sce))</span>
+<span id="cb8-167"><a href="spatial-1.html#cb8-167" tabindex="-1"></a></span>
+<span id="cb8-168"><a href="spatial-1.html#cb8-168" tabindex="-1"></a></span>
+<span id="cb8-169"><a href="spatial-1.html#cb8-169" tabindex="-1"></a><span class="fu">saveRDS</span>(sce.gene.vars, <span class="fu">paste0</span>(out.path, <span class="st">&quot;/2.sce.gene.vars.rds&quot;</span>)   )</span>
+<span id="cb8-170"><a href="spatial-1.html#cb8-170" tabindex="-1"></a></span>
+<span id="cb8-171"><a href="spatial-1.html#cb8-171" tabindex="-1"></a></span>
+<span id="cb8-172"><a href="spatial-1.html#cb8-172" tabindex="-1"></a></span>
+<span id="cb8-173"><a href="spatial-1.html#cb8-173" tabindex="-1"></a><span class="do">#############################################################</span></span>
+<span id="cb8-174"><a href="spatial-1.html#cb8-174" tabindex="-1"></a><span class="do">####  cluster analysis</span></span>
+<span id="cb8-175"><a href="spatial-1.html#cb8-175" tabindex="-1"></a><span class="do">#############################################################</span></span>
+<span id="cb8-176"><a href="spatial-1.html#cb8-176" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">ScaleData</span>(sce, <span class="at">features =</span> <span class="fu">VariableFeatures</span>(sce))</span>
+<span id="cb8-177"><a href="spatial-1.html#cb8-177" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">RunPCA</span>(sce, <span class="at">reduction.name =</span> <span class="st">&quot;pca&quot;</span>)</span>
+<span id="cb8-178"><a href="spatial-1.html#cb8-178" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">FindNeighbors</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;pca&quot;</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span>
+<span id="cb8-179"><a href="spatial-1.html#cb8-179" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">RunUMAP</span>(sce, <span class="at">reduction =</span> <span class="st">&quot;pca&quot;</span>, <span class="at">reduction.name =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">dims =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">n.neighbors =</span> <span class="dv">30</span>, <span class="at">min.dist =</span> <span class="fl">0.1</span>)</span>
+<span id="cb8-180"><a href="spatial-1.html#cb8-180" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(sce, <span class="at">resolution =</span> <span class="fl">0.8</span>)</span>
+<span id="cb8-181"><a href="spatial-1.html#cb8-181" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(sce, <span class="at">resolution =</span> <span class="fl">1.0</span>)</span>
+<span id="cb8-182"><a href="spatial-1.html#cb8-182" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="fu">FindClusters</span>(sce, <span class="at">resolution =</span> <span class="fl">1.5</span>)</span>
+<span id="cb8-183"><a href="spatial-1.html#cb8-183" tabindex="-1"></a></span>
+<span id="cb8-184"><a href="spatial-1.html#cb8-184" tabindex="-1"></a></span>
+<span id="cb8-185"><a href="spatial-1.html#cb8-185" tabindex="-1"></a>sce<span class="sc">$</span>Cluster <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;C&quot;</span>, <span class="fu">str_pad</span>(sce<span class="sc">$</span>RNA_snn_res.<span class="fl">0.8</span>, <span class="dv">2</span>, <span class="st">&quot;left&quot;</span>, <span class="st">&quot;0&quot;</span>) )</span>
+<span id="cb8-186"><a href="spatial-1.html#cb8-186" tabindex="-1"></a><span class="fu">table</span>(sce<span class="sc">$</span>Cluster)</span>
+<span id="cb8-187"><a href="spatial-1.html#cb8-187" tabindex="-1"></a></span>
+<span id="cb8-188"><a href="spatial-1.html#cb8-188" tabindex="-1"></a></span>
+<span id="cb8-189"><a href="spatial-1.html#cb8-189" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb8-190"><a href="spatial-1.html#cb8-190" tabindex="-1"></a>kmeans.cluster <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">kmeans</span>(sce<span class="sc">@</span>reductions<span class="sc">$</span>pca<span class="sc">@</span>cell.embeddings[, <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>], <span class="at">centers =</span> <span class="dv">50</span>, <span class="at">iter.max =</span> <span class="dv">100</span>)</span>
+<span id="cb8-191"><a href="spatial-1.html#cb8-191" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">as.numeric</span>(<span class="fu">table</span>(kmeans.cluster<span class="sc">$</span>cluster)))</span>
+<span id="cb8-192"><a href="spatial-1.html#cb8-192" tabindex="-1"></a>sce<span class="sc">$</span>Kmeans <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;K&quot;</span>, <span class="fu">str_pad</span>(kmeans.cluster<span class="sc">$</span>cluster, <span class="dv">2</span>, <span class="st">&quot;left&quot;</span>, <span class="st">&quot;0&quot;</span>) ) </span>
+<span id="cb8-193"><a href="spatial-1.html#cb8-193" tabindex="-1"></a></span>
+<span id="cb8-194"><a href="spatial-1.html#cb8-194" tabindex="-1"></a></span>
+<span id="cb8-195"><a href="spatial-1.html#cb8-195" tabindex="-1"></a><span class="do">#############################################################</span></span>
+<span id="cb8-196"><a href="spatial-1.html#cb8-196" tabindex="-1"></a><span class="do">####   Visualization</span></span>
+<span id="cb8-197"><a href="spatial-1.html#cb8-197" tabindex="-1"></a><span class="do">#############################################################</span></span>
+<span id="cb8-198"><a href="spatial-1.html#cb8-198" tabindex="-1"></a>coord.core <span class="ot">&lt;-</span> <span class="fu">cbind</span>(sce<span class="sc">@</span>meta.data, <span class="fu">FetchData</span>(sce, <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&quot;umap_1&quot;</span>,<span class="st">&quot;umap_2&quot;</span>)) )</span>
+<span id="cb8-199"><a href="spatial-1.html#cb8-199" tabindex="-1"></a></span>
+<span id="cb8-200"><a href="spatial-1.html#cb8-200" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">DimPlot</span>(sce, <span class="at">group.by =</span> <span class="st">&quot;Cluster&quot;</span>, <span class="at">reduction =</span> <span class="st">&quot;umap&quot;</span>, <span class="at">pt.size =</span> <span class="fl">0.1</span>, <span class="at">raster =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb8-201"><a href="spatial-1.html#cb8-201" tabindex="-1"></a>              <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">label.size =</span> <span class="dv">6</span>, <span class="at">cols =</span> color.lib) <span class="sc">+</span> <span class="fu">theme_blank</span>() </span>
+<span id="cb8-202"><a href="spatial-1.html#cb8-202" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">annotation_raster</span>(img.raster, <span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> <span class="dv">100</span>, <span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> <span class="dv">100</span>) <span class="sc">+</span> </span>
+<span id="cb8-203"><a href="spatial-1.html#cb8-203" tabindex="-1"></a>      <span class="fu">geom_point</span>(<span class="at">data =</span> coord.core, <span class="fu">aes</span>(<span class="at">x =</span> width_nor, <span class="at">y =</span> height_nor, <span class="at">color =</span> Cluster, <span class="at">fill =</span> Cluster), <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">shape =</span> <span class="dv">16</span>) <span class="sc">+</span> </span>
+<span id="cb8-204"><a href="spatial-1.html#cb8-204" tabindex="-1"></a>      <span class="fu">ggtitle</span>(<span class="fu">paste0</span>(<span class="st">&quot;Cluster&quot;</span> ) ) <span class="sc">+</span> <span class="fu">scale_color_manual</span>(<span class="at">values =</span> color.lib ) <span class="sc">+</span> <span class="fu">theme_blank</span>() <span class="sc">+</span> </span>
+<span id="cb8-205"><a href="spatial-1.html#cb8-205" tabindex="-1"></a>      <span class="fu">coord_fixed</span>(<span class="at">ratio =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">5</span>))) </span>
+<span id="cb8-206"><a href="spatial-1.html#cb8-206" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggarrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>) )</span>
+<span id="cb8-207"><a href="spatial-1.html#cb8-207" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path, <span class="st">&quot;/3.UMAP.Cluster.png&quot;</span>), p, <span class="at">width =</span> <span class="dv">15</span>, <span class="at">height =</span> <span class="dv">7</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb8-208"><a href="spatial-1.html#cb8-208" tabindex="-1"></a></span>
+<span id="cb8-209"><a href="spatial-1.html#cb8-209" tabindex="-1"></a></span>
+<span id="cb8-210"><a href="spatial-1.html#cb8-210" tabindex="-1"></a></span>
+<span id="cb8-211"><a href="spatial-1.html#cb8-211" tabindex="-1"></a>gexp <span class="ot">&lt;-</span> <span class="fu">cbind</span>(sce<span class="sc">@</span>meta.data, <span class="fu">FetchData</span>(sce, <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">&quot;umap_1&quot;</span>,<span class="st">&quot;umap_2&quot;</span>, <span class="st">&quot;CXCL12&quot;</span>, <span class="st">&quot;CXCR4&quot;</span> ) ) )</span>
+<span id="cb8-212"><a href="spatial-1.html#cb8-212" tabindex="-1"></a>gexp<span class="sc">$</span>PlotTag <span class="ot">&lt;-</span> <span class="st">&quot;other&quot;</span></span>
+<span id="cb8-213"><a href="spatial-1.html#cb8-213" tabindex="-1"></a>gexp<span class="sc">$</span>PlotTag[<span class="fu">which</span>(gexp<span class="sc">$</span>CXCL12 <span class="sc">&gt;</span> <span class="dv">0</span> )] <span class="ot">&lt;-</span> <span class="st">&quot;CXCL12&quot;</span></span>
+<span id="cb8-214"><a href="spatial-1.html#cb8-214" tabindex="-1"></a>gexp<span class="sc">$</span>PlotTag[<span class="fu">which</span>(gexp<span class="sc">$</span>CXCR4 <span class="sc">&gt;</span> <span class="dv">0</span> )] <span class="ot">&lt;-</span> <span class="st">&quot;CXCR4&quot;</span></span>
+<span id="cb8-215"><a href="spatial-1.html#cb8-215" tabindex="-1"></a><span class="fu">table</span>(gexp<span class="sc">$</span>PlotTag)</span>
+<span id="cb8-216"><a href="spatial-1.html#cb8-216" tabindex="-1"></a>gexp<span class="sc">$</span>PlotTag <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">as.character</span>(gexp<span class="sc">$</span>PlotTag), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;other&quot;</span>,<span class="st">&quot;CXCL12&quot;</span>,<span class="st">&quot;CXCR4&quot;</span>))</span>
+<span id="cb8-217"><a href="spatial-1.html#cb8-217" tabindex="-1"></a>gexp<span class="sc">$</span>PlotSize <span class="ot">=</span> <span class="fl">0.5</span></span>
+<span id="cb8-218"><a href="spatial-1.html#cb8-218" tabindex="-1"></a>gexp<span class="sc">$</span>PlotSize[<span class="fu">which</span>(gexp<span class="sc">$</span>PlotTag <span class="sc">!=</span> <span class="st">&quot;other&quot;</span>)] <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb8-219"><a href="spatial-1.html#cb8-219" tabindex="-1"></a>plot.data <span class="ot">&lt;-</span> gexp</span>
+<span id="cb8-220"><a href="spatial-1.html#cb8-220" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb8-221"><a href="spatial-1.html#cb8-221" tabindex="-1"></a>sub <span class="ot">&lt;-</span> plot.data[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(plot.data), <span class="fu">nrow</span>(plot.data) <span class="sc">*</span> <span class="fl">0.6</span>), ]</span>
+<span id="cb8-222"><a href="spatial-1.html#cb8-222" tabindex="-1"></a>sub <span class="ot">&lt;-</span> sub[<span class="fu">order</span>(sub<span class="sc">$</span>PlotTag), ]</span>
+<span id="cb8-223"><a href="spatial-1.html#cb8-223" tabindex="-1"></a>plot.data[<span class="fu">rownames</span>(plot.data) <span class="sc">%in%</span> <span class="fu">rownames</span>(sub), ] <span class="ot">&lt;-</span> sub</span>
+<span id="cb8-224"><a href="spatial-1.html#cb8-224" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="co">#annotation_raster(img.raster, xmin = 0, xmax = 100, ymin = 0, ymax = 100) + </span></span>
+<span id="cb8-225"><a href="spatial-1.html#cb8-225" tabindex="-1"></a>      <span class="fu">geom_point</span>(<span class="at">data =</span> plot.data, <span class="fu">aes</span>(<span class="at">x =</span> umap_1, <span class="at">y =</span> umap_2, <span class="at">color =</span> PlotTag, <span class="at">size =</span> PlotSize) , <span class="at">shape =</span> <span class="dv">16</span>, <span class="at">alpha =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb8-226"><a href="spatial-1.html#cb8-226" tabindex="-1"></a>      <span class="fu">ggtitle</span>(<span class="fu">paste0</span>( <span class="st">&quot;CXCL12-CXCR4&quot;</span> ) ) <span class="sc">+</span> <span class="fu">theme_blank</span>() <span class="sc">+</span> <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb8-227"><a href="spatial-1.html#cb8-227" tabindex="-1"></a>      <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#DDDDDD&quot;</span>,<span class="st">&quot;#7cb0ff&quot;</span>,<span class="st">&quot;#cc0846&quot;</span>))</span>
+<span id="cb8-228"><a href="spatial-1.html#cb8-228" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="co">#annotation_raster(img.raster, xmin = 0, xmax = 100, ymin = 0, ymax = 100) + </span></span>
+<span id="cb8-229"><a href="spatial-1.html#cb8-229" tabindex="-1"></a>      <span class="fu">geom_point</span>(<span class="at">data =</span> plot.data, <span class="fu">aes</span>(<span class="at">x =</span> width_nor, <span class="at">y =</span> height_nor, <span class="at">color =</span> PlotTag, <span class="at">size =</span> PlotSize), <span class="at">shape =</span> <span class="dv">16</span>, <span class="at">alpha =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb8-230"><a href="spatial-1.html#cb8-230" tabindex="-1"></a>      <span class="fu">ggtitle</span>(<span class="fu">paste0</span>( <span class="st">&quot;CXCL12-CXCR4&quot;</span> ) ) <span class="sc">+</span> <span class="fu">theme_blank</span>() <span class="sc">+</span> <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb8-231"><a href="spatial-1.html#cb8-231" tabindex="-1"></a>      <span class="fu">coord_fixed</span>(<span class="at">ratio =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#DDDDDD&quot;</span>,<span class="st">&quot;#7cb0ff&quot;</span>,<span class="st">&quot;#cc0846&quot;</span>))</span>
+<span id="cb8-232"><a href="spatial-1.html#cb8-232" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggarrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>) )</span>
+<span id="cb8-233"><a href="spatial-1.html#cb8-233" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste0</span>(out.path.plot, <span class="st">&quot;/CXCL12-CXCR4.png&quot;</span>), p, <span class="at">width =</span> <span class="dv">15</span>, <span class="at">height =</span> <span class="dv">7</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code></pre></div>
+</div>
+<div id="aucell" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> AUCell<a href="spatial-1.html#aucell" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>AUCell is used to score predefined cell-type marker gene sets in the spatial expression data. The resulting scores are saved for downstream annotation and analysis of spatial cell-type distributions.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="spatial-1.html#cb9-1" tabindex="-1"></a><span class="do">##########################################################################################</span></span>
+<span id="cb9-2"><a href="spatial-1.html#cb9-2" tabindex="-1"></a><span class="do">############### Marker</span></span>
+<span id="cb9-3"><a href="spatial-1.html#cb9-3" tabindex="-1"></a><span class="do">##########################################################################################</span></span>
+<span id="cb9-4"><a href="spatial-1.html#cb9-4" tabindex="-1"></a>out.path.plot <span class="ot">&lt;-</span> <span class="fu">paste0</span>(out.path, <span class="st">&quot;/AUC_all_feature&quot;</span>)</span>
+<span id="cb9-5"><a href="spatial-1.html#cb9-5" tabindex="-1"></a>cmd <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">&quot;mkdir %s&quot;</span>, out.path.plot)</span>
+<span id="cb9-6"><a href="spatial-1.html#cb9-6" tabindex="-1"></a><span class="fu">system</span>(cmd)</span>
+<span id="cb9-7"><a href="spatial-1.html#cb9-7" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="spatial-1.html#cb9-8" tabindex="-1"></a><span class="fu">library</span>(AUCell)</span>
+<span id="cb9-9"><a href="spatial-1.html#cb9-9" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="spatial-1.html#cb9-10" tabindex="-1"></a>marker.list.all <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb9-11"><a href="spatial-1.html#cb9-11" tabindex="-1"></a>  <span class="at">HSC_LMPP =</span> <span class="fu">c</span>(<span class="st">&quot;SPINK2&quot;</span>, <span class="st">&quot;PRSS57&quot;</span>, <span class="st">&quot;SMIM24&quot;</span>, <span class="st">&quot;CD34&quot;</span>, <span class="st">&quot;PROM1&quot;</span>, <span class="st">&quot;HLF&quot;</span>, <span class="st">&quot;HOXA9&quot;</span>, <span class="st">&quot;AVP&quot;</span>, <span class="st">&quot;BAALC&quot;</span>, <span class="st">&quot;CRHBP&quot;</span>, <span class="st">&quot;MMRN1&quot;</span>, <span class="st">&quot;MSI2&quot;</span>, <span class="st">&quot;ETV6&quot;</span>, <span class="st">&quot;RUNX1&quot;</span>, <span class="st">&quot;CDK6&quot;</span>, <span class="st">&quot;SATB1&quot;</span>, <span class="st">&quot;SELL&quot;</span>, <span class="st">&quot;TSC22D1&quot;</span>, <span class="st">&quot;ANKRD28&quot;</span>, <span class="st">&quot;SERPINB6&quot;</span>),</span>
+<span id="cb9-12"><a href="spatial-1.html#cb9-12" tabindex="-1"></a>  <span class="at">MEP_MKP =</span> <span class="fu">c</span>(<span class="st">&quot;ITGA2B&quot;</span>, <span class="st">&quot;GP9&quot;</span>, <span class="st">&quot;GP1BB&quot;</span>, <span class="st">&quot;MPIG6B&quot;</span>, <span class="st">&quot;PTGS1&quot;</span>, <span class="st">&quot;TREML1&quot;</span>, <span class="st">&quot;GATA1&quot;</span>, <span class="st">&quot;NFE2&quot;</span>, <span class="st">&quot;CMTM5&quot;</span>, <span class="st">&quot;RAB27B&quot;</span>, <span class="st">&quot;FERMT1&quot;</span>, <span class="st">&quot;STAT5A&quot;</span>, <span class="st">&quot;PDLIM1&quot;</span>, <span class="st">&quot;PRKAR2B&quot;</span>, <span class="st">&quot;SLC39A3&quot;</span>, <span class="st">&quot;PARVB&quot;</span>, <span class="st">&quot;TPM1&quot;</span>, <span class="st">&quot;NME1&quot;</span>, <span class="st">&quot;HADH&quot;</span>, <span class="st">&quot;SPN&quot;</span>, <span class="st">&quot;PF4&quot;</span>),</span>
+<span id="cb9-13"><a href="spatial-1.html#cb9-13" tabindex="-1"></a>  <span class="at">GMP_MDP =</span> <span class="fu">c</span>(<span class="st">&quot;MPO&quot;</span>, <span class="st">&quot;PRTN3&quot;</span>, <span class="st">&quot;CTSG&quot;</span>, <span class="st">&quot;MS4A3&quot;</span>, <span class="st">&quot;CEBPA&quot;</span>, <span class="st">&quot;AZU1&quot;</span>, <span class="st">&quot;LYZL6&quot;</span>, <span class="st">&quot;RNASE2&quot;</span>, <span class="st">&quot;RNASE3&quot;</span>, <span class="st">&quot;RAB32&quot;</span>),</span>
+<span id="cb9-14"><a href="spatial-1.html#cb9-14" tabindex="-1"></a>  <span class="at">Early_myeloid =</span> <span class="fu">c</span>(<span class="st">&quot;ELANE&quot;</span>, <span class="st">&quot;BPI&quot;</span>, <span class="st">&quot;DEFA4&quot;</span>, <span class="st">&quot;SLPI&quot;</span>, <span class="st">&quot;PGLYRP1&quot;</span>, <span class="st">&quot;LCN2&quot;</span>, <span class="st">&quot;LTF&quot;</span>, <span class="st">&quot;AZU1&quot;</span>, <span class="st">&quot;DEFA3&quot;</span>, <span class="st">&quot;CD24&quot;</span>, <span class="st">&quot;RETN&quot;</span>, <span class="st">&quot;CEBPE&quot;</span>),</span>
+<span id="cb9-15"><a href="spatial-1.html#cb9-15" tabindex="-1"></a>  <span class="at">Late_myeloid =</span> <span class="fu">c</span>(<span class="st">&quot;CAMP&quot;</span>, <span class="st">&quot;CRISP3&quot;</span>, <span class="st">&quot;MMP8&quot;</span>, <span class="st">&quot;OLFM4&quot;</span>, <span class="st">&quot;TCN1&quot;</span>, <span class="st">&quot;CEACAM8&quot;</span>, <span class="st">&quot;PADI4&quot;</span>, <span class="st">&quot;ARG1&quot;</span>, <span class="st">&quot;RETN&quot;</span>, <span class="st">&quot;ANXA3&quot;</span>, <span class="st">&quot;CYBB&quot;</span>, <span class="st">&quot;GCA&quot;</span>, <span class="st">&quot;MNDA&quot;</span>, <span class="st">&quot;CDA&quot;</span>, <span class="st">&quot;LTA4H&quot;</span>, <span class="st">&quot;NCF4&quot;</span>),</span>
+<span id="cb9-16"><a href="spatial-1.html#cb9-16" tabindex="-1"></a>  <span class="at">Neutrophil =</span> <span class="fu">c</span>(<span class="st">&quot;FCGR3B&quot;</span>, <span class="st">&quot;FPR1&quot;</span>, <span class="st">&quot;C5AR1&quot;</span>, <span class="st">&quot;CMTM2&quot;</span>, <span class="st">&quot;AQP9&quot;</span>, <span class="st">&quot;VNN2&quot;</span>, <span class="st">&quot;MMP25&quot;</span>, <span class="st">&quot;FCAR&quot;</span>, <span class="st">&quot;TREM1&quot;</span>, <span class="st">&quot;IL1R2&quot;</span>, <span class="st">&quot;CSF3R&quot;</span>, <span class="st">&quot;S100A12&quot;</span>, <span class="st">&quot;CXCL8&quot;</span>, <span class="st">&quot;G0S2&quot;</span>, <span class="st">&quot;BCL2A1&quot;</span>, <span class="st">&quot;NCF1&quot;</span>, <span class="st">&quot;MMP9&quot;</span>),</span>
+<span id="cb9-17"><a href="spatial-1.html#cb9-17" tabindex="-1"></a>  <span class="at">Monocyte =</span> <span class="fu">c</span>(<span class="st">&quot;CD14&quot;</span>, <span class="st">&quot;SLC11A1&quot;</span>, <span class="st">&quot;CD300E&quot;</span>, <span class="st">&quot;MS4A6A&quot;</span>, <span class="st">&quot;ANPEP&quot;</span>, <span class="st">&quot;NLRP3&quot;</span>, <span class="st">&quot;PLIN2&quot;</span>, <span class="st">&quot;LILRB2&quot;</span>, <span class="st">&quot;C5AR1&quot;</span>, <span class="st">&quot;NCF2&quot;</span>),</span>
+<span id="cb9-18"><a href="spatial-1.html#cb9-18" tabindex="-1"></a>  <span class="at">Macrophage =</span> <span class="fu">c</span>(<span class="st">&quot;C1QA&quot;</span>, <span class="st">&quot;C1QB&quot;</span>, <span class="st">&quot;C1QC&quot;</span>, <span class="st">&quot;CD163&quot;</span>, <span class="st">&quot;FOLR2&quot;</span>, <span class="st">&quot;VSIG4&quot;</span>, <span class="st">&quot;MSR1&quot;</span>, <span class="st">&quot;GPNMB&quot;</span>, <span class="st">&quot;STAB1&quot;</span>, <span class="st">&quot;MRC1&quot;</span>, <span class="st">&quot;LGMN&quot;</span>, <span class="st">&quot;CD68&quot;</span>, <span class="st">&quot;FCGRT&quot;</span>),</span>
+<span id="cb9-19"><a href="spatial-1.html#cb9-19" tabindex="-1"></a>  <span class="at">cDC =</span> <span class="fu">c</span>(<span class="st">&quot;CD1C&quot;</span>, <span class="st">&quot;FCER1A&quot;</span>, <span class="st">&quot;CPVL&quot;</span>, <span class="st">&quot;ZNF385A&quot;</span>, <span class="st">&quot;IL4I1&quot;</span>, <span class="st">&quot;CD1E&quot;</span>, <span class="st">&quot;FCGR2B&quot;</span>, <span class="st">&quot;CCL22&quot;</span>, <span class="st">&quot;CD83&quot;</span>, <span class="st">&quot;SAMHD1&quot;</span>, <span class="st">&quot;LGALS9&quot;</span>, <span class="st">&quot;SYNGR2&quot;</span>, <span class="st">&quot;CLEC10A&quot;</span>, <span class="st">&quot;IFI30&quot;</span>, <span class="st">&quot;CTSH&quot;</span>, <span class="st">&quot;AIF1&quot;</span>, <span class="st">&quot;CD300C&quot;</span>, <span class="st">&quot;FGR&quot;</span>, <span class="st">&quot;KLF4&quot;</span>, <span class="st">&quot;RAB31&quot;</span>),</span>
+<span id="cb9-20"><a href="spatial-1.html#cb9-20" tabindex="-1"></a>  <span class="at">pDC =</span> <span class="fu">c</span>(<span class="st">&quot;LILRA4&quot;</span>, <span class="st">&quot;CLEC4C&quot;</span>, <span class="st">&quot;IL3RA&quot;</span>, <span class="st">&quot;TCF4&quot;</span>, <span class="st">&quot;IRF7&quot;</span>, <span class="st">&quot;PLD4&quot;</span>, <span class="st">&quot;SCT&quot;</span>, <span class="st">&quot;LRRC26&quot;</span>, <span class="st">&quot;PACSIN1&quot;</span>, <span class="st">&quot;SLC15A4&quot;</span>, <span class="st">&quot;PTCRA&quot;</span>, <span class="st">&quot;ITM2C&quot;</span>, <span class="st">&quot;PLAC8&quot;</span>, <span class="st">&quot;GNA15&quot;</span>, <span class="st">&quot;PPP1R14B&quot;</span>, <span class="st">&quot;RGS1&quot;</span>, <span class="st">&quot;TSPAN13&quot;</span>, <span class="st">&quot;CYB561A3&quot;</span>, <span class="st">&quot;LIME1&quot;</span>, <span class="st">&quot;SH2B3&quot;</span>, <span class="st">&quot;AREG&quot;</span>, <span class="st">&quot;SLC7A5&quot;</span>, <span class="st">&quot;BHLHE40&quot;</span>, <span class="st">&quot;GPR183&quot;</span>, <span class="st">&quot;IRF8&quot;</span>),</span>
+<span id="cb9-21"><a href="spatial-1.html#cb9-21" tabindex="-1"></a>  <span class="at">Proerythroblast =</span> <span class="fu">c</span>(<span class="st">&quot;KLF1&quot;</span>, <span class="st">&quot;GFI1B&quot;</span>, <span class="st">&quot;HEMGN&quot;</span>, <span class="st">&quot;TMEM14C&quot;</span>, <span class="st">&quot;SLC25A37&quot;</span>, <span class="st">&quot;SLC25A39&quot;</span>, <span class="st">&quot;HMBS&quot;</span>, <span class="st">&quot;UROD&quot;</span>, <span class="st">&quot;FECH&quot;</span>, <span class="st">&quot;CD36&quot;</span>, <span class="st">&quot;TFRC&quot;</span>, <span class="st">&quot;CA1&quot;</span>, <span class="st">&quot;CA2&quot;</span>, <span class="st">&quot;HBM&quot;</span>, <span class="st">&quot;HBA2&quot;</span>, <span class="st">&quot;HBD&quot;</span>, <span class="st">&quot;EIF2AK1&quot;</span>, <span class="st">&quot;BLVRB&quot;</span>, <span class="st">&quot;PRDX2&quot;</span>, <span class="st">&quot;TESC&quot;</span>, <span class="st">&quot;NME4&quot;</span>, <span class="st">&quot;GLRX5&quot;</span>, <span class="st">&quot;BOLA3&quot;</span>, <span class="st">&quot;IDH2&quot;</span>),</span>
+<span id="cb9-22"><a href="spatial-1.html#cb9-22" tabindex="-1"></a>  <span class="at">Erythroblast =</span> <span class="fu">c</span>(<span class="st">&quot;GYPA&quot;</span>, <span class="st">&quot;GYPC&quot;</span>, <span class="st">&quot;SLC4A1&quot;</span>, <span class="st">&quot;RHAG&quot;</span>, <span class="st">&quot;EPB42&quot;</span>, <span class="st">&quot;SPTA1&quot;</span>, <span class="st">&quot;SPTB&quot;</span>, <span class="st">&quot;ANK1&quot;</span>, <span class="st">&quot;TRIM58&quot;</span>, <span class="st">&quot;AHSP&quot;</span>, <span class="st">&quot;BPGM&quot;</span>, <span class="st">&quot;ALAS2&quot;</span>, <span class="st">&quot;EPB41&quot;</span>, <span class="st">&quot;BNIP3L&quot;</span>, <span class="st">&quot;FECH&quot;</span>, <span class="st">&quot;KLF1&quot;</span>, <span class="st">&quot;HMBS&quot;</span>, <span class="st">&quot;HEMGN&quot;</span>),</span>
+<span id="cb9-23"><a href="spatial-1.html#cb9-23" tabindex="-1"></a>  <span class="at">Pro_B =</span> <span class="fu">c</span>(<span class="st">&quot;DNTT&quot;</span>, <span class="st">&quot;VPREB1&quot;</span>, <span class="st">&quot;VPREB3&quot;</span>, <span class="st">&quot;IGLL1&quot;</span>, <span class="st">&quot;RAG1&quot;</span>, <span class="st">&quot;RAG2&quot;</span>, <span class="st">&quot;LCN6&quot;</span>, <span class="st">&quot;MME&quot;</span>, <span class="st">&quot;EBF1&quot;</span>, <span class="st">&quot;TCF3&quot;</span>, <span class="st">&quot;CD79B&quot;</span>, <span class="st">&quot;SOX4&quot;</span>, <span class="st">&quot;MEF2C&quot;</span>, <span class="st">&quot;FOXO1&quot;</span>, <span class="st">&quot;SMIM3&quot;</span>, <span class="st">&quot;CD9&quot;</span>, <span class="st">&quot;S1PR4&quot;</span>),</span>
+<span id="cb9-24"><a href="spatial-1.html#cb9-24" tabindex="-1"></a>  <span class="at">Immature_B =</span> <span class="fu">c</span>(<span class="st">&quot;TCL1A&quot;</span>, <span class="st">&quot;FCRLA&quot;</span>, <span class="st">&quot;DTX1&quot;</span>, <span class="st">&quot;BACH2&quot;</span>, <span class="st">&quot;NIBAN3&quot;</span>, <span class="st">&quot;KLHL14&quot;</span>, <span class="st">&quot;ADAM23&quot;</span>, <span class="st">&quot;LAMP5&quot;</span>, <span class="st">&quot;CD24&quot;</span>, <span class="st">&quot;SYK&quot;</span>, <span class="st">&quot;CMTM7&quot;</span>, <span class="st">&quot;RCSD1&quot;</span>, <span class="st">&quot;MTSS1&quot;</span>, <span class="st">&quot;TLE1&quot;</span>, <span class="st">&quot;CD79B&quot;</span>, <span class="st">&quot;AFF3&quot;</span>, <span class="st">&quot;PAX5&quot;</span>),</span>
+<span id="cb9-25"><a href="spatial-1.html#cb9-25" tabindex="-1"></a>  <span class="at">Mature_B =</span> <span class="fu">c</span>(<span class="st">&quot;MS4A1&quot;</span>, <span class="st">&quot;CD22&quot;</span>, <span class="st">&quot;BANK1&quot;</span>, <span class="st">&quot;FCER2&quot;</span>, <span class="st">&quot;TNFRSF13C&quot;</span>, <span class="st">&quot;FCRL1&quot;</span>, <span class="st">&quot;FCRL2&quot;</span>, <span class="st">&quot;CD40&quot;</span>, <span class="st">&quot;CXCR5&quot;</span>, <span class="st">&quot;BLK&quot;</span>, <span class="st">&quot;CD69&quot;</span>, <span class="st">&quot;LTB&quot;</span>, <span class="st">&quot;FCMR&quot;</span>, <span class="st">&quot;BIRC3&quot;</span>, <span class="st">&quot;CD79A&quot;</span>),</span>
+<span id="cb9-26"><a href="spatial-1.html#cb9-26" tabindex="-1"></a>  <span class="at">Plasma =</span> <span class="fu">c</span>(<span class="st">&quot;PRDM1&quot;</span>, <span class="st">&quot;MZB1&quot;</span>, <span class="st">&quot;SDC1&quot;</span>, <span class="st">&quot;TNFRSF17&quot;</span>, <span class="st">&quot;TXNDC5&quot;</span>, <span class="st">&quot;FKBP11&quot;</span>, <span class="st">&quot;SEC11C&quot;</span>, <span class="st">&quot;PRDX4&quot;</span>, <span class="st">&quot;PDIA4&quot;</span>, <span class="st">&quot;SDF2L1&quot;</span>, <span class="st">&quot;MANF&quot;</span>, <span class="st">&quot;DNAJB9&quot;</span>, <span class="st">&quot;MYDGF&quot;</span>, <span class="st">&quot;LMAN1&quot;</span>, <span class="st">&quot;ERN1&quot;</span>, <span class="st">&quot;TXNDC11&quot;</span>, <span class="st">&quot;PDIA6&quot;</span>, <span class="st">&quot;PIM2&quot;</span>, <span class="st">&quot;ELL2&quot;</span>, <span class="st">&quot;RPN2&quot;</span>, <span class="st">&quot;POU2AF1&quot;</span>, <span class="st">&quot;GPRC5D&quot;</span>),</span>
+<span id="cb9-27"><a href="spatial-1.html#cb9-27" tabindex="-1"></a>  <span class="at">T_NK_cell =</span> <span class="fu">c</span>(<span class="st">&quot;CD3D&quot;</span>, <span class="st">&quot;CD3E&quot;</span>, <span class="st">&quot;CD3G&quot;</span>, <span class="st">&quot;CD247&quot;</span>, <span class="st">&quot;TRAC&quot;</span>, <span class="st">&quot;LCK&quot;</span>, <span class="st">&quot;ZAP70&quot;</span>, <span class="st">&quot;KLRD1&quot;</span>, <span class="st">&quot;KLRK1&quot;</span>, <span class="st">&quot;PRF1&quot;</span>, <span class="st">&quot;GZMA&quot;</span>, <span class="st">&quot;GZMH&quot;</span>, <span class="st">&quot;CCL5&quot;</span>, <span class="st">&quot;NKG7&quot;</span>, <span class="st">&quot;FYN&quot;</span>, <span class="st">&quot;ETS1&quot;</span>, <span class="st">&quot;CD48&quot;</span>, <span class="st">&quot;RHOH&quot;</span>, <span class="st">&quot;GNG2&quot;</span>, <span class="st">&quot;FYB1&quot;</span>, <span class="st">&quot;SOCS1&quot;</span>),</span>
+<span id="cb9-28"><a href="spatial-1.html#cb9-28" tabindex="-1"></a>  <span class="at">Endothelial =</span> <span class="fu">c</span>(<span class="st">&quot;PECAM1&quot;</span>, <span class="st">&quot;CDH5&quot;</span>, <span class="st">&quot;ECSCR&quot;</span>, <span class="st">&quot;VWF&quot;</span>, <span class="st">&quot;CLDN5&quot;</span>, <span class="st">&quot;MYCT1&quot;</span>, <span class="st">&quot;ESAM&quot;</span>, <span class="st">&quot;CCL14&quot;</span>, <span class="st">&quot;SHANK3&quot;</span>, <span class="st">&quot;PLVAP&quot;</span>),</span>
+<span id="cb9-29"><a href="spatial-1.html#cb9-29" tabindex="-1"></a>  <span class="at">Vascular =</span> <span class="fu">c</span>(<span class="st">&quot;TINAGL1&quot;</span>, <span class="st">&quot;COX4I2&quot;</span>, <span class="st">&quot;RGS5&quot;</span>, <span class="st">&quot;ACTA2&quot;</span>, <span class="st">&quot;SEPTIN4&quot;</span>, <span class="st">&quot;HIGD1B&quot;</span>, <span class="st">&quot;ADIRF&quot;</span>, <span class="st">&quot;GJA4&quot;</span>, <span class="st">&quot;MYH11&quot;</span>),</span>
+<span id="cb9-30"><a href="spatial-1.html#cb9-30" tabindex="-1"></a>  <span class="at">Fibroblast =</span> <span class="fu">c</span>(<span class="st">&quot;LUM&quot;</span>, <span class="st">&quot;COL6A2&quot;</span>, <span class="st">&quot;FN1&quot;</span>, <span class="st">&quot;DCN&quot;</span>, <span class="st">&quot;BGN&quot;</span>, <span class="st">&quot;COL1A2&quot;</span>, <span class="st">&quot;COL6A1&quot;</span>, <span class="st">&quot;COL3A1&quot;</span>, <span class="st">&quot;PCOLCE&quot;</span>, <span class="st">&quot;HTRA1&quot;</span>, <span class="st">&quot;NNMT&quot;</span>, <span class="st">&quot;SPARC&quot;</span>, <span class="st">&quot;COL5A2&quot;</span>, <span class="st">&quot;MGP&quot;</span>, <span class="st">&quot;LRP1&quot;</span>, <span class="st">&quot;CCDC80&quot;</span>, <span class="st">&quot;COL6A3&quot;</span>, <span class="st">&quot;FSTL1&quot;</span>, <span class="st">&quot;COL1A1&quot;</span>, <span class="st">&quot;SERPING1&quot;</span>),</span>
+<span id="cb9-31"><a href="spatial-1.html#cb9-31" tabindex="-1"></a>  <span class="at">Mesenchymal =</span> <span class="fu">c</span>(<span class="st">&quot;IGF2&quot;</span>, <span class="st">&quot;COL1A2&quot;</span>, <span class="st">&quot;COL6A2&quot;</span>, <span class="st">&quot;MGP&quot;</span>, <span class="st">&quot;NNMT&quot;</span>, <span class="st">&quot;CXCL12&quot;</span>, <span class="st">&quot;DCN&quot;</span>, <span class="st">&quot;CYP1B1&quot;</span>, <span class="st">&quot;CALD1&quot;</span>, <span class="st">&quot;COL6A1&quot;</span>, <span class="st">&quot;ANGPTL4&quot;</span>, <span class="st">&quot;SERPING1&quot;</span>, <span class="st">&quot;IGFBP5&quot;</span>, <span class="st">&quot;PCOLCE&quot;</span>, <span class="st">&quot;IGFBP4&quot;</span>, <span class="st">&quot;C1S&quot;</span>, <span class="st">&quot;GGT5&quot;</span>, <span class="st">&quot;LUM&quot;</span>),</span>
+<span id="cb9-32"><a href="spatial-1.html#cb9-32" tabindex="-1"></a>  <span class="at">Osteoblast =</span> <span class="fu">c</span>(<span class="st">&quot;IBSP&quot;</span>, <span class="st">&quot;BGLAP&quot;</span>, <span class="st">&quot;RUNX2&quot;</span>, <span class="st">&quot;SATB2&quot;</span>, <span class="st">&quot;DLX5&quot;</span>, <span class="st">&quot;FAM20C&quot;</span>, <span class="st">&quot;CPE&quot;</span>, <span class="st">&quot;OMD&quot;</span>, <span class="st">&quot;BAMBI&quot;</span>, <span class="st">&quot;SERPINF1&quot;</span>, <span class="st">&quot;COL8A1&quot;</span>, <span class="st">&quot;FAM20A&quot;</span>, <span class="st">&quot;TMEM119&quot;</span>, <span class="st">&quot;CDH11&quot;</span>, <span class="st">&quot;TNC&quot;</span>, <span class="st">&quot;CCN2&quot;</span>, <span class="st">&quot;CLEC11A&quot;</span>, <span class="st">&quot;COL1A1&quot;</span>, <span class="st">&quot;COL1A2&quot;</span>, <span class="st">&quot;COL12A1&quot;</span>),</span>
+<span id="cb9-33"><a href="spatial-1.html#cb9-33" tabindex="-1"></a>  <span class="at">Macro_C1Q =</span> <span class="fu">c</span>(<span class="st">&quot;C1QA&quot;</span>, <span class="st">&quot;C1QB&quot;</span>, <span class="st">&quot;C1QC&quot;</span>, <span class="st">&quot;TIMD4&quot;</span>, <span class="st">&quot;FOLR2&quot;</span>, <span class="st">&quot;VSIG4&quot;</span>, <span class="st">&quot;CD163&quot;</span>, <span class="st">&quot;MS4A7&quot;</span>, <span class="st">&quot;MRC1&quot;</span>, <span class="st">&quot;SELENOP&quot;</span>, <span class="st">&quot;SLC40A1&quot;</span>, <span class="st">&quot;MSR1&quot;</span>, <span class="st">&quot;LGMN&quot;</span>, <span class="st">&quot;NCOA4&quot;</span>, <span class="st">&quot;SLC48A1&quot;</span>, <span class="st">&quot;LIPA&quot;</span>, <span class="st">&quot;IGSF6&quot;</span>, <span class="st">&quot;FGL2&quot;</span>, <span class="st">&quot;CTSF&quot;</span>, <span class="st">&quot;TIMP3&quot;</span>, <span class="st">&quot;GPX3&quot;</span>, <span class="st">&quot;ADI1&quot;</span>),</span>
+<span id="cb9-34"><a href="spatial-1.html#cb9-34" tabindex="-1"></a>  <span class="at">Macro_LYVE1 =</span> <span class="fu">c</span>(<span class="st">&quot;C1QA&quot;</span>, <span class="st">&quot;C1QB&quot;</span>, <span class="st">&quot;C1QC&quot;</span>, <span class="st">&quot;LYVE1&quot;</span>, <span class="st">&quot;FOLR2&quot;</span>, <span class="st">&quot;MRC1&quot;</span>, <span class="st">&quot;STAB1&quot;</span>, <span class="st">&quot;CD163&quot;</span>, <span class="st">&quot;VSIG4&quot;</span>, <span class="st">&quot;MSR1&quot;</span>, <span class="st">&quot;MERTK&quot;</span>, <span class="st">&quot;TIMD4&quot;</span>, <span class="st">&quot;SELENOP&quot;</span>, <span class="st">&quot;F13A1&quot;</span>, <span class="st">&quot;RNASE1&quot;</span>, <span class="st">&quot;IGF1&quot;</span>, <span class="st">&quot;MAFB&quot;</span>, <span class="st">&quot;SLC40A1&quot;</span>, <span class="st">&quot;LIPA&quot;</span>, <span class="st">&quot;PLTP&quot;</span>, <span class="st">&quot;TREM2&quot;</span>, <span class="st">&quot;LGMN&quot;</span>, <span class="st">&quot;FGL2&quot;</span>, <span class="st">&quot;ABCA1&quot;</span>, <span class="st">&quot;KLF4&quot;</span>),</span>
+<span id="cb9-35"><a href="spatial-1.html#cb9-35" tabindex="-1"></a>  <span class="at">Macro_CX3CR1 =</span> <span class="fu">c</span>(<span class="st">&quot;C1QA&quot;</span>, <span class="st">&quot;C1QB&quot;</span>, <span class="st">&quot;C1QC&quot;</span>, <span class="st">&quot;CX3CR1&quot;</span>, <span class="st">&quot;FCGR3A&quot;</span>, <span class="st">&quot;MS4A7&quot;</span>, <span class="st">&quot;AIF1&quot;</span>, <span class="st">&quot;LILRB2&quot;</span>, <span class="st">&quot;C5AR1&quot;</span>, <span class="st">&quot;SLC11A1&quot;</span>, <span class="st">&quot;RHOC&quot;</span>, <span class="st">&quot;ITGAX&quot;</span>, <span class="st">&quot;CXCL8&quot;</span>, <span class="st">&quot;CCL3&quot;</span>, <span class="st">&quot;CCL4&quot;</span>, <span class="st">&quot;CTSS&quot;</span>),</span>
+<span id="cb9-36"><a href="spatial-1.html#cb9-36" tabindex="-1"></a>  <span class="at">Macro_CLEC10A =</span> <span class="fu">c</span>(<span class="st">&quot;C1QA&quot;</span>, <span class="st">&quot;C1QB&quot;</span>, <span class="st">&quot;C1QC&quot;</span>, <span class="st">&quot;CLEC10A&quot;</span>, <span class="st">&quot;ITGAX&quot;</span>, <span class="st">&quot;LILRB2&quot;</span>, <span class="st">&quot;PLAUR&quot;</span>, <span class="st">&quot;PILRA&quot;</span>, <span class="st">&quot;CTSH&quot;</span>, <span class="st">&quot;SOCS3&quot;</span>, <span class="st">&quot;ADGRE5&quot;</span>, <span class="st">&quot;FCGR2B&quot;</span>, <span class="st">&quot;CCL22&quot;</span>, <span class="st">&quot;CD1C&quot;</span>, <span class="st">&quot;CPVL&quot;</span>, <span class="st">&quot;GPR183&quot;</span>, <span class="st">&quot;CSTA&quot;</span>),</span>
+<span id="cb9-37"><a href="spatial-1.html#cb9-37" tabindex="-1"></a>  <span class="at">Macro_GPNMB =</span> <span class="fu">c</span>(<span class="st">&quot;C1QA&quot;</span>, <span class="st">&quot;C1QB&quot;</span>, <span class="st">&quot;C1QC&quot;</span>, <span class="st">&quot;GPNMB&quot;</span>, <span class="st">&quot;TREM2&quot;</span>, <span class="st">&quot;CD9&quot;</span>, <span class="st">&quot;OLR1&quot;</span>, <span class="st">&quot;NR1H3&quot;</span>, <span class="st">&quot;SCARB2&quot;</span>, <span class="st">&quot;ITGA5&quot;</span>, <span class="st">&quot;CAPG&quot;</span>, <span class="st">&quot;MGLL&quot;</span>, <span class="st">&quot;SLC6A6&quot;</span>, <span class="st">&quot;FPR3&quot;</span>, <span class="st">&quot;ITGAX&quot;</span>, <span class="st">&quot;SLC11A1&quot;</span>, <span class="st">&quot;CD163&quot;</span>, <span class="st">&quot;MSR1&quot;</span>, <span class="st">&quot;LGMN&quot;</span>),</span>
+<span id="cb9-38"><a href="spatial-1.html#cb9-38" tabindex="-1"></a>  <span class="at">Osteoclast =</span> <span class="fu">c</span>(<span class="st">&quot;ACP5&quot;</span>, <span class="st">&quot;MMP9&quot;</span>, <span class="st">&quot;TNFRSF11A&quot;</span>, <span class="st">&quot;TCIRG1&quot;</span>, <span class="st">&quot;CLCN7&quot;</span>, <span class="st">&quot;CTSK&quot;</span>, <span class="st">&quot;ITGAV&quot;</span>, <span class="st">&quot;SPI1&quot;</span>, <span class="st">&quot;ATP6V1A&quot;</span>, <span class="st">&quot;ATP6V1B2&quot;</span>, <span class="st">&quot;ATP6V1E1&quot;</span>, <span class="st">&quot;ATP6V1H&quot;</span>, <span class="st">&quot;MATK&quot;</span>, <span class="st">&quot;CD109&quot;</span>, <span class="st">&quot;SLC37A2&quot;</span>, <span class="st">&quot;CLEC4A&quot;</span>, <span class="st">&quot;CAPN2&quot;</span>, <span class="st">&quot;GNPTAB&quot;</span>, <span class="st">&quot;MAP4K4&quot;</span>, <span class="st">&quot;OXR1&quot;</span>, <span class="st">&quot;SPHK1&quot;</span>, <span class="st">&quot;ORAI1&quot;</span>, <span class="st">&quot;FOSL2&quot;</span>, <span class="st">&quot;SPARC&quot;</span>),</span>
+<span id="cb9-39"><a href="spatial-1.html#cb9-39" tabindex="-1"></a>  <span class="at">BMSC_Osteo =</span> <span class="fu">c</span>(<span class="st">&quot;COL1A1&quot;</span>, <span class="st">&quot;COL1A2&quot;</span>, <span class="st">&quot;COL16A1&quot;</span>, <span class="st">&quot;ITGA10&quot;</span>, <span class="st">&quot;ITGA11&quot;</span>, <span class="st">&quot;ADAMTS10&quot;</span>, <span class="st">&quot;SHOX2&quot;</span>, <span class="st">&quot;SULF1&quot;</span>, <span class="st">&quot;PTPRS&quot;</span>, <span class="st">&quot;MRC2&quot;</span>, <span class="st">&quot;UNC5B&quot;</span>, <span class="st">&quot;PTPRD&quot;</span>, <span class="st">&quot;CDK14&quot;</span>, <span class="st">&quot;PLEKHA4&quot;</span>, <span class="st">&quot;GXYLT2&quot;</span>, <span class="st">&quot;C12orf75&quot;</span>, <span class="st">&quot;RUNX2&quot;</span>, <span class="st">&quot;SATB2&quot;</span>, <span class="st">&quot;DLX5&quot;</span>, <span class="st">&quot;FAM20C&quot;</span>),</span>
+<span id="cb9-40"><a href="spatial-1.html#cb9-40" tabindex="-1"></a>  <span class="at">BMSC_LEPR =</span> <span class="fu">c</span>(<span class="st">&quot;LEPR&quot;</span>, <span class="st">&quot;CXCL12&quot;</span>, <span class="st">&quot;LPL&quot;</span>, <span class="st">&quot;APOE&quot;</span>, <span class="st">&quot;CFD&quot;</span>, <span class="st">&quot;RARRES2&quot;</span>, <span class="st">&quot;GGT5&quot;</span>, <span class="st">&quot;PTGDS&quot;</span>, <span class="st">&quot;PAPPA&quot;</span>, <span class="st">&quot;THBS1&quot;</span>, <span class="st">&quot;MDK&quot;</span>, <span class="st">&quot;APOC1&quot;</span>, <span class="st">&quot;ABCA8&quot;</span>, <span class="st">&quot;ID4&quot;</span>, <span class="st">&quot;ANGPT1&quot;</span>, <span class="st">&quot;VCAM1&quot;</span>, <span class="st">&quot;FGF7&quot;</span>, <span class="st">&quot;CHL1&quot;</span>, <span class="st">&quot;CHRDL1&quot;</span>),</span>
+<span id="cb9-41"><a href="spatial-1.html#cb9-41" tabindex="-1"></a>  <span class="at">BMSC_THY1 =</span> <span class="fu">c</span>(<span class="st">&quot;THY1&quot;</span>, <span class="st">&quot;ANGPT1&quot;</span>, <span class="st">&quot;VCAM1&quot;</span>, <span class="st">&quot;FGF7&quot;</span>, <span class="st">&quot;TMEM176A&quot;</span>, <span class="st">&quot;TMEM176B&quot;</span>, <span class="st">&quot;CHRDL1&quot;</span>, <span class="st">&quot;CHL1&quot;</span>, <span class="st">&quot;GPM6B&quot;</span>, <span class="st">&quot;GAS6&quot;</span>, <span class="st">&quot;FRZB&quot;</span>, <span class="st">&quot;FBN1&quot;</span>, <span class="st">&quot;COL14A1&quot;</span>, <span class="st">&quot;NTRK2&quot;</span>, <span class="st">&quot;S1PR3&quot;</span>, <span class="st">&quot;CYP1B1&quot;</span>, <span class="st">&quot;LEPR&quot;</span>, <span class="st">&quot;CXCL12&quot;</span>, <span class="st">&quot;LPL&quot;</span>, <span class="st">&quot;APOE&quot;</span>),</span>
+<span id="cb9-42"><a href="spatial-1.html#cb9-42" tabindex="-1"></a>  <span class="at">Chondrocyte =</span> <span class="fu">c</span>(<span class="st">&quot;APOD&quot;</span>, <span class="st">&quot;COL2A1&quot;</span>, <span class="st">&quot;COL11A1&quot;</span>, <span class="st">&quot;SOX9&quot;</span>, <span class="st">&quot;SOX5&quot;</span>, <span class="st">&quot;FMOD&quot;</span>, <span class="st">&quot;OGN&quot;</span>, <span class="st">&quot;DCN&quot;</span>, <span class="st">&quot;SOD3&quot;</span>, <span class="st">&quot;ECRG4&quot;</span>, <span class="st">&quot;SERPINA3&quot;</span>, <span class="st">&quot;KCNMA1&quot;</span>, <span class="st">&quot;PDPN&quot;</span>, <span class="st">&quot;BCAT1&quot;</span>, <span class="st">&quot;SMOC2&quot;</span>, <span class="st">&quot;COL27A1&quot;</span>, <span class="st">&quot;PAPSS2&quot;</span>, <span class="st">&quot;GPC6&quot;</span>, <span class="st">&quot;CRTAC1&quot;</span>, <span class="st">&quot;CDO1&quot;</span>, <span class="st">&quot;SERPINE2&quot;</span>),</span>
+<span id="cb9-43"><a href="spatial-1.html#cb9-43" tabindex="-1"></a>  <span class="at">Fibrochondrocyte =</span> <span class="fu">c</span>(<span class="st">&quot;PRG4&quot;</span>, <span class="st">&quot;CRTAC1&quot;</span>, <span class="st">&quot;DPT&quot;</span>, <span class="st">&quot;CFB&quot;</span>, <span class="st">&quot;GFPT2&quot;</span>, <span class="st">&quot;CDO1&quot;</span>, <span class="st">&quot;HTRA1&quot;</span>, <span class="st">&quot;PROCR&quot;</span>, <span class="st">&quot;CLU&quot;</span>, <span class="st">&quot;SERPINE2&quot;</span>, <span class="st">&quot;CHI3L2&quot;</span>, <span class="st">&quot;SLC2A1&quot;</span>, <span class="st">&quot;SLC39A14&quot;</span>, <span class="st">&quot;INHBA&quot;</span>, <span class="st">&quot;FN1&quot;</span>, <span class="st">&quot;PDGFRL&quot;</span>, <span class="st">&quot;LUM&quot;</span>, <span class="st">&quot;ACKR3&quot;</span>, <span class="st">&quot;PRRX1&quot;</span>),</span>
+<span id="cb9-44"><a href="spatial-1.html#cb9-44" tabindex="-1"></a>  <span class="at">VSMC =</span> <span class="fu">c</span>(<span class="st">&quot;ACTA2&quot;</span>, <span class="st">&quot;TAGLN&quot;</span>, <span class="st">&quot;MYL9&quot;</span>, <span class="st">&quot;MYLK&quot;</span>, <span class="st">&quot;MCAM&quot;</span>, <span class="st">&quot;NOTCH3&quot;</span>, <span class="st">&quot;EDNRA&quot;</span>, <span class="st">&quot;RGS16&quot;</span>, <span class="st">&quot;PPP1R14A&quot;</span>, <span class="st">&quot;ADIRF&quot;</span>, <span class="st">&quot;TINAGL1&quot;</span>, <span class="st">&quot;NDUFA4L2&quot;</span>, <span class="st">&quot;GPRC5C&quot;</span>, <span class="st">&quot;NR2F2&quot;</span>, <span class="st">&quot;CSPG4&quot;</span>, <span class="st">&quot;HSPB6&quot;</span>, <span class="st">&quot;HSPB2&quot;</span>, <span class="st">&quot;RBPMS&quot;</span>, <span class="st">&quot;TPM2&quot;</span>, <span class="st">&quot;PPP1R12A&quot;</span>, <span class="st">&quot;SORBS2&quot;</span>, <span class="st">&quot;SLIT3&quot;</span>, <span class="st">&quot;KANK2&quot;</span>, <span class="st">&quot;FILIP1L&quot;</span>, <span class="st">&quot;SPARCL1&quot;</span>),</span>
+<span id="cb9-45"><a href="spatial-1.html#cb9-45" tabindex="-1"></a>  <span class="at">AEC =</span> <span class="fu">c</span>(<span class="st">&quot;PECAM1&quot;</span>, <span class="st">&quot;CDH5&quot;</span>, <span class="st">&quot;CLDN5&quot;</span>, <span class="st">&quot;VWF&quot;</span>, <span class="st">&quot;SOX18&quot;</span>, <span class="st">&quot;CD93&quot;</span>, <span class="st">&quot;ESAM&quot;</span>, <span class="st">&quot;FLT1&quot;</span>, <span class="st">&quot;EFNB2&quot;</span>, <span class="st">&quot;EMCN&quot;</span>, <span class="st">&quot;ECSCR&quot;</span>, <span class="st">&quot;ACVRL1&quot;</span>, <span class="st">&quot;ICAM2&quot;</span>, <span class="st">&quot;ENG&quot;</span>, <span class="st">&quot;JAM2&quot;</span>, <span class="st">&quot;S1PR1&quot;</span>, <span class="st">&quot;COL15A1&quot;</span>, <span class="st">&quot;NES&quot;</span>, <span class="st">&quot;BCAM&quot;</span>, <span class="st">&quot;ADGRL4&quot;</span>),</span>
+<span id="cb9-46"><a href="spatial-1.html#cb9-46" tabindex="-1"></a>  <span class="at">SEC =</span> <span class="fu">c</span>(<span class="st">&quot;DNASE1L3&quot;</span>, <span class="st">&quot;RNASE1&quot;</span>, <span class="st">&quot;THBD&quot;</span>, <span class="st">&quot;PLAT&quot;</span>, <span class="st">&quot;CALCRL&quot;</span>, <span class="st">&quot;ADGRL4&quot;</span>, <span class="st">&quot;TM4SF1&quot;</span>, <span class="st">&quot;TGM2&quot;</span>, <span class="st">&quot;GNG11&quot;</span>, <span class="st">&quot;BST2&quot;</span>, <span class="st">&quot;ITGA6&quot;</span>, <span class="st">&quot;CCL14&quot;</span>, <span class="st">&quot;CD36&quot;</span>, <span class="st">&quot;EGFL7&quot;</span>, <span class="st">&quot;CD93&quot;</span>, <span class="st">&quot;PECAM1&quot;</span>, <span class="st">&quot;CDH5&quot;</span>, <span class="st">&quot;ESAM&quot;</span>, <span class="st">&quot;CLDN5&quot;</span>, <span class="st">&quot;EFNB2&quot;</span>),</span>
+<span id="cb9-47"><a href="spatial-1.html#cb9-47" tabindex="-1"></a>  <span class="at">SEC_CD34n =</span> <span class="fu">c</span>(<span class="st">&quot;CCL14&quot;</span>, <span class="st">&quot;STAB1&quot;</span>, <span class="st">&quot;FABP4&quot;</span>, <span class="st">&quot;RBP7&quot;</span>, <span class="st">&quot;TFF3&quot;</span>, <span class="st">&quot;EGFL7&quot;</span>, <span class="st">&quot;SHANK3&quot;</span>, <span class="st">&quot;FAM167B&quot;</span>, <span class="st">&quot;CAVIN2&quot;</span>, <span class="st">&quot;KDR&quot;</span>, <span class="st">&quot;ROBO4&quot;</span>, <span class="st">&quot;DNASE1L3&quot;</span>, <span class="st">&quot;CD36&quot;</span>, <span class="st">&quot;CLDN5&quot;</span>, <span class="st">&quot;RNASE1&quot;</span>, <span class="st">&quot;PECAM1&quot;</span>, <span class="st">&quot;CDH5&quot;</span>, <span class="st">&quot;VWF&quot;</span>, <span class="st">&quot;FLT1&quot;</span>)</span>
+<span id="cb9-48"><a href="spatial-1.html#cb9-48" tabindex="-1"></a>)</span>
+<span id="cb9-49"><a href="spatial-1.html#cb9-49" tabindex="-1"></a></span>
+<span id="cb9-50"><a href="spatial-1.html#cb9-50" tabindex="-1"></a></span>
+<span id="cb9-51"><a href="spatial-1.html#cb9-51" tabindex="-1"></a></span>
+<span id="cb9-52"><a href="spatial-1.html#cb9-52" tabindex="-1"></a></span>
+<span id="cb9-53"><a href="spatial-1.html#cb9-53" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(marker.list.all)) {</span>
+<span id="cb9-54"><a href="spatial-1.html#cb9-54" tabindex="-1"></a>  <span class="fu">message</span>(i, <span class="st">&quot;  &quot;</span>, marker.list.all[[i]][<span class="sc">!</span> marker.list.all[[i]] <span class="sc">%in%</span> <span class="fu">rownames</span>(sce) ] )</span>
+<span id="cb9-55"><a href="spatial-1.html#cb9-55" tabindex="-1"></a>}</span>
+<span id="cb9-56"><a href="spatial-1.html#cb9-56" tabindex="-1"></a></span>
+<span id="cb9-57"><a href="spatial-1.html#cb9-57" tabindex="-1"></a>cells_rankings <span class="ot">&lt;-</span> <span class="fu">AUCell_buildRankings</span>(sce<span class="sc">@</span>assays<span class="sc">$</span>RNA<span class="sc">$</span>data, <span class="at">nCores=</span><span class="dv">4</span>)</span>
+<span id="cb9-58"><a href="spatial-1.html#cb9-58" tabindex="-1"></a>module_scores <span class="ot">&lt;-</span> <span class="fu">AUCell_calcAUC</span>(marker.list.all, cells_rankings)</span>
+<span id="cb9-59"><a href="spatial-1.html#cb9-59" tabindex="-1"></a></span>
+<span id="cb9-60"><a href="spatial-1.html#cb9-60" tabindex="-1"></a></span>
+<span id="cb9-61"><a href="spatial-1.html#cb9-61" tabindex="-1"></a><span class="fu">saveRDS</span>(module_scores, <span class="fu">paste0</span>(out.path.plot, <span class="st">&quot;/AUC_feature.score.rds&quot;</span>) )</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="scrna-seq-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="about-this-project.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-spatial.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["HematoMap2026.pdf", "HematoMap2026.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>
