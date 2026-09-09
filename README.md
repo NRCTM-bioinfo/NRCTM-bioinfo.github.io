@@ -5,7 +5,7 @@ Applied bioinformatics in National Research Center for Translational Medicine at
 
 ### HematoMap2026 project
 
-See the tutorial of HematoMap project, please visit [Tutorial of HematoMap2026](https://nrctm-bioinfo.github.io/HematoMap2026/index.html).
+See the tutorial of HematoMap2026 project, please visit [Tutorial of HematoMap2026](https://nrctm-bioinfo.github.io/HematoMap2026/index.html).
 
 ### HematoMap project
 
